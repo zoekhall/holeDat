@@ -4,12 +4,12 @@
   "description": "a mobile first web application for new orleans potholes",
   "main": "index.ts",
   "scripts": {
-    "start": "ts-node server/index.ts",
-    "dev": "concurrently \"npm run build:dev\"  \"npm run server:dev\"",
-    "build:dev": "webpack --config webpack.config.ts --watch",
-    "server:dev": "ts-node-dev --respawn server/index.ts",
-    "server:kill": "kill -9 $(lsof -t -i:8080)",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "server": "ts-node server/index.ts",
+    "build": "webpack --config webpack.config.ts",
+    "dev": "concurrently \"npm run dev:build\"  \"npm run dev:server\"",
+    "dev:build": "webpack --config webpack.config.ts --watch",
+    "dev:server": "ts-node-dev --respawn server/index.ts",
+    "server:kill": "kill -9 $(lsof -t -i:8080)"
   },
   "repository": {
     "type": "git",

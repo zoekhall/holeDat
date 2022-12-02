@@ -4,11 +4,9 @@ import ReactDOM from "react-dom/client";
 // components import
 import App from './components/app'
 
-
 const rootElement = document.getElementById("app");
 if (!rootElement) throw new Error('Failed to find the root element');
 
 const root = ReactDOM.createRoot(rootElement);
-
 
 root.render(<App />)

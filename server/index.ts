@@ -5,6 +5,7 @@ import * as dotenv from 'dotenv';
 // importing .env file
 dotenv.config();
 
+// running on port 5555 if no env available
 const PORT = process.env.PORT || 5555
 
 // assigning express to app
@@ -20,7 +21,6 @@ app.get('/api', (req: Request, res: Response) => {
      console.log("test")
      res.sendStatus(200)
 })
-
 
 // app listen
 app.listen(PORT, () => {

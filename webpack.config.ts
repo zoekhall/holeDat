@@ -1,4 +1,4 @@
-const path = require('path');
+import path from 'path';
 
 module.exports = {
      entry: './client/src/index.tsx',
@@ -10,6 +10,11 @@ module.exports = {
                     use: 'ts-loader',
                     exclude: /node_modules/,
                },
+               {
+                    test: /\.css?$/,
+                    use: 'types/styled-components',
+                    exclude: /node_modules/
+               }
           ],
      },
      resolve: {

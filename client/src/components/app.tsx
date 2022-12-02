@@ -1,25 +1,17 @@
 import React from 'react'
-import Button from 'react-bootstrap/Button';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
+//
+const test = 'alskjd'
 const App = () => (
-     <>
-          <style type="text/css">
-               {`
-                    .btn-flat {
-                         background-color: purple;
-                         color: white;
-                    }
+     <BrowserRouter>
+          <Routes>
+               {test}
+               <Route path='/' />
+          </Routes>
+     </BrowserRouter>
 
-                    .btn-lg {
-                         padding: 1rem 1.5rem;
-                         font-size: 1.5rem;
-                    }
-               `}
-          </style>
-          <Button variant="flat" size="lg">
-               flat button
-          </Button>
-     </>
+
 )
 
 export default App;

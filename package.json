@@ -5,6 +5,8 @@
   "main": "index.ts",
   "scripts": {
     "server": "ts-node server/index.ts",
+    "lint": "eslint . --ext ts,tsx",
+    "fixer": "eslint . --ext ts,tsx --fix",
     "build": "webpack --config webpack.config.ts",
     "dev": "concurrently \"npm run dev:build\"  \"npm run dev:server\"",
     "dev:build": "webpack --config webpack.config.ts --watch",
@@ -29,6 +31,8 @@
     "@babel/register": "^7.18.9",
     "@types/express": "^4.17.14",
     "@types/react-dom": "^18.0.9",
+    "@types/styled-components": "^5.1.26",
+    "@typescript-eslint/eslint-plugin": "^5.45.0",
     "babel-loader": "^9.1.0",
     "concurrently": "^7.6.0",
     "ts-loader": "^9.4.2",

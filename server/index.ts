@@ -21,6 +21,7 @@ app.get('/api', (req: Request, res: Response) => {
      res.sendStatus(200)
 })
 
+
 // app listen
 app.listen(PORT, () => {
      console.log(`listening at http://localhost:${PORT}`);

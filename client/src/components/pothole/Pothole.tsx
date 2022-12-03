@@ -1,5 +1,7 @@
-import React from 'react'
+import React from 'react';
 
-const Pothole = () => (<p>Pothole</p>)
+function Pothole() {
+  return <p>Pothole</p>;
+}
 
 export default Pothole;

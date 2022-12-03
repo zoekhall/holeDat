@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "ES5", /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
+    "target": "ES2016", /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
     "jsx": "react", /* Specify what JSX code is generated. */
     "lib": [
       "dom"

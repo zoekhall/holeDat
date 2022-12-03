@@ -6,7 +6,7 @@ import * as dotenv from 'dotenv';
 dotenv.config();
 
 // running on port 5555 if no env available
-const PORT = process.env.PORT || 5555
+const PORT = process.env.PORT || 5555;
 
 // assigning express to app
 const app = express();
@@ -18,11 +18,12 @@ app.use(express.json());
 
 // endpoint /api
 app.get('/api', (req: Request, res: Response) => {
-     console.log("test")
-     res.sendStatus(200)
-})
+  console.log('test');
+  res.sendStatus(200);
+});
+
 
 // app listen
 app.listen(PORT, () => {
-     console.log(`listening at http://localhost:${PORT}`);
+  console.log(`listening at http://localhost:${PORT}`);
 });

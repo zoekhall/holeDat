@@ -1,5 +1,7 @@
-import React from 'react'
+import React from 'react';
 
-const User = () => (<p>User</p>)
+function User() {
+  return <p>User</p>;
+}
 
 export default User;

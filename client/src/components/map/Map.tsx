@@ -1,6 +1,7 @@
-import React from 'react'
+import React from 'react';
 
-const Map = () => (<p>Map</p>)
+function Map() {
+  return <p>Map</p>;
+}
 
 export default Map;
-

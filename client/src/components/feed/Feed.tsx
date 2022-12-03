@@ -1,5 +1,7 @@
-import React from 'react'
+import React from 'react';
 
-const Feed = () => (<p>Feed</p>)
+function Feed() {
+  return <p>Feed</p>;
+}
 
 export default Feed;

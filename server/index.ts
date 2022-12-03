@@ -1,7 +1,7 @@
 import express, { Request, Response } from 'express';
 import * as path from 'path';
 import * as dotenv from 'dotenv';
-import passport from './passport'
+// import passport from './passport'
 // importing .env file
 dotenv.config();
 
@@ -22,10 +22,13 @@ app.get('/api', (req: Request, res: Response) => {
   res.sendStatus(200);
 });
 
+
 // Random Endpoint
 app.use('*', (req: Request, res: Response) => {res.sendFile(path.resolve(__dirname, '../client/dist/index.html'),
     err => {if (err) res.status(500).send(err)})
 })
+
+
 
 // app listen
 app.listen(PORT, () => {

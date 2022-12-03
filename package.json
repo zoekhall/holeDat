@@ -54,6 +54,7 @@
     "node": "^18.12.1",
     "passport": "^0.6.0",
     "passport-google-oauth20": "^2.0.0",
+    "pg": "^8.8.0",
     "postgresql": "^0.0.1",
     "react": "^18.2.0",
     "react-bootstrap": "^2.6.0",

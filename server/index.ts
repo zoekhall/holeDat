@@ -35,7 +35,7 @@ app.use(routes);
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use('/', express.static(path.resolve('client', 'dist')));
+app.use('/', express.static(path.resolve('dist')));
 
 // app.use(
 //   cors({
@@ -47,7 +47,7 @@ app.use('/', express.static(path.resolve('client', 'dist')));
 
 // Random Endpoint
 app.use('/*', (req: Request, res: Response) => {
-  res.sendFile(path.resolve(__dirname, '../client/dist/index.html'), (err) => {
+  res.sendFile(path.resolve(__dirname, '../dist/index.html'), (err) => {
     if (err) res.status(500).send(err);
   });
 });

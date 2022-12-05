@@ -1,5 +1,2 @@
-import sequelize from "./db.server";
-import User from './user.schema';
-
-
-export default {sequelize, User}
+export { default as db } from './db.server';
+export { default as User } from './user.schema';

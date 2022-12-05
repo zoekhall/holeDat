@@ -1,9 +1,5 @@
 // make db server here
 import { Sequelize } from 'sequelize';
-import * as dotenv from 'dotenv';
-
-// importing .env file
-dotenv.config();
 
 // running on port 5555 if no env available
 const endpoint = process.env.DB_ENDPOINT
@@ -17,7 +13,8 @@ const sequelize = new Sequelize('holes', 'postgres', pw, {
           max: 9,
           min: 0,
           idle: 10000
-     }
+     },
+     logging: false
 });
 
 sequelize.authenticate().then(() => {

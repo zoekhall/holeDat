@@ -1,7 +1,7 @@
 import Sequelize from 'sequelize';
-import sequelize from './index';
+import { db } from './index';
 
-const User = sequelize.define('user', {
+const User =  db.define('user', {
      user_id: {
           type: Sequelize.INTEGER,
           autoIncrement: true,
@@ -19,6 +19,6 @@ const User = sequelize.define('user', {
      updatedAt: Sequelize.DATE,
 })
 
-sequelize.sync()
+db.sync()
 
 export default User;

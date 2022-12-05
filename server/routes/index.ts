@@ -1,21 +1,7 @@
+import { Router } from 'express';
+import './auth/passport';
 
-import auth from './auth/passport';
+const routes = Router();
 
+export default routes;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-export default auth;

@@ -1,8 +1,6 @@
 import passport from "passport";
 import { Strategy as GoogleStrategy } from "passport-google-oauth20";
-import dotenv from 'dotenv';
-import User from '../../db/index'
-dotenv.config();
+import User from '../../db/user.schema'
 
 
 passport.use(
@@ -28,10 +26,10 @@ passport.use(
                          },
                     });
                     return done(null, user);
-               } catch (error: any) {
-                    return done(error);
+               } catch (error) {
+                    return done();
                }
           }
      )
-
+     )
 export default passport;

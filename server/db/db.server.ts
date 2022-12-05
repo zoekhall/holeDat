@@ -1,17 +1,12 @@
 // make db server here
-import { Sequelize } from "sequelize";
+import { Sequelize } from 'sequelize';
 
 // running on port 5555 if no env available
-const {
-  DB_HOST = "localhost",
-  DB_NAME = "holes",
-  DB_PW = "",
-  DB_USER = "postgres",
-} = process.env;
+const { DB_HOST = 'localhost', DB_NAME = 'holes', DB_PW = '', DB_USER = 'postgres' } = process.env;
 
 const sequelize = new Sequelize(DB_NAME, DB_USER, DB_PW, {
   host: DB_HOST,
-  dialect: "postgres",
+  dialect: 'postgres',
   pool: {
     max: 9,
     min: 0,
@@ -23,7 +18,7 @@ const sequelize = new Sequelize(DB_NAME, DB_USER, DB_PW, {
 sequelize
   .authenticate()
   .then(() => {
-    console.log("Success!");
+    console.log('Success!');
   })
   .catch((err) => {
     console.log(err);

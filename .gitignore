@@ -1,5 +1,4 @@
-/client/dist/bundle.js
-package-lock.json
+dist
 node_modules
-.env
-.vscode
+.env*
+!.env.example

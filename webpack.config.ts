@@ -1,7 +1,10 @@
 import path from 'path';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
 
 module.exports = {
-  entry: './client/src/index.tsx',
+  entry: {
+    app: path.resolve(__dirname, 'client', 'index.tsx'),
+  },
   mode: 'development',
   module: {
     rules: [
@@ -21,7 +24,12 @@ module.exports = {
     extensions: ['.tsx', '.ts', '.js'],
   },
   output: {
-    filename: 'bundle.js',
-    path: path.resolve(__dirname, 'client', 'dist'),
+    filename: '[name].bundle.js',
+    path: path.resolve(__dirname, 'dist'),
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, 'client', 'index.template.html'),
+    }),
+  ],
 };

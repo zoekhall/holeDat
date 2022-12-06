@@ -32,12 +32,13 @@ app.use(passport.session());
 // app.use(routes);
 
 // const isLoggedIn = (req, res, next) => {
-//   req.user ? next() : res.redirect('/');
-// };
+  //   req.user ? next() : res.redirect('/');
+  // };
 
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-app.use('/', express.static(path.resolve('dist')));
+  app.use(express.urlencoded({ extended: true }));
+  app.use(express.json());
+  app.use('/', express.static(path.resolve('dist')));
+
 
 // app.use(
 //   cors({
@@ -79,6 +80,14 @@ passport.use(
     }
   )
 );
+/**
+
+ * LOGOUT -> button/functionality
+ * get db to add User to collection
+ * create helper function to make sure user has proper access and pass along to each component
+ * add other keys in schema that will be necessary later (badges)
+ */
+
 
 passport.serializeUser((user: any, done) => {
   done(null, user.id);
@@ -96,6 +105,7 @@ app.get(
     failureRedirect: '/map',
   })
 );
+
 
 app.use('/*', (req: Request, res: Response) => {
   res.sendFile(path.resolve(__dirname, '../dist/index.html'), (err) => {

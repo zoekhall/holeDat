@@ -8,9 +8,10 @@ const User = db.define('user', {
     allowNull: false,
     primaryKey: true,
   },
+  id: { type: Sequelize.STRING, allowNull: false },
   name: { type: Sequelize.STRING, allowNull: false },
   email: { type: Sequelize.STRING, allowNull: false },
-  avatarUrl: { type: Sequelize.STRING, allowNull: false },
+  photo: { type: Sequelize.STRING, allowNull: false },
   myDate: {
     type: Sequelize.DATE,
     defaultValue: Sequelize.NOW,

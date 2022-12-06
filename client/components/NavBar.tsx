@@ -1,32 +1,30 @@
 import React from 'react';
 import { Outlet, Link } from 'react-router-dom';
-// keep it dry
-const NavBar = () => (
-  <>
-    <nav>
-      <ul>
-        <li>
-          <Link to='/'>Home</Link>
-        </li>
-        <li>
-          <Link to='/pothole'>Pothole</Link>
-        </li>
-        <li>
-          <Link to='/user'>Profile</Link>
-        </li>
-        <li>
-          <Link to='/map'>Map</Link>
-        </li>
-        <li>
-          <Link to='/about'>About</Link>
-        </li>
-        <li>
-          <Link to='/feed'>Feed</Link>
-        </li>
-      </ul>
-    </nav>
-    <Outlet />
-  </>
-);
+
+const NavBar = () => {
+  const menuItems = ['Map', 'About', 'Feed']
+  //Check if user is logged in to change text from login to logout
+  return (
+    <>
+      <nav>
+        <ul>
+          {menuItems.map((item, i) => (
+            <li key={i} >
+              <Link to={`/${item}`} >
+                {item}
+              </Link>
+            </li>
+          ))}
+        </ul>
+        <a href='/'><h1>🕳️HoleDat</h1></a>
+        {/* add profile pic*/}
+        <a href='/auth/google/callback'>
+          <button>Login with Google</button>
+        </a>
+      </nav>
+      <Outlet />
+    </>
+  )
+};
 
 export default NavBar;

@@ -11,16 +11,17 @@ import Feed from './feed/Feed';
 import Map from './map/Map';
 import NoPage from './NoPage';
 
+
 const App = () => (
   <BrowserRouter>
     <NavBar />
     <Routes>
       <Route path='/' element={<Home />} />
-      <Route path='pothole' element={<Pothole />} />
-      <Route path='user' element={<User />} />
-      <Route path='map' element={<Map />} />
-      <Route path='about' element={<About />} />
-      <Route path='feed' element={<Feed />} />
+      <Route path='Pothole:id' element={<Pothole />} />
+      <Route path='User:id' element={<User />} />
+      <Route path='Map' element={<Map />} />
+      <Route path='About' element={<About />} />
+      <Route path='Feed' element={<Feed />} />
       <Route path='*' element={<NoPage />} />
     </Routes>
   </BrowserRouter>

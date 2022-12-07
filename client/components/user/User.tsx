@@ -1,7 +1,14 @@
 import React from 'react';
+import Logout from '../../Logout';
+
 
 function User() {
-  return <p>User</p>;
+  return (
+    <div>
+      <p>User</p>
+      <Logout />
+    </div>
+  );
 }
 
 export default User;

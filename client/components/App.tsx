@@ -12,6 +12,7 @@ import Map from './map/Map';
 import NoPage from './NoPage';
 
 
+
 const App = () => (
   <BrowserRouter>
     <NavBar />

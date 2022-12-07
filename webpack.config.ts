@@ -13,27 +13,15 @@ module.exports = {
         use: 'ts-loader',
         exclude: /node_modules/,
       },
-      // {
-      //   test: /\.(s(a|c)ss)$/, //adding style
-      //   use: ['style-loader', 'css-loader', 'sass-loader'],
-      //   // exclude: /node_modules/,
-      // },
-      // {
-      //   test: /\.css$/,
-      //   use: ['style-loader', 'css-loader'],
-      //   // exclude: /node_modules/,
-      // },
       {
         test: /\.scss$/,
         use: ['style-loader', 'css-loader', 'sass-loader'],
-        // exclude: /node_modules/,
       },
       {
-        test: /\.(woff|woff2|eot|ttf|svg|jpg|png)$/, ///adding images
+        test: /\.(woff|woff2|eot|ttf|svg|jpg|png)$/, 
         use: {
           loader: 'url-loader',
         },
-        // exclude: /node_modules/,
       },
     ],
   },

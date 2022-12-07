@@ -2,11 +2,13 @@
   "compilerOptions": {
     "target": "ES2016" /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */,
     "jsx": "react" /* Specify what JSX code is generated. */,
-    "lib": ["dom"],
+    "lib": [
+      "dom"
+    ],
     "esModuleInterop": true /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables 'allowSyntheticDefaultImports' for type compatibility. */,
     "forceConsistentCasingInFileNames": true /* Ensure that casing is correct in imports. */,
     "strict": true /* Enable all strict type-checking options. */,
-    //"noImplicitAny": true, /* Enable error reporting for expressions and declarations with an implied 'any' type. */
+    "noImplicitAny": false, /* Enable error reporting for expressions and declarations with an implied 'any' type. */
     "alwaysStrict": true /* Ensure 'use strict' is always emitted. */,
     "strictFunctionTypes": true /* When assigning functions, check to ensure parameters and the return values are subtype-compatible. */,
     "skipLibCheck": true /* Skip type checking all .d.ts files. */,
@@ -93,6 +95,10 @@
     /* Completeness */
     // "skipDefaultLibCheck": true,                      /* Skip type checking .d.ts files that are included with TypeScript. */
   },
-  "include": ["client/**/*"],
-  "exclude": ["node_modules"]
+  "include": [
+    "client/**/*"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

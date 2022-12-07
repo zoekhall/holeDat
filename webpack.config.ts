@@ -13,8 +13,18 @@ module.exports = {
         use: 'ts-loader',
         exclude: /node_modules/,
       },
+      // {
+      //   test: /\.(s(a|c)ss)$/, //adding style
+      //   use: ['style-loader', 'css-loader', 'sass-loader'],
+      //   // exclude: /node_modules/,
+      // },
+      // {
+      //   test: /\.css$/,
+      //   use: ['style-loader', 'css-loader'],
+      //   // exclude: /node_modules/,
+      // },
       {
-        test: /\.(s(a|c)ss)$/, //adding style
+        test: /\.scss$/,
         use: ['style-loader', 'css-loader', 'sass-loader'],
         // exclude: /node_modules/,
       },
@@ -23,6 +33,7 @@ module.exports = {
         use: {
           loader: 'url-loader',
         },
+        // exclude: /node_modules/,
       },
     ],
   },

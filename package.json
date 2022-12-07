@@ -39,6 +39,7 @@
     "@typescript-eslint/eslint-plugin": "^5.45.0",
     "@typescript-eslint/parser": "^5.45.1",
     "babel-loader": "^9.1.0",
+    "bootstrap": "^5.2.3",
     "concurrently": "^7.6.0",
     "css-loader": "^6.7.2",
     "html-webpack-plugin": "^5.5.0",

@@ -14,12 +14,19 @@ module.exports = {
         exclude: /node_modules/,
       },
       {
-        test: /\.css?$/,
-        use: 'types/styled-components',
-        exclude: /node_modules/,
+        test: /\.(s(a|c)ss)$/, //adding style
+        use: ['style-loader', 'css-loader', 'sass-loader'],
+        // exclude: /node_modules/,
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf|svg|jpg|png)$/, ///adding images
+        use: {
+          loader: 'url-loader',
+        },
       },
     ],
   },
+  devtool: 'source-map',
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
   },

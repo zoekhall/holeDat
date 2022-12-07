@@ -4,7 +4,7 @@ import { Sequelize } from 'sequelize';
 // running on port 5555 if no env available
 const { DB_HOST = 'localhost', DB_NAME = 'holes', DB_PW = '', DB_USER = 'postgres' } = process.env;
 
-const sequelize = new Sequelize(DB_NAME, DB_USER, DB_PW, {
+const db = new Sequelize(DB_NAME, DB_USER, DB_PW, {
   host: DB_HOST,
   dialect: 'postgres',
   pool: {
@@ -15,7 +15,7 @@ const sequelize = new Sequelize(DB_NAME, DB_USER, DB_PW, {
   logging: false,
 });
 
-sequelize
+db
   .authenticate()
   .then(() => {
     console.log('Success!');
@@ -24,4 +24,6 @@ sequelize
     console.log(err);
   });
 
-export default sequelize;
+  
+
+export default db;

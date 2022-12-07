@@ -1,21 +1,17 @@
 import express, { Request, Response } from 'express';
-// import cors from 'cors';
+
 import * as path from 'path';
 import dotenv from 'dotenv';
 dotenv.config();
 import sessions from 'express-session';
 import passport from 'passport';
-// import routes from './routes';
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
-import User from './db/user.schema';
-
-// importing .env file
+import User from './db/schema/user.schema'
+import './db/index'
+const app = express();
 
 // running on port 5555 if no env available
 const PORT = process.env.PORT || 5555;
-
-// assigning express to app
-const app = express();
 
 app.use(
   sessions({
@@ -48,7 +44,6 @@ app.use(passport.session());
 //   })
 // );
 
-// Random Endpoint
 
 passport.use(
   new GoogleStrategy(
@@ -81,7 +76,6 @@ passport.use(
   )
 );
 /**
-
  * LOGOUT -> button/functionality
  * get db to add User to collection
  * create helper function to make sure user has proper access and pass along to each component
@@ -106,12 +100,13 @@ app.get(
   })
 );
 
-
+// wildcard endpoint
 app.use('/*', (req: Request, res: Response) => {
   res.sendFile(path.resolve(__dirname, '../dist/index.html'), (err) => {
     if (err) res.status(500).send(err);
   });
 });
+
 // app listen
 app.listen(PORT, () => {
   console.log(`listening at http://localhost:${PORT}`);

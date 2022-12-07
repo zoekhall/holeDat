@@ -11,9 +11,8 @@ const NavBar = () => {
   //Check if user is logged in to change text from login to logout
   return ( 
     <>
-      <Navbar bg="light" expand="lg">
+      <Navbar expand="lg" id='mainNavbar'>
       <Container>
-        {/* <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand> */}
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto"> 
@@ -26,9 +25,9 @@ const NavBar = () => {
           </Navbar.Collapse>
         </Container>
         <Navbar.Brand href='/'>🕳️HoleDat</Navbar.Brand>
-        <Button href='/auth/google/callback' variant="outline-primary">Sign In</Button>{' '}
+        <Button href='/auth/google/callback' variant="flat">Sign In</Button>{' '}
       </Navbar>
-  <Outlet /> 
+    <Outlet /> 
     </> 
   );
 }

@@ -1,5 +1,4 @@
 import express, { Request, Response } from 'express';
-
 import * as path from 'path';
 import dotenv from 'dotenv';
 dotenv.config();
@@ -27,21 +26,25 @@ app.use(passport.initialize());
 app.use(passport.session());
 // app.use(routes);
 
-// const isLoggedIn = (req, res, next) => {
-//   req.user ? next() : res.redirect('/');
-// };
+const isLoggedIn = (req, res, next) => {
+  //make component to need to login compo
+  req.user ? next() : res.redirect('/');
+};
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use('/', express.static(path.resolve('dist')));
+app.use('/Pothole', isLoggedIn, express.static(path.resolve('dist')))
+app.use('/User', isLoggedIn, express.static(path.resolve('dist')))
 
-// app.use(
-//   cors({
-//     origin: "http://localhost:8080",
-//     methods: ["GET", "POST", "PUT", "DELETE"],
-//     credentials: true,
-//   })
-// );
+
+app.get('/logout', function (req, res, next) {
+  req.logout(function (err) {
+    if (err) { return next(err); }
+    console.log(req)
+    res.redirect('/');
+  });
+});
 
 passport.use(
   new GoogleStrategy(
@@ -61,18 +64,11 @@ passport.use(
         });
         done(null, user);
       } catch (error) {
-        // console.log('ERRORRRRRRRRR');
         done(null, profile);
       }
     }
   )
 );
-/**
- * LOGOUT -> button/functionality
- * get db to add User to collection
- * create helper function to make sure user has proper access and pass along to each component
- * add other keys in schema that will be necessary later (badges)
- */
 
 passport.serializeUser((user: any, done) => {
   done(null, user.id);
@@ -86,7 +82,7 @@ app.get(
   '/auth/google/callback',
   passport.authenticate('google', {
     scope: ['profile', 'email'],
-    successRedirect: '/Pothole',
+    successRedirect: '/User',
     failureRedirect: '/Map',
   })
 );

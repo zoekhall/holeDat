@@ -6,8 +6,8 @@ dotenv.config();
 import sessions from 'express-session';
 import passport from 'passport';
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
-import User from './db/schema/user.schema'
-import './db/index'
+import User from './db/schema/user.schema';
+import './db/index';
 const app = express();
 
 // running on port 5555 if no env available
@@ -28,13 +28,12 @@ app.use(passport.session());
 // app.use(routes);
 
 // const isLoggedIn = (req, res, next) => {
-  //   req.user ? next() : res.redirect('/');
-  // };
+//   req.user ? next() : res.redirect('/');
+// };
 
-  app.use(express.urlencoded({ extended: true }));
-  app.use(express.json());
-  app.use('/', express.static(path.resolve('dist')));
-
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use('/', express.static(path.resolve('dist')));
 
 // app.use(
 //   cors({
@@ -43,7 +42,6 @@ app.use(passport.session());
 //     credentials: true,
 //   })
 // );
-
 
 passport.use(
   new GoogleStrategy(
@@ -57,19 +55,13 @@ passport.use(
       const email = emails ? emails[0].value : '';
       const photo = photos ? photos[0].value : '';
       try {
-        const user = await User.upsert({
-          where: { googleId: id },
-          update: {},
-          create: {
-            googleId: id,
-            email,
-            name: displayName,
-            photo,
-          },
+        const [user] = await User.findOrCreate({
+          where: { id },
+          defaults: { id, email, name: displayName, photo },
         });
         done(null, user);
       } catch (error) {
-        // console.log(profile);
+        // console.log('ERRORRRRRRRRR');
         done(null, profile);
       }
     }
@@ -81,7 +73,6 @@ passport.use(
  * create helper function to make sure user has proper access and pass along to each component
  * add other keys in schema that will be necessary later (badges)
  */
-
 
 passport.serializeUser((user: any, done) => {
   done(null, user.id);
@@ -95,8 +86,8 @@ app.get(
   '/auth/google/callback',
   passport.authenticate('google', {
     scope: ['profile', 'email'],
-    successRedirect: '/pothole',
-    failureRedirect: '/map',
+    successRedirect: '/Pothole',
+    failureRedirect: '/Map',
   })
 );
 

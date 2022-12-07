@@ -17,8 +17,8 @@ const App = () => (
     <NavBar />
     <Routes>
       <Route path='/' element={<Home />} />
-      <Route path='Pothole:id' element={<Pothole />} />
-      <Route path='User:id' element={<User />} />
+      <Route path='Pothole' element={<Pothole />} />
+      <Route path='User' element={<User />} />
       <Route path='Map' element={<Map />} />
       <Route path='About' element={<About />} />
       <Route path='Feed' element={<Feed />} />

@@ -1,7 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-
 //Components
 import NavBar from './NavBar';
 import Home from './Home';
@@ -11,8 +10,6 @@ import About from './about/About';
 import Feed from './feed/Feed';
 import MapView from './map/Map';
 import NoPage from './NoPage';
-
-
 
 const App = () => (
   <BrowserRouter>

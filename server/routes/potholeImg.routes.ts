@@ -1,7 +1,7 @@
 import express,{Request, Response} from 'express'
 const imgs = express.Router();
 
-import getAllImgs from '../models/imgs'
+import getAllImgs from '../models/imgs.model'
 
 
 

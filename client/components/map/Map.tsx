@@ -1,8 +1,29 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import Map, { Marker, NavigationControl, FullscreenControl, GeolocateControl } from 'react-map-gl';
+import axios from 'axios';
 
-function MapView() {
+const MapView = () => {
+
+  type markerType = {
+    createdAt: string,
+    fixed: boolean;
+    lat: number;
+    lon: number;
+    pothole_id: number;
+    updatedAt: string;
+  }
+
+  const [markers, setMarkers] = useState<markerType[]>([])
+
+  const getMarkers = () => {
+    axios.get('/api/pothole')
+      .then(data => setMarkers(data.data))
+      .catch(err => console.error(err))
+  }
+
+  useEffect(getMarkers, [])
+
   return (
     <div
       className='map-box'
@@ -28,7 +49,9 @@ function MapView() {
         }}
         mapStyle='mapbox://styles/mapbox/dark-v11'
       >
-        <Marker longitude={-90.071533} latitude={29.951065} />
+        {markers.map(marker => {
+          if (!marker.fixed) return <Marker key={marker.pothole_id} longitude={marker.lon} latitude={marker.lat} />
+        })}
         <NavigationControl />
         <FullscreenControl />
         <GeolocateControl />

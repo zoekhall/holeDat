@@ -1,4 +1,4 @@
-import PotholeIMG from './../db/schema/potholeImgs.schema'
+import PotholeIMG from '../db/schema/potholeImgs.schema'
 
 
 const getAllImgs = (cb) => {

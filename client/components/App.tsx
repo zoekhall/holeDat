@@ -9,7 +9,7 @@ import Pothole from './pothole/Pothole';
 import User from './user/User';
 import About from './about/About';
 import Feed from './feed/Feed';
-import Map from './map/Map';
+import MapView from './map/Map';
 import NoPage from './NoPage';
 
 
@@ -21,7 +21,7 @@ const App = () => (
       <Route path='/' element={<Home />} />
       <Route path='Pothole' element={<Pothole />} />
       <Route path='User' element={<User />} />
-      <Route path='Map' element={<Map />} />
+      <Route path='Map' element={<MapView />} />
       <Route path='About' element={<About />} />
       <Route path='Feed' element={<Feed />} />
       <Route path='*' element={<NoPage />} />

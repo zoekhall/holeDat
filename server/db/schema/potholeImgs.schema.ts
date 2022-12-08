@@ -10,11 +10,11 @@ const PotholeIMG = db.define('potholeimg', {
   },
   photoURL: {
     type: Sequelize.STRING,
-    allowNull: false
+    allowNull: false,
   },
   caption: {
     type: Sequelize.STRING,
-    allowNull: false ,
+    allowNull: false,
   },
 });
 

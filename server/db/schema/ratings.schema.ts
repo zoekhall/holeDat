@@ -9,13 +9,12 @@ const Rating = db.define('rating', {
     primaryKey: true,
   },
 
-  overall:{
+  overall: {
     type: Sequelize.INTEGER,
-    allowNull: true
-  }
+    allowNull: true,
+  },
 });
 
 db.sync();
 
 export default Rating;
-

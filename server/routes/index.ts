@@ -1,6 +1,12 @@
-import { Router } from 'express';
-import './auth/passport';
+import express from 'express'
 
-const routes = Router();
+const rootRouter = express.Router();
 
-export default routes;
+import imgs from './potholeImg.routes'
+import pothole from './pothole.routes'
+
+rootRouter.use("/imgs", imgs);
+rootRouter.use("/pothole", pothole);
+
+
+export default rootRouter

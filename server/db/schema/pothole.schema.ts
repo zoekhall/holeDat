@@ -10,18 +10,17 @@ const Pothole = db.define('pothole', {
   },
   fixed: {
     type: Sequelize.BOOLEAN,
-    allowNull: false
+    allowNull: false,
   },
   lat: {
     type: Sequelize.FLOAT,
-    allowNull: false
+    allowNull: false,
   },
   lon: {
     type: Sequelize.FLOAT,
-    allowNull: false
+    allowNull: false,
   },
 });
-
 
 db.sync();
 

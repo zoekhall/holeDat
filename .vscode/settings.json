@@ -1,9 +1,4 @@
 {
-  "cSpell.words": [
-    "Geolocate",
-    "holedat",
-    "resave",
-    "thisisasecret"
-  ],
+  "cSpell.words": ["Geolocate", "holedat", "resave", "thisisasecret"],
   "editor.formatOnSave": true
 }

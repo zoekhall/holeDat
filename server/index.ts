@@ -8,9 +8,9 @@ import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
 import User from './db/schema/user.schema';
 import './db/index';
 const app = express();
-
 // running on port 5555 if no env available
 const PORT = process.env.PORT || 5555;
+import rootRouter from "./routes/index";
 
 app.use(
   sessions({
@@ -34,14 +34,14 @@ const isLoggedIn = (req, res, next) => {
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use('/', express.static(path.resolve('dist')));
-app.use('/Pothole', isLoggedIn, express.static(path.resolve('dist')))
-app.use('/User', isLoggedIn, express.static(path.resolve('dist')))
-
+app.use('/Pothole', isLoggedIn, express.static(path.resolve('dist')));
+app.use('/User', isLoggedIn, express.static(path.resolve('dist')));
 
 app.get('/logout', function (req, res, next) {
   req.logout(function (err) {
-    if (err) { return next(err); }
-    console.log(req)
+    if (err) {
+      return next(err);
+    }
     res.redirect('/');
   });
 });
@@ -86,6 +86,8 @@ app.get(
     failureRedirect: '/Map',
   })
 );
+
+app.use('/api', rootRouter);
 
 // wildcard endpoint
 app.use('/*', (req: Request, res: Response) => {

@@ -1,25 +1,7 @@
 @import '../node_modules/bootstrap/scss/bootstrap';
 
-#mainNavbar {
-  display: flex;
-  justify-content: stretch;
-}
 
-#navButtons {
-    display: flex;
-    justify-content: stretch;
-}
 
-html {
-  box-sizing: border-box;
-  font-size: 16px;
-}
-
-*,
-*:before,
-*:after {
-  box-sizing: inherit;
-}
 
 body,
 h1,
@@ -52,4 +34,82 @@ body,
   width: 100%;
   height: 100%;
   margin: auto;
+}
+
+body {
+  background: linear-gradient(#BDD5EA, #FE5F55);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  height: 100%;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.navbar-collapse {
+  background-color: #f7f7ff;
+  padding: 10px;
+  width: fit-content;
+  border-radius: 10px;
+  margin-top: 5px;
+  box-shadow: 0 3px 5px black;
+}
+
+.navbar-nav {
+  width: fit-content;
+}
+
+#mainNavbar {
+  background-color: #f7f7ff;
+  box-shadow: 0 3px 5px black;
+  width: 100%;
+  top: 0;
+  max-height: 10%;
+  position: sticky;
+  position: -webkit-sticky;
+  z-index: 3;
+  max-height: 55px;
+}
+
+.navbar-brand,
+.btn,
+.navbar-toggler {
+  background-color: #f7f7ff;
+  padding: 5px 10px;
+  border-radius: 10px;
+  box-shadow: 0 0 5px black;
+}
+
+.btn:hover,
+.navbar-toggler:hover,
+.navbar-brand:hover {
+  background-color: #BDD5EA;
+}
+
+.mapboxgl-marker>svg path {
+  fill: #FE5F55;
+}
+
+.page-content {
+  display: flex;
+  width: 95%;
+  background-color: #f7f7ff;
+  padding: 20px;
+  margin-top: 20px;
+  border: 1px solid #495876;
+  border-radius: 10px;
+  z-index: 1;
+}
+
+.map-box {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  z-index: 0;
+  top: 55px;
 }

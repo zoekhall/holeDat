@@ -6,7 +6,7 @@ import axios from 'axios';
 const MapView = () => {
 
   type markerType = {
-    createdAt: string,
+    createdAt: string;
     fixed: boolean;
     lat: number;
     lon: number;

@@ -23,6 +23,7 @@ const App = () => (
         <Route path='Map' element={<MapView />} />
         <Route path='About' element={<About />} />
         <Route path='Feed' element={<Feed />} />
+        <Route path='AddPothole' element={<AddPothole />} />
         <Route path='*' element={<NoPage />} />
       </Routes>
     </div>

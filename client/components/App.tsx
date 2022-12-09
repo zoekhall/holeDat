@@ -10,19 +10,23 @@ import About from './about/About';
 import Feed from './feed/Feed';
 import MapView from './map/Map';
 import NoPage from './NoPage';
+import AddPothole from './addPothole/AddPothole';
 
 const App = () => (
   <BrowserRouter>
     <NavBar />
-    <Routes>
-      <Route path='/' element={<Home />} />
-      <Route path='Pothole' element={<Pothole />} />
-      <Route path='User' element={<User />} />
-      <Route path='Map' element={<MapView />} />
-      <Route path='About' element={<About />} />
-      <Route path='Feed' element={<Feed />} />
-      <Route path='*' element={<NoPage />} />
-    </Routes>
+    <div className='page-content'>
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='Pothole' element={<Pothole />} />
+        <Route path='User' element={<User />} />
+        <Route path='Map' element={<MapView />} />
+        <Route path='About' element={<About />} />
+        <Route path='Feed' element={<Feed />} />
+        <Route path='AddPothole' element={<AddPothole />} />
+        <Route path='*' element={<NoPage />} />
+      </Routes>
+    </div>
   </BrowserRouter>
 );
 

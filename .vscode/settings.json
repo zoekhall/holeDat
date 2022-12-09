@@ -1,4 +1,18 @@
 {
-  "cSpell.words": ["Geolocate", "holedat", "Imgs", "resave", "Swiper", "thisisasecret"],
+  "cSpell.words": [
+    "amet",
+    "Geolocate",
+    "holedat",
+    "mapboxgl",
+    "resave",
+    "thisisasecret",
+    "tortor"
+    "Geolocate",
+    "holedat",
+    "Imgs",
+    "resave",
+    "Swiper",
+    "thisisasecret"
+  ],
   "editor.formatOnSave": true
 }

@@ -1,5 +1,4 @@
-import PotholeIMG from '../db/schema/potholeImgs.schema'
-
+import PotholeIMG from '../db/schema/potholeImgs.schema';
 
 const getAllImgs = (cb) => {
   PotholeIMG.findAll({})
@@ -7,5 +6,4 @@ const getAllImgs = (cb) => {
     .catch((err) => console.error(err));
 };
 
-
-export default getAllImgs
+export default getAllImgs;

@@ -10,7 +10,7 @@ import './db/index';
 const app = express();
 // running on port 5555 if no env available
 const PORT = process.env.PORT || 5555;
-import rootRouter from "./routes/index";
+import rootRouter from './routes/index';
 
 app.use(
   sessions({

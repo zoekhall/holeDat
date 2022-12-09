@@ -4,7 +4,6 @@ import Map, { Marker, NavigationControl, FullscreenControl, GeolocateControl } f
 import axios from 'axios';
 
 const MapView = () => {
-
   type markerType = {
     createdAt: string;
     fixed: boolean;
@@ -12,17 +11,18 @@ const MapView = () => {
     lon: number;
     pothole_id: number;
     updatedAt: string;
-  }
+  };
 
-  const [markers, setMarkers] = useState<markerType[]>([])
+  const [markers, setMarkers] = useState<markerType[]>([]);
 
   const getMarkers = () => {
-    axios.get('/api/pothole')
-      .then(data => setMarkers(data.data))
-      .catch(err => console.error(err))
-  }
+    axios
+      .get('/api/pothole')
+      .then((data) => setMarkers(data.data))
+      .catch((err) => console.error(err));
+  };
 
-  useEffect(getMarkers, [])
+  useEffect(getMarkers, []);
 
   return (
     <div
@@ -49,8 +49,9 @@ const MapView = () => {
         }}
         mapStyle='mapbox://styles/mapbox/dark-v11'
       >
-        {markers.map(marker => {
-          if (!marker.fixed) return <Marker key={marker.pothole_id} longitude={marker.lon} latitude={marker.lat} />
+        {markers.map((marker) => {
+          if (!marker.fixed)
+            return <Marker key={marker.pothole_id} longitude={marker.lon} latitude={marker.lat} />;
         })}
         <NavigationControl />
         <FullscreenControl />
@@ -58,6 +59,6 @@ const MapView = () => {
       </Map>
     </div>
   );
-}
+};
 
 export default MapView;

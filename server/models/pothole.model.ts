@@ -1,4 +1,4 @@
-import Pothole from '../db/schema/pothole.schema'
+import Pothole from '../db/schema/pothole.schema';
 
 const getAllPotholes = (cb) => {
   Pothole.findAll({})
@@ -6,5 +6,4 @@ const getAllPotholes = (cb) => {
     .catch((err) => console.error(err));
 };
 
-
-export default getAllPotholes
+export default getAllPotholes;

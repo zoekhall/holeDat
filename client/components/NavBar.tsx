@@ -12,21 +12,23 @@ const NavBar = () => {
     <>
       <Navbar expand='lg' id='mainNavbar'>
         <Container>
-          <Navbar.Toggle aria-controls='basic-navbar-nav' />
-          <Navbar.Collapse id='basic-navbar-nav'>
-            <Nav className='me-auto'>
-              {menuItems.map((item, i) => (
-                <Nav.Link key={i} href={`/${item}`}>
-                  {item}
-                </Nav.Link>
-              ))}
-            </Nav>
-          </Navbar.Collapse>
+          <div>
+            <Navbar.Toggle aria-controls='basic-navbar-nav' />
+            <Navbar.Collapse id='basic-navbar-nav'>
+              <Nav className='me-auto'>
+                {menuItems.map((item, i) => (
+                  <Nav.Link key={i} href={`/${item}`}>
+                    {item}
+                  </Nav.Link>
+                ))}
+              </Nav>
+            </Navbar.Collapse>
+          </div>
+          <Navbar.Brand href='/'>🕳️HoleDat</Navbar.Brand>
+          <Button href='/auth/google/callback' variant='outline-primary'>
+            Sign In
+          </Button>{' '}
         </Container>
-        <Navbar.Brand href='/'>🕳️HoleDat</Navbar.Brand>
-        <Button href='/auth/google/callback' variant='flat'>
-          Sign In
-        </Button>{' '}
       </Navbar>
       <Outlet />
     </>

@@ -2,9 +2,13 @@
 
 #mainNavbar {
   display: flex;
-  justify-content: space-between;
+  justify-content: stretch;
 }
 
+#navButtons {
+    display: flex;
+    justify-content: stretch;
+}
 
 html {
   box-sizing: border-box;

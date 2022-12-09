@@ -10,6 +10,7 @@ import About from './about/About';
 import Feed from './feed/Feed';
 import MapView from './map/Map';
 import NoPage from './NoPage';
+import AddPothole from './addPothole/AddPothole';
 
 const App = () => (
   <BrowserRouter>
@@ -22,6 +23,7 @@ const App = () => (
       <Route path='About' element={<About />} />
       <Route path='Feed' element={<Feed />} />
       <Route path='*' element={<NoPage />} />
+      <Route path='AddPothole' element={<AddPothole />} />
     </Routes>
   </BrowserRouter>
 );

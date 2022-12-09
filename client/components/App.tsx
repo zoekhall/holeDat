@@ -14,15 +14,17 @@ import NoPage from './NoPage';
 const App = () => (
   <BrowserRouter>
     <NavBar />
-    <Routes>
-      <Route path='/' element={<Home />} />
-      <Route path='Pothole' element={<Pothole />} />
-      <Route path='User' element={<User />} />
-      <Route path='Map' element={<MapView />} />
-      <Route path='About' element={<About />} />
-      <Route path='Feed' element={<Feed />} />
-      <Route path='*' element={<NoPage />} />
-    </Routes>
+    <div className='page-content'>
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='Pothole' element={<Pothole />} />
+        <Route path='User' element={<User />} />
+        <Route path='Map' element={<MapView />} />
+        <Route path='About' element={<About />} />
+        <Route path='Feed' element={<Feed />} />
+        <Route path='*' element={<NoPage />} />
+      </Routes>
+    </div>
   </BrowserRouter>
 );
 

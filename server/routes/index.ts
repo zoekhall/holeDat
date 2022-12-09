@@ -1,12 +1,11 @@
-import express from 'express'
+import express from 'express';
 
 const rootRouter = express.Router();
 
-import imgs from './potholeImg.routes'
-import pothole from './pothole.routes'
+import imgs from './potholeImg.routes';
+import pothole from './pothole.routes';
 
-rootRouter.use("/imgs", imgs);
-rootRouter.use("/pothole", pothole);
+rootRouter.use('/imgs', imgs);
+rootRouter.use('/pothole', pothole);
 
-
-export default rootRouter
+export default rootRouter;

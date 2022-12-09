@@ -40,7 +40,6 @@ const MapView = () => {
           latitude: 29.951065,
           zoom: 12,
           pitch: 60,
-          bearing: -60,
         }}
         mapStyle='mapbox://styles/mapbox/dark-v11'
       >

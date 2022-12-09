@@ -21,8 +21,8 @@ const NavBar = () => {
       </Button>
       <Navbar.Collapse id='basic-navbar-nav'>
         <Nav className='me-auto'>
-          {menuItems.map((item, i) => (
-            <Nav.Link key={i} href={`/${item}`}>
+          {menuItems.map(item => (
+            <Nav.Link key={item} href={`/${item}`}>
               {item}
             </Nav.Link>
           ))}

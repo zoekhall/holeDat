@@ -16,6 +16,9 @@ const NavBar = () => {
         <Container>
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
           <Navbar.Brand href='/'>Hole🕳️Dat</Navbar.Brand>
+          <Button variant='outline-dark' href='/AddPothole' style={{ marginRight: '10%' }}>
+            <i className='bi bi-plus-circle'></i>
+          </Button>
           <Button href='/auth/google/callback' variant='flat'>
             Sign In
           </Button>

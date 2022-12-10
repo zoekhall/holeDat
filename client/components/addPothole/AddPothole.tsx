@@ -9,27 +9,36 @@ import PotholeRating from './PotholeRating';
 
 function AddPothole() {
 
-  const potholeObj: { fixed: boolean, lat: number, lon: number } = {
+  const potObj: { fixed: boolean, lat: number, lon: number } = {
     fixed: false,
     lat: 0,
     lon: 0
   };
+
+  const imgObj: { photoURL: string, caption: string } = {
+    photoURL: '', 
+    caption: ''
+  }
   
-  const updateStatus = (newStatus) => {
-    potholeObj.fixed = newStatus;
-      console.log(potholeObj);
+  const updatePotStatus = (newStatus: boolean) => {
+    potObj.fixed = newStatus;
+  }
+
+  const updateImage = (caption: string) => {
+    imgObj.photoURL = '';
+    imgObj.caption = caption;
   }
 
   
   return (
-    <div style={{border: '1px solid lightgray', padding: '100px', backgroundColor: 'white'}}>
+    <div style={{ border: '1px solid lightgray', padding: '100px', backgroundColor: 'white' }}>
       <Form>
         <div id='PotholeQuestions'>
           <h2>Report a Pothole</h2>
           <br></br>
-          <PotholeLocation/>
-          <PotholeStatus handleStatusChange={(newStatus) => updateStatus(newStatus)} />
-          <PotholePic />
+          <PotholeLocation />
+          <PotholeStatus handleStatus={(newStatus) => updatePotStatus(newStatus)} />
+          <PotholePic handleImage={(caption) => updateImage(caption)} />
           <PotholeRating />
         </div>
         <Button type='submit' variant='outlined-dark'>

@@ -2,15 +2,14 @@ import React, {useState} from 'react';
 import Form from 'react-bootstrap/Form';
 import PropTypes from 'prop-types';
 
-const PotholeStatus = ({handleStatusChange}) => {
+const PotholeStatus = ({handleStatus}) => {
 
   const [status, setStatus] = useState<boolean>(false);
 
   const changeStatus = () => {
     const newStatus = status === false ? true : false;
-    console.log(newStatus);
-    setStatus(newStatus);
-    handleStatusChange(newStatus);
+    setStatus(newStatus); 
+    handleStatus(newStatus); //parent component given access to status 
   }
   
   return (
@@ -25,7 +24,7 @@ const PotholeStatus = ({handleStatusChange}) => {
 }
 
 PotholeStatus.propTypes = {
-  handleStatusChange: PropTypes.func.isRequired
+  handleStatus: PropTypes.func.isRequired
 }
 
 export default PotholeStatus;

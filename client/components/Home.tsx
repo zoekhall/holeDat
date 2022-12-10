@@ -29,17 +29,18 @@ const Home = () => {
 
   return (
     <>
-      <Swiper loop={true} effect={'cards'} grabCursor={true} modules={[EffectCards]} className='mySwiper' style={{width: '50%'}}>
+      <Swiper loop={true} effect={'cards'} grabCursor={true} modules={[EffectCards]} className='mySwiper' style={{ width: '50%' }}>
         {PImages.map((image) => {
           return (
-            <SwiperSlide key={image.image_id} style={{display:'flex',
-            alignItems:'center',
-            justifyContent:'center',
-            borderRadius:'18px'
+            <SwiperSlide key={image.image_id} style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              borderRadius: '18px'
             }}
-          >
+            >
               <img
-                style={{borderRadius: '18px'}}
+                style={{ borderRadius: '18px' }}
                 src={image.photoURL}
               />
             </SwiperSlide>

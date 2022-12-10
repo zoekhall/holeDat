@@ -8,9 +8,8 @@ import 'swiper/css';
 import 'swiper/css/bundle';
 
 const Pothole = () => {
+
   const id = Number(useLocation().pathname.split(':')[1]);
-  console.log(id);
-  // props.id = 10;
 
   type phImg = {
     image_id: number;
@@ -22,6 +21,7 @@ const Pothole = () => {
 
   const [PImages, setPImages] = useState<phImg[]>([]);
 
+  // get pothole images by potholeID
   const getAllPotholeImgByPhId = () => {
     axios
       .get('/api/imgs/potholeimg' + id)

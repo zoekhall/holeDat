@@ -1,20 +1,12 @@
-// import { User } from '../db/index';
+import User from '../db/schema/user.schema';
 
-// type USER = {
-//   name: string;
-//   email: string;
-// };
+const getRecentUsers = (cb) => {
+  User.findAll({
+    limit: 5,
+    order: [['createdAt', 'DESC']],
+  })
+    .then((data) => cb(data))
+    .catch((err) => console.error(err));
+};
 
-// const addUser = (userObj: USER, cb) => {
-//   User.create(userObj)
-//     .then((data) => cb(data))
-//     .catch((err) => console.error(err));
-// };
-
-// const findUser = (email: string, cb) => {
-//   User.findOne({ email })
-//     .then((data) => cb(data))
-//     .catch((err) => console.error(err));
-// };
-
-// export default { addUser, findUser };
+export default getRecentUsers;

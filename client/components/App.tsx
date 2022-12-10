@@ -15,6 +15,7 @@ import AddPothole from './addPothole/AddPothole';
 const App = () => (
   <BrowserRouter>
     <NavBar />
+    <div className='page-content'>
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='Pothole' element={<Pothole />} />
@@ -25,6 +26,7 @@ const App = () => (
         <Route path='AddPothole' element={<AddPothole />} />
         <Route path='*' element={<NoPage />} />
       </Routes>
+      </div>
   </BrowserRouter>
 );
 

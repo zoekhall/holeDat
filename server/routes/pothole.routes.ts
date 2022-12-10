@@ -7,4 +7,8 @@ pothole.get('/', (req: Request, res: Response) => {
   getAllPothole((data) => res.status(222).send(data));
 });
 
+pothole.post('/', (req: Request, res: Response) => {
+  console.log(req);
+});
+
 export default pothole;

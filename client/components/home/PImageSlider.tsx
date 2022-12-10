@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { EffectCards } from 'swiper';
+import { Pagination, Navigation } from 'swiper';
 
 import 'swiper/css';
 import 'swiper/css/bundle';
-import 'swiper/css/effect-cards';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
 
 const PImageSlider = () => {
   type phImg = {
@@ -32,7 +33,18 @@ const PImageSlider = () => {
 
   return (
     <>
-      <Swiper loop={true} effect={'cards'} grabCursor={true} modules={[EffectCards]} className='mySwiper' style={{width: '50%'}}>
+      <Swiper
+      loop={true}
+      slidesPerView={1}
+      spaceBetween={30}
+      pagination={{
+        clickable: true,
+      }}
+      navigation={true}
+      modules={[Pagination, Navigation]}
+      className='mySwiper'
+      style={{width: '50%', borderRadius: '18px'}}
+      >
         {PImages.map((image) => {
           return (
             <SwiperSlide key={image.image_id} style={{

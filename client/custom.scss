@@ -42,6 +42,7 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
   height: 100%;
+  // z-index: -1; // ZM
 }
 
 #app {
@@ -100,6 +101,7 @@ body {
   border: 1px solid #495876;
   border-radius: 10px;
   z-index: 1;
+  height: 100%;
 }
 
 .map-box {
@@ -111,6 +113,8 @@ body {
   top: 55px;
 }
 
+<<<<<<< HEAD
+=======
 
 // POTHOLE PROFILE SCSS
 .post {
@@ -150,3 +154,4 @@ body {
 }
 // POTHOLE PROFILE SCSS
 
+>>>>>>> f39b1bf1428739619ff5351f8d13ea42d532c04e

@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import 'mapbox-gl/dist/mapbox-gl.css';
-import Map, { Marker, NavigationControl, FullscreenControl, GeolocateControl } from 'react-map-gl';
+import Map, { NavigationControl, FullscreenControl, GeolocateControl } from 'react-map-gl';
 import axios from 'axios';
+import Point from './Point';
 
 const MapView = () => {
   type markerType = {
@@ -39,13 +40,12 @@ const MapView = () => {
           latitude: 29.951065,
           zoom: 12,
           pitch: 60,
-          bearing: -60,
         }}
         mapStyle='mapbox://styles/mapbox/dark-v11'
       >
         {markers.map((marker) => {
           if (!marker.fixed)
-            return <Marker key={marker.pothole_id} longitude={marker.lon} latitude={marker.lat} />;
+            return <Point key={marker.pothole_id} marker={marker} />;
         })}
         <NavigationControl />
         <FullscreenControl />

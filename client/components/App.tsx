@@ -10,7 +10,7 @@ import About from './about/About';
 import Feed from './feed/Feed';
 import MapView from './map/Map';
 import NoPage from './NoPage';
-import AddPothole from './addPothole/AddPothole';
+import AddPothole from './addPothole/AddPotholeExample';
 
 const App = () => (
   <BrowserRouter>

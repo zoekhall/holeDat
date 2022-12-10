@@ -8,6 +8,8 @@ import 'swiper/css/bundle';
 
 const Pothole = () => {
 
+  // props.id = 10;
+
   type phImg = {
     image_id: number;
     photoURL: string;
@@ -18,14 +20,14 @@ const Pothole = () => {
 
   const [PImages, setPImages] = useState<phImg[]>([]);
 
-  const getAllImgs = () => {
+  const getAllPotholeImgByPhId = () => {
     axios
-      .get('/api/imgs')
-      .then((data) => setPImages(data.data))
+      .get('/api/imgs/potholeimg' + '36')
+      .then((data) => setPImages([data.data]))
       .catch((err) => console.log(err));
   };
 
-  useEffect(getAllImgs, []);
+  useEffect(getAllPotholeImgByPhId, []);
 
   return <div className="post">
     <div className="post_header">

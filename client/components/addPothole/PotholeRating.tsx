@@ -1,7 +1,8 @@
-import React, {useState} from 'react';
+import React from 'react';
 import Form from 'react-bootstrap/Form';
+import PropTypes from 'prop-types';
 
-const coneSVG = (
+const coneSVG = ( //cone svg/icon
   <svg
     xmlns='http://www.w3.org/2000/svg'
     width='30'
@@ -14,16 +15,9 @@ const coneSVG = (
   </svg>
 );  
 
+const ratingArray = [1, 2, 3, 4, 5]; //rating values 
 
-const PotholeRating = () => {
-  const ratingArray = [1, 2, 3, 4, 5];
-
-  const [rating, setRating] = useState<number>(0);
-
-  const overallRating = (num) => {
-    console.log(rating);
-    setRating(num)
-  }
+const PotholeRating = ({ handleRating }) => {
 
   return (
     <Form.Group controlId='ratingPot' className='mb-5'>
@@ -41,7 +35,7 @@ const PotholeRating = () => {
         <div>
           {ratingArray.map((num) => {
             return (
-              <span style={{ padding: '0 5px' }} onClick={() => overallRating(num)} key={num}>
+              <span style={{ padding: '0 5px' }} key={num} onClick={() => handleRating(num)}>
                 {coneSVG}
               </span>
             );
@@ -51,6 +45,10 @@ const PotholeRating = () => {
       </div>
     </Form.Group>
   );
+};
+
+PotholeRating.propTypes = {
+  handleRating: PropTypes.func.isRequired,
 };
 
 export default PotholeRating;

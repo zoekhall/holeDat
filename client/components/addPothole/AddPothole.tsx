@@ -20,6 +20,10 @@ function AddPothole() {
     caption: ''
   }
   
+  const ratingObj: { overall: number } = {
+    overall: 0
+  };
+  
   const updatePotStatus = (newStatus: boolean) => {
     potObj.fixed = newStatus;
   }
@@ -27,6 +31,11 @@ function AddPothole() {
   const updateImage = (caption: string) => {
     imgObj.photoURL = '';
     imgObj.caption = caption;
+  }
+
+  const updateRating = (rating: number) => {
+    ratingObj.overall = rating; 
+    console.log(ratingObj);
   }
 
   
@@ -39,7 +48,7 @@ function AddPothole() {
           <PotholeLocation />
           <PotholeStatus handleStatus={(newStatus) => updatePotStatus(newStatus)} />
           <PotholePic handleImage={(caption) => updateImage(caption)} />
-          <PotholeRating />
+          <PotholeRating handleRating={(rating) => updateRating(rating) } />
         </div>
         <Button type='submit' variant='outlined-dark'>
           Submit

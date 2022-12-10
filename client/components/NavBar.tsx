@@ -10,9 +10,7 @@ const NavBar = () => {
   const menuItems = ['Map', 'About', 'Feed'];
 
   return (
-    <>
       <Navbar expand='lg' id='mainNavbar'>
-        <Container>
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
           <Navbar.Brand href='/'>Hole🕳️Dat</Navbar.Brand>
           <Button variant='outline-dark' href='/AddPothole' style={{ marginRight: '10%' }}>
@@ -20,7 +18,7 @@ const NavBar = () => {
           </Button>
           <Button href='/auth/google/callback' variant='flat'>
             Sign In
-          </Button>
+          </Button> 
           <Navbar.Collapse id='basic-navbar-nav'>
             <Nav className='me-auto'>
               {menuItems.map((item, i) => (
@@ -30,10 +28,7 @@ const NavBar = () => {
               ))}
             </Nav>
           </Navbar.Collapse>
-        </Container>
-      </Navbar>
-      <Outlet />
-    </>
+    </Navbar>
   );
 };
 

@@ -6,4 +6,6 @@ const getAllImgs = (cb) => {
     .catch((err) => console.error(err));
 };
 
+
+
 export default getAllImgs;

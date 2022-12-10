@@ -113,3 +113,41 @@ body {
   z-index: 0;
   top: 55px;
 }
+
+// POTHOLE PROFILE SCSS
+.post {
+  background-color: white;
+  max-width: 500px;
+  border: 1px solid lightgray;
+}
+
+.potHole_img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
+
+.post_header {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+}
+
+.post_caption {
+  margin-top: 40px;
+  display: flex;
+  padding-left: 20px;
+  justify-content: left;
+  align-items: center;
+}
+
+.avatar {
+  width: 150px;
+  height: 150px;
+  margin-right: 10px;
+}
+
+.caption {
+  padding-bottom: 35px;
+}
+// POTHOLE PROFILE SCSS

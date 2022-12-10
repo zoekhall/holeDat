@@ -6,13 +6,15 @@
     "mapboxgl",
     "resave",
     "thisisasecret",
-    "tortor"
+    "tortor",
     "Geolocate",
     "holedat",
     "Imgs",
     "resave",
     "Swiper",
-    "thisisasecret"
+    "thisisasecret",
+    "cloudinary",
+    "addimg",
   ],
   "editor.formatOnSave": true
 }

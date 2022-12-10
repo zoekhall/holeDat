@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 //Components
 import NavBar from './NavBar';
-import Home from './Home';
+import Home from './home/Home';
 import Pothole from './pothole/Pothole';
 import User from './user/User';
 import About from './about/About';
@@ -15,7 +15,6 @@ import AddPothole from './addPothole/AddPothole';
 const App = () => (
   <BrowserRouter>
     <NavBar />
-    <div className='page-content'>
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='Pothole' element={<Pothole />} />
@@ -26,7 +25,6 @@ const App = () => (
         <Route path='AddPothole' element={<AddPothole />} />
         <Route path='*' element={<NoPage />} />
       </Routes>
-    </div>
   </BrowserRouter>
 );
 

@@ -1,7 +1,9 @@
 import React from 'react';
 
 function About() {
-  return <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Pharetra et ultrices neque ornare aenean euismod elementum. Sollicitudin aliquam ultrices sagittis orci. Ultrices vitae auctor eu augue. Nulla at volutpat diam ut venenatis tellus in. Natoque penatibus et magnis dis parturient montes nascetur ridiculus. Dolor morbi non arcu risus. Pellentesque elit eget gravida cum sociis natoque. Varius sit amet mattis vulputate enim nulla aliquet. Nisl pretium fusce id velit ut. Tellus in metus vulputate eu scelerisque felis.
+  return (
+  <div className='about-div'>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Pharetra et ultrices neque ornare aenean euismod elementum. Sollicitudin aliquam ultrices sagittis orci. Ultrices vitae auctor eu augue. Nulla at volutpat diam ut venenatis tellus in. Natoque penatibus et magnis dis parturient montes nascetur ridiculus. Dolor morbi non arcu risus. Pellentesque elit eget gravida cum sociis natoque. Varius sit amet mattis vulputate enim nulla aliquet. Nisl pretium fusce id velit ut. Tellus in metus vulputate eu scelerisque felis.
 
     Ipsum suspendisse ultrices gravida dictum fusce. Eget nulla facilisi etiam dignissim diam. Tellus molestie nunc non blandit massa enim nec. Duis ut diam quam nulla porttitor massa id neque aliquam. Pulvinar neque laoreet suspendisse interdum consectetur libero. Nec ultrices dui sapien eget mi. Ut aliquam purus sit amet luctus venenatis. Felis eget velit aliquet sagittis. Interdum posuere lorem ipsum dolor sit amet. In pellentesque massa placerat duis. At varius vel pharetra vel turpis nunc eget lorem.
 
@@ -15,7 +17,10 @@ function About() {
 
     Magna fringilla urna porttitor rhoncus dolor purus non. Et tortor at risus viverra. Tellus orci ac auctor augue mauris augue neque gravida. Pharetra magna ac placerat vestibulum lectus. Sem nulla pharetra diam sit amet. Consectetur adipiscing elit duis tristique sollicitudin nibh sit amet. Gravida cum sociis natoque penatibus et magnis dis parturient. Porttitor lacus luctus accumsan tortor posuere. Rhoncus dolor purus non enim praesent elementum facilisis leo vel. Tincidunt lobortis feugiat vivamus at augue eget.
 
-    Egestas diam in arcu cursus euismod quis viverra. Dictum sit amet justo donec enim diam. Enim sit amet venenatis urna. Pellentesque nec nam aliquam sem et tortor consequat id porta. Eget arcu dictum varius duis at consectetur lorem. Egestas purus viverra accumsan in nisl nisi scelerisque. Netus et malesuada fames ac turpis egestas. Lobortis scelerisque fermentum dui faucibus in ornare quam. Phasellus egestas tellus rutrum tellus pellentesque eu tincidunt tortor aliquam. Duis convallis convallis tellus id interdum velit laoreet id. Elementum nisi quis eleifend quam adipiscing vitae proin. Interdum velit laoreet id donec ultrices tincidunt arcu non. Dui faucibus in ornare quam viverra orci. Libero volutpat sed cras ornare. Eget egestas purus viverra accumsan in nisl. Feugiat scelerisque varius morbi enim nunc faucibus a pellentesque. Tristique magna sit amet purus gravida quis blandit. Dignissim sodales ut eu sem integer vitae.</p>;
+    Egestas diam in arcu cursus euismod quis viverra. Dictum sit amet justo donec enim diam. Enim sit amet venenatis urna. Pellentesque nec nam aliquam sem et tortor consequat id porta. Eget arcu dictum varius duis at consectetur lorem. Egestas purus viverra accumsan in nisl nisi scelerisque. Netus et malesuada fames ac turpis egestas. Lobortis scelerisque fermentum dui faucibus in ornare quam. Phasellus egestas tellus rutrum tellus pellentesque eu tincidunt tortor aliquam. Duis convallis convallis tellus id interdum velit laoreet id. Elementum nisi quis eleifend quam adipiscing vitae proin. Interdum velit laoreet id donec ultrices tincidunt arcu non. Dui faucibus in ornare quam viverra orci. Libero volutpat sed cras ornare. Eget egestas purus viverra accumsan in nisl. Feugiat scelerisque varius morbi enim nunc faucibus a pellentesque. Tristique magna sit amet purus gravida quis blandit. Dignissim sodales ut eu sem integer vitae.
+    </p>
+    </div>
+  )
 }
 
 export default About;

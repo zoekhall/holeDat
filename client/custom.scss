@@ -42,6 +42,7 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
   height: 100%;
+  z-index: -1;
 }
 
 #app {
@@ -113,3 +114,11 @@ body {
   z-index: 0;
   top: 55px;
 }
+
+//Zach SCSS
+
+.pothole-slider-images {
+  width: 50vw;
+  height: 50vh;
+}
+

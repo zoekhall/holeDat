@@ -1,20 +1,18 @@
 {
   "cSpell.words": [
+    "addimg",
     "amet",
-    "Geolocate",
-    "holedat",
-    "mapboxgl",
-    "resave",
-    "thisisasecret",
-    "tortor",
+    "cloudinary",
     "Geolocate",
     "holedat",
     "Imgs",
+    "mapboxgl",
+    "plothole",
+    "potholeimg",
     "resave",
     "Swiper",
     "thisisasecret",
-    "cloudinary",
-    "addimg",
+    "tortor"
   ],
   "editor.formatOnSave": true
 }

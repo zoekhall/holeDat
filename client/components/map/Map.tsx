@@ -13,7 +13,7 @@ const MapView = () => {
     pothole_id: number;
     updatedAt: string;
   };
-
+  const mapbox_token = 'pk.eyJ1IjoiemFjaG1hcnVsbG8iLCJhIjoiY2xhazZ5aGxyMDQ3bzNwbzZ2Z3N0b3lpMyJ9.65G-mwqhbWFy77O_I0LkOg'
   const [markers, setMarkers] = useState<markerType[]>([]);
 
   const getMarkers = () => {
@@ -21,6 +21,7 @@ const MapView = () => {
       .get('/api/pothole')
       .then((data) => setMarkers(data.data))
       .catch((err) => console.error(err));
+
   };
 
   useEffect(getMarkers, []);
@@ -34,7 +35,7 @@ const MapView = () => {
           width: '100%',
           height: '100%',
         }}
-        mapboxAccessToken='pk.eyJ1IjoiemFjaG1hcnVsbG8iLCJhIjoiY2xhazZ5aGxyMDQ3bzNwbzZ2Z3N0b3lpMyJ9.65G-mwqhbWFy77O_I0LkOg'
+        mapboxAccessToken={mapbox_token}
         initialViewState={{
           longitude: -90.071533,
           latitude: 29.951065,
@@ -51,7 +52,7 @@ const MapView = () => {
         <FullscreenControl />
         <GeolocateControl />
       </Map>
-    </div>
+    </div >
   );
 };
 

@@ -3,14 +3,14 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 //Components
 import NavBar from './NavBar';
-import Home from './Home';
+import Home from './home/Home';
 import Pothole from './pothole/Pothole';
 import User from './user/User';
 import About from './about/About';
 import Feed from './feed/Feed';
 import MapView from './map/Map';
 import NoPage from './NoPage';
-import AddPothole from './addPothole/AddPothole';
+import AddPothole from './addPothole/AddPotholeExample';
 
 const App = () => (
   <BrowserRouter>

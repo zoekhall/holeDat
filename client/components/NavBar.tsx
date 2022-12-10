@@ -1,15 +1,14 @@
 import React from 'react';
-import { Outlet } from 'react-router-dom';
-import Container from 'react-bootstrap/Container';
+
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button';
-// import i from 'bootstrap-icons';
+
 
 
 const NavBar = () => {
   const menuItems = ['Map', 'About', 'Feed'];
-  //Check if user is logged in to change text from login to logout
+
   return (
     <>
       <Navbar expand='lg' id='mainNavbar'>

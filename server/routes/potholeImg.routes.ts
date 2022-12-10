@@ -21,7 +21,6 @@ const api_secret = process.env.CLOUD_SECRET
 
 imgs.post('/addimg', upload, (req: any, res: Response) => {
   const file= req.file.path
-  console.log(file)
   cloudinary.v2.uploader.upload( file, {api_key, api_secret, cloud_name})
     .then(data=>console.log(data))
     .catch(err=>console.log(err))

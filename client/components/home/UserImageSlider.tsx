@@ -19,43 +19,43 @@ const UserImageSlider = () => {
   };
 
 
-const [ recentPics, setRecentPics ] = useState<usrImg[]>([]);
+  const [recentPics, setRecentPics] = useState<usrImg[]>([]);
 
-const getRecentUsers = () => {
-  axios
-  .get('/api/user')
-    .then(data => setRecentPics(data.data))
-    .catch(err => console.log(err));
-};
+  const getRecentUsers = () => {
+    axios
+      .get('/api/user')
+      .then(data => setRecentPics(data.data))
+      .catch(err => console.log(err));
+  };
 
-useEffect(getRecentUsers, []);
+  useEffect(getRecentUsers, []);
 
-return (
-  <>
-  <Swiper loop={true} effect={'cards'} grabCursor={true} modules={[EffectCards]} className='mySwiper' style={{width: '50%'}}>
-    {recentPics.map((user) => {
-      return (
-        <SwiperSlide
-        key={user.user_id}
-        style={{
-          display:'flex',
-        alignItems:'center',
-        justifyContent:'center',
-        borderRadius:'18px'
-        }}
-      >
-          <img
-            style={{borderRadius: '100px'}}
-            src={user.photo}
-            referrerPolicy={'no-referrer'}
-            onClick={() => console.log(user.name)}
-          />
-        </SwiperSlide>
-      );
-    })}
-  </Swiper>
-  </>
-)
+  return (
+    <>
+      <Swiper loop={true} effect={'cards'} grabCursor={true} modules={[EffectCards]} className='mySwiper' style={{ width: '50%' }}>
+        {recentPics.map((user) => {
+          return (
+            <SwiperSlide
+              key={user.user_id}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                borderRadius: '18px'
+              }}
+            >
+              <img
+                style={{ borderRadius: '100px' }}
+                src={user.photo}
+                referrerPolicy={'no-referrer'}
+                onClick={() => console.log(user.name)}
+              />
+            </SwiperSlide>
+          );
+        })}
+      </Swiper>
+    </>
+  )
 
 }
 

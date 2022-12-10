@@ -26,7 +26,7 @@ const App = () => (
         <Route path='AddPothole' element={<AddPothole />} />
         <Route path='*' element={<NoPage />} />
       </Routes>
-      </div>
+    </div>
   </BrowserRouter>
 );
 

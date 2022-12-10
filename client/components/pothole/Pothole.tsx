@@ -2,12 +2,14 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from "swiper";
+import { useLocation } from 'react-router-dom';
 
 import 'swiper/css';
 import 'swiper/css/bundle';
 
 const Pothole = () => {
-
+  const id = Number(useLocation().pathname.split(':')[1]);
+  console.log(id);
   // props.id = 10;
 
   type phImg = {
@@ -22,12 +24,19 @@ const Pothole = () => {
 
   const getAllPotholeImgByPhId = () => {
     axios
-      .get('/api/imgs/potholeimg' + '36')
+      .get('/api/imgs/potholeimg' + id)
       .then((data) => setPImages([data.data]))
       .catch((err) => console.log(err));
   };
 
-  useEffect(getAllPotholeImgByPhId, []);
+  const getCurrentUserData = () => {
+    console.log('temp');
+  }
+
+  useEffect(() => {
+    getAllPotholeImgByPhId();
+    getCurrentUserData();
+  }, []);
 
   return <div className="post">
     <div className="post_header">

@@ -23,7 +23,6 @@ function Feed() {
   }
 
   useEffect(getAllImgs, [])
-  console.log(globalFeed)
   return (
     <div>
       <h1>

@@ -7,5 +7,7 @@ export const getAllPotholes = (cb) => {
 };
 
 export const postPothole = (cb) => {
-  console.log('hey')
+  console.log(cb)
 }
+
+export default getAllPotholes;

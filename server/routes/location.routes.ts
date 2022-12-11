@@ -6,7 +6,6 @@ const location = express.Router();
 const api_key = process.env.GOOGLE_GEOCODING
 
 
-
 location.get('/getAddy', (req: Request, res: Response) => {
   const { lat, lon } = req.query
   axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lon}&location_type=ROOFTOP&result_type=street_address`, { params: { key: api_key } })

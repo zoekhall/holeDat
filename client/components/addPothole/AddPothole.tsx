@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
 import Form from 'react-bootstrap/Form';
 import PotholeStatus from './PotholeStatus';
@@ -33,7 +34,6 @@ function AddPothole() {
 
   const updateImage = (val: any, type: string) => {
     imgObj[type] = val; 
-    console.log(imgObj)
   }
 
   const updateRating = (rating: number) => {
@@ -57,12 +57,12 @@ function AddPothole() {
       }
     };
 
-    const handleSubmit = () => {
+  const handleSubmit = () => {
+      console.log(potObj, imgObj, ratingObj)
       console.log('hey')
-      sendData(imgObj.photoURL); //send data to cloud
+      // sendData(imgObj.photoURL); //send data to cloud
     }
 
-  
   return (
     <div style={{ border: '1px solid lightgray', padding: '100px', backgroundColor: 'white' }}>
       <Form>
@@ -72,8 +72,9 @@ function AddPothole() {
           <PotholeLocation />
           <PotholeStatus handleStatus={(newStatus) => updatePotStatus(newStatus)} />
           <PotholePic handleImage={(val, type) => updateImage(val, type)} />
-          <PotholeRating handleRating={(rating) => updateRating(rating) } />
+          <PotholeRating handleRating={(rating) => updateRating(rating)} />
         </div>
+        <Button onClick={handleSubmit}>Test Submit Button</Button>
         <Button type='submit' variant='outlined-dark' onClick={handleSubmit}>
           Submit
         </Button>

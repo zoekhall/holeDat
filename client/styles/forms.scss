@@ -1,0 +1,51 @@
+@import '/node_modules/bootstrap/scss/bootstrap';
+@import 'main';
+
+#addPothole { //formatting for entire form
+  background-color: $LightColor1;
+  border: 2px solid $DarkColor1;
+  min-width: 400px;
+  width: 550px;
+  padding: 40px;
+}
+
+.form-label {
+  font-size: 20px;
+}
+
+#addPotLocation {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+}
+
+#ratingGroupDiv { //formatiting for rating cones
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 5%;
+  background-color: white;
+
+  #cones {
+    display: inline-flex;
+    justify-content: space-evenly;
+    min-width: 200px;
+    width: 300px;
+    align-items: center;
+  }
+
+  p {
+    width: 175px;
+    margin: 0;
+    text-align: center;
+    padding: 0 10px;
+    font-size: 15px;
+  }
+}
+
+.bi-cone-striped:hover {
+  fill: orange;
+  width: 150%;
+  align-items: center;
+}

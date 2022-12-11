@@ -1,6 +1,5 @@
 import PotholeIMG from '../db/schema/potholeImgs.schema';
 
-
 //get all img of pothole mostly for testing
 export const getAllImgs = (cb) => {
   PotholeIMG.findAll({})

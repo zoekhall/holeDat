@@ -1,24 +1,23 @@
-import React, {useState} from 'react';
+import React from 'react';
 import Form from 'react-bootstrap/Form';
 import PropTypes from 'prop-types';
 
 const PotholeStatus = ({handleStatus}) => {
 
-  const [status, setStatus] = useState<boolean>(false);
-
-  const changeStatus = () => {
-    const newStatus = status === false ? true : false;
-    setStatus(newStatus); 
-    handleStatus(newStatus); //parent component given access to status 
-  }
-  
   return (
-    <Form.Group
-      controlId='addPotStatus'
-      className='mb-5'
-      onChange={changeStatus}
-    >
-      <Form.Check type='switch' id='custom-switch' label='Is the Pothole Fixed?' />
+    <Form.Group id='addPotStatus' className='mb-5'>
+      <Form.Label>Is Dat Pothole Fixed?</Form.Label>
+      {['Not Fixed', 'Fixed'].map((label, id) => (
+        <div key={`inline-${id}`}>
+          <Form.Check
+            inline
+            label={label}
+            name='group1'
+            type='radio'
+            onChange={() => handleStatus(label)}
+          />
+        </div>
+      ))}
     </Form.Group>
   );
 }
@@ -30,25 +29,5 @@ PotholeStatus.propTypes = {
 export default PotholeStatus;
 
 
-//STORAGE -- as radio buttons //
-    // <Form.Group as={Col} controlId='addPotStatus' className='mb-5' onChange={event => console.log(event.target.name)}>
-    //   <Form.Label>What is the Status of the Pothole?</Form.Label>
-    //   {['radio'].map((type) => (
-    //     <div key={`inline-${type}`} className='mb-3'>
-    //       <Form.Check
-    //         inline
-    //         label='Not Fixed'
-    //         name='notFixed'
-    //         type='radio'
-    //         id='radio'
-    //       />
-    //       <Form.Check
-    //         inline
-    //         label='Fixed'
-    //         name='Fixed'
-    //         type='radio' 
-    //         id='fixed'
-    //       />
-    //     </div>
-    //   ))}
-    // </Form.Group>
+//STORAGE -- 
+//az <Form.Check type='switch' id='statusSwitch' />

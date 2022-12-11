@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import express, { Request, Response } from 'express';
 const imgs = express.Router();
 import { getAllImgs, getPotholeImgByPhId } from '../models/imgs.model';
@@ -25,7 +26,6 @@ imgs.post('/addimg', upload, (req: any, res: Response) => {
   cloudinary.v2.uploader.upload(file, { api_key, api_secret, cloud_name })
     .then(data => {
       console.log(data)
-
     })
     .catch(err => console.log(err))
   res.json({})

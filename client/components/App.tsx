@@ -18,7 +18,7 @@ const App = () => (
     <div className='page-content'>
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='Pothole' element={<Pothole />} />
+        <Route path='Pothole:id' element={<Pothole />} />
         <Route path='User' element={<User />} />
         <Route path='Map' element={<MapView />} />
         <Route path='About' element={<About />} />

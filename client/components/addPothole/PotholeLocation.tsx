@@ -1,32 +1,34 @@
 import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import { AddressAutofill } from '@mapbox/search-js-react'
+import { AddressAutofill } from '@mapbox/search-js-react';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 import { InputGroup } from 'react-bootstrap';
 
 const mapbox_token =
   'pk.eyJ1IjoiemFjaG1hcnVsbG8iLCJhIjoiY2xhazZ5aGxyMDQ3bzNwbzZ2Z3N0b3lpMyJ9.65G-mwqhbWFy77O_I0LkOg';
 
-const PotholeLocation = () => {
+const PotholeLocation = ({handleLocation}) => {
   const [location, setLocation] = useState<string>('');
-  // const [latitude, setLat] = useState<number>(0);
-  // const [longitude, setLongitude] = useState<number>(0);
 
   const updateLatLon = () => {
     const formattedLocation = location.split(' ').join('%20');
-    const mapAPI = `"https://api.mapbox.com/geocoding/v5/mapbox.places/${formattedLocation}.json?access_token=${mapbox_token}`;
+    // const mapAPI1 = `https://api.mapbox.com/search/v1/forward/${formattedLocation}.json?language=en&limit=5&proximity=-121.90662,37.42827&country=US&access_token=${mapbox_token}`;
+    const mapAPI2 = `https://api.mapbox.com/geocoding/v5/mapbox.places/${formattedLocation}.json?language=en&limit=5&proximity=-121.90662,37.42827&country=US&access_token=${mapbox_token}`;
+
     axios
-      .get(mapAPI)
-      .then((data) => console.log(data))
-      .catch((err) => console.log(err));
-  };
+      .get(mapAPI2)
+      .then((data) => handleLocation(data.data.features[0].center[1], data.data.features[0].center[0])
+      )
+      .catch((err) => console.log(err))
+  }
 
   return (
     <Form.Group className='mb-5'>
       <Form.Label>Where Dat Pothole At?</Form.Label>
       <InputGroup id='addPotLocation'>
-        <AddressAutofill accessToken={mapbox_token}>
+        <AddressAutofill accessToken={mapbox_token} browserAutofillEnabled={true}>
           <Form.Control
             id='mapfill'
             name='address'
@@ -36,10 +38,17 @@ const PotholeLocation = () => {
             onChange={(e) => setLocation(e.target.value)}
           />
         </AddressAutofill>
-        <Button variant='flat' onClick={updateLatLon}>Add Address</Button>
+        <Button variant='flat' onClick={updateLatLon}>
+          Add Address
+        </Button>
       </InputGroup>
     </Form.Group>
   );
 };
+
+PotholeLocation.propTypes = {
+  handleLocation: PropTypes.func.isRequired,
+};
+
 
 export default PotholeLocation;

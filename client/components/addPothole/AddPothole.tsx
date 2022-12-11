@@ -26,6 +26,11 @@ function AddPothole() {
   };
 
   //updating objects with filled out information
+  const updateLocation = (lat: number, lon: number) => {
+    potObj.lat = lat; 
+    potObj.lon = lon; 
+  }
+
   const updatePotStatus = (newStatus: boolean) => {
     potObj.fixed = newStatus;
   };
@@ -38,6 +43,8 @@ function AddPothole() {
     ratingObj.overall = rating;
     console.log(ratingObj);
   };
+
+  
   //SUCCESSSSS
   // //photo file func
   //   const sendData = (file) => {
@@ -65,7 +72,7 @@ function AddPothole() {
     <Form id='addPothole'>
         <h1>Report a Pothole</h1>
         <br></br>
-        <PotholeLocation />
+      <PotholeLocation handleLocation={(lat, lon) => updateLocation(lat, lon)} />
         <PotholeStatus handleStatus={(newStatus) => updatePotStatus(newStatus)} />
         <PotholePic handleImage={(val, type) => updateImage(val, type)} />
         <PotholeRating handleRating={(rating) => updateRating(rating)} />

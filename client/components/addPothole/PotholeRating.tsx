@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Form from 'react-bootstrap/Form';
 import PropTypes from 'prop-types';
 
@@ -18,6 +18,16 @@ const coneSVG = //cone svg
 const ratingArray = [1, 2, 3, 4, 5]; //rating values
 
 const PotholeRating = ({ handleRating }) => {
+
+  const [currCount, setCurrCount] = useState<number>(0);
+
+  const handleClick = (num) => {
+    if (num !== currCount) {
+      
+    }
+    handleRating(num);
+  }
+
   return (
     <Form.Group controlId='ratingPot' className='mb-5'>
       <Form.Label>Rate Dat Pothole</Form.Label>
@@ -26,13 +36,13 @@ const PotholeRating = ({ handleRating }) => {
         <div id='cones' className='ratingElem'>
           {ratingArray.map((num) => {
             return (
-              <span key={num} onClick={() => handleRating(num)} className='cone'>
+              <span key={num} id={`${num}`} onClick={() => handleClick(num)} className='cone'>
                 {coneSVG}
               </span>
             );
           })}
         </div>
-        <p className='ratingElem'>Crater</p>
+        <p className='ratingElem'>A Moon Crater</p>
       </div>
     </Form.Group>
   );

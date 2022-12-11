@@ -6,7 +6,7 @@ import PotholeLocation from './PotholeLocation';
 import PotholePic from './PotholePic';
 import Button from 'react-bootstrap/Button';
 import PotholeRating from './PotholeRating';
-// import axios from 'axios';
+import axios from 'axios';
 
 function AddPothole() {
   //objs to be be sent to database
@@ -47,20 +47,20 @@ function AddPothole() {
   
   //SUCCESSSSS
   // //photo file func
-  //   const sendData = (file) => {
-  //     const formData = new FormData();
-  //     formData.append('file', file);
+    const sendData = (file) => {
+      const formData = new FormData();
+      formData.append('file', file);
 
-  //     if (formData) {
-  //       axios({
-  //         method: 'post',
-  //         url: '/api/imgs/addimg',
-  //         data: formData,
-  //       })
-  //         .then((data) => console.log(data))
-  //         .catch((err) => console.log(err));
-  //     }
-  //   };
+      if (formData) {
+        axios({
+          method: 'post',
+          url: '/api/imgs/addimg',
+          data: formData,
+        })
+          .then((data) => console.log(data))
+          .catch((err) => console.log(err));
+      }
+    };
 
   const handleSubmit = () => {
     console.log(potObj, imgObj, ratingObj);
@@ -76,7 +76,6 @@ function AddPothole() {
         <PotholeStatus handleStatus={(newStatus) => updatePotStatus(newStatus)} />
         <PotholePic handleImage={(val, type) => updateImage(val, type)} />
         <PotholeRating handleRating={(rating) => updateRating(rating)} />
-        <Button onClick={handleSubmit}>Test Submit Button</Button>
         <Button type='submit' variant='outlined-dark' onClick={handleSubmit}>
           Submit
         </Button>

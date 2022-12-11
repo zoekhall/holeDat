@@ -17,6 +17,12 @@
   width: 100%;
   display: flex;
   justify-content: flex-start;
+  align-items: center;
+}
+
+#statusSwitch {
+  width: 50px;
+  height: 30px;
 }
 
 #ratingGroupDiv { //formatiting for rating cones
@@ -35,7 +41,7 @@
     align-items: center;
   }
 
-  p {
+  p, #statusSwitch {
     width: 175px;
     margin: 0;
     text-align: center;
@@ -44,8 +50,26 @@
   }
 }
 
-.bi-cone-striped:hover {
-  fill: orange;
-  width: 150%;
-  align-items: center;
+@mixin cone-color($color: primary, $effect: none) {
+
+  @if ($color ==primary) {
+    color: $DarkColor1;
+
+    @if ($effect ==hover) {
+      &:hover {
+        fill: $PrimaryColor;
+        width: 150%;
+        align-items: center;
+      }
+    }
+  }
+
+  @if ($color ==secondary) {
+    color: $PrimaryColor;
+
+  }
+}
+
+.bi-cone-striped {
+  @include cone-color(primary, none);
 }

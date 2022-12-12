@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useState } from 'react';
+import React from 'react';
 import Form from 'react-bootstrap/Form';
 import PotholeStatus from './PotholeStatus';
 import PotholeLocation from './PotholeLocation';
@@ -48,7 +48,7 @@ function AddPothole() {
     console.log(ratingObj);
   };
 
-  const [potholeId, setPotholeId] = useState<number>(0);
+  //const [potholeId, setPotholeId] = useState<number>(0);
 
   const handlePotholeSubmit = () => {
     axios

@@ -6,8 +6,8 @@ export const getAllPotholes = (cb) => {
     .catch((err) => console.error(err));
 };
 
-export const postPothole = (cb) => {
-  Pothole.create({})
+export const postPothole = (cb, obj = {}) => {
+  Pothole.create(obj)
     .then(data => cb(data))
     .catch(err => console.error(err))
 }

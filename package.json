@@ -12,7 +12,8 @@
     "dev:build": "rimraf dist && webpack --config webpack.config.ts --watch",
     "dev:server": "ts-node-dev --respawn server/index.ts",
     "server:kill": "kill -9 $(lsof -t -i:8080)",
-    "prettier": "prettier --write ."
+    "prettier": "prettier --write .",
+    "start": "react-scripts start"
   },
   "repository": {
     "type": "git",

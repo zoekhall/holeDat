@@ -6,7 +6,7 @@ import PotholeLocation from './PotholeLocation';
 import PotholePic from './PotholePic';
 import Button from 'react-bootstrap/Button';
 import PotholeRating from './PotholeRating';
-import axios from 'axios';
+//import axios from 'axios';
 
 function AddPothole() {
   //objs to be be sent to database
@@ -27,8 +27,8 @@ function AddPothole() {
 
   //updating objects with filled out information
   const updateLocation = (lat: number, lon: number) => {
-    potObj.lat = lat; 
-    potObj.lon = lon; 
+    potObj.lat = lat;
+    potObj.lon = lon;
   }
 
   const updatePotStatus = (newStatus: boolean) => {
@@ -44,23 +44,23 @@ function AddPothole() {
     console.log(ratingObj);
   };
 
-  
-  //SUCCESSSSS
-  // //photo file func
-    const sendData = (file) => {
-      const formData = new FormData();
-      formData.append('file', file);
 
-      if (formData) {
-        axios({
-          method: 'post',
-          url: '/api/imgs/addimg',
-          data: formData,
-        })
-          .then((data) => console.log(data))
-          .catch((err) => console.log(err));
-      }
-    };
+  // //SUCCESSSSS
+  // // //photo file func
+  // const sendData = (file) => {
+  //   const formData = new FormData();
+  //   formData.append('file', file);
+
+  //   if (formData) {
+  //     axios({
+  //       method: 'post',
+  //       url: '/api/imgs/addimg',
+  //       data: formData,
+  //     })
+  //       .then((data) => console.log(data))
+  //       .catch((err) => console.log(err));
+  //   }
+  // };
 
   const handleSubmit = () => {
     console.log(potObj, imgObj, ratingObj);
@@ -70,15 +70,15 @@ function AddPothole() {
 
   return (
     <Form id='addPothole'>
-        <h1>Report a Pothole</h1>
-        <br></br>
+      <h1>Report a Pothole</h1>
+      <br></br>
       <PotholeLocation handleLocation={(lat, lon) => updateLocation(lat, lon)} />
-        <PotholeStatus handleStatus={(newStatus) => updatePotStatus(newStatus)} />
-        <PotholePic handleImage={(val, type) => updateImage(val, type)} />
-        <PotholeRating handleRating={(rating) => updateRating(rating)} />
-        <Button type='submit' variant='outlined-dark' onClick={handleSubmit}>
-          Submit
-        </Button>
+      <PotholeStatus handleStatus={(newStatus) => updatePotStatus(newStatus)} />
+      <PotholePic handleImage={(val, type) => updateImage(val, type)} />
+      <PotholeRating handleRating={(rating) => updateRating(rating)} />
+      <Button type='submit' variant='outlined-dark' onClick={handleSubmit}>
+        Submit
+      </Button>
     </Form>
   );
 }

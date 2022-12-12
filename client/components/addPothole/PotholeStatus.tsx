@@ -1,8 +1,14 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Form from 'react-bootstrap/Form';
 import PropTypes from 'prop-types';
 
-const PotholeStatus = ({handleStatus}) => {
+const PotholeStatus = ({ handleStatus }) => {
+  const [status, setStatus] = useState<boolean>(false);
+  
+  const finalStatus = (stat) => {
+    setStatus(stat === 'Not Fixed' ? false : true);
+    handleStatus(status);
+  }
 
   return (
     <Form.Group id='addPotStatus' className='mb-5'>
@@ -14,7 +20,7 @@ const PotholeStatus = ({handleStatus}) => {
             label={label}
             name='group1'
             type='radio'
-            onChange={() => handleStatus(label)}
+            onChange={() => finalStatus(label)}
           />
         </div>
       ))}

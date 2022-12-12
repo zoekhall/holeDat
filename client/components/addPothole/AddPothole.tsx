@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React from 'react';
+import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import PotholeStatus from './PotholeStatus';
 import PotholeLocation from './PotholeLocation';
 import PotholePic from './PotholePic';
 import Button from 'react-bootstrap/Button';
 import PotholeRating from './PotholeRating';
-// import axios from 'axios';
+import axios from 'axios';
 
 function AddPothole() {
   //objs to be be sent to database
@@ -16,13 +16,15 @@ function AddPothole() {
     lon: 0,
   };
 
-  const imgObj: { photoURL: string; caption: string } = {
+  const imgObj: { photoURL: string; caption: string; potholePotholeId: number } = {
     photoURL: '',
     caption: '',
+    potholePotholeId: 0,
   };
 
-  const ratingObj: { overall: number } = {
+  const ratingObj: { overall: number; potholePotholeId: number } = {
     overall: 0,
+    potholePotholeId: 0,
   };
 
   //updating objects with filled out information
@@ -42,6 +44,15 @@ function AddPothole() {
   const updateRating = (rating: number) => {
     ratingObj.overall = rating;
     console.log(ratingObj);
+  };
+
+  const [potholeId, setPotholeId] = useState<number>(0);
+
+  const handlePotholeSubmit = () => {
+    axios
+      .post('/api/pothole/addPothole')
+      .then((data) => console.log(data.data))
+      .catch((err) => console.error(err));
   };
 
   //SUCCESSSSS
@@ -72,6 +83,8 @@ function AddPothole() {
   // };
 
   const handleSubmit = () => {
+    handlePotholeSubmit();
+
     console.log(potObj, imgObj, ratingObj);
     // sendData(imgObj.photoURL); //send data to cloud
   };
@@ -80,13 +93,11 @@ function AddPothole() {
     <Form id='addPothole'>
       <h1>Report a Pothole</h1>
       <br></br>
-      <h1>Report a Pothole</h1>
-      <br></br>
       <PotholeLocation handleLocation={(lat, lon) => updateLocation(lat, lon)} />
       <PotholeStatus handleStatus={(newStatus) => updatePotStatus(newStatus)} />
       <PotholePic handleImage={(val, type) => updateImage(val, type)} />
       <PotholeRating handleRating={(rating) => updateRating(rating)} />
-      <Button variant='outlined-dark' onClick={handleSubmit}>
+      <Button type='submit' variant='outlined-dark' onClick={handleSubmit}>
         {/* add type='submit' attribute when ready for action */}
         Submit
       </Button>

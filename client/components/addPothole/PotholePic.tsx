@@ -17,7 +17,7 @@ const PotholePic = ({ handleImage }) => {
           }
         }}
       >
-        <Form.Label>Upload a Picture of the Pothole</Form.Label>
+        <Form.Label>Upload a Picture of Dat Pothole</Form.Label>
         <Form.Control type='file' required />
         {/* {updateImage} */}
       </Form.Group>
@@ -27,7 +27,7 @@ const PotholePic = ({ handleImage }) => {
         className='mb-5'
         onChange={(e) => handleImage((e.target as HTMLInputElement).value, 'caption')} //changes caption in parent
       >
-        <Form.Label> Describe the Pothole </Form.Label>
+        <Form.Label> Describe Dat Pothole </Form.Label>
         <Form.Control as='textarea' required />
       </Form.Group>
     </>

@@ -35,6 +35,7 @@ imgs.post('/addimg', upload, (req: any, res: Response) => {
 
 // get imgs of pothole by id
 imgs.get('/potholeimg:id', (req: Request, res: Response) => {
+  
   const { id } = req.params
   getPotholeImgByPhId(id, (data) => {
     if (data) {

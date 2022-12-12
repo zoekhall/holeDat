@@ -60,6 +60,16 @@ function AddPothole() {
   //       .catch((err) => console.log(err));
   //   }
   // };
+  //   if (formData) {
+  //     axios({
+  //       method: 'post',
+  //       url: '/api/imgs/addimg',
+  //       data: formData,
+  //     })
+  //       .then((data) => console.log(data))
+  //       .catch((err) => console.log(err));
+  //   }
+  // };
 
   const handleSubmit = () => {
     console.log(potObj, imgObj, ratingObj);
@@ -68,6 +78,8 @@ function AddPothole() {
 
   return (
     <Form id='addPothole'>
+      <h1>Report a Pothole</h1>
+      <br></br>
       <h1>Report a Pothole</h1>
       <br></br>
       <PotholeLocation handleLocation={(lat, lon) => updateLocation(lat, lon)} />

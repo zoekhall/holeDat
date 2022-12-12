@@ -32,17 +32,11 @@ const UserImageSlider = () => {
 
   return (
     <>
-      <Swiper loop={true} effect={'cards'} grabCursor={true} modules={[EffectCards]} className='mySwiper' style={{ width: '50%' }}>
+      <Swiper id='swipper' loop={true} effect={'cards'} grabCursor={true} modules={[EffectCards]} className='mySwiper' >
         {recentPics.map((user) => {
           return (
             <SwiperSlide
               key={user.user_id}
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                borderRadius: '18px'
-              }}
             >
               <img
                 style={{ borderRadius: '100px' }}

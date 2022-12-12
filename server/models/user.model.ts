@@ -6,11 +6,21 @@ export const getUserData = (id, cb) => {
   .catch(err => cb(err))
 }
 
+export const getRecentUsers = (cb) => {
+  User.findAll({
+    limit: 5,
+    order: [['createdAt', 'DESC']],
+  })
+    .then((data) => cb(data))
+    .catch((err) => console.error(err));
+};
+
+
 // type USER = {
 //     name: string;
 //       email: string;
 // }    ;
-  
+
 // c    onst addUser = (userObj: USER, cb) => {
 //       User.create(userObj)
 //     .then((data) => cb(data))
@@ -21,6 +31,6 @@ export const getUserData = (id, cb) => {
 //   User.findOne({ email })
 //     .then((data) => cb(data))
 //     .catch((err) => console.error(err));
-// };
+//};
 
 // export default { addUser, findUser };

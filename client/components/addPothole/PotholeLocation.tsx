@@ -1,21 +1,21 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import { AddressAutofill } from '@mapbox/search-js-react';
-import PropTypes from 'prop-types';
 import { InputGroup } from 'react-bootstrap';
+import { AddressAutofill } from '@mapbox/search-js-react';
 
-const mapbox_token =
+const mapToken =
   'pk.eyJ1IjoiemFjaG1hcnVsbG8iLCJhIjoiY2xhazZ5aGxyMDQ3bzNwbzZ2Z3N0b3lpMyJ9.65G-mwqhbWFy77O_I0LkOg';
 
 const PotholeLocation = ({ handleLocation }) => {
-  const [location, setLocation] = useState<string>('');
-  const [buttonMessage, setButtonMessage] = useState<string>('Add Approximate Address');
+  const [location, setLocation] = useState<string>(''); //stores address from input form 
+  const [buttonMessage, setButtonMessage] = useState<string>('Add Approximate Address'); //message to be updated when user clicks button 
 
   const updateLatLon = () => {
-    const formattedLocation = location.split(' ').join('%20');
-    const mapAPI2 = `https://api.mapbox.com/geocoding/v5/mapbox.places/${formattedLocation}.json?language=en&limit=5&proximity=-121.90662,37.42827&country=US&access_token=${mapbox_token}`;
+    const formattedLocation = location.split(' ').join('%20'); //turn into 
+    const mapAPI2 = `https://api.mapbox.com/geocoding/v5/mapbox.places/${formattedLocation}.json?language=en&limit=5&proximity=-121.90662,37.42827&country=US&access_token=${mapToken}`;
 
     axios
       .get(mapAPI2)
@@ -29,7 +29,7 @@ const PotholeLocation = ({ handleLocation }) => {
     <Form.Group className='mb-5'>
       <Form.Label>Where Dat Pothole At?</Form.Label>
       <InputGroup id='addPotLocation'>
-        <AddressAutofill accessToken={mapbox_token} browserAutofillEnabled={true}>
+        <AddressAutofill accessToken={mapToken} browserAutofillEnabled={true}>
           <Form.Control
             id='mapfill'
             name='address'

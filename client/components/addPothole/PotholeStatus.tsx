@@ -27,7 +27,3 @@ PotholeStatus.propTypes = {
 }
 
 export default PotholeStatus;
-
-
-//STORAGE -- 
-//az <Form.Check type='switch' id='statusSwitch' />

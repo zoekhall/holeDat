@@ -8,6 +8,8 @@ import Button from 'react-bootstrap/Button';
 import PotholeRating from './PotholeRating';
 import axios from 'axios';
 
+//    "start": "react-scripts start"
+
 function AddPothole() {
   //objs to be be sent to database
   const potObj: { fixed: boolean; lat: number; lon: number } = {

@@ -8,7 +8,7 @@ pothole.get('/', (req: Request, res: Response) => {
 });
 
 pothole.post('/addPothole', (req: Request, res: Response) => {
-  postPothole((data) => {res.status(201).send(data.pothole_id), req.body})
+  postPothole((data) => res.status(201).send(data), req.body)
 });
 
 pothole.post('/addPotholeRating', (req: Request, res: Response) => {

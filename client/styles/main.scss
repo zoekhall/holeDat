@@ -1,47 +1,26 @@
-@import '../node_modules/bootstrap/scss/bootstrap';
+@import '/node_modules/bootstrap/scss/bootstrap';
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans&display=swap');
 
+$PrimaryColor: #FE5F55;
+$DarkColor1: #495867;
+$DarkColor2: #577399;
+$LightColor1: #F7F7FF;
+$LightColor2: #BDD5EA;
+$ShadowColor: #000;
+$regularText: 'DM Sans', sans-serif;
 
-
-
-body,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-ol,
-ul {
-  margin: 0;
-  padding: 0;
-  font-weight: normal;
-}
-
-ol,
-ul {
-  list-style: none;
-}
-
-img {
-  max-width: 100%;
-  height: auto;
-}
-
-html,
-body,
-#app {
-  width: 100%;
-  height: 100%;
-  margin: auto;
+h1 {
+  color: $DarkColor1;
+  font-weight: bolder;
 }
 
 body {
-  background: linear-gradient(#BDD5EA, #FE5F55);
+  background: linear-gradient($LightColor2, $PrimaryColor);
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
   height: 100%;
+  font-family: $regularText;
   // z-index: -1; // ZM
 }
 
@@ -52,7 +31,7 @@ body {
 }
 
 .navbar-collapse {
-  background-color: #f7f7ff;
+  background-color: $LightColor1;
   padding: 3px 10px;
   width: fit-content;
   border-radius: 10px;
@@ -61,8 +40,8 @@ body {
 
 
 #mainNavbar {
-  background-color: #f7f7ff;
-  box-shadow: 0 3px 3px black;
+  background-color: $LightColor1;
+  box-shadow: 0 3px 3px $ShadowColor;
   width: 100%;
   top: 0;
   position: sticky;
@@ -75,34 +54,34 @@ body {
 .navbar-brand,
 .btn,
 .navbar-toggler {
-  background-color: #f7f7ff;
+  background-color: $LightColor1;
   padding: 5px 10px;
   margin: 5px;
   border-radius: 10px;
-  box-shadow: 0 0 3px black;
+  box-shadow: 0 0 3px $ShadowColor;
 }
 
 .btn:hover,
 .navbar-toggler:hover,
 .navbar-brand:hover {
-  background-color: #BDD5EA;
+  background-color: $LightColor2;
 }
 
 .mapboxgl-marker>svg path {
-  fill: #FE5F55;
+  fill: $PrimaryColor;
 }
 
 .page-content {
   display: flex;
-  // width: 95%;
-  background-color: #f7f7ff;
+  // width: 80%;
+  // background-color: #f7f7ff;
   padding: 30px;
   margin: 30px;
   margin-top: 20px;
-  border: 1px solid #495876;
+  // border: 1px solid $DarkColor1;
   border-radius: 10px;
   z-index: 1;
-  // height: 100%;
+  height: 100%;
 }
 
 .map-box {
@@ -153,3 +132,46 @@ body {
 }
 
 // POTHOLE PROFILE SCSS
+
+
+
+
+
+
+
+
+
+//STORAGE
+// body,
+// h1,
+// h2,
+// h3,
+// h4,
+// h5,
+// h6,
+// p,
+// ol,
+// ul {
+//   margin: 0;
+//   padding: 0;
+//   font-weight: normal;
+// }
+
+// ol,
+// ul {
+//   list-style: none;
+// }
+
+// img {
+//   max-width: 100%;
+//   height: auto;
+// }
+
+// html,
+// body,
+// #app {
+//   width: 100%;
+//   height: 100%;
+//   margin: auto;
+// }
+

@@ -8,7 +8,7 @@ pothole.get('/', (req: Request, res: Response) => {
 });
 
 pothole.post('/addPothole', (req: Request, res: Response) => {
-  postPothole(data => console.log(req))
+  postPothole(() => res.sendStatus(201), req.body)
 });
 
 export default pothole;

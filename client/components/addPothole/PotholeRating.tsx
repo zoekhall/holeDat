@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import PropTypes from 'prop-types';
 
@@ -23,7 +23,7 @@ const PotholeRating = ({ handleRating }) => {
 
   const handleClick = (num) => {
     if (num !== currCount) {
-      
+      setCurrCount(1)
     }
     handleRating(num);
   }

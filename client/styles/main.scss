@@ -9,6 +9,18 @@ $LightColor2: #BDD5EA;
 $ShadowColor: #000;
 $regularText: 'DM Sans', sans-serif;
 
+#swiper,
+#swipper {
+  margin: 0;
+  display: flex;
+}
+
+.home {
+  width: fit-content;
+  margin: 0;
+  width: 300px;
+}
+
 h1 {
   color: $DarkColor1;
   font-weight: bolder;
@@ -21,7 +33,7 @@ body {
   background-attachment: fixed;
   height: 100%;
   font-family: $regularText;
-  // z-index: -1; // ZM
+  z-index: -1; // ZM
 }
 
 #app {
@@ -78,10 +90,12 @@ body {
   padding: 30px;
   margin: 30px;
   margin-top: 20px;
+  flex-direction: column;
   // border: 1px solid $DarkColor1;
   border-radius: 10px;
   z-index: 1;
   height: 100%;
+
 }
 
 .map-box {
@@ -174,4 +188,3 @@ body {
 //   height: 100%;
 //   margin: auto;
 // }
-

@@ -7,7 +7,7 @@ import 'swiper/css';
 import 'swiper/css/bundle';
 import 'swiper/css/effect-cards';
 
-const Home = () => {
+const PImageSlider = () => {
   type phImg = {
     image_id: number;
     photoURL: string;
@@ -29,7 +29,7 @@ const Home = () => {
 
   return (
     <>
-      <Swiper loop={true} effect={'cards'} grabCursor={true} modules={[EffectCards]} className='mySwiper' style={{ width: '50%' }}>
+      <Swiper id='swiper' loop={true} effect={'cards'} grabCursor={true} modules={[EffectCards]} className='mySwiper' >
         {PImages.map((image) => {
           return (
             <SwiperSlide key={image.image_id} style={{
@@ -42,6 +42,7 @@ const Home = () => {
               <img
                 style={{ borderRadius: '18px' }}
                 src={image.photoURL}
+                width='200'
               />
             </SwiperSlide>
           );
@@ -51,4 +52,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default PImageSlider;

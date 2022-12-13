@@ -1,20 +1,19 @@
-import User from '../db/schema/user.schema'
+import User from '../db/schema/user.schema';
 
 export const getUserData = (id, cb) => {
-    User.findOne({where: {userUserId: id}})
-  .then(data => cb(data))
-  .catch(err => cb(err))
-}
+  User.findOne({ where: { userUserId: id } })
+    .then((data) => cb(data))
+    .catch((err) => cb(err));
+};
 
 export const getRecentUsers = (cb) => {
   User.findAll({
     limit: 5,
-    order: [['createdAt', 'DESC']],
+    order: ['createdAt', 'DESC'],
   })
     .then((data) => cb(data))
     .catch((err) => console.error(err));
 };
-
 
 // type USER = {
 //     name: string;

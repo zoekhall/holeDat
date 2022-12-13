@@ -11,7 +11,7 @@ const Rating = db.define('rating', {
 
   overall: {
     type: Sequelize.INTEGER,
-    allowNull: true,
+    allowNull: false,
   },
 });
 

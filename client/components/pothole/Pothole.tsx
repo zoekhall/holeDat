@@ -17,6 +17,8 @@ const Pothole = () => {
     caption: string;
     createdAt: string;
     updatedAt: string;
+    userUserId: number;
+    potholePotholeId: number;
   };
 
   const [PImages, setPImages] = useState<phImg[]>([]);
@@ -24,8 +26,8 @@ const Pothole = () => {
   // get pothole images by potholeID
   const getAllPotholeImgByPhId = () => {
     axios
-      .get('/api/imgs/potholeimg' + id)
-      .then((data) => setPImages([data.data]))
+      .get('/api/imgs/potholeimgs' + id)
+      .then((data) => setPImages(data.data))
       .catch((err) => console.log(err));
   };
 
@@ -43,11 +45,12 @@ const Pothole = () => {
       <h2><strong>Pothole Profile</strong></h2>
     </div>
     <Swiper className='mySwiper' pagination={true} effect={'cards'} grabCursor={true} modules={[Pagination]}>
-      {PImages.map((image) => {
+      {PImages.map((image, i) => {
         return (
-          <SwiperSlide key={image.image_id}>
+          <SwiperSlide key={i}>
             <img className='potHole_img'
               src={image.photoURL}
+              alt="test"
             />
           </SwiperSlide>
         );

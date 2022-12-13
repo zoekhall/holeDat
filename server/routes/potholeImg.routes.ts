@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import express, { Request, Response } from 'express';
 const imgs = express.Router();
-import { getAllImgs, getPotholeImgByPhId } from '../models/imgs.model';
+import { getAllImgs, getAllPotholeImgByPhId, getPotholeImgByPhId } from '../models/imgs.model';
 import multer from 'multer'
 import dotenv from 'dotenv';
 import fs from 'fs-extra';
@@ -34,8 +34,22 @@ imgs.post('/addimg', upload, (req: any, res: Response) => {
 
 
 // get imgs of pothole by id
+imgs.get('/potholeimgs:id', (req: Request, res: Response) => {
+
+  const { id } = req.params
+
+  getAllPotholeImgByPhId(id, (data) => {
+    if (data) {
+      //console.log(data)
+      const resObj = data.map(phimg=> phimg.dataValues)
+      res.status(200).send(resObj)
+    } else {
+      res.sendStatus(400)
+    }
+  })
+})
 imgs.get('/potholeimg:id', (req: Request, res: Response) => {
-  
+
   const { id } = req.params
   getPotholeImgByPhId(id, (data) => {
     if (data) {

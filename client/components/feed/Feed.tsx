@@ -22,12 +22,23 @@ function Feed() {
       .catch((err) => console.log(err));
   }
 
+  const sortByNew = () => {
+    console.log(globalFeed)
+    let resultArr = globalFeed.sort((a, b) => {
+      return new Date(a.createdAt).valueOf() - new Date(b.createdAt).valueOf();
+    })
+    setGlobalFeed(resultArr)
+  }
+
+
+
   useEffect(getAllImgs, [])
   return (
     <div>
       <h1>
         Pothole Feed
       </h1>
+      Sort: <button onClick={sortByNew}>New</button>
       {globalFeed.map(imgVal => <FeedEntry key={imgVal.image_id} imgObj={imgVal} />)}
     </div>
   );

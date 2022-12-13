@@ -50,26 +50,34 @@
   }
 }
 
-@mixin cone-color($color: primary, $effect: none) {
-
-  @if ($color ==primary) {
-    color: $DarkColor1;
-
-    @if ($effect ==hover) {
-      &:hover {
-        fill: $PrimaryColor;
-        width: 150%;
-        align-items: center;
-      }
-    }
-  }
-
-  @if ($color ==secondary) {
-    color: $PrimaryColor;
-
-  }
+.bi-cone-striped:hover {
+  fill: $PrimaryColor;
+  width: 150%;
+  align-items: center;
 }
 
-.bi-cone-striped {
-  @include cone-color(primary, none);
-}
+
+//STORAGE - TRYING TO CHANGE ON CLICK
+// @mixin cone-color($color: primary, $effect: none) {
+
+//   @if ($color ==primary) {
+//     color: $DarkColor1;
+
+//     @if ($effect ==hover) {
+//       &:hover {
+//         fill: $PrimaryColor;
+//         width: 150%;
+//         align-items: center;
+//       }
+//     }
+//   }
+
+//   @if ($color ==secondary) {
+//     color: $PrimaryColor;
+
+//   }
+// }
+
+// .bi-cone-striped {
+//   @include cone-color(primary, none);
+// }

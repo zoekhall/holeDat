@@ -12,8 +12,9 @@ user.get('/userAtId:id', (req: Request, res: Response) => {
 });
 
 user.get('/users', (req: Request, res: Response) => {
-  console.log(Object.values(req.query).map((i) => i));
-  res.sendStatus(537);
+  const resObj = Object.values(req.query);
+  const userObjs = resObj.map((userId) => getUserData(userId, (val) => console.log(val)));
+  res.status(200).send(userObjs);
 });
 
 export default user;

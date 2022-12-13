@@ -21,10 +21,11 @@ const StatsChart = () => {
           return i.count;
         });
         setCount(countData);
-        // console.log(countData, userData);
+        // console.log(userData, countData);
         return userData;
       })
       .then((data) => axios.get('/api/user/users', { params: data }))
+      .then((data) => console.log(data))
       .catch((err) => console.log(err));
   };
 

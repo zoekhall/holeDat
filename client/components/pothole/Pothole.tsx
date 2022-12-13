@@ -5,9 +5,6 @@ import { Pagination } from "swiper";
 import { useLocation } from 'react-router-dom';
 
 
-import 'swiper/css';
-import 'swiper/css/bundle';
-
 const Pothole = () => {
 
   const id = Number(useLocation().pathname.split(':')[1]);

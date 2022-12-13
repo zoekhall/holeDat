@@ -23,11 +23,11 @@ function Feed() {
   }
 
   const sortByNew = () => {
-    console.log(globalFeed)
     let resultArr = globalFeed.sort((a, b) => {
       return new Date(a.createdAt).valueOf() - new Date(b.createdAt).valueOf();
     })
-    setGlobalFeed(resultArr)
+    setGlobalFeed([...resultArr])
+    console.log(globalFeed)
   }
 
 

@@ -46,9 +46,7 @@ imgs.get('/potholeimg:id', (req: Request, res: Response) => {
 });
 
 imgs.get('/stats', (req: Request, res: Response) => {
-  getTopThree((data) => console.log(data.sort((a, b) => b.count - a.count).splice(0, 3)));
-  res.sendStatus(200);
-  // res.status(200).send(data));
+  getTopThree((data) => res.status(200).send(data.sort((a, b) => b.count - a.count).splice(0, 3)));
 });
 
 export default imgs;

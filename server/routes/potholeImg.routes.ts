@@ -33,7 +33,7 @@ imgs.post('/addimg', upload, (req: any, res: Response) => {
 })
 
 
-// get imgs of pothole by id
+// get ALL imgs of pothole by id
 imgs.get('/potholeimgs:id', (req: Request, res: Response) => {
 
   const { id } = req.params
@@ -48,6 +48,8 @@ imgs.get('/potholeimgs:id', (req: Request, res: Response) => {
     }
   })
 })
+
+// gets ONE image for the pothole
 imgs.get('/potholeimg:id', (req: Request, res: Response) => {
 
   const { id } = req.params

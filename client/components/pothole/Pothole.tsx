@@ -21,6 +21,7 @@ const Pothole = () => {
 
   const [PImages, setPImages] = useState<phImg[]>([]);
 
+
   // get pothole images by potholeID
   const getAllPotholeImgByPhId = () => {
     axios
@@ -28,6 +29,7 @@ const Pothole = () => {
       .then((data) => setPImages(data.data))
       .catch((err) => console.log(err));
   };
+
 
   useEffect(() => {
     getAllPotholeImgByPhId();

@@ -35,7 +35,7 @@ imgs.post('/addimg', upload, (req: any, res: Response) => {
 imgs.get('/potholeimgs:id', (req: Request, res: Response) => {
   const { id } = req.params;
 
-  getAllPotholeImgByPhId(id, (data) => {
+  getPotholeImgByPhId(id, (data) => {
     if (data) {
       //console.log(data)
       const resObj = data.map((phimg) => phimg.dataValues);

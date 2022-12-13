@@ -1,68 +1,63 @@
-import React from 'react';
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend
-} from 'chart.js';
-//import { Bar } from 'react-chartjs-2';
+import React, { useEffect, useState } from 'react';
+import { Chart as ChartJS, CategoryScale, LinearScale, BarElement } from 'chart.js';
+import { Bar } from 'react-chartjs-2';
+import axios from 'axios';
 
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend
-)
-
-
+ChartJS.register(CategoryScale, LinearScale, BarElement);
 
 const StatsChart = () => {
+  const [users, setUsers] = useState<number[]>([]);
+  const [count, setCount] = useState<number[]>([]);
 
-  // type chart = {
-  //   labels: string[];
-  //   datasets: { label: string, data: number[], borderColor: string, backgroundColor: string}[];
-  // };
+  const statsImgs = () => {
+    axios
+      .get('/api/imgs/stats')
+      .then((data) => {
+        const userData: number[] = data.data.map((i) => {
+          return i.userUserId;
+        });
+        setUsers(userData);
+        const countData: number[] = data.data.map((i) => {
+          return i.count;
+        });
+        setCount(countData);
+        // console.log(userData, countData);
+        return userData;
+      })
+      .then((data) => axios.get('/api/user/users', { params: data }))
+      .then((data) => console.log(data))
+      .catch((err) => console.log(err));
+  };
 
-  // const [chartData, setChartData] = useState<chart>();
-
-  //const [chartOptions, setChartOptions] = useState({});
-
-  // useEffect(() => {
-  //   setChartData({
-  //     labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
-  //     datasets: [
-  //       {
-  //         label: "Potholes added by day of the week",
-  //         data: [3, 5, 2, 14, 5, 2, 7],
-  //         borderColor: 'rgb(53, 162, 235)',
-  //         backgroundColor: 'rgba(53, 162, 235, 0.4)',
-  //       },
-  //     ],
-  //   });
-  //   setChartOptions({
-  //     responsive: true,
-  //     plugins: {
-  //       legend: {
-  //         position: 'top'
-  //       },
-  //       title: {
-  //         display: true,
-  //         text: 'Potholes Added by Day of the Week'
-  //       }
-  //     }
-  //   })
-  // }, [])
+  useEffect(statsImgs, []);
 
   return (
-    <div>
-      {/* <Bar options={chartOptions} data={chartData} /> */}
-    </div>
-  )
-}
+    <Bar
+      options={{
+        responsive: true,
+        plugins: {
+          legend: {
+            position: 'top',
+          },
+          title: {
+            display: true,
+            text: 'Potholes Added by Day of the Week',
+          },
+        },
+      }}
+      data={{
+        labels: users,
+        datasets: [
+          {
+            label: 'Potholes added by day of the week',
+            data: count,
+            borderColor: 'rgb(53, 162, 235)',
+            backgroundColor: 'rgba(53, 162, 235, 0.4)',
+          },
+        ],
+      }}
+    />
+  );
+};
 
 export default StatsChart;

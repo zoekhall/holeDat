@@ -8,7 +8,7 @@ import Pothole from './pothole/Pothole';
 import User from './user/User';
 import About from './about/About';
 import Feed from './feed/Feed';
-import MapView from './map/Map';
+import MapView from './map/MapView';
 import NoPage from './NoPage';
 import AddPothole from './addPothole/AddPothole'
 

@@ -13,11 +13,7 @@ const NavBar = () => {
 
   const checkUser = () => {
     axios.get('/api/user/me')
-      .then(data => {
-        setUser(data.data)
-        console.log(data.data)
-        console.log(user)
-      })
+      .then(data => setUser(data.data))
       .catch(err => console.log(err))
   }
 

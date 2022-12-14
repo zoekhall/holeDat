@@ -6,6 +6,8 @@ export const getUserData = (id, cb) => {
     .catch((err) => cb(err));
 };
 
+
+
 export const getRecentUsers = (cb) => {
   User.findAll({
     limit: 5,

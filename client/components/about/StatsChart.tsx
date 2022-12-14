@@ -1,68 +1,59 @@
-import React from 'react';
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend
-} from 'chart.js';
-//import { Bar } from 'react-chartjs-2';
+import React, { useEffect, useState } from 'react';
+import { Chart as ChartJS, CategoryScale, LinearScale, BarElement } from 'chart.js';
+import { Bar } from 'react-chartjs-2';
+import axios from 'axios';
 
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend
-)
-
-
+ChartJS.register(CategoryScale, LinearScale, BarElement);
 
 const StatsChart = () => {
+  const [users, setUsers] = useState<any>([]);
 
-  // type chart = {
-  //   labels: string[];
-  //   datasets: { label: string, data: number[], borderColor: string, backgroundColor: string}[];
-  // };
+  const statsImgs = () => {
+    axios
+      .get('/api/imgs/stats')
+      .then((data) => {
+        setUsers(data.data.reverse());
+      })
+      .catch((err) => console.log(err));
+    console.log(users);
+  };
 
-  // const [chartData, setChartData] = useState<chart>();
-
-  //const [chartOptions, setChartOptions] = useState({});
-
-  // useEffect(() => {
-  //   setChartData({
-  //     labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
-  //     datasets: [
-  //       {
-  //         label: "Potholes added by day of the week",
-  //         data: [3, 5, 2, 14, 5, 2, 7],
-  //         borderColor: 'rgb(53, 162, 235)',
-  //         backgroundColor: 'rgba(53, 162, 235, 0.4)',
-  //       },
-  //     ],
-  //   });
-  //   setChartOptions({
-  //     responsive: true,
-  //     plugins: {
-  //       legend: {
-  //         position: 'top'
-  //       },
-  //       title: {
-  //         display: true,
-  //         text: 'Potholes Added by Day of the Week'
-  //       }
-  //     }
-  //   })
-  // }, [])
+  useEffect(statsImgs, []);
 
   return (
-    <div>
-      {/* <Bar options={chartOptions} data={chartData} /> */}
+    <div className='chart'>
+      <Bar
+        options={{
+          responsive: true,
+          plugins: {
+            legend: {
+              position: 'top',
+            },
+            title: {
+              display: true,
+              text: 'Potholes Added by Day of the Week',
+            },
+          },
+        }}
+        data={{
+          labels: users.map((user) => user.name),
+          datasets: [
+            {
+              label: 'Potholes added by day of the week',
+              data: users.map((user) => user.count),
+              borderColor: 'rgb(53, 162, 235)',
+              backgroundColor: 'rgba(53, 162, 235, 0.4)',
+            },
+          ],
+        }}
+      />
+      <div className='chart-images'>
+        {users.map((user) => (
+          <img width={50} key={user.user_id} src={user.photo} referrerPolicy='no-referrer' />
+        ))}
+      </div>
     </div>
-  )
-}
+  );
+};
 
 export default StatsChart;

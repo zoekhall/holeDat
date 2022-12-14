@@ -18,26 +18,30 @@ const UserImageSlider = () => {
     user_id: number;
   };
 
-
   const [recentPics, setRecentPics] = useState<usrImg[]>([]);
 
   const getRecentUsers = () => {
     axios
       .get('/api/user')
-      .then(data => setRecentPics(data.data))
-      .catch(err => console.log(err));
+      .then((data) => setRecentPics(data.data))
+      .catch((err) => console.log(err));
   };
 
   useEffect(getRecentUsers, []);
 
   return (
     <>
-      <Swiper id='swipper' loop={true} effect={'cards'} grabCursor={true} modules={[EffectCards]} className='mySwiper' >
+      <Swiper
+        id='swipper'
+        loop={true}
+        effect={'cards'}
+        grabCursor={true}
+        modules={[EffectCards]}
+        className='mySwiper'
+      >
         {recentPics.map((user) => {
           return (
-            <SwiperSlide
-              key={user.user_id}
-            >
+            <SwiperSlide key={user.user_id}>
               <img
                 style={{ borderRadius: '100px' }}
                 src={user.photo}
@@ -49,9 +53,7 @@ const UserImageSlider = () => {
         })}
       </Swiper>
     </>
-  )
-
-}
-
+  );
+};
 
 export default UserImageSlider;

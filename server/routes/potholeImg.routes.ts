@@ -32,13 +32,12 @@ imgs.post('/addimg', upload, (req: any, res: Response) => {
   fs.emptyDir('./tmp');
 });
 
-// get ALL imgs of pothole by id
+// get ALL imgs of pothole by id AND user data
 imgs.get('/potholeimgs:id', (req: Request, res: Response) => {
   const { id } = req.params;
   getAllPotholeImgByPhId(id, (data) => {
       if (data) {
         const resObj = data.map((phimg) => phimg.dataValues);
-        console.log(resObj[0])
         res.status(200).send(resObj);
       } else {
         res.sendStatus(400);

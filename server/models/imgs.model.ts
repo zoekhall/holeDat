@@ -15,7 +15,8 @@ export const getPotholeImgByPhId = (id: string, cb) => {
     .catch((err) => cb(err));
 };
 
-//gets all pothole imgs based on pothole_id
+// gets all pothole imgs based on pothole_id and marries with corresponding user data
+// based on the matching pothole_ids
 export const getAllPotholeImgByPhId = (id: string, cb) => {
   PotholeIMG.findAll({
     where: { potholePotholeId: id },

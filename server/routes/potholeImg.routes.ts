@@ -1,12 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import express, { Request, Response } from 'express';
 const imgs = express.Router();
-import { getAllImgs, getPotholeImgByPhId, getTopThree } from '../models/imgs.model';
+import { getAllImgs, getPotholeImgByPhId, getTopThree, getAllPotholeImgByPhId } from '../models/imgs.model';
 import multer from 'multer';
 import dotenv from 'dotenv';
 import fs from 'fs-extra';
 dotenv.config();
 import cloudinary from 'cloudinary';
+import { getGraphData } from '../models/user.model';
 
 const upload = multer({ dest: './tmp/' }).single('file');
 
@@ -31,20 +32,21 @@ imgs.post('/addimg', upload, (req: any, res: Response) => {
   fs.emptyDir('./tmp');
 });
 
-// get imgs of pothole by id
+// get ALL imgs of pothole by id
 imgs.get('/potholeimgs:id', (req: Request, res: Response) => {
   const { id } = req.params;
+  getAllPotholeImgByPhId(id, (data) => {
+      if (data) {
+        const resObj = data.map((phimg) => phimg.dataValues);
+        res.status(200).send(resObj);
+      } else {
+        res.sendStatus(400);
+      }
+  })
+})
 
-  getPotholeImgByPhId(id, (data) => {
-    if (data) {
-      //console.log(data)
-      const resObj = data.map((phimg) => phimg.dataValues);
-      res.status(200).send(resObj);
-    } else {
-      res.sendStatus(400);
-    }
-  });
-});
+
+// gets one image for the pothole
 imgs.get('/potholeimg:id', (req: Request, res: Response) => {
   const { id } = req.params;
   getPotholeImgByPhId(id, (data) => {
@@ -59,7 +61,11 @@ imgs.get('/potholeimg:id', (req: Request, res: Response) => {
 });
 
 imgs.get('/stats', (req: Request, res: Response) => {
-  getTopThree((data) => res.status(200).send(data.sort((a, b) => b.count - a.count).splice(0, 3)));
+  getTopThree((data) => {
+    let arrA: any = [];
+    arrA = data.sort((a, b) => b.count - a.count).splice(0, 3);
+    getGraphData(arrA, (data) => res.status(200).send(data));
+  });
 });
 
 export default imgs;

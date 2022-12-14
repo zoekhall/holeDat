@@ -10,6 +10,7 @@ const Point = prop => {
     photoURL: string;
   };
   const { lon, lat, pothole_id } = prop.marker
+  const { userLocation } = prop
 
   const [showPopup, setShowPopup] = useState(true);
   const [plothole, setPlothole] = useState<phObj>()
@@ -23,6 +24,11 @@ const Point = prop => {
       .then(() => {
         axios.get(`https://api.mapbox.com/geocoding/v5/mapbox.places/${lon},${lat}.json?access_token=${mapbox_token}`)
           .then(data => setAddy(data.data.features[0].place_name))
+      })
+      .then(() => {
+        if (Math.abs(userLocation[0] - lat) < .000000000001 && Math.abs(userLocation[1] - lon) < .00000000001 && userLocation.length !== 0) {
+          setShowPopup(false)
+        }
       })
       .catch(err => console.log(err))
 
@@ -48,6 +54,7 @@ const Point = prop => {
           anchor='bottom'
           closeOnClick={false}
           onClose={() => setShowPopup(true)}
+          focusAfterOpen={true}
         >
           {plothole ?
             <>

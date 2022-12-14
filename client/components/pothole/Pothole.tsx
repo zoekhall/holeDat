@@ -68,7 +68,7 @@ const Pothole = () => {
             <div className="post_caption">
               <div className="caption">
                 <p>{image.caption}</p>
-                <Link to={'/User' + image.userId}>
+                <Link to={'/User:' + image.userId}>
                   <img className="avatar capElem rounded-circle shadow-sm p-3 mb-5 bg-white rounded" alt="avatar2" src={image.userPhoto} />
                 </Link>
                 <h5>{image.userName}</h5>

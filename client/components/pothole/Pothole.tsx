@@ -21,7 +21,6 @@ const Pothole = () => {
 
   const [PImages, setPImages] = useState<phImg[]>([]);
 
-
   // get pothole images by potholeID
   const getAllPotholeImgByPhId = () => {
     axios

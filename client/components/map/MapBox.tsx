@@ -15,7 +15,6 @@ const MapBox = (prop) => {
   };
   const mapbox_token = 'pk.eyJ1IjoiemFjaG1hcnVsbG8iLCJhIjoiY2xhazZ5aGxyMDQ3bzNwbzZ2Z3N0b3lpMyJ9.65G-mwqhbWFy77O_I0LkOg'
   const [markers, setMarkers] = useState<markerType[]>([]);
-  //const [location, setNewLocation] = useState<number[]>([])
 
   console.log(prop.userLocation)
   const getMarkers = () => {

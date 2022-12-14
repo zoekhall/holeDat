@@ -11,4 +11,12 @@ user.get('/userAtId:id', (req: Request, res: Response) => {
   getUserData(id, (data) => res.status(200).send(data));
 });
 
+user.get('/me', (req: Request, res: Response)=>{
+  if(req.user){
+    res.send(req.user)
+  } else{
+    res.send({})
+  }
+})
+
 export default user;

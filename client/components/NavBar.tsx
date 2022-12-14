@@ -1,13 +1,27 @@
-import React from 'react';
-
+import React, { useEffect, useState } from 'react';
+import axios from 'axios'
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button';
+import { Link } from 'react-router-dom';
 
 
 
 const NavBar = () => {
   const menuItems = ['Map', 'About', 'Feed'];
+  const [user, setUser] = useState<any>({})
+
+  const checkUser = () => {
+    axios.get('/api/user/me')
+      .then(data => {
+        setUser(data.data)
+        console.log(data.data)
+        console.log(user)
+      })
+      .catch(err => console.log(err))
+  }
+
+  useEffect(checkUser, [])
 
   return (
     <Navbar expand='lg' id='mainNavbar'>
@@ -16,12 +30,23 @@ const NavBar = () => {
         Hole Dat
         <img src='https://res.cloudinary.com/di6gxsepn/image/upload/v1670816293/ybyqlkegpdct6x5xeauz.svg' alt='logo' width='50' />
       </Navbar.Brand>
-      <Button variant='outline-dark' href='/AddPothole' style={{ marginRight: '10%' }}>
-        <i className='bi bi-plus-circle'></i>
-      </Button>
-      <Button href='/auth/google/callback' variant='flat'>
-        Sign In
-      </Button>
+      {user.id ?
+        <Button variant='outline-dark' href='/AddPothole' style={{ marginRight: '10%' }}>
+          <i className='bi bi-plus-circle'></i>
+        </Button>
+        :
+        <></>
+      }
+
+      {!user.photo ?
+        < Button href='/auth/google/callback' variant='flat'>
+          Sign In
+        </Button>
+        :
+        <Link to={'/User'}>
+          <img src={user.photo} alt='me' width={40} style={{ borderRadius: '100px' }} />
+        </Link>
+      }
       <Navbar.Collapse id='basic-navbar-nav'>
         <Nav className='me-auto'>
           {menuItems.map((item, i) => (
@@ -31,7 +56,7 @@ const NavBar = () => {
           ))}
         </Nav>
       </Navbar.Collapse>
-    </Navbar>
+    </Navbar >
   );
 };
 

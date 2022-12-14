@@ -24,7 +24,6 @@ function User() {
       <p>User</p>
       <img src={user.photo} style={{ borderRadius: '18px' }} alt="Image" width='50%' height='50%' />
       <h1>{user.name}</h1>
-      <button onClick={getUserData}>get user data</button>
       <Logout />
     </div>
   );

@@ -38,6 +38,7 @@ imgs.get('/potholeimgs:id', (req: Request, res: Response) => {
   getAllPotholeImgByPhId(id, (data) => {
       if (data) {
         const resObj = data.map((phimg) => phimg.dataValues);
+        console.log(resObj[0])
         res.status(200).send(resObj);
       } else {
         res.sendStatus(400);

@@ -1,4 +1,5 @@
 import PotholeIMG from '../db/schema/potholeImgs.schema';
+import User from '../db/schema/user.schema'
 
 //get all img of pothole mostly for testing
 export const getAllImgs = (cb) => {
@@ -16,7 +17,11 @@ export const getPotholeImgByPhId = (id: string, cb) => {
 
 //gets all pothole imgs based on pothole_id
 export const getAllPotholeImgByPhId = (id: string, cb) => {
-  PotholeIMG.findAll({ where: { potholePotholeId: id } })
+  PotholeIMG.findAll({
+    where: { potholePotholeId: id },
+    include: [User]
+  }
+  )
     .then((data) => cb(data))
     .catch((err) => cb(err));
 };

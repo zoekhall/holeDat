@@ -31,7 +31,7 @@ imgs.post('/addimg', upload, (req: any, res: Response) => {
   fs.emptyDir('./tmp');
 });
 
-// get imgs of pothole by id
+// get ALL imgs of pothole by id
 imgs.get('/potholeimgs:id', (req: Request, res: Response) => {
   const { id } = req.params;
 
@@ -43,8 +43,15 @@ imgs.get('/potholeimgs:id', (req: Request, res: Response) => {
     } else {
       res.sendStatus(400);
     }
+
+  })
+})
+
+// gets ONE image for the pothole
+=======
   });
 });
+
 imgs.get('/potholeimg:id', (req: Request, res: Response) => {
   const { id } = req.params;
   getPotholeImgByPhId(id, (data) => {

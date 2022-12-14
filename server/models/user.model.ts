@@ -6,6 +6,7 @@ export const getUserData = (id, cb) => {
     .catch((err) => cb(err));
 };
 
+
 export const getGraphData = (countObj, cb) => {
   const ids = countObj.map((user) => {
     return user.userUserId;

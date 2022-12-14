@@ -26,7 +26,6 @@ const Point = prop => {
           .then(data => setAddy(data.data.features[0].place_name))
       })
       .then(() => {
-        console.log(userLocation)
         if (Math.abs(userLocation[0] - lat) < .000000000001 && Math.abs(userLocation[1] - lon) < .00000000001 && userLocation.length !== 0) {
           setShowPopup(false)
         }

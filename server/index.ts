@@ -38,7 +38,7 @@ const isLoggedIn = (req, res, next) => {
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use('/', express.static(path.resolve('dist')));
-app.use('/Pothole', isLoggedIn, express.static(path.resolve('dist')));
+app.use('/Pothole:id', isLoggedIn, express.static(path.resolve('dist')));
 app.use('/User', isLoggedIn, express.static(path.resolve('dist')));
 
 

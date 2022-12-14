@@ -7,6 +7,7 @@ import dotenv from 'dotenv';
 import fs from 'fs-extra';
 dotenv.config();
 import cloudinary from 'cloudinary';
+import { getGraphData } from '../models/user.model';
 
 const upload = multer({ dest: './tmp/' }).single('file');
 
@@ -66,7 +67,11 @@ imgs.get('/potholeimg:id', (req: Request, res: Response) => {
 });
 
 imgs.get('/stats', (req: Request, res: Response) => {
-  getTopThree((data) => res.status(200).send(data.sort((a, b) => b.count - a.count).splice(0, 3)));
+  getTopThree((data) => {
+    let arrA: any = [];
+    arrA = data.sort((a, b) => b.count - a.count).splice(0, 3);
+    getGraphData(arrA, (data) => res.status(200).send(data));
+  });
 });
 
 export default imgs;

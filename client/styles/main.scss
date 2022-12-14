@@ -145,6 +145,15 @@ body {
   padding-bottom: 35px;
 }
 
+.chart-images {
+  display: flex;
+  justify-content: space-evenly;
+  padding-left: 1.25rem;
+}
+
+.chart-images > img {
+  border-radius: 100px;
+}
 // POTHOLE PROFILE SCSS
 
 

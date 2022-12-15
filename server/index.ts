@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import express, { Request, Response } from 'express';
 import * as path from 'path';
 import dotenv from 'dotenv';
@@ -10,9 +11,6 @@ import './db/index';
 const app = express();
 // running on port 5555 if no env available
 const PORT = process.env.PORT || 5555;
-
-
-
 
 import rootRouter from './routes/index';
 
@@ -66,7 +64,7 @@ passport.use(
       try {
         const [user] = await User.findOrCreate({
           where: { id },
-          defaults: { id, email, name: displayName, photo },
+          defaults: { id, email, name: displayName, photo, badge_id:0 },
         });
         done(null, user);
       } catch (error) {
@@ -80,7 +78,9 @@ passport.serializeUser((user: any, done) => {
   done(null, user.id);
 });
 passport.deserializeUser((id, done) => {
-  User.findOne({ where: { id } }).then((data) => done(null, data));
+  if(id){
+    User.findOne({ where: { id } }).then((data) => done(null, data));
+  }
 });
 
 app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));

@@ -6,7 +6,7 @@ import NavBar from './NavBar';
 import Home from './home/Home';
 import Pothole from './pothole/Pothole';
 import User from './user/User';
-import NonUserProfile from './user/NonUserProfile';
+// import NonUserProfile from './user/nonUserProfile';
 import About from './about/About';
 import Feed from './feed/Feed';
 import MapView from './map/MapView';
@@ -22,7 +22,7 @@ const App = () => (
         <Route path='/' element={<Home />} />
         <Route path='Pothole:id' element={<Pothole />} />
         <Route path='User' element={<User />} />
-        <Route path='User:id' element={<NonUserProfile />} />
+        {/* <Route path='User:id' element={<NonUserProfile />} /> */}
         <Route path='Map' element={<MapView />} />
         <Route path='About' element={<About />} />
         <Route path='Feed' element={<Feed />} />

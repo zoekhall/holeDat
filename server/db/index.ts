@@ -9,14 +9,14 @@ import PotholeIMG from './schema/potholeImgs.schema';
 
 //POTHOLE CONNECTIONS
 // Pothole 1->many Ratings
-Pothole.hasMany(Rating, {
-  sourceKey: 'pothole_id', //source in Pothole
-  foreignKey: 'pothole_id', //foreign key in Rating
-});
-Rating.belongsTo(Pothole, {
-  foreignKey: 'pothole_id', 
-  targetKey: 'pothole_id' 
-});
+// Pothole.hasMany(Rating, {
+//   sourceKey: 'pothole_id', //source in Pothole
+//   foreignKey: 'pothole_id', //foreign key in Rating
+// });
+// Rating.belongsTo(Pothole, {
+//   foreignKey: 'pothole_id', 
+//   targetKey: 'pothole_id' 
+// });
 
 // Pothole 1->many PotholeIMGs
 Pothole.hasMany(PotholeIMG, {

@@ -24,8 +24,9 @@ function AddPothole() {
     pothole_id: 0,
   };
 
-  const ratingObj: { overall: number; pothole_id: number } = {
+  const ratingObj: { overall: number; user_id: string, pothole_id: number } = {
     overall: 0,
+    user_id: 'pending',
     pothole_id: 0,
   };
 

@@ -1,22 +1,21 @@
-import db from '../db.server';
-import { DataTypes, ModelDefined, Optional } from 'sequelize';
+import sequelize from '../db.server';
+import Rating from './ratings.schema';
+import {Association, NonAttribute, Model, DataTypes, InferAttributes, InferCreationAttributes, CreationOptional, HasManyCreateAssociationMixin } from 'sequelize';
 
-interface PotholeAttributes {
-  pothole_id: number;
-  fixed: boolean;
-  lat: number;
-  lon: number;
-  createdAt: Date;
-  updatedAt: Date;
+class Pothole extends Model<InferAttributes<Pothole, { omit: 'ratings' }>, InferCreationAttributes<Pothole, { omit: 'ratings' }>> {
+  declare pothole_id: CreationOptional<number>;
+  declare fixed: boolean;
+  declare lat: number;
+  declare lon: number;
+  declare createdAt: CreationOptional<Date>;
+  declare updatedAt: CreationOptional<Date>;
+  declare ratings?: NonAttribute<Rating[]>;
+  declare createRating: HasManyCreateAssociationMixin<Rating, 'pothole_id'>;
+  declare static associations: {
+    ratings: Association<Pothole, Rating>;
+  };
 }
-
-type PotholeCreationAttributes = Optional<
-  PotholeAttributes,
-  'pothole_id' | 'createdAt' | 'updatedAt'
->;
-
-const Pothole: ModelDefined<PotholeAttributes, PotholeCreationAttributes> = db.define(
-  'Pothole',
+Pothole.init(
   {
     pothole_id: {
       type: DataTypes.INTEGER,
@@ -26,15 +25,15 @@ const Pothole: ModelDefined<PotholeAttributes, PotholeCreationAttributes> = db.d
       unique: true,
     },
     fixed: {
-      type: DataTypes.BOOLEAN,
+      type: new DataTypes.BOOLEAN,
       allowNull: false,
     },
     lat: {
-      type: DataTypes.FLOAT,
+      type: new DataTypes.FLOAT,
       allowNull: false,
     },
     lon: {
-      type: DataTypes.FLOAT,
+      type: new DataTypes.FLOAT,
       allowNull: false,
     },
     createdAt: DataTypes.DATE,
@@ -42,11 +41,63 @@ const Pothole: ModelDefined<PotholeAttributes, PotholeCreationAttributes> = db.d
   },
   {
     tableName: 'potholes',
+    sequelize
   }
 );
 
 (async () => {
-  await db.sync();
+  await sequelize.sync();
 })();
 
 export default Pothole;
+
+
+// interface PotholeAttributes {
+//   pothole_id: number;
+//   fixed: boolean;
+//   lat: number;
+//   lon: number;
+//   createdAt: Date;
+//   updatedAt: Date;
+// }
+
+// type PotholeCreationAttributes = Optional<
+//   PotholeAttributes,
+//   'pothole_id' | 'createdAt' | 'updatedAt'
+// >;
+
+// const Pothole: ModelDefined<PotholeAttributes, PotholeCreationAttributes> = db.define(
+//   'Pothole',
+//   {
+//     pothole_id: {
+//       type: DataTypes.INTEGER,
+//       allowNull: false,
+//       autoIncrement: true,
+//       primaryKey: true,
+//       unique: true,
+//     },
+//     fixed: {
+//       type: DataTypes.BOOLEAN,
+//       allowNull: false,
+//     },
+//     lat: {
+//       type: DataTypes.FLOAT,
+//       allowNull: false,
+//     },
+//     lon: {
+//       type: DataTypes.FLOAT,
+//       allowNull: false,
+//     },
+//     createdAt: DataTypes.DATE,
+//     updatedAt: DataTypes.DATE,
+//   },
+//   {
+//     tableName: 'potholes',
+//   }
+// );
+
+// (async () => {
+//   await db.sync();
+// })();
+
+// export default Pothole;

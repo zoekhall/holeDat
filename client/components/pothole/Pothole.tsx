@@ -25,11 +25,10 @@ const Pothole = () => {
     axios
       .get('/api/imgs/potholeimgs' + id)
       .then((data) => {
-        console.log(data.data)
         const resObj: [] = data.data.map(each => {
           //console.log(each)
           const { image_id, caption, photoURL } = each
-          const { user_id, name, photo } = each.user
+          const { user_id, name, photo } = each.User
           return ({
             image_id: image_id,
             caption: caption,

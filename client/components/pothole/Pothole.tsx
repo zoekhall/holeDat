@@ -26,7 +26,6 @@ const Pothole = () => {
       .get('/api/imgs/potholeimgs' + id)
       .then((data) => {
         const resObj: [] = data.data.map(each => {
-          //console.log(each)
           const { image_id, caption, photoURL } = each
           const { user_id, name, photo } = each.User
           return ({
@@ -38,10 +37,7 @@ const Pothole = () => {
             userPhoto: photo
 
           })
-          // const stateObj: phImg = {
-          // }
         })
-        console.log(resObj)
         setPImages(resObj)
       })
       .catch((err) => console.log(err));

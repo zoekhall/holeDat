@@ -1,20 +1,49 @@
-import Sequelize from 'sequelize';
 import db from '../db.server';
+import { DataTypes, ModelDefined, Optional } from 'sequelize';
 
-const Rating = db.define('rating', {
-  rating_id: {
-    type: Sequelize.INTEGER,
-    autoIncrement: true,
-    allowNull: false,
-    primaryKey: true,
+interface RatingAttributes {
+  rating_id: number;
+  overall: number;
+  pothole_id: number;
+  user_id: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+type RatingCreationAttributes = Optional<RatingAttributes, 'rating_id' | 'createdAt' | 'updatedAt'>;
+
+const Rating: ModelDefined<RatingAttributes, RatingCreationAttributes> = db.define(
+  'Rating',
+  {
+    rating_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true,
+      unique: true,
+    },
+    overall: {
+      type: DataTypes.FLOAT,
+      allowNull: false,
+    },
+    user_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    pothole_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    createdAt: DataTypes.DATE,
+    updatedAt: DataTypes.DATE,
   },
+  {
+    tableName: 'ratings',
+  }
+);
 
-  overall: {
-    type: Sequelize.INTEGER,
-    allowNull: false,
-  },
-});
-
-db.sync();
+(async () => {
+  await db.sync();
+})();
 
 export default Rating;

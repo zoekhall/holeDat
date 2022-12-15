@@ -18,15 +18,15 @@ function AddPothole() {
     lon: 0,
   };
 
-  const imgObj: { photoURL: string; caption: string; potholePotholeId: number } = {
+  const imgObj: { photoURL: string; caption: string; pothole_id: number } = {
     photoURL: '',
     caption: '',
-    potholePotholeId: 0,
+    pothole_id: 0,
   };
 
-  const ratingObj: { overall: number; potholePotholeId: number } = {
+  const ratingObj: { overall: number; pothole_id: number } = {
     overall: 0,
-    potholePotholeId: 0,
+    pothole_id: 0,
   };
 
   //updating objects with filled out information

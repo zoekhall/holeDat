@@ -1,5 +1,5 @@
 import PotholeIMG from '../db/schema/potholeImgs.schema';
-import User from '../db/schema/user.schema'
+import User from '../db/schema/user.schema';
 
 //get all img of pothole mostly for testing
 export const getAllImgs = (cb) => {
@@ -10,7 +10,7 @@ export const getAllImgs = (cb) => {
 
 //gets pothole img based on pothole_id
 export const getPotholeImgByPhId = (id: string, cb) => {
-  PotholeIMG.findOne({ where: { potholePotholeId: id } })
+  PotholeIMG.findOne({ where: { pothole_id: id } })
     .then((data) => cb(data))
     .catch((err) => cb(err));
 };
@@ -18,10 +18,9 @@ export const getPotholeImgByPhId = (id: string, cb) => {
 //gets all pothole imgs based on pothole_id
 export const getAllPotholeImgByPhId = (id: string, cb) => {
   PotholeIMG.findAll({
-    where: { potholePotholeId: id },
-    include: [User]
-  }
-  )
+    where: { pothole_id: id },
+    include: [User],
+  })
     .then((data) => cb(data))
     .catch((err) => cb(err));
 };
@@ -29,7 +28,7 @@ export const getAllPotholeImgByPhId = (id: string, cb) => {
 //gets top 3 users with most posts
 export const getTopThree = (cb) => {
   PotholeIMG.findAndCountAll({
-    attributes: ['userUserId'],
-    group: ['userUserId'],
+    attributes: ['user_id'],
+    group: ['user_id'],
   }).then((data) => cb(data.count));
 };

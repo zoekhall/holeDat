@@ -1,19 +1,48 @@
-import Sequelize from 'sequelize';
 import db from '../db.server';
+import { DataTypes, ModelDefined, Optional } from 'sequelize';
 
-const Likes = db.define('likes', {
-  likes_id: {
-    type: Sequelize.INTEGER,
-    autoIncrement: true,
-    allowNull: false,
-    primaryKey: true,
+interface LikesAttributes {
+  likes_id: number;
+  likeType: boolean;
+  user_id: number;
+  pothole_id: number;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+type LikesCreationAttributes = Optional<LikesAttributes, 'likes_id' | 'createdAt' | 'updatedAt'>;
+
+const Like: ModelDefined<LikesAttributes, LikesCreationAttributes> = db.define(
+  'Like',
+  {
+    likes_id: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      allowNull: false,
+      primaryKey: true,
+    },
+    likeType: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+    },
+    user_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    pothole_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    createdAt: DataTypes.DATE,
+    updatedAt: DataTypes.DATE,
   },
-  likeType: {
-    type: Sequelize.BOOLEAN,
-    allowNull: true,
-  },
-});
+  {
+    tableName: 'likes',
+  }
+);
 
-db.sync();
+(async () => {
+  await db.sync();
+})();
 
-export default Likes;
+export default Like;

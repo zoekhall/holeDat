@@ -1,27 +1,52 @@
-import Sequelize from 'sequelize';
-import db from '../db.server';
+import sequelize from '../db.server';
+import { DataTypes, ModelDefined, Optional } from 'sequelize';
 
-const Pothole = db.define('pothole', {
-  pothole_id: {
-    type: Sequelize.INTEGER,
-    autoIncrement: true,
-    allowNull: false,
-    primaryKey: true,
-  },
-  fixed: {
-    type: Sequelize.BOOLEAN,
-    allowNull: false,
-  },
-  lat: {
-    type: Sequelize.FLOAT,
-    allowNull: false,
-  },
-  lon: {
-    type: Sequelize.FLOAT,
-    allowNull: false,
-  },
-});
+interface PotholeAttributes {
+  pothole_id: number;
+  fixed: boolean;
+  lat: number;
+  lon: number;
+  createdAt: Date;
+  updatedAt: Date;
+}
 
-db.sync();
+type PotholeCreationAttributes = Optional<
+  PotholeAttributes,
+  'pothole_id' | 'createdAt' | 'updatedAt'
+>;
+
+const Pothole: ModelDefined<PotholeAttributes, PotholeCreationAttributes> = sequelize.define(
+  'Pothole',
+  {
+    pothole_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true,
+      unique: true,
+    },
+    fixed: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+    },
+    lat: {
+      type: DataTypes.FLOAT,
+      allowNull: false,
+    },
+    lon: {
+      type: DataTypes.FLOAT,
+      allowNull: false,
+    },
+    createdAt: DataTypes.DATE,
+    updatedAt: DataTypes.DATE,
+  },
+  {
+    tableName: 'potholes',
+  }
+);
+
+(async () => {
+  await sequelize.sync();
+})();
 
 export default Pothole;

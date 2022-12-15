@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import express, { Request, Response } from 'express';
 import * as path from 'path';
 import dotenv from 'dotenv';
@@ -66,7 +67,7 @@ passport.use(
       try {
         const [user] = await User.findOrCreate({
           where: { id },
-          defaults: { id, email, name: displayName, photo },
+          defaults: { id, email, name: displayName, photo, badge_id:0 },
         });
         done(null, user);
       } catch (error) {

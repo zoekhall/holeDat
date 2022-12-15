@@ -1,4 +1,4 @@
-import sequelize from '../db.server';
+import db from '../db.server';
 import { DataTypes, ModelDefined, Optional } from 'sequelize';
 
 interface PotholeAttributes {
@@ -15,7 +15,7 @@ type PotholeCreationAttributes = Optional<
   'pothole_id' | 'createdAt' | 'updatedAt'
 >;
 
-const Pothole: ModelDefined<PotholeAttributes, PotholeCreationAttributes> = sequelize.define(
+const Pothole: ModelDefined<PotholeAttributes, PotholeCreationAttributes> = db.define(
   'Pothole',
   {
     pothole_id: {
@@ -46,7 +46,7 @@ const Pothole: ModelDefined<PotholeAttributes, PotholeCreationAttributes> = sequ
 );
 
 (async () => {
-  await sequelize.sync();
+  await db.sync();
 })();
 
 export default Pothole;

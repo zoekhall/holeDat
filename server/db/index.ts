@@ -7,43 +7,113 @@ import Pothole from './schema/pothole.schema';
 import Rating from './schema/ratings.schema';
 import PotholeIMG from './schema/potholeImgs.schema';
 
-//User 1->many potholeIMG
-User.hasMany(PotholeIMG);
-PotholeIMG.belongsTo(User);
+//POTHOLE CONNECTIONS
+// Pothole 1->many Ratings
+Pothole.hasMany(Rating, {
+  sourceKey: 'pothole_id', //source in Pothole
+  foreignKey: 'pothole_id', //foreign key in Rating
+});
+Rating.belongsTo(Pothole, {
+  foreignKey: 'pothole_id', 
+  targetKey: 'pothole_id' 
+});
 
-// like 1->1 User
-User.hasOne(Like);
-Like.belongsTo(User);
+// Pothole 1->many PotholeIMGs
+Pothole.hasMany(PotholeIMG, {
+  sourceKey: 'pothole_id', 
+  foreignKey: 'pothole_id', 
+});
+PotholeIMG.belongsTo(Pothole, {
+  foreignKey: 'pothole_id',
+  targetKey: 'pothole_id',
+});
 
-// User 1->many badge
-Badge.hasMany(User);
-User.belongsTo(Badge);
+// Pothole 1->many Comments
+Pothole.hasMany(Comment, {
+  sourceKey: 'pothole_id',
+  foreignKey: 'pothole_id', 
+});
+Comment.belongsTo(Pothole, {
+  foreignKey: 'pothole_id',
+  targetKey: 'pothole_id', 
+});
 
-// User 1->many comments
-User.hasMany(Comment);
-Comment.belongsTo(User);
+//USER CONNECTIONS
+// User 1->many PotholeIMGs
+User.hasMany(PotholeIMG, {
+  sourceKey: 'user_id', 
+  foreignKey: 'user_id', 
+});
+PotholeIMG.belongsTo(User, {
+  foreignKey: 'user_id',
+  targetKey: 'user_id', 
+});
 
-// potholeImg 1->many likes
-PotholeIMG.hasMany(Like);
-Like.belongsTo(PotholeIMG);
+// User 1->many Ratings
+User.hasMany(Rating, {
+  sourceKey: 'user_id', 
+  foreignKey: 'user_id', 
+});
+Rating.belongsTo(User, {
+  foreignKey: 'user_id', 
+  targetKey: 'user_id', 
+});
 
-// pothole 1->many potholeImgs
-Pothole.hasMany(PotholeIMG);
-PotholeIMG.belongsTo(Pothole);
+// User 1->many Comments
+User.hasMany(Comment, {
+  sourceKey: 'user_id', 
+  foreignKey: 'user_id', 
+});
+Comment.belongsTo(User, {
+  foreignKey: 'user_id', 
+  targetKey: 'user_id', 
+});
 
-// pothole 1->many ratings
-Pothole.hasMany(Rating);
-Rating.belongsTo(Pothole);
+// User 1->1 Likes
+User.hasOne(Like, {
+  sourceKey: 'user_id', 
+  foreignKey: 'user_id', 
+});
 
-// pothole 1->many ratings
-User.hasMany(Rating);
-Rating.belongsTo(User);
+Like.belongsTo(User, {
+  foreignKey: 'user_id',
+  targetKey: 'user_id',
+});
 
-// pothole 1->many comments
-Pothole.hasMany(Comment);
-Comment.belongsTo(Pothole);
+//USER CONNECTIONS
+// User 1->many PotholeIMGs
+User.hasMany(PotholeIMG, {
+  sourceKey: 'user_id', 
+  foreignKey: 'user_id', 
+});
+PotholeIMG.belongsTo(User, {
+  foreignKey: 'user_id',
+  targetKey: 'user_id', 
+});
 
-//db.sync({ alter: true })
+//BADGE CONNECTIONS
+// Badges 1-> User
+Badge.hasMany(User, {
+  sourceKey: 'badge_id',
+  foreignKey: 'badge_id',
+});
+User.belongsTo(Badge, {
+  foreignKey: 'badge_id',
+  targetKey: 'badge_id',
+});
+
+//NEED TO REVISIT.. SHOULD LIKES HAVE A POTHOLE IMG SOURCE KEY INSTEAD OF POTHOLE?
+//POTHOLE IMG CONNECTIONS
+// PotholeIMG 1-> Likes
+// PotholeIMG.hasMany(Like, {
+//   sourceKey: 'user_id',
+//   foreignKey: 'user_id',
+// });
+// Like.belongsTo(PotholeIMG, {
+//   foreignKey: 'user_id',
+//   targetKey: 'user_id',
+// });
+
 db.sync();
 
 export default {

@@ -12,9 +12,6 @@ const app = express();
 // running on port 5555 if no env available
 const PORT = process.env.PORT || 5555;
 
-
-
-
 import rootRouter from './routes/index';
 
 app.use(
@@ -81,7 +78,9 @@ passport.serializeUser((user: any, done) => {
   done(null, user.id);
 });
 passport.deserializeUser((id, done) => {
-  User.findOne({ where: { id } }).then((data) => done(null, data));
+  if(id){
+    User.findOne({ where: { id } }).then((data) => done(null, data));
+  }
 });
 
 app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));

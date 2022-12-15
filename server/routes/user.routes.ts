@@ -1,6 +1,6 @@
 import express, { Request, Response } from 'express';
 const user = express.Router();
-import { getRecentUsers, getUserData } from '../models/user.model';
+import { getRecentUsers, getUserData, changeUsername } from '../models/user.model';
 
 user.get('/', (req: Request, res: Response) => {
   getRecentUsers((data) => res.status(222).send(data));
@@ -22,13 +22,17 @@ user.get('/users', (req: Request, res: Response) => {
   res.status(200).send(userObjs);
 });
 
-user.get('/me', (req: Request, res: Response)=>{
-  if(req.user){
+user.get('/me', (req: Request, res: Response) => {
+  if (req.user) {
     res.send(req.user)
-  } else{
+  } else {
     res.send({})
   }
 })
 
+user.patch('/edit/username', (req: Request, res: Response) => {
+  console.log(req.body.name, req.user)
+  changeUsername(req.user, req.body.name)
+})
 
 export default user;

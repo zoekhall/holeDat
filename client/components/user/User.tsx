@@ -17,6 +17,12 @@ function User() {
       .catch(err => console.log(err));
   }
 
+  // const editUsername = (username) => {
+  //   axios.patch('api/user/edit/username', { name: username })
+  //     .then(data => console.log('work'))
+  //     .catch(err => console.log(err))
+  // }
+
   useEffect(getUserData, [])
 
   return (
@@ -24,7 +30,7 @@ function User() {
       <p>User</p>
       <img src={user.photo} style={{ borderRadius: '18px' }} alt="Image" width='50%' height='50%' />
       <h1>{user.name}</h1>
-      <button onClick={getUserData}>get user data</button>
+      {/* <button onClick={() => { editUsername('bidney bolmes') }}>edit username</button> */}
       <Logout />
     </div>
   );

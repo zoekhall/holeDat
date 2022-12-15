@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from "swiper";
 import { useLocation, Link } from 'react-router-dom';
+import CommentForm from './CommentForm';
 
 
 const Pothole = () => {
@@ -72,6 +73,7 @@ const Pothole = () => {
         );
       })}
     </Swiper>
+    <CommentForm />
   </div>;
 }
 

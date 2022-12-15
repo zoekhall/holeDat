@@ -1,7 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import express, { Request, Response } from 'express';
 const imgs = express.Router();
-import { getAllImgs, getPotholeImgByPhId, getTopThree, getAllPotholeImgByPhId } from '../models/imgs.model';
+import {
+  getAllImgs,
+  getPotholeImgByPhId,
+  getTopThree,
+  getAllPotholeImgByPhId,
+  // postImg,
+} from '../models/imgs.model';
 import multer from 'multer';
 import dotenv from 'dotenv';
 import fs from 'fs-extra';
@@ -22,12 +28,14 @@ imgs.post('/addimg', upload, (req: any, res: Response) => {
   const cloud_name = process.env.CLOUD_NAME;
   const api_secret = process.env.CLOUD_SECRET;
   const file = req.file.path;
+  console.log(file, 'file')
   cloudinary.v2.uploader
     .upload(file, { api_key, api_secret, cloud_name })
     .then((data) => {
-      console.log(data);
+      console.log(data, 'routes');
     })
-    .catch((err) => console.log(err));
+    .catch((err) => console.log('Failure to Post Image', err));
+  // postImg((data) => { console.log(data, 'routes'); res.status(201).send(data)}, req.body, file.photoURL);
   res.json({});
   fs.emptyDir('./tmp');
 });
@@ -36,15 +44,14 @@ imgs.post('/addimg', upload, (req: any, res: Response) => {
 imgs.get('/potholeimgs:id', (req: Request, res: Response) => {
   const { id } = req.params;
   getAllPotholeImgByPhId(id, (data) => {
-      if (data) {
-        const resObj = data.map((phimg) => phimg.dataValues);
-        res.status(200).send(resObj);
-      } else {
-        res.sendStatus(400);
-      }
-  })
-})
-
+    if (data) {
+      const resObj = data.map((phimg) => phimg.dataValues);
+      res.status(200).send(resObj);
+    } else {
+      res.sendStatus(400);
+    }
+  });
+});
 
 // gets one image for the pothole
 imgs.get('/potholeimg:id', (req: Request, res: Response) => {

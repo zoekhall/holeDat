@@ -1,8 +1,9 @@
 import sequelize from '../db.server';
 import Rating from './ratings.schema';
 import {Association, NonAttribute, Model, DataTypes, InferAttributes, InferCreationAttributes, CreationOptional, HasManyCreateAssociationMixin } from 'sequelize';
+import PotholeIMG from './potholeImgs.schema';
 
-class Pothole extends Model<InferAttributes<Pothole, { omit: 'ratings' }>, InferCreationAttributes<Pothole, { omit: 'ratings' }>> {
+class Pothole extends Model<InferAttributes<Pothole, { omit: 'ratings', 'potholeimgs' }>, InferCreationAttributes<Pothole, { omit: 'ratings', 'potholeimgs' }>> {
   declare pothole_id: CreationOptional<number>;
   declare fixed: boolean;
   declare lat: number;
@@ -10,9 +11,11 @@ class Pothole extends Model<InferAttributes<Pothole, { omit: 'ratings' }>, Infer
   declare createdAt: CreationOptional<Date>;
   declare updatedAt: CreationOptional<Date>;
   declare ratings?: NonAttribute<Rating[]>;
+  declare createPotholeImg: HasManyCreateAssociationMixin<PotholeIMG, 'pothole_id'>;
   declare createRating: HasManyCreateAssociationMixin<Rating, 'pothole_id'>;
   declare static associations: {
     ratings: Association<Pothole, Rating>;
+    potholeimgs: Association<Pothole, PotholeIMG>;
   };
 }
 Pothole.init(

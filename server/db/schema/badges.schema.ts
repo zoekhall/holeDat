@@ -1,4 +1,4 @@
-import db from '../db.server';
+import sequelize from '../db.server';
 import { DataTypes, ModelDefined, Optional } from 'sequelize';
 
 interface BadgeAttributes {
@@ -12,7 +12,7 @@ interface BadgeAttributes {
 
 type BadgeCreationAttributes = Optional<BadgeAttributes, 'badge_id' | 'createdAt' | 'updatedAt'>;
 
-const Badge: ModelDefined<BadgeAttributes, BadgeCreationAttributes> = db.define(
+const Badge: ModelDefined<BadgeAttributes, BadgeCreationAttributes> = sequelize.define(
   'Badge',
   {
     badge_id: {
@@ -42,7 +42,7 @@ const Badge: ModelDefined<BadgeAttributes, BadgeCreationAttributes> = db.define(
 );
 
 (async () => {
-  await db.sync();
+  await sequelize.sync();
 })();
 
 export default Badge;

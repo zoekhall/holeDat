@@ -1,4 +1,4 @@
-import db from '../db.server';
+import sequelize from '../db.server';
 import { DataTypes, ModelDefined, Optional } from 'sequelize';
 
 interface CommentAttributes {
@@ -12,7 +12,7 @@ interface CommentAttributes {
 
 type CommentCreationAttributes = Optional<CommentAttributes, 'comment_id' | 'createdAt' | 'updatedAt'>;
 
-const Comment: ModelDefined<CommentAttributes, CommentCreationAttributes> = db.define(
+const Comment: ModelDefined<CommentAttributes, CommentCreationAttributes> = sequelize.define(
   'Comment',
   {
     comment_id: {
@@ -42,7 +42,7 @@ const Comment: ModelDefined<CommentAttributes, CommentCreationAttributes> = db.d
 );
 
 (async () => {
-  await db.sync();
+  await sequelize.sync();
 })();
 
 export default Comment;

@@ -1,4 +1,4 @@
-import db from '../db.server';
+import sequelize from '../db.server';
 import { DataTypes, ModelDefined, Optional } from 'sequelize';
 
 interface UserAttributes {
@@ -14,7 +14,7 @@ interface UserAttributes {
 
 type UserCreationAttributes = Optional<UserAttributes, 'user_id' | 'createdAt' | 'updatedAt'>;
 
-const User: ModelDefined<UserAttributes, UserCreationAttributes> = db.define(
+const User: ModelDefined<UserAttributes, UserCreationAttributes> = sequelize.define(
   'User',
   {
     user_id: {
@@ -53,7 +53,7 @@ const User: ModelDefined<UserAttributes, UserCreationAttributes> = db.define(
 );
 
 (async () => {
-  await db.sync();
+  await sequelize.sync();
 })();
 
 export default User;

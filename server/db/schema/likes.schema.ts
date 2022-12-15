@@ -1,4 +1,4 @@
-import db from '../db.server';
+import sequelize from '../db.server';
 import { DataTypes, ModelDefined, Optional } from 'sequelize';
 
 interface LikesAttributes {
@@ -12,7 +12,7 @@ interface LikesAttributes {
 
 type LikesCreationAttributes = Optional<LikesAttributes, 'likes_id' | 'createdAt' | 'updatedAt'>;
 
-const Like: ModelDefined<LikesAttributes, LikesCreationAttributes> = db.define(
+const Like: ModelDefined<LikesAttributes, LikesCreationAttributes> = sequelize.define(
   'Like',
   {
     likes_id: {
@@ -42,7 +42,7 @@ const Like: ModelDefined<LikesAttributes, LikesCreationAttributes> = db.define(
 );
 
 (async () => {
-  await db.sync();
+  await sequelize.sync();
 })();
 
 export default Like;

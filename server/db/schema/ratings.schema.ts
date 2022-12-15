@@ -6,7 +6,7 @@ class Rating extends Model<InferAttributes<Rating>, InferCreationAttributes<Rati
   declare rating_id: CreationOptional<number>;
   declare overall: number;
   declare pothole_id: ForeignKey<Pothole['pothole_id']>;
-  declare user_id: string;
+  declare user_id: number;
   declare createdAt: CreationOptional<Date>;
   declare updatedAt: CreationOptional<Date>;
 

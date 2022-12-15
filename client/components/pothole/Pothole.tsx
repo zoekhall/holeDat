@@ -25,11 +25,9 @@ const Pothole = () => {
     axios
       .get('/api/imgs/potholeimgs' + id)
       .then((data) => {
-        console.log(data.data)
         const resObj: [] = data.data.map(each => {
-          //console.log(each)
           const { image_id, caption, photoURL } = each
-          const { user_id, name, photo } = each.user
+          const { user_id, name, photo } = each.User
           return ({
             image_id: image_id,
             caption: caption,
@@ -39,10 +37,7 @@ const Pothole = () => {
             userPhoto: photo
 
           })
-          // const stateObj: phImg = {
-          // }
         })
-        console.log(resObj)
         setPImages(resObj)
       })
       .catch((err) => console.log(err));
@@ -68,7 +63,7 @@ const Pothole = () => {
             <div className="post_caption">
               <div className="caption">
                 <p>{image.caption}</p>
-                <Link to={'/User' + image.userId}>
+                <Link to={'/User:' + image.userId}>
                   <img className="avatar capElem rounded-circle shadow-sm p-3 mb-5 bg-white rounded" alt="avatar2" src={image.userPhoto} />
                 </Link>
                 <h5>{image.userName}</h5>

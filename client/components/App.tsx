@@ -6,7 +6,7 @@ import NavBar from './NavBar';
 import Home from './home/Home';
 import Pothole from './pothole/Pothole';
 import User from './user/User';
-import NonUserProfile from './user/nonUserProfile';
+import NonUserProfile from './user/NonUserProfile';
 import About from './about/About';
 import Feed from './feed/Feed';
 import MapView from './map/MapView';

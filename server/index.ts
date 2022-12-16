@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import express, { Request, Response } from 'express';
 import * as path from 'path';
 import dotenv from 'dotenv';
@@ -8,6 +7,7 @@ import passport from 'passport';
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
 import User from './db/schema/user.schema';
 import './db/index';
+import { Server } from 'socket.io';
 const app = express();
 // running on port 5555 if no env available
 const PORT = process.env.PORT || 5555;
@@ -64,7 +64,7 @@ passport.use(
       try {
         const [user] = await User.findOrCreate({
           where: { id },
-          defaults: { id, email, name: displayName, photo, badge_id:0 },
+          defaults: { id, email, name: displayName, photo, badge_id: 0 },
         });
         done(null, user);
       } catch (error) {
@@ -78,7 +78,7 @@ passport.serializeUser((user: any, done) => {
   done(null, user.id);
 });
 passport.deserializeUser((id, done) => {
-  if(id){
+  if (id) {
     User.findOne({ where: { id } }).then((data) => done(null, data));
   }
 });
@@ -94,6 +94,25 @@ app.get(
 );
 
 app.use('/api', rootRouter);
+
+// ZM
+const socketServer = new Server(8081, {
+  cors: {
+    origin: '*',
+  },
+});
+socketServer.on('connection', (socket: any) => {
+  // Set up an interval to send a "heartbeat" message every 10 seconds
+  setInterval(() => {
+    User.findAll({}).then((data) => socket.emit('heartbeat', { data: data.length }));
+  }, 500);
+
+  // Set up a listener for the "heartbeat" message
+  socket.on('heartbeat', (data) => {
+    return data;
+  });
+});
+//ZM
 
 // wildcard endpoint
 app.use('/*', (req: Request, res: Response) => {

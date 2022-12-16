@@ -17,9 +17,13 @@ const Pothole = () => {
     userId: number;
     userName: string;
     userPhoto: string;
+    lat: number,
+    lon: number,
+    fixed: boolean
   };
 
   const [PImages, setPImages] = useState<phImg[]>([]);
+  const [addy, setAddy] = useState<string[]>([]);
 
   // get pothole images by potholeID
   const getAllPotholeImgByPhId = () => {
@@ -29,16 +33,27 @@ const Pothole = () => {
         const resObj: [] = data.data.map(each => {
           const { image_id, caption, photoURL } = each
           const { user_id, name, photo } = each.User
+          const { lat, lon, fixed } = each.Pothole
           return ({
-            image_id: image_id,
-            caption: caption,
-            photoURL: photoURL,
+            image_id,
+            caption,
+            photoURL,
             userId: user_id,
             userName: name,
-            userPhoto: photo
+            userPhoto: photo,
+            lon,
+            lat,
+            fixed
           })
         })
+
         setPImages(resObj)
+        return data.data[0].Pothole
+      })
+      .then((data) => {
+        const { lat, lon } = data
+        axios('/api/location/getAddy', { params: { lat, lon } })
+          .then(data => setAddy(data.data.split(',')))
       })
       .catch((err) => console.log(err));
   };
@@ -51,6 +66,7 @@ const Pothole = () => {
   return <div className="post">
     <div className="post_header">
       <h2><strong>Pothole Profile</strong></h2>
+      <h1>{addy[0]}</h1>
     </div>
     <Swiper className='mySwiper'
       pagination={true}

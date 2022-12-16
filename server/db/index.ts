@@ -1,4 +1,4 @@
-import db from './db.server';
+import sequelize from './db.server';
 import User from './schema/user.schema';
 import Badge from './schema/badges.schema';
 import Comment from './schema/comments.schema';
@@ -114,7 +114,7 @@ User.belongsTo(Badge, {
 //   targetKey: 'user_id',
 // });
 
-db.sync();
+sequelize.sync();
 
 export default {
   Badge,

@@ -36,16 +36,11 @@ export const getTopThree = (cb) => {
 };
 
 //creates image
-export const postImg = async (cb, obj, photoURL) => {
-  const pothole = await Pothole.findOne({
-    where: { pothole_id: obj.pothole_id },
-  });
-
-  obj.photoURL = photoURL;
-  await pothole
-    ?.createPotholeImg(obj)
-    .then((data) => {
+export const postImg = async (cb, obj) => {
+  PotholeIMG.create(obj)
+    .then(data => {
+      console.log(data)
       cb(data)
     })
-    .catch((err) => console.error(err));
+    .catch(err => console.log(err))
 };

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
@@ -6,7 +6,6 @@ interface Comment {
   id: number;
   name: string;
   text: string;
-  replies: Comment[];
 }
 
 const CommentForm: React.FC = () => {
@@ -14,12 +13,7 @@ const CommentForm: React.FC = () => {
   const [comments, setComments] = useState<Comment[]>([]);
   const [inputValue, setInputValue] = useState('');
 
-  // Use effect hook to fetch the list of comments from an API when I'm ready
-  useEffect(() => {
-    fetch('api here')
-      .then(response => response.json())
-      .then(data => setComments(data));
-  }, []);
+
 
   // handle submitting a new comment
   const handleSubmit = (event: React.FormEvent) => {
@@ -30,14 +24,13 @@ const CommentForm: React.FC = () => {
       id: Date.now(),
       name: 'Username',
       text: inputValue,
-      replies: []
     };
     // Add the new comment to the list of comments and reset the input value
     setComments([newComment, ...comments]);
     setInputValue('');
   }
 
-  // render a comment and its replies recursively
+  // render a comment
   const renderComment = (comment: Comment) => {
     return (
       <div key={comment.id}>

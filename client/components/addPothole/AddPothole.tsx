@@ -121,12 +121,6 @@ function AddPothole() {
       >
         Submit
       </Button>
-      <Button
-        onClick={() => {
-          handleImageSubmit();
-          console.log(imgObj, ratingObj, potObj)
-        }}
-      ></Button>
     </Form>
   );
 }

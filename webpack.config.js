@@ -20,19 +20,16 @@ module.exports = {
       {
         test: /\.css$/,
         use: ['css-loader'],
-        exclude: /node_modules/,
       },
       {
         test: /\.scss$/,
         use: ['style-loader', 'css-loader', 'sass-loader'],
-        exclude: /node_modules/,
       },
       {
         test: /\.(woff|woff2|eot|ttf|svg|jpg|png)$/,
         use: {
           loader: 'url-loader',
         },
-        exclude: /node_modules/,
       },
     ],
   },

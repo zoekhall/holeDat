@@ -2,6 +2,7 @@ import Pothole from '../db/schema/pothole.schema';
 import PotholeIMG from '../db/schema/potholeImgs.schema';
 import User from '../db/schema/user.schema';
 
+
 //get all img of pothole mostly for testing
 export const getAllImgs = (cb) => {
   PotholeIMG.findAll({})
@@ -20,7 +21,7 @@ export const getPotholeImgByPhId = (id: string, cb) => {
 export const getAllPotholeImgByPhId = (id: string, cb) => {
   PotholeIMG.findAll({
     where: { pothole_id: id },
-    include: [User],
+    include: [User, Pothole],
   })
     .then((data) => cb(data))
     .catch((err) => cb(err));
@@ -41,7 +42,6 @@ export const postImg = async (cb, obj, photoURL) => {
   });
 
   obj.photoURL = photoURL;
-  console.log(obj,'model');
   await pothole
     ?.createPotholeImg(obj)
     .then((data) => {

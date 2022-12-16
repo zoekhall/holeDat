@@ -35,9 +35,8 @@ export const getRecentUsers = (cb) => {
     .catch((err) => console.error(err));
 };
 
-export const changeUsername = async (loggedInUser, newName) => {
-  console.log(loggedInUser, newName)
-  await User.update({ name: newName }, { where: { user_id: loggedInUser.user_id } });
+export const changeUsername = (loggedInUser, newName) => {
+  User.update({ name: newName }, { where: { user_id: loggedInUser.dataValues.user_id } });
 };
 
 

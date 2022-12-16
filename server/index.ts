@@ -7,12 +7,12 @@ import sessions from 'express-session';
 import passport from 'passport';
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
 import User from './db/schema/user.schema';
+import rootRouter from './routes/index';
 import './db/index';
 const app = express();
 // running on port 5555 if no env available
 const PORT = process.env.PORT || 5555;
 
-import rootRouter from './routes/index';
 
 app.use(
   sessions({
@@ -21,20 +21,21 @@ app.use(
     saveUninitialized: true,
     cookie: { maxAge: 1000 * 60 * 60 * 24 },
   })
-);
+  );
 
-// Middleware
-app.use(passport.initialize());
-app.use(passport.session());
-// app.use(routes);
+  // Middleware
+  app.use(passport.initialize());
+  app.use(passport.session());
+  app.use(express.json())
+  app.use(express.urlencoded({ extended: true }));
 
-const isLoggedIn = (req, res, next) => {
-  //make component to need to login compo
-  req.user ? next() : res.redirect('/');
-};
 
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+  const isLoggedIn = (req, res, next) => {
+    //make component to need to login compo
+    req.user ? next() : res.redirect('/');
+  };
+
+
 app.use('/', express.static(path.resolve('dist')));
 app.use('/Pothole:id', isLoggedIn, express.static(path.resolve('dist')));
 app.use('/User', isLoggedIn, express.static(path.resolve('dist')));

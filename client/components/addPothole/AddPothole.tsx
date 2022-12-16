@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useEffect } from 'react';
 import Form from 'react-bootstrap/Form';
-import PotholeStatus from './PotholeStatus';
-import PotholeLocation from './PotholeLocation';
-import PotholePic from './PotholePic';
+import PotholeStatus from './formQuestions/PotholeStatus';
+import PotholeLocation from './formQuestions/PotholeLocation';
+import PotholePic from './formQuestions/PotholePic';
 import Button from 'react-bootstrap/Button';
-import PotholeRating from './PotholeRating';
+import PotholeRating from './formQuestions/PotholeRating';
 import axios from 'axios';
-import PotholeCaption from './PotholeCaption';
+import PotholeCaption from './formQuestions/PotholeCaption';
 
 function AddPothole() {
   const potObj: { fixed: boolean; lat: number; lon: number; user_id: number } = {
@@ -100,6 +100,7 @@ function AddPothole() {
           potObj.lon = lon;
         }}
       />
+    
       <PotholeStatus handleStatus={(newStatus: boolean) => (potObj.fixed = newStatus)} />
       <Button type='button' variant='outlined-dark' onClick={handlePotholeSubmit}>
         Confirm Basic Pothole Information

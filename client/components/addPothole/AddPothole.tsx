@@ -7,6 +7,7 @@ import PotholePic from './PotholePic';
 import Button from 'react-bootstrap/Button';
 import PotholeRating from './PotholeRating';
 import axios from 'axios';
+import PotholeCaption from './PotholeCaption';
 
 function AddPothole() {
   const potObj: { fixed: boolean; lat: number; lon: number } = {
@@ -21,22 +22,19 @@ function AddPothole() {
     user_id: 0,
   };
 
-  const imgObj: { file: string; photoObj: { caption: string;  pothole_id: number; user_id: number} } = {
-    file: '',
-    photoObj: {
-      caption: '',
-      pothole_id: 0,
-      user_id: 0,
-    }
+  const imgObj: { photoURL: string; caption: string; pothole_id: number; user_id: string } = {
+    photoURL: '',
+    caption: '',
+    pothole_id: 0,
+    user_id: '',
   };
-
 
   //get user and add to img and rating objects
   useEffect(() => {
     axios
       .get('/api/user/me')
       .then((data) => {
-        imgObj.photoObj.user_id = data.data.user_id;
+        imgObj.user_id = data.data.user_id;
         ratingObj.user_id = data.data.user_id;
       })
       .catch((err) => console.error('Failure to Get User', err));
@@ -51,47 +49,39 @@ function AddPothole() {
     })
       .then((data) => {
         ratingObj.pothole_id = data.data.pothole_id;
-        imgObj.photoObj.pothole_id = data.data.pothole_id;
+        imgObj.pothole_id = data.data.pothole_id;
       })
       .catch((err) => console.error('Failure to Submit Pothole', err));
   };
-  
+
   //add rating to database
   const handleRatingSubmit = () => {
     axios({
       method: 'post',
       url: '/api/rating/addRating',
       data: ratingObj,
-    })
-      .catch((err) => console.error('Failure to Submit Rating', err));
+    }).catch((err) => console.error('Failure to Submit Rating', err));
   };
-
-  //add image to database
-  const handleImageSubmit = () => {
+  
+  const handleImageSubmit = (file) => {
     const formData = new FormData();
-    formData.append('file', imgObj.file);
+    formData.append('file', file);
 
     if (formData) {
       axios({
         method: 'post',
         url: '/api/imgs/addimg',
-        data: imgObj,
+        data: formData,
       })
-        .catch((err) => console.log('Failure to Submit Image', err));
+        .then(data => console.log(data))
+        .catch(err => console.log(err));
     }
-  };
-
-  const handleGeneralSubmit = () => {
-    handleRatingSubmit();
-    handleImageSubmit(); //send data to cloud
-
-    console.log('potObj', potObj, 'img', imgObj, 'score', ratingObj);
   };
 
   return (
     <Form id='addPothole'>
       <h1>Report a Pothole</h1>
-      <br></br>
+      <div>What are the Basics?</div>
       <PotholeLocation
         handleLocation={(lat: number, lon: number) => {
           potObj.lat = lat;
@@ -102,9 +92,16 @@ function AddPothole() {
       <Button type='button' variant='outlined-dark' onClick={handlePotholeSubmit}>
         Confirm Basic Pothole Information
       </Button>
-      <PotholePic handleImage={(val: any, type: string) => (imgObj[type] = val)} />
+
+      <div>What Does It Look Like?</div>
+      <PotholeCaption handleCaption={(val: string) => (imgObj.caption = val)} />
+      <PotholePic handleImage={file => handleImageSubmit(file)} />
+
+      <div>What Do You Rate It?</div>
       <PotholeRating handleRating={(rating: number) => (ratingObj.overall = rating)} />
-      <Button type='button' variant='outlined-dark' onClick={handleGeneralSubmit}>
+      <Button type='button' variant='outlined-dark' onClick={() => {
+        handleRatingSubmit(); 
+      }}>
         {/* add type='submit' attribute when ready for action */}
         Submit
       </Button>

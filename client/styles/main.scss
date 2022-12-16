@@ -111,9 +111,9 @@ body {
 
 // POTHOLE PROFILE SCSS
 .post {
-  background-color: white;
+  background-color: $LightColor1;
+  border: 1px solid $DarkColor1;
   max-width: 500px;
-  border: 1px solid lightgray;
 }
 
 .potHole_img {
@@ -137,14 +137,34 @@ body {
 }
 
 .avatar {
-  width: 150px;
-  height: 150px;
+  width: 100px;
+  height: 100px;
   margin-right: 10px;
 }
 
 .caption {
   padding-bottom: 35px;
 }
+
+.post_commentBox {
+  display: flex;
+  margin-top: 10px;
+}
+
+.post_input {
+  flex: 1;
+  border: none;
+  padding: 10px;
+  border-top: 1px solid lightgray;
+}
+
+.post_button {
+  flex: 0;
+  border:none;
+  border-top: 1px solid lightgray;
+}
+// POTHOLE PROFILE SCSS
+
 
 .chart-images {
   display: flex;
@@ -155,6 +175,9 @@ body {
 .chart-images>img {
   border-radius: 100px;
 }
+
+
+
 
 .mapPopup {
   display: flex;

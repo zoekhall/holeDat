@@ -40,7 +40,7 @@ imgs.post('/postImg', (req: any, res: Response) => {
   postImg(data => res.status(201).send(data), req.body)
 })
 
-// get ALL imgs of pothole by id
+// get ALL imgs of pothole by id AND user data
 imgs.get('/potholeimgs:id', (req: Request, res: Response) => {
   const { id } = req.params;
   getAllPotholeImgByPhId(id, (data) => {

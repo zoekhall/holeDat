@@ -13,9 +13,11 @@ class Pothole extends Model<
   declare lon: number;
   declare createdAt: CreationOptional<Date>;
   declare updatedAt: CreationOptional<Date>;
+  
   declare ratings?: NonAttribute<Rating[]>;
+  declare potholeimgs?: NonAttribute<PotholeIMG[]>;
+  declare createRating: HasManyCreateAssociationMixin<Rating, 'pothole_id'>;  
   declare createImg: HasManyCreateAssociationMixin<PotholeIMG, 'pothole_id'>;
-  declare createRating: HasManyCreateAssociationMixin<Rating, 'pothole_id'>;
   declare static associations: {
     ratings: Association<Pothole, Rating>;
     potholeimgs: Association<Pothole, PotholeIMG>;

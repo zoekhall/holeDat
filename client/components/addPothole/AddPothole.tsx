@@ -23,8 +23,7 @@ function AddPothole() {
   };
 
   const imgObj: { photoURL: string; caption: string; pothole_id: number; user_id: number } = {
-    photoURL:
-      'http://res.cloudinary.com/ddfvvmkbf/image/upload/v1671154430/wfcrn555nvimnacgfeoi.jpg',
+    photoURL: '',
     caption: '',
     user_id: 0,
     pothole_id: 0,
@@ -123,6 +122,7 @@ function AddPothole() {
       <Button
         onClick={() => {
           handleImageSubmit();
+          console.log(imgObj, ratingObj, potObj)
         }}
       ></Button>
     </Form>

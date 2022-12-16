@@ -13,6 +13,7 @@ class Pothole extends Model<
   declare lon: number;
   declare createdAt: CreationOptional<Date>;
   declare updatedAt: CreationOptional<Date>;
+  declare user_id: number;
   
   declare ratings?: NonAttribute<Rating[]>;
   declare potholeimgs?: NonAttribute<PotholeIMG[]>;
@@ -46,6 +47,10 @@ Pothole.init(
     },
     createdAt: DataTypes.DATE,
     updatedAt: DataTypes.DATE,
+    user_id: {
+      type: new DataTypes.INTEGER,
+      allowNull: true,
+    },
   },
   {
     tableName: 'potholes',

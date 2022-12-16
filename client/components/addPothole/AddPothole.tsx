@@ -10,10 +10,11 @@ import axios from 'axios';
 import PotholeCaption from './PotholeCaption';
 
 function AddPothole() {
-  const potObj: { fixed: boolean; lat: number; lon: number } = {
+  const potObj: { fixed: boolean; lat: number; lon: number; user_id: number } = {
     fixed: false,
     lat: 0,
     lon: 0,
+    user_id: 0,
   };
 
   const ratingObj: { overall: number; pothole_id: number; user_id: number } = {
@@ -36,6 +37,7 @@ function AddPothole() {
       .then((data) => {
         imgObj.user_id = data.data.user_id;
         ratingObj.user_id = data.data.user_id;
+        potObj.user_id = data.data.user_id;
       })
       .catch((err) => console.error('Failure to Get User', err));
   }, []);

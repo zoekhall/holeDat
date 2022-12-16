@@ -13,7 +13,6 @@ const app = express();
 // running on port 5555 if no env available
 const PORT = process.env.PORT || 5555;
 
-
 app.use(
   sessions({
     secret: 'thisisasecret',
@@ -21,20 +20,18 @@ app.use(
     saveUninitialized: true,
     cookie: { maxAge: 1000 * 60 * 60 * 24 },
   })
-  );
+);
 
-  // Middleware
-  app.use(passport.initialize());
-  app.use(passport.session());
-  app.use(express.json())
-  app.use(express.urlencoded({ extended: true }));
+// Middleware
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-
-  const isLoggedIn = (req, res, next) => {
-    //make component to need to login compo
-    req.user ? next() : res.redirect('/');
-  };
-
+const isLoggedIn = (req, res, next) => {
+  //make component to need to login compo
+  req.user ? next() : res.redirect('/');
+};
 
 app.use('/', express.static(path.resolve('dist')));
 app.use('/Pothole:id', isLoggedIn, express.static(path.resolve('dist')));

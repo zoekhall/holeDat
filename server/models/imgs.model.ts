@@ -2,6 +2,7 @@ import Pothole from '../db/schema/pothole.schema';
 import PotholeIMG from '../db/schema/potholeImgs.schema';
 import User from '../db/schema/user.schema';
 
+
 //get all img of pothole mostly for testing
 export const getAllImgs = (cb) => {
   PotholeIMG.findAll({})
@@ -21,7 +22,7 @@ export const getPotholeImgByPhId = (id: string, cb) => {
 export const getAllPotholeImgByPhId = (id: string, cb) => {
   PotholeIMG.findAll({
     where: { pothole_id: id },
-    include: [User],
+    include: [User, Pothole],
   })
     .then((data) => cb(data))
     .catch((err) => cb(err));
@@ -36,17 +37,11 @@ export const getTopThree = (cb) => {
 };
 
 //creates image
-export const postImg = async (cb, obj, photoURL) => {
-  const pothole = await Pothole.findOne({
-    where: { pothole_id: obj.pothole_id },
-  });
-
-  obj.photoURL = photoURL;
-  console.log(obj,'model');
-  await pothole
-    ?.createPotholeImg(obj)
-    .then((data) => {
+export const postImg = async (cb, obj) => {
+  PotholeIMG.create(obj)
+    .then(data => {
+      console.log(data)
       cb(data)
     })
-    .catch((err) => console.error(err));
+    .catch(err => console.log(err))
 };

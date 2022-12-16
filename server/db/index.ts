@@ -23,10 +23,10 @@ Pothole.hasMany(PotholeIMG, {
   sourceKey: 'pothole_id',
   foreignKey: 'pothole_id',
 });
-PotholeIMG.belongsTo(Pothole, {
-  foreignKey: 'pothole_id',
-  targetKey: 'pothole_id',
-});
+// PotholeIMG.belongsTo(Pothole, {
+//   foreignKey: 'pothole_id',
+//   targetKey: 'pothole_id',
+// });
 
 // Pothole 1->many Comments
 Pothole.hasMany(Comment, {

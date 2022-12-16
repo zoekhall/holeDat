@@ -6,7 +6,7 @@ import {
   getPotholeImgByPhId,
   getTopThree,
   getAllPotholeImgByPhId,
-  // postImg,
+  postImg,
 } from '../models/imgs.model';
 import multer from 'multer';
 import dotenv from 'dotenv';
@@ -27,16 +27,17 @@ imgs.post('/addimg', upload, (req: any, res: Response) => {
   const api_key = process.env.API_KEY
   const cloud_name = process.env.CLOUD_NAME
   const api_secret = process.env.CLOUD_SECRET
-  console.log(req, 'request')
   const file = req.file.path
-  console.log(file, 'file')
   cloudinary.v2.uploader.upload(file, { api_key, api_secret, cloud_name })
     .then(data => {
-      console.log('routeData', data.url)
+      res.status(201).json(data.url)
     })
     .catch(err => console.log(err))
-  res.json({})
   fs.emptyDir('./tmp')
+})
+
+imgs.post('/postImg', (req: any, res: Response) => {
+  postImg(data => res.status(201).send(data), req.body)
 })
 
 // get ALL imgs of pothole by id

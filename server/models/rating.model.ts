@@ -5,6 +5,8 @@ export const postRating = async (cb, obj) => {
     where: { pothole_id: obj.pothole_id },
   });
 
+  console.log(pothole)
+
   await pothole
     ?.createRating(obj)
     .then((data) => {

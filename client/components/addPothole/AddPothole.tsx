@@ -22,11 +22,12 @@ function AddPothole() {
     user_id: 0,
   };
 
-  const imgObj: { photoURL: string; caption: string; pothole_id: number; user_id: string } = {
-    photoURL: '',
+  const imgObj: { photoURL: string; caption: string; pothole_id: number; user_id: number } = {
+    photoURL:
+      'http://res.cloudinary.com/ddfvvmkbf/image/upload/v1671154430/wfcrn555nvimnacgfeoi.jpg',
     caption: '',
+    user_id: 0,
     pothole_id: 0,
-    user_id: '',
   };
 
   //get user and add to img and rating objects
@@ -63,7 +64,8 @@ function AddPothole() {
     }).catch((err) => console.error('Failure to Submit Rating', err));
   };
   
-  const handleImageSubmit = (file) => {
+  //add image to cloud
+  const handleImageToCloud = file => {
     const formData = new FormData();
     formData.append('file', file);
 
@@ -73,10 +75,19 @@ function AddPothole() {
         url: '/api/imgs/addimg',
         data: formData,
       })
-        .then(data => console.log(data))
-        .catch(err => console.log(err));
+        .then(data => imgObj.photoURL = data.data)
+        .catch(err => console.error('Failure to Submit Image to Cloud', err));
     }
   };
+
+  //add image to database
+  const handleImageSubmit = () => {
+    axios({
+      method: 'post',
+      url: '/api/imgs/postImg',
+      data: imgObj,
+    }).catch((err) => console.error('Failure to Submit Image', err));
+  }
 
   return (
     <Form id='addPothole'>
@@ -95,23 +106,27 @@ function AddPothole() {
 
       <div>What Does It Look Like?</div>
       <PotholeCaption handleCaption={(val: string) => (imgObj.caption = val)} />
-      <PotholePic handleImage={file => handleImageSubmit(file)} />
+      <PotholePic handleImage={(file) => handleImageToCloud(file)} />
 
       <div>What Do You Rate It?</div>
       <PotholeRating handleRating={(rating: number) => (ratingObj.overall = rating)} />
-      <Button type='button' variant='outlined-dark' onClick={() => {
-        handleRatingSubmit(); 
-      }}>
-        {/* add type='submit' attribute when ready for action */}
+      <Button
+        type='submit'
+        variant='outlined-dark'
+        onClick={() => {
+          handleRatingSubmit();
+          handleImageSubmit();
+        }}
+      >
         Submit
       </Button>
+      <Button
+        onClick={() => {
+          handleImageSubmit();
+        }}
+      ></Button>
     </Form>
   );
 }
-
-//Split up into three sections
-//Pothole Basics
-//Add Pothole Image
-//Rate Pothole
 
 export default AddPothole;

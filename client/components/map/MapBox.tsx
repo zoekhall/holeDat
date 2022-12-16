@@ -40,12 +40,12 @@ const MapBox = (prop) => {
         zoom: 12,
         pitch: 60,
       }}
-      mapStyle='mapbox://styles/mapbox/dark-v11'
+      mapStyle='mapbox://styles/mapbox/light-v11'
     >
       {
         markers.map((marker) => {
           if (!marker.fixed)
-            return <Point key={marker.pothole_id} marker={marker} userLocation={prop.userLocation}/>;
+            return <Point key={marker.pothole_id} marker={marker} userLocation={prop.userLocation} />;
         })
       }
       < NavigationControl />

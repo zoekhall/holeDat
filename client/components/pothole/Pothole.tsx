@@ -28,7 +28,7 @@ const Pothole = () => {
       .then((data) => {
         const resObj: [] = data.data.map(each => {
           const { image_id, caption, photoURL } = each
-          const { user_id, name, photo } = each.user
+          const { user_id, name, photo } = each.User
           return ({
             image_id: image_id,
             caption: caption,
@@ -52,7 +52,11 @@ const Pothole = () => {
     <div className="post_header">
       <h2><strong>Pothole Profile</strong></h2>
     </div>
-    <Swiper className='mySwiper' pagination={true} effect={'cards'} grabCursor={true} modules={[Pagination]}>
+    <Swiper className='mySwiper'
+      pagination={true}
+      effect={'cards'}
+      grabCursor={true}
+      modules={[Pagination]}>
       {PImages.map((image, i) => {
         return (
           <SwiperSlide key={i}>
@@ -62,11 +66,12 @@ const Pothole = () => {
             />
             <div className="post_caption">
               <div className="caption">
-                <p>{image.caption}</p>
-                <Link to={'/User' + image.userId}>
-                  <img className="avatar capElem rounded-circle shadow-sm p-3 mb-5 bg-white rounded" alt="avatar2" src={image.userPhoto} />
+                <Link to={'/User:' + image.userId}>
+                  <img className="avatar capElem rounded-circle shadow-sm p-3 mb-5 bg-white rounded"
+                    alt="avatar2"
+                    src={image.userPhoto} />
                 </Link>
-                <h5>{image.userName}</h5>
+                <strong>{image.userName}</strong><p>{image.caption}</p>
               </div>
             </div>
           </SwiperSlide>

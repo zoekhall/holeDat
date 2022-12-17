@@ -80,7 +80,7 @@ imgs.get('/phstats', (req: Request, res: Response) => {
   });
 });
 
-imgs.get('/atUser:id', (req: Request, res: Response) => {
+imgs.get('/atUser:id', (req: Request, res: Response) => { // calls a function to get all pothole images at with a userId of id
   const { id } = req.params
   getPotholeAtUserId(id, (data) => res.status(200).send(data))
 })

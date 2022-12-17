@@ -6,13 +6,13 @@ user.get('/', (req: Request, res: Response) => {
   getRecentUsers((data) => res.status(222).send(data));
 });
 
-user.get('/userAtId:id', (req: Request, res: Response) => {
+user.get('/userAtId:id', (req: Request, res: Response) => { // get the userObj at the same user with id
   const { id } = req.params;
   getUserData(id, (data) => res.status(200).send(data));
 });
 
 
-user.get('/current', (req: Request, res: Response) => {
+user.get('/current', (req: Request, res: Response) => { // gets the user object of the currently loggged in user
   res.status(200).send(req.user)
 })
 
@@ -30,7 +30,7 @@ user.get('/me', (req: Request, res: Response) => {
   }
 })
 
-user.patch('/edit/username', (req: Request, res: Response) => {
+user.patch('/edit/username', (req: Request, res: Response) => { // calles a function to changge the username of the loggged in user
   changeUsername(req.user, req.body.name)
   res.status(202).send(req.user)
 })

@@ -6,6 +6,7 @@ import {
   getPotholeImgByPhId,
   getTopThree,
   getAllPotholeImgByPhId,
+  getPotholeAtUserId
   // postImg,
 } from '../models/imgs.model';
 import multer from 'multer';
@@ -75,5 +76,10 @@ imgs.get('/stats', (req: Request, res: Response) => {
     getGraphData(arrA, (data) => res.status(200).send(data));
   });
 });
+
+imgs.get('/atUser:id', (req: Request, res: Response) => {
+  const { id } = req.params;
+  getPotholeAtUserId(id, (data) => res.status(200).send(data))
+})
 
 export default imgs;

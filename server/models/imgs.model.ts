@@ -48,7 +48,7 @@ export const getTopPotholes = (cb) => {
   });
 };
 
-export const getPotholeAtUserId = (id, cb) => {
+export const getPotholeAtUserId = (id, cb) => { // gets all potholes that have the user id set to id param
   PotholeIMG.findAll({ where: { user_id: id } })
     .then(data => cb(data))
     .catch(err => console.log(err));

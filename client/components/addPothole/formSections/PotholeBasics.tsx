@@ -4,7 +4,7 @@ import PotholeStatus from '../formQuestions/PotholeStatus';
 import PotholeLocation from '../formQuestions/PotholeLocation';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
-import FormMapView from './Map/FormMapView';
+// import FormMapView from './Map/FormMapView';
 import PropTypes from 'prop-types'
 // import axios from 'axios';
 
@@ -23,7 +23,7 @@ const PotholeBasics = ({ potObj }) => {
           potObj.lon = lon;
         }}
       />
-      <FormMapView></FormMapView>
+      {/* <FormMapView></FormMapView> */}
       <PotholeStatus handleStatus={(newStatus: boolean) => (potObj.fixed = newStatus)} />
       <Button type='button' variant='outlined-dark'>
         Confirm Basic Pothole Information

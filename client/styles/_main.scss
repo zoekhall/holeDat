@@ -11,7 +11,7 @@ $regularText: 'DM Sans', sans-serif;
 
 .dark-mode {
   color: white;
-  background: black;
+  background: $DarkColor1;
   height: 100%;
 
 h1 {
@@ -20,10 +20,14 @@ h1 {
 
 #mainNavbar {
   color: white;
-  background-color: $DarkColor1;
-}
+  background-color: $DarkColor2;
 }
 
+#addPothole {
+  background-color: $DarkColor2;
+  border: $LightColor2
+}
+}
 
 @media (prefers-color-scheme: dark) {
   .dark-mode {

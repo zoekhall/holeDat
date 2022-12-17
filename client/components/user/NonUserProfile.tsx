@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useLocation } from 'react-router-dom';
+import { UserStats } from "./UserStats";
 
 const NonUserProfile = () => {
     const id = Number(useLocation().pathname.split(':')[1]);
@@ -25,6 +26,7 @@ const NonUserProfile = () => {
             <h1>TEST non user profile</h1>
             <img src={profile.photo} style={{ borderRadius: '18px' }} alt="Image" width='50%' height='50%' />
             <h2>{profile.name}</h2>
+            <UserStats userId={profile.user_id} />
         </div>
     )
 }

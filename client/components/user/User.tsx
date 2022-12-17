@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Logout from '../../Logout';
 import axios from 'axios';
+import { UserStats } from './UserStats';
 
 function User() {
   type userObj = {
@@ -52,6 +53,7 @@ function User() {
           setEditTrigger(!editTrigger)
         }}>Apply changes</button>}
       <Logout />
+      <UserStats userId={''} />
     </div>
   );
 }

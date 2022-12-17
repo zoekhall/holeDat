@@ -48,6 +48,13 @@ export const getTopPotholes = (cb) => {
   });
 };
 
+export const getPotholeAtUserId = (id, cb) => {
+  console.log(id)
+  PotholeIMG.findAll({ where: { user_id: id } })
+    .then(data => cb(data))
+    .catch(err => console.log(err));
+}
+
 //creates image
 export const postImg = async (cb, obj) => {
   PotholeIMG.create(obj)

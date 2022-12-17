@@ -18,7 +18,7 @@ function Feed() {
   const getAllImgs = () => {
     // gets all images of all potholes
     axios.get('/api/imgs')
-      .then((data) => setGlobalFeed(data.data))
+      .then((data) => setGlobalFeed(data.data)) // sets globalFeed to an array of objects
       .catch((err) => console.log(err));
   };
 
@@ -29,7 +29,7 @@ function Feed() {
     let resultArr = globalFeed.sort((a, b) => {
       return new Date(a.createdAt).valueOf() - new Date(b.createdAt).valueOf(); //sort the array by the createdAt value
     });
-    setGlobalFeed([...resultArr]);
+    setGlobalFeed([...resultArr]); // sets globalFeed to the previous globalfeed sorted by date
   };
 
 

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import StatsChart from './StatsChart';
 import { io } from 'socket.io-client';
+import PotholesChart from './PotholesChart';
 
 const About = () => {
   const [userCount, setUserCount] = useState<number>(0);
@@ -18,8 +19,9 @@ const About = () => {
       <h1>About Hole Dat</h1>
       <StatsChart />
       <div className='user-counter'>
-        <p>Curent Users Signed Up: {userCount}</p>
+        <p>Current Users Signed Up: {userCount}</p>
       </div>
+      <PotholesChart />
     </div>
   );
 };

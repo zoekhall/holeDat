@@ -2,7 +2,6 @@ import Pothole from '../db/schema/pothole.schema';
 import PotholeIMG from '../db/schema/potholeImgs.schema';
 import User from '../db/schema/user.schema';
 
-
 //get all img of pothole mostly for testing
 export const getAllImgs = (cb) => {
   PotholeIMG.findAll({})
@@ -29,10 +28,23 @@ export const getAllPotholeImgByPhId = (id: string, cb) => {
 
 //gets top 3 users with most posts
 export const getTopThree = (cb) => {
+  PotholeIMG.count({
+    col: 'user_id',
+    include: { model: User, attributes: ['user_id', 'photo', 'name'] },
+    group: ['PotholeIMG.user_id', 'User.photo', 'User.name'],
+  }).then((users) => {
+    cb(users.sort((a, b) => b.count - a.count).splice(0, 3));
+  });
+};
+
+//gets top 3 potholes with most images
+export const getTopPotholes = (cb) => {
   PotholeIMG.findAndCountAll({
-    attributes: ['user_id'],
-    group: ['user_id'],
-  }).then((data) => cb(data.count));
+    attributes: ['pothole_id'],
+    group: ['pothole_id', 'photoURL'],
+  }).then((potholes) => {
+    cb(potholes.count);
+  });
 };
 
 //creates image
@@ -45,7 +57,7 @@ export const postImg = async (cb, obj, photoURL) => {
   await pothole
     ?.createPotholeImg(obj)
     .then((data) => {
-      cb(data)
+      cb(data);
     })
     .catch((err) => console.error(err));
 };

@@ -5,19 +5,19 @@ import axios from 'axios';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement);
 
-const StatsChart = () => {
-  const [users, setUsers] = useState<any>([]);
+const PotholesChart = () => {
+  const [potholes, setPotholes] = useState<any>([]);
 
-  const statsImgs = () => {
+  const phstatsImgs = () => {
     axios
-      .get('/api/imgs/stats')
+      .get('/api/imgs/phstats')
       .then((data) => {
-        setUsers(data.data);
+        setPotholes(data.data);
       })
       .catch((err) => console.log(err));
   };
 
-  useEffect(statsImgs, []);
+  useEffect(phstatsImgs, []);
 
   return (
     <div className='chart'>
@@ -25,21 +25,21 @@ const StatsChart = () => {
         options={{
           responsive: true,
           plugins: {
-            legend: {
-              position: 'top',
-            },
             title: {
               display: true,
               text: 'Potholes Added by Day of the Week',
             },
+            legend: {
+              position: 'top',
+            },
           },
         }}
         data={{
-          labels: users.map((user) => user.name),
+          labels: ['1st', '2nd', '3rd'],
           datasets: [
             {
               label: 'Potholes added by day of the week',
-              data: users.map((user) => user.count),
+              data: potholes.map((pothole) => pothole.count),
               borderColor: 'rgb(53, 162, 235)',
               backgroundColor: [
                 'rgba(201, 176, 55, 0.5)',
@@ -50,13 +50,8 @@ const StatsChart = () => {
           ],
         }}
       />
-      <div className='chart-images'>
-        {users.map((user) => (
-          <img width={50} key={user.user_id} src={user.photo} referrerPolicy='no-referrer' />
-        ))}
-      </div>
     </div>
   );
 };
 
-export default StatsChart;
+export default PotholesChart;

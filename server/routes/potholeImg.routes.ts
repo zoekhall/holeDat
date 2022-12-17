@@ -6,6 +6,7 @@ import {
   getPotholeImgByPhId,
   getTopThree,
   getAllPotholeImgByPhId,
+  getTopPotholes,
   // postImg,
 } from '../models/imgs.model';
 import multer from 'multer';
@@ -13,7 +14,6 @@ import dotenv from 'dotenv';
 import fs from 'fs-extra';
 dotenv.config();
 import cloudinary from 'cloudinary';
-import { getGraphData } from '../models/user.model';
 
 const upload = multer({ dest: './tmp/' }).single('file');
 
@@ -28,7 +28,7 @@ imgs.post('/addimg', upload, (req: any, res: Response) => {
   const cloud_name = process.env.CLOUD_NAME;
   const api_secret = process.env.CLOUD_SECRET;
   const file = req.file.path;
-  console.log(file, 'file')
+  console.log(file, 'file');
   cloudinary.v2.uploader
     .upload(file, { api_key, api_secret, cloud_name })
     .then((data) => {
@@ -67,10 +67,14 @@ imgs.get('/potholeimg:id', (req: Request, res: Response) => {
 });
 
 imgs.get('/stats', (req: Request, res: Response) => {
-  getTopThree((data) => {
-    let arrA: any = [];
-    arrA = data.sort((a, b) => b.count - a.count).splice(0, 3);
-    getGraphData(arrA, (data) => res.status(200).send(data));
+  getTopThree((data) => res.status(231).send(data));
+});
+
+imgs.get('/phstats', (req: Request, res: Response) => {
+  getTopPotholes((data) => {
+    let arrB: any = [];
+    arrB = data.sort((a, b) => b.count - a.count).splice(0, 3);
+    res.status(200).send(arrB);
   });
 });
 

@@ -24,33 +24,22 @@ imgs.get('/', (req: Request, res: Response) => {
 
 // Adds img to Cloud
 imgs.post('/addimg', upload, (req: any, res: Response) => {
-<<<<<<< HEAD
   const api_key = process.env.API_KEY;
   const cloud_name = process.env.CLOUD_NAME;
   const api_secret = process.env.CLOUD_SECRET;
   const file = req.file.path;
-  console.log(file, 'file');
   cloudinary.v2.uploader
     .upload(file, { api_key, api_secret, cloud_name })
     .then((data) => {
-      console.log(data, 'routes');
-=======
-  const api_key = process.env.API_KEY
-  const cloud_name = process.env.CLOUD_NAME
-  const api_secret = process.env.CLOUD_SECRET
-  const file = req.file.path
-  cloudinary.v2.uploader.upload(file, { api_key, api_secret, cloud_name })
-    .then(data => {
-      res.status(201).json(data.url)
->>>>>>> fdc6e76976bf98ef6fa346ef91fa8bd6c720408e
+      res.status(201).json(data.url);
     })
-    .catch(err => console.log(err))
-  fs.emptyDir('./tmp')
-})
+    .catch((err) => console.log(err));
+  fs.emptyDir('./tmp');
+});
 
 imgs.post('/postImg', (req: any, res: Response) => {
-  postImg(data => res.status(201).send(data), req.body)
-})
+  postImg((data) => res.status(201).send(data), req.body);
+});
 
 // get ALL imgs of pothole by id AND user data
 imgs.get('/potholeimgs:id', (req: Request, res: Response) => {

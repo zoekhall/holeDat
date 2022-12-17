@@ -5,7 +5,6 @@ import axios from 'axios';
 import moment from 'moment';
 
 interface Comment {
-  /**userName  */
   name: string;
   text: string;
   time: string | number;

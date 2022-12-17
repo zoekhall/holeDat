@@ -12,6 +12,7 @@ const PotholesChart = () => {
     axios
       .get('/api/imgs/phstats')
       .then((data) => {
+        console.log(data.data);
         setPotholes(data.data);
       })
       .catch((err) => console.log(err));
@@ -50,6 +51,16 @@ const PotholesChart = () => {
           ],
         }}
       />
+      <div className='chart-images'>
+        {potholes.map((pothole) => (
+          <img
+            width={50}
+            key={pothole.pothole_id}
+            src={pothole.photoURL}
+            referrerPolicy='no-referrer'
+          />
+        ))}
+      </div>
     </div>
   );
 };

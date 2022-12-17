@@ -52,6 +52,7 @@ function AddPothole() {
       .then((data) => {
         ratingObj.pothole_id = data.data.pothole_id;
         imgObj.pothole_id = data.data.pothole_id;
+        console.log(data.data)
       })
       .catch((err) => console.error('Failure to Submit Pothole', err));
   };

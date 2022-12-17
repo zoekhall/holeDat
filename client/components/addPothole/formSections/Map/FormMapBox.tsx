@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import Map, { NavigationControl, FullscreenControl, GeolocateControl } from 'react-map-gl';
 import axios from 'axios';
-import Point from './Point';
+import FormPoint from '../FormPoint';
+import PropTypes from 'prop-types';
 
-const MapBox = (prop) => {
+const FormMapBox = ({ userLocation }) => {
   type markerType = {
     createdAt: string;
     fixed: boolean;
@@ -13,7 +14,8 @@ const MapBox = (prop) => {
     pothole_id: number;
     updatedAt: string;
   };
-  const mapbox_token = 'pk.eyJ1IjoiemFjaG1hcnVsbG8iLCJhIjoiY2xhazZ5aGxyMDQ3bzNwbzZ2Z3N0b3lpMyJ9.65G-mwqhbWFy77O_I0LkOg'
+  const mapbox_token =
+    'pk.eyJ1IjoiemFjaG1hcnVsbG8iLCJhIjoiY2xhazZ5aGxyMDQ3bzNwbzZ2Z3N0b3lpMyJ9.65G-mwqhbWFy77O_I0LkOg';
   const [markers, setMarkers] = useState<markerType[]>([]);
 
   const getMarkers = () => {
@@ -24,31 +26,29 @@ const MapBox = (prop) => {
   };
 
   useEffect(() => {
-    getMarkers()
+    getMarkers();
   }, []);
 
   return (
     <Map
       style={{
         width: '100%',
-        height: '100%',
+        height: '50%',
       }}
       mapboxAccessToken={mapbox_token}
       initialViewState={{
-        latitude: 29.935260993668,
-        longitude: -90.08128396541,
+        latitude: userLocation[0],
+        longitude: userLocation[1],
         zoom: 12,
         pitch: 60,
       }}
-      mapStyle='mapbox://styles/mapbox/dark-v11'
+      mapStyle='mapbox://styles/mapbox/light-v11'
     >
-      {
-        markers.map((marker) => {
-          if (!marker.fixed)
-            return <Point key={marker.pothole_id} marker={marker} userLocation={prop.userLocation}/>;
-        })
-      }
-      < NavigationControl />
+      {markers.map((marker) => {
+        if (!marker.fixed)
+          return <FormPoint key={marker.pothole_id} marker={marker} userLocation={userLocation} />;
+      })}
+      <NavigationControl />
       <FullscreenControl />
       <GeolocateControl
         positionOptions={{ enableHighAccuracy: true }}
@@ -56,8 +56,12 @@ const MapBox = (prop) => {
         showUserHeading={true}
         fitBoundsOptions={{ maxZoom: 30 }}
       />
-    </Map >
+    </Map>
   );
 };
 
-export default MapBox;
+FormMapBox.propTypes = {
+  userLocation: PropTypes.array.isRequired,
+};
+
+export default FormMapBox;

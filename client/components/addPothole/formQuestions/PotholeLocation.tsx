@@ -25,6 +25,19 @@ const PotholeLocation = ({ handleLocation }) => {
       .catch((err) => console.log(err));
   };
 
+    //Big old find and THEN create rather than findor create
+
+    const getPotholes = () => {
+      axios
+        .get('/api/pothole/')
+        .then((data) => {
+          // potholes = data.data;
+          console.log(data.data);
+        })
+        .catch((err) => console.error('Failure to Submit Rating', err));
+    };
+
+
   return (
     <Form.Group className='mb-5'>
       <Form.Label>Where Dat Pothole At?</Form.Label>
@@ -47,6 +60,7 @@ const PotholeLocation = ({ handleLocation }) => {
                 e.currentTarget.disabled = true;
                 setButtonMessage('Address Added');
                 updateLatLon();
+                getPotholes();
               }
             }}
           >

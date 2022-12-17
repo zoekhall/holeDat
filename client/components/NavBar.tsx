@@ -4,12 +4,12 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
-
+import { TUser } from '../types/user'
 
 
 const NavBar = () => {
   const menuItems = ['Map', 'About', 'Feed'];
-  const [user, setUser] = useState<any>({})
+  const [user, setUser] = useState<TUser | null>(null)
 
   const checkUser = () => {
     axios.get('/api/user/me')
@@ -26,15 +26,13 @@ const NavBar = () => {
         Hole Dat
         <img src='https://res.cloudinary.com/di6gxsepn/image/upload/v1670816293/ybyqlkegpdct6x5xeauz.svg' alt='logo' width='50' />
       </Navbar.Brand>
-      {user.id ?
+      {user?.id &&
         <Button variant='outline-dark' href='/AddPothole' style={{ marginRight: '10%' }}>
           <i className='bi bi-plus-circle'></i>
         </Button>
-        :
-        <></>
       }
 
-      {!user.photo ?
+      {!user?.photo ?
         < Button href='/auth/google/callback' variant='flat'>
           Sign In
         </Button>

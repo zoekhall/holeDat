@@ -44,8 +44,10 @@ const NavBar = () => {
       <Navbar.Collapse id='basic-navbar-nav'>
         <Nav className='me-auto'>
           {menuItems.map((item, i) => (
-            <Nav.Link key={i} href={`/${item}`}>
-              {item}
+            <Nav.Link key={i}>
+              <Link to={`/${item}`}>
+                {item}
+              </Link>
             </Nav.Link>
           ))}
         </Nav>

@@ -35,7 +35,7 @@ Pothole.init(
     },
     fixed: {
       type: new DataTypes.BOOLEAN,
-      allowNull: false,
+      // allowNull: false,
     },
     lat: {
       type: new DataTypes.FLOAT,

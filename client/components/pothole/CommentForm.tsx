@@ -11,7 +11,6 @@ interface Comment {
   time: string | number;
   pfp: string;
   userId_com: number | undefined;
-  // comId: 
 }
 
 interface User {

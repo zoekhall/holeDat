@@ -13,7 +13,7 @@ comments.post('/add', (req: Request, res: Response) => {
 
 comments.get('/perPh', (req: Request, res: Response) => {
   const { potholeId } = req.query
-  getComments(potholeId, (data) => res.status(200).send(data))
+  getComments(potholeId, (data) => res.status(200).send(data.sort((a, b) => a.createdAt - b.createdAt)))
 })
 
 

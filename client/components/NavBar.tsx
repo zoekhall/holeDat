@@ -6,9 +6,16 @@ import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
 
+const localMode = localStorage.getItem('mode');
+
+if (localMode === 'dark-mode') { //if mode isn't dark mode - set it
+  document.body.classList.add('dark-mode');
+  localStorage.setItem('mode', 'dark-mode'); //
+}
 const NavBar = () => {
   const menuItems = ['Map', 'About', 'Feed'];
   const [user, setUser] = useState<any>({})
+  const [mode, setMode] = useState<any>('')
 
   const checkUser = () => {
     axios.get('/api/user/me')
@@ -17,6 +24,22 @@ const NavBar = () => {
   }
 
   useEffect(checkUser, [])
+
+  useEffect(() => { 
+    setMode(localMode);
+  }, []);
+
+  const toggleMode = () => {
+    if (mode !== 'dark-mode') { //if mode isn't dark mode - set it
+      document.body.classList.add('dark-mode');
+      localStorage.setItem('mode', 'dark-mode'); //
+      setMode('dark-mode')
+    } else {
+      document.body.classList.remove('dark-mode');
+      localStorage.removeItem('mode') //if it is equal - remove it
+      setMode('')
+    }
+  };
 
   return (
     <Navbar expand='lg' id='mainNavbar'>
@@ -32,7 +55,7 @@ const NavBar = () => {
         :
         <></>
       }
-
+      <Button onClick={() => {toggleMode()}}>Toggle Mode</Button>
       {!user.photo ?
         < Button href='/auth/google/callback' variant='flat'>
           Sign In

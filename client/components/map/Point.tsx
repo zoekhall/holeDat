@@ -31,10 +31,8 @@ const Point = prop => {
       .catch(err => console.log(err))
 
   }
-
-
+  
   useEffect(getInfo, [])
-
 
   return (
     <>

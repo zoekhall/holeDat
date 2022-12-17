@@ -13,10 +13,10 @@ const PotholeLocation = ({ handleLocation }) => {
   const [location, setLocation] = useState<string>(''); //stores address from input form 
   const [buttonMessage, setButtonMessage] = useState<string>('Add Approximate Address'); //message to be updated when user clicks button 
 
+  //turns address into lat and lon coordinates 
   const updateLatLon = () => {
     const formattedLocation = location.split(' ').join('%20'); //turn into 
     const mapAPI2 = `https://api.mapbox.com/geocoding/v5/mapbox.places/${formattedLocation}.json?language=en&limit=5&proximity=-121.90662,37.42827&country=US&access_token=${mapToken}`;
-
     axios
       .get(mapAPI2)
       .then((data) =>
@@ -24,8 +24,6 @@ const PotholeLocation = ({ handleLocation }) => {
       )
       .catch((err) => console.log(err));
   };
-
-    //Big old find and THEN create rather than findor create
 
     const getPotholes = () => {
       axios
@@ -36,8 +34,7 @@ const PotholeLocation = ({ handleLocation }) => {
         })
         .catch((err) => console.error('Failure to Submit Rating', err));
     };
-
-
+  
   return (
     <Form.Group className='mb-5'>
       <Form.Label>Where Dat Pothole At?</Form.Label>

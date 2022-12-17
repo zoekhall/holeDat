@@ -6,6 +6,7 @@ import {
   getPotholeImgByPhId,
   getTopThree,
   getAllPotholeImgByPhId,
+  getPotholeAtUserId,
   getTopPotholes,
   postImg,
 } from '../models/imgs.model';
@@ -78,5 +79,13 @@ imgs.get('/phstats', (req: Request, res: Response) => {
     res.status(200).send(arrB);
   });
 });
+
+imgs.get('/atUser:id', (req: Request, res: Response) => {
+  const { id } = req.params
+  if (!id) {
+    console.log(req.user, 'user')
+  }
+  getPotholeAtUserId(id, (data) => res.status(200).send(data))
+})
 
 export default imgs;

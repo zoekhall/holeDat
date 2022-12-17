@@ -50,7 +50,7 @@ function Feed() {
   const sortByRateing = () => {
     let idArr: number[] = globalFeed.map(img => img.pothole_id) // get an array of all the images pothole_id's
 
-    const sortImage = (ratingArr) => {
+    const sortImage = (ratingArr) => { // sorts the objImg by rating of the pothole attached, subsequently it removes duplicate pothole_ids forcingg a unique like filter
       let resultArr: any[] = [[], []] // index 0 is the ones with ratings, index 1 is the ones without ratings
 
       const idArr = ratingArr.map(val => val.pothole_id)
@@ -61,7 +61,6 @@ function Feed() {
         resultArr[0].push(globalFeed.find(e => e.pothole_id === idArr[i]))
 
       }
-
       setGlobalFeed([...resultArr.flat().filter(n => n !== undefined)]) // flatten the array and filter out undefined values
     }
 

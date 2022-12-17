@@ -32,7 +32,10 @@ function Feed() {
     setGlobalFeed([...resultArr]); // sets globalFeed to the previous globalfeed sorted by date
   };
 
-
+  const sortByOld = () => {
+    sortByNew()
+    setGlobalFeed([...globalFeed.reverse()]);
+  }
 
   const sortByUnique = () => {
     let filtArr: number[] = [];
@@ -47,7 +50,8 @@ function Feed() {
   };
 
 
-  const sortByRateing = () => {
+  const sortByRateing = (option) => {
+
     let idArr: number[] = globalFeed.map(img => img.pothole_id) // get an array of all the images pothole_id's
 
     const sortImage = (ratingArr) => { // sorts the objImg by rating of the pothole attached, subsequently it removes duplicate pothole_ids forcingg a unique like filter
@@ -61,13 +65,18 @@ function Feed() {
         resultArr[0].push(globalFeed.find(e => e.pothole_id === idArr[i]))
 
       }
-      setGlobalFeed([...resultArr.flat().filter(n => n !== undefined)]) // flatten the array and filter out undefined values
+      if (option === 'H') {
+        setGlobalFeed([...resultArr.flat().filter(n => n !== undefined)]) // flatten the array and filter out undefined values
+      } else {
+        setGlobalFeed([...resultArr.flat().filter(n => n !== undefined).reverse()]) // flatten the array and filter out undefined values
+      }
     }
 
 
     axios.post('/api/rating/potholeAtIds', { idArr, }) // send an array of image id's
       .then(data => sortImage(data.data)) // retrieve an array of ratingg objects
       .catch(err => console.log(err));
+
   }
 
 
@@ -77,7 +86,8 @@ function Feed() {
     <div>
       <button onClick={getAllImgs}>Reset</button>
       <h1>Pothole Feed</h1>
-      Sort: <button onClick={sortByNew}>New</button> <button onClick={sortByUnique}>Unique</button> <button onClick={sortByRateing}>Rateing</button>
+      Sort: <button onClick={sortByNew}>New</button> <button onClick={sortByUnique}>Unique</button> <button onClick={() => sortByRateing('H')}>Rateing(highest)</button>
+      <button onClick={sortByOld}>Old</button> <button onClick={() => sortByRateing('L')}>Rating(lowest)</button>
       {globalFeed.map((imgVal) => (
         <FeedEntry key={imgVal.image_id} imgObj={imgVal} />
       ))}

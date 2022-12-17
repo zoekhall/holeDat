@@ -17,14 +17,11 @@ export const UserStats = ({ userId }) => {
     const [uploadedPotholes, setUploadedPotholes] = useState<phImg[]>([]);
 
     const getUserPotholes = () => {
-        let route;
-        if (userId) { // if the user id exsits on the url
-            route = `/api/imgs/atUser:${userId}`
-        } else {
-            route = '/api/imgs/atUser' + 6
-        }
-        axios.get(route)
-            .then(data => setUploadedPotholes(data.data))
+        console.log(userId);
+        axios.get('/api/imgs/atUser' + 6)
+            .then(data => {
+                setUploadedPotholes(data.data)
+            })
             .catch(err => console.log(err));
 
     }

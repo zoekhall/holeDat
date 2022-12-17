@@ -1,4 +1,3 @@
-@import '/node_modules/bootstrap/scss/bootstrap';
 @import 'main';
 
 #addPothole { //formatting for entire form
@@ -54,6 +53,14 @@
   fill: $PrimaryColor;
   width: 150%;
   align-items: center;
+}
+
+#FormMap {
+  position: fixed;
+  display:flex;
+  justify-content: center;
+  top: 35%;
+
 }
 
 

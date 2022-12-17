@@ -17,8 +17,10 @@ export const UserStats = ({ userId }) => {
     const [uploadedPotholes, setUploadedPotholes] = useState<phImg[]>([]);
 
     const getUserPotholes = () => {
-        console.log(userId);
-        axios.get('/api/imgs/atUser' + 6)
+        if (userId === -1) {
+            console.log('work')
+        }
+        axios.get('/api/imgs/atUser' + userId)
             .then(data => {
                 setUploadedPotholes(data.data)
             })

@@ -9,7 +9,9 @@ function User() {
     photo: string;
   }
 
-  let [user, setUser] = useState<userObj>({ name: '', user_id: 0, photo: '' })
+  let [user, setUser] = useState<userObj>({ name: '', user_id: 0, photo: '' });
+  let [editTrigger, setEditTrigger] = useState(false);
+  let [text, setText] = useState('');
 
   const getUserData = () => {
     axios.get('/api/user/current')
@@ -17,11 +19,21 @@ function User() {
       .catch(err => console.log(err));
   }
 
-  // const editUsername = (username) => {
-  //   axios.patch('api/user/edit/username', { name: username })
-  //     .then(data => console.log('work'))
-  //     .catch(err => console.log(err))
-  // }
+  const editUsername = (username) => {
+    axios.patch('/api/user/edit/username', { name: username })
+      .then(data => getUserData())
+      .catch(err => console.log(err));
+  }
+
+  const handleInputChange = event => {
+    setText(event.target.value)
+  }
+
+  const applyEditChanges = (newUsername) => {
+    if (newUsername.length > 2) {
+      editUsername(newUsername);
+    }
+  }
 
   useEffect(getUserData, [])
 
@@ -29,8 +41,16 @@ function User() {
     <div>
       <p>User</p>
       <img src={user.photo} style={{ borderRadius: '18px' }} alt="Image" width='50%' height='50%' />
-      <h1>{user.name}</h1>
-      {/* <button onClick={() => { editUsername('bidney bolmes') }}>edit username</button> */}
+
+
+      <h1>name: {!editTrigger ? user.name : <input onChange={handleInputChange} value={text} type='text' name='text' placeholder={user.name}></input>}</h1>
+
+      {!editTrigger ?
+        <button onClick={() => setEditTrigger(!editTrigger)}>Edit profile</button> :
+        <button onClick={() => {
+          applyEditChanges(text)
+          setEditTrigger(!editTrigger)
+        }}>Apply changes</button>}
       <Logout />
     </div>
   );

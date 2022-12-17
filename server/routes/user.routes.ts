@@ -31,9 +31,8 @@ user.get('/me', (req: Request, res: Response) => {
 })
 
 user.patch('/edit/username', (req: Request, res: Response) => {
-  console.log(req.body.name, req.user)
   changeUsername(req.user, req.body.name)
-  res.sendStatus(202)
+  res.status(202).send(req.user)
 })
 
 export default user;

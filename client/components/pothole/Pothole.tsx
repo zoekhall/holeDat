@@ -5,7 +5,6 @@ import { Pagination } from "swiper";
 import { useLocation, Link } from 'react-router-dom';
 import CommentForm from './CommentForm';
 
-
 const Pothole = () => {
 
   const id = Number(useLocation().pathname.split(':')[1]);
@@ -24,6 +23,7 @@ const Pothole = () => {
 
   const [PImages, setPImages] = useState<phImg[]>([]);
   const [addy, setAddy] = useState<string[]>([]);
+  const [phId] = useState<number>(id);
 
   // get pothole images by potholeID
   const getAllPotholeImgByPhId = () => {
@@ -94,7 +94,7 @@ const Pothole = () => {
         );
       })}
     </Swiper>
-    <CommentForm />
+    <CommentForm phId={phId} />
   </div>;
 }
 

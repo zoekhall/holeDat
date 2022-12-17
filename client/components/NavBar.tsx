@@ -5,7 +5,8 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
-import { TUser } from '../types/user';import { DarkModeSwitch } from 'react-toggle-dark-mode';
+import { TUser } from '../types/user';
+import { DarkModeSwitch } from 'react-toggle-dark-mode';
 
 const localMode = localStorage.getItem('mode');
 if (localMode === 'dark-mode') { //if mode isn't dark mode - set it

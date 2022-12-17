@@ -8,8 +8,10 @@ export const getAllPotholes = (cb) => {
 
 export const postPothole = (cb, obj) => {
   Pothole.create(obj)
-    .then(data => { cb(data)})
-    .catch(err => console.error(err))
-}
+    .then((data) => {
+      cb(data);
+    })
+    .catch((err) => console.error(err));
+};
 
 export default getAllPotholes;

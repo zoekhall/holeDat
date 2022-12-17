@@ -5,6 +5,8 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
+import { DarkModeSwitch } from 'react-toggle-dark-mode';
+
 
 const localMode = localStorage.getItem('mode');
 
@@ -46,25 +48,33 @@ const NavBar = () => {
       <Navbar.Toggle aria-controls='basic-navbar-nav' />
       <Navbar.Brand href='/'>
         Hole Dat
-        <img src='https://res.cloudinary.com/di6gxsepn/image/upload/v1670816293/ybyqlkegpdct6x5xeauz.svg' alt='logo' width='50' />
+        <img
+          src='https://res.cloudinary.com/di6gxsepn/image/upload/v1670816293/ybyqlkegpdct6x5xeauz.svg'
+          alt='logo'
+          width='50'
+        />
       </Navbar.Brand>
-      {user.id ?
+      {user.id ? (
         <Button variant='outline-dark' href='/AddPothole' style={{ marginRight: '10%' }}>
           <i className='bi bi-plus-circle'></i>
         </Button>
-        :
+      ) : (
         <></>
-      }
-      <Button onClick={() => {toggleMode()}}>Toggle Mode</Button>
-      {!user.photo ?
-        < Button href='/auth/google/callback' variant='flat'>
+      )}
+      <DarkModeSwitch
+        checked={mode}
+        onChange={toggleMode}
+        size={30}
+      />
+      {!user.photo ? (
+        <Button href='/auth/google/callback' variant='flat'>
           Sign In
         </Button>
-        :
+      ) : (
         <Link to={'/User'}>
           <img src={user.photo} alt='me' width={40} style={{ borderRadius: '100px' }} />
         </Link>
-      }
+      )}
       <Navbar.Collapse id='basic-navbar-nav'>
         <Nav className='me-auto'>
           {menuItems.map((item, i) => (
@@ -74,7 +84,7 @@ const NavBar = () => {
           ))}
         </Nav>
       </Navbar.Collapse>
-    </Navbar >
+    </Navbar>
   );
 };
 

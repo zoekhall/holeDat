@@ -84,6 +84,7 @@
     "react-dom": "^18.2.0",
     "react-map-gl": "^7.0.20",
     "react-router-dom": "^6.4.4",
+    "react-toggle-dark-mode": "^1.1.1",
     "sequelize": "^6.26.0",
     "socket.io": "^4.5.4",
     "socket.io-client": "^4.5.4",

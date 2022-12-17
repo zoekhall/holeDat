@@ -9,6 +9,7 @@ import User from './db/schema/user.schema';
 import Pothole from './db/schema/pothole.schema';
 import rootRouter from './routes/index';
 import './db/index';
+import './automation'
 import { Server } from 'socket.io';
 const app = express();
 // running on port 5555 if no env available
@@ -30,7 +31,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 const isLoggedIn = (req, res, next) => {
-  //make component to need to login compo
   req.user ? next() : res.redirect('/');
 };
 
@@ -75,6 +75,7 @@ passport.use(
 passport.serializeUser((user: any, done) => {
   done(null, user.id);
 });
+
 passport.deserializeUser((id, done) => {
   if (id) {
     User.findOne({ where: { id } }).then((data) => done(null, data));
@@ -98,7 +99,8 @@ const socketServer = new Server(8081, {
   cors: {
     origin: '*',
   },
-});
+})
+
 socketServer.on('connection', (socket: any) => {
   // Set up an interval to send a "heartbeat" message every 10 seconds
   setInterval(() => {

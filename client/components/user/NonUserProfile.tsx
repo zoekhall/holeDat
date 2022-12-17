@@ -26,7 +26,8 @@ const NonUserProfile = () => {
             <h1>TEST non user profile</h1>
             <img src={profile.photo} style={{ borderRadius: '18px' }} alt="Image" width='50%' height='50%' />
             <h2>{profile.name}</h2>
-            <UserStats userId={profile.user_id} />
+            <p>{id}</p>
+            <UserStats userId={id} />
         </div>
     )
 }

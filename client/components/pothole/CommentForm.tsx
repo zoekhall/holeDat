@@ -81,15 +81,16 @@ const CommentForm = ({ phId }: CommentFormArgs) => {
 
   return (
     <div>
+      {user?.name &&
       <Form
-        className='post_commentBox'
-        onSubmit={handleSubmit}>
+      className='post_commentBox'
+      onSubmit={handleSubmit}>
         <input className='post_input'
           placeholder='Add Comment'
           type="text"
           value={inputValue}
           onChange={event => setInputValue(event.target.value)}
-        />
+          />
         <Button
           className='post_button'
           variant='outlined-dark'
@@ -97,6 +98,7 @@ const CommentForm = ({ phId }: CommentFormArgs) => {
           Post
         </Button>
       </Form>
+          }
       {comments.map(renderComment => {
         return (
           <div key={renderComment.time}>

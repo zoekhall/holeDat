@@ -18,30 +18,29 @@ PotholeIMG.init(
   {
     image_id: {
       type: DataTypes.INTEGER,
-      autoIncrement: true,
       allowNull: false,
+      autoIncrement: true,
       primaryKey: true,
     },
     photoURL: {
-      type: new DataTypes.STRING,
+      type: new DataTypes.STRING(),
       allowNull: false,
     },
     caption: {
-      type: new DataTypes.STRING,
+      type: new DataTypes.STRING(),
       allowNull: false,
     },
     user_id: {
-      type: DataTypes.INTEGER,
+      type: new DataTypes.INTEGER(),
       allowNull: false,
     },
     createdAt: DataTypes.DATE,
     updatedAt: DataTypes.DATE,
   },
   {
+    sequelize,
     tableName: 'potholeimgs',
-    sequelize
   }
-
 );
   
   

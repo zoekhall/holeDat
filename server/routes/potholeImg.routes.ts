@@ -6,15 +6,15 @@ import {
   getPotholeImgByPhId,
   getTopThree,
   getAllPotholeImgByPhId,
-  getPotholeAtUserId
-  // postImg,
+  getPotholeAtUserId,
+  getTopPotholes,
+  postImg,
 } from '../models/imgs.model';
 import multer from 'multer';
 import dotenv from 'dotenv';
 import fs from 'fs-extra';
 dotenv.config();
 import cloudinary from 'cloudinary';
-import { getGraphData } from '../models/user.model';
 
 const upload = multer({ dest: './tmp/' }).single('file');
 
@@ -23,32 +23,31 @@ imgs.get('/', (req: Request, res: Response) => {
   getAllImgs((data) => res.status(222).send(data));
 });
 
-// Adds img to Cloud and db
+// Adds img to Cloud
 imgs.post('/addimg', upload, (req: any, res: Response) => {
   const api_key = process.env.API_KEY;
   const cloud_name = process.env.CLOUD_NAME;
   const api_secret = process.env.CLOUD_SECRET;
   const file = req.file.path;
-  console.log(file, 'file')
   cloudinary.v2.uploader
     .upload(file, { api_key, api_secret, cloud_name })
     .then((data) => {
-      console.log(data, 'routes');
+      res.status(201).json(data.url);
     })
-    .catch((err) => console.log('Failure to Post Image', err));
-  // postImg((data) => { console.log(data, 'routes'); res.status(201).send(data)}, req.body, file.photoURL);
-  res.json({});
+    .catch((err) => console.log(err));
   fs.emptyDir('./tmp');
 });
 
-// get ALL imgs of pothole by id
+imgs.post('/postImg', (req: any, res: Response) => {
+  postImg((data) => res.status(201).send(data), req.body);
+});
+//
+// get ALL imgs of pothole by id AND user data
 imgs.get('/potholeimgs:id', (req: Request, res: Response) => {
   const { id } = req.params;
   getAllPotholeImgByPhId(id, (data) => {
     if (data) {
-      const resObj = data.map((phimg) => phimg.dataValues);
-      console.log(resObj[0]);
-      res.status(200).send(resObj);
+      res.status(200).send(data);
     } else {
       res.sendStatus(400);
     }
@@ -70,10 +69,14 @@ imgs.get('/potholeimg:id', (req: Request, res: Response) => {
 });
 
 imgs.get('/stats', (req: Request, res: Response) => {
-  getTopThree((data) => {
-    let arrA: any = [];
-    arrA = data.sort((a, b) => b.count - a.count).splice(0, 3);
-    getGraphData(arrA, (data) => res.status(200).send(data));
+  getTopThree((data) => res.status(231).send(data));
+});
+
+imgs.get('/phstats', (req: Request, res: Response) => {
+  getTopPotholes((data) => {
+    let arrB: any = [];
+    arrB = data.sort((a, b) => b.count - a.count).splice(0, 3);
+    res.status(200).send(arrB);
   });
 });
 

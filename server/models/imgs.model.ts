@@ -16,11 +16,12 @@ export const getPotholeImgByPhId = (id: string, cb) => {
     .catch((err) => cb(err));
 };
 
-//gets all pothole imgs based on pothole_id
+// gets all pothole imgs based on pothole_id and marries with corresponding user data
+// based on the matching pothole_ids
 export const getAllPotholeImgByPhId = (id: string, cb) => {
   PotholeIMG.findAll({
     where: { pothole_id: id },
-    include: [User],
+    include: [User, Pothole],
   })
     .then((data) => cb(data))
     .catch((err) => cb(err));
@@ -28,10 +29,23 @@ export const getAllPotholeImgByPhId = (id: string, cb) => {
 
 //gets top 3 users with most posts
 export const getTopThree = (cb) => {
+  PotholeIMG.count({
+    col: 'user_id',
+    include: { model: User, attributes: ['user_id', 'photo', 'name'] },
+    group: ['PotholeIMG.user_id', 'User.photo', 'User.name'],
+  }).then((users) => {
+    cb(users.sort((a, b) => b.count - a.count).splice(0, 3));
+  });
+};
+
+//gets top 3 potholes with most images
+export const getTopPotholes = (cb) => {
   PotholeIMG.findAndCountAll({
-    attributes: ['user_id'],
-    group: ['user_id'],
-  }).then((data) => cb(data.count));
+    attributes: ['pothole_id'],
+    group: ['pothole_id', 'photoURL'],
+  }).then((potholes) => {
+    cb(potholes.count);
+  });
 };
 
 export const getPotholeAtUserId = (id, cb) => {
@@ -42,17 +56,11 @@ export const getPotholeAtUserId = (id, cb) => {
 }
 
 //creates image
-export const postImg = async (cb, obj, photoURL) => {
-  const pothole = await Pothole.findOne({
-    where: { pothole_id: obj.pothole_id },
-  });
-
-  obj.photoURL = photoURL;
-  console.log(obj, 'model');
-  await pothole
-    ?.createPotholeImg(obj)
+export const postImg = async (cb, obj) => {
+  PotholeIMG.create(obj)
     .then((data) => {
-      cb(data)
+      console.log(data);
+      cb(data);
     })
-    .catch((err) => console.error(err));
+    .catch((err) => console.log(err));
 };

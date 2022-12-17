@@ -1,4 +1,4 @@
-import db from './db.server';
+import sequelize from './db.server';
 import User from './schema/user.schema';
 import Badge from './schema/badges.schema';
 import Comment from './schema/comments.schema';
@@ -14,14 +14,14 @@ Pothole.hasMany(Rating, {
   foreignKey: 'pothole_id', //foreign key in Rating
 });
 Rating.belongsTo(Pothole, {
-  foreignKey: 'pothole_id', 
-  targetKey: 'pothole_id' 
+  foreignKey: 'pothole_id',
+  targetKey: 'pothole_id'
 });
 
 // Pothole 1->many PotholeIMGs
 Pothole.hasMany(PotholeIMG, {
-  sourceKey: 'pothole_id', 
-  foreignKey: 'pothole_id', 
+  sourceKey: 'pothole_id',
+  foreignKey: 'pothole_id',
 });
 PotholeIMG.belongsTo(Pothole, {
   foreignKey: 'pothole_id',
@@ -31,48 +31,48 @@ PotholeIMG.belongsTo(Pothole, {
 // Pothole 1->many Comments
 Pothole.hasMany(Comment, {
   sourceKey: 'pothole_id',
-  foreignKey: 'pothole_id', 
+  foreignKey: 'pothole_id',
 });
 Comment.belongsTo(Pothole, {
   foreignKey: 'pothole_id',
-  targetKey: 'pothole_id', 
+  targetKey: 'pothole_id',
 });
 
 //USER CONNECTIONS
 // User 1->many PotholeIMGs
 User.hasMany(PotholeIMG, {
-  sourceKey: 'user_id', 
-  foreignKey: 'user_id', 
+  sourceKey: 'user_id',
+  foreignKey: 'user_id',
 });
 PotholeIMG.belongsTo(User, {
   foreignKey: 'user_id',
-  targetKey: 'user_id', 
+  targetKey: 'user_id',
 });
 
 // User 1->many Ratings
 User.hasMany(Rating, {
-  sourceKey: 'user_id', 
-  foreignKey: 'user_id', 
+  sourceKey: 'user_id',
+  foreignKey: 'user_id',
 });
 Rating.belongsTo(User, {
-  foreignKey: 'user_id', 
-  targetKey: 'user_id', 
+  foreignKey: 'user_id',
+  targetKey: 'user_id',
 });
 
 // User 1->many Comments
 User.hasMany(Comment, {
-  sourceKey: 'user_id', 
-  foreignKey: 'user_id', 
+  sourceKey: 'user_id',
+  foreignKey: 'user_id',
 });
 Comment.belongsTo(User, {
-  foreignKey: 'user_id', 
-  targetKey: 'user_id', 
+  foreignKey: 'user_id',
+  targetKey: 'user_id',
 });
 
 // User 1->1 Likes
 User.hasOne(Like, {
-  sourceKey: 'user_id', 
-  foreignKey: 'user_id', 
+  sourceKey: 'user_id',
+  foreignKey: 'user_id',
 });
 
 Like.belongsTo(User, {
@@ -83,12 +83,12 @@ Like.belongsTo(User, {
 //USER CONNECTIONS
 // User 1->many PotholeIMGs
 User.hasMany(PotholeIMG, {
-  sourceKey: 'user_id', 
-  foreignKey: 'user_id', 
+  sourceKey: 'user_id',
+  foreignKey: 'user_id',
 });
 PotholeIMG.belongsTo(User, {
   foreignKey: 'user_id',
-  targetKey: 'user_id', 
+  targetKey: 'user_id',
 });
 
 //BADGE CONNECTIONS
@@ -114,7 +114,7 @@ User.belongsTo(Badge, {
 //   targetKey: 'user_id',
 // });
 
-db.sync();
+sequelize.sync();
 
 export default {
   Badge,

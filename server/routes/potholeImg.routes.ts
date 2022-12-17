@@ -81,11 +81,11 @@ imgs.get('/phstats', (req: Request, res: Response) => {
 });
 
 imgs.get('/atUser:id', (req: Request, res: Response) => {
-  const { id } = req.params
+  const { id } = req.params;
   if (!id) {
-    console.log(req.user, 'user')
+    console.log(req.user, 'user');
   }
-  getPotholeAtUserId(id, (data) => res.status(200).send(data))
-})
+  getPotholeAtUserId(id, (data) => res.status(200).send(data));
+});
 
 export default imgs;

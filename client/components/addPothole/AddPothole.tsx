@@ -91,27 +91,43 @@ function AddPothole() {
     }).catch((err) => console.error('Failure to Submit Image', err));
   }
 
+  // const [mapView, setMapView] = useState<boolean>(false);
+
+  // const mapping = () => {
+  //   if (mapView === true) {
+  //     return <FormMapView/>
+  //   } else {
+  //     return 'nope'
+  //   }
+  // }
+
   return (
     <Form id='addPothole'>
       <h1>Report a Pothole</h1>
-      <div>What are the Basics?</div>
-      <PotholeLocation
-        handleLocation={(lat: number, lon: number) => {
-          potObj.lat = lat;
-          potObj.lon = lon;
-        }}
-      />
-    
-      <PotholeStatus handleStatus={(newStatus: boolean) => (potObj.fixed = newStatus)} />
-      <Button type='button' variant='outlined-dark' onClick={handlePotholeSubmit}>
-        Confirm Basic Pothole Information
-      </Button>
+      {/* <div>What are the Basics?</div> */}
+      <div>
+        <PotholeLocation
+          handleLocation={(lat: number, lon: number) => {
+            potObj.lat = lat;
+            potObj.lon = lon;
+          }}
+        />
 
-      <div>What Does It Look Like?</div>
+        <PotholeStatus handleStatus={(newStatus: boolean) => (potObj.fixed = newStatus)} />
+        <Button type='button' variant='outlined-dark' onClick={handlePotholeSubmit}>
+          Confirm Pothole Location and Status
+        </Button>
+      </div>
+      <br/>
+      {/* <div>{mapping()}</div> */}
+
+      {/* <Button onClick={() => setMapView(true)}>TESTING</Button> */}
+
+      {/* <div>What Does It Look Like?</div> */}
       <PotholeCaption handleCaption={(val: string) => (imgObj.caption = val)} />
       <PotholePic handleImage={(file) => handleImageToCloud(file)} />
 
-      <div>What Do You Rate It?</div>
+      {/* <div>What Do You Rate It?</div> */}
       <PotholeRating handleRating={(rating: number) => (ratingObj.overall = rating)} />
       <Button
         type='submit'

@@ -5,15 +5,16 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
-import { DarkModeSwitch } from 'react-toggle-dark-mode';
 import { TUser } from '../types/user'
+import { DarkModeSwitch } from 'react-toggle-dark-mode';
 
 const localMode = localStorage.getItem('mode');
-
 if (localMode === 'dark-mode') { //if mode isn't dark mode - set it
   document.body.classList.add('dark-mode');
   localStorage.setItem('mode', 'dark-mode'); //
 }
+
+
 const NavBar = () => {
   const menuItems = ['Map', 'About', 'Feed'];
   const [user, setUser] = useState<TUser | null>(null)
@@ -27,7 +28,7 @@ const NavBar = () => {
 
   useEffect(checkUser, [])
 
-  useEffect(() => { 
+    useEffect(() => { 
     setMode(localMode);
   }, []);
 
@@ -54,19 +55,13 @@ const NavBar = () => {
           width='50'
         />
       </Navbar.Brand>
-      {user?.id &&
+      {user?.id && (
         <Button variant='outline-dark' href='/AddPothole' style={{ marginRight: '10%' }}>
           <i className='bi bi-plus-circle'></i>
         </Button>
-      ) : (
-        <></>
       )}
-      <DarkModeSwitch
-        checked={mode}
-        onChange={toggleMode}
-        size={30}
-      />
-      {!user.photo ? (
+      <DarkModeSwitch checked={mode} onChange={toggleMode} size={30} />
+      {!user?.photo ? (
         <Button href='/auth/google/callback' variant='flat'>
           Sign In
         </Button>
@@ -79,9 +74,7 @@ const NavBar = () => {
         <Nav className='me-auto'>
           {menuItems.map((item, i) => (
             <Nav.Link key={i}>
-              <Link to={`/${item}`}>
-                {item}
-              </Link>
+              <Link to={`/${item}`}>{item}</Link>
             </Nav.Link>
           ))}
         </Nav>
@@ -91,3 +84,6 @@ const NavBar = () => {
 };
 
 export default NavBar;
+
+
+

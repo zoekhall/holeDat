@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import axios from 'axios';
+import moment from 'moment';
 
 interface Comment {
+  /**userName  */
   name: string;
   text: string;
-  time: number | string;
+  time: string | number;
   pfp: string
 }
 
@@ -15,8 +17,11 @@ interface User {
   photo: string;
 }
 
-const CommentForm = ({ phId }) => {
-  // Use state to store the list of comments and a form input value
+type CommentFormArgs = {
+  phId: number;
+}
+
+const CommentForm = ({ phId }: CommentFormArgs) => {
   const [comments, setComments] = useState<Comment[]>([]);
   const [inputValue, setInputValue] = useState('');
   const [user, setUser] = useState<User>({
@@ -24,24 +29,21 @@ const CommentForm = ({ phId }) => {
     photo: ''
   });
 
-
   // handle submitting a new comment
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
 
-    // new comment object with the input value and a unique id
     const newComment: Comment = {
       name: user.name,
       text: inputValue,
-      time: 'Just now',
+      time: new Date().toISOString(),
       pfp: user.photo
     };
+
     const reqArr: [string, number] = [newComment.text, phId]
     axios.post('/api/comments/add', reqArr)
       .catch(err => console.error(err))
 
-
-    // Add the new comment to the list of comments and reset the input value
     setComments([newComment, ...comments]);
     setInputValue('');
   }
@@ -100,13 +102,13 @@ const CommentForm = ({ phId }) => {
         return (
           <div key={renderComment.time}>
             <img src={renderComment.pfp} alt='pfp' width={'30px'} />
-            <h6>{renderComment.name}:</h6> <p>{renderComment.text}</p> <p>{renderComment.time}</p>
+            <b>{renderComment.name}:</b> <h6>{renderComment.text}</h6>
+            <p>{moment(renderComment.time).format('MMMM Do YYYY, h:mm a')}</p>
           </div>
         )
       })}
     </div>
   );
 }
-
 
 export default CommentForm;

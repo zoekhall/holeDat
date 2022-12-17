@@ -5,10 +5,9 @@ import { Pagination } from "swiper";
 import { useLocation, Link } from 'react-router-dom';
 import CommentForm from './CommentForm';
 
-
 const Pothole = () => {
 
-  const id: number = Number(useLocation().pathname.split(':')[1]);
+  const id = Number(useLocation().pathname.split(':')[1]);
 
   type phImg = {
     image_id: number;

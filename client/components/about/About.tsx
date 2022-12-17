@@ -5,6 +5,7 @@ import PotholesChart from './PotholesChart';
 
 const About = () => {
   const [userCount, setUserCount] = useState<number>(0);
+  const [potholeCount, setPotholeCount] = useState<number>(0);
 
   const socket = io('ws://localhost:8081');
   // Set up a listener for the "heartbeat" message
@@ -14,14 +15,22 @@ const About = () => {
     // Send a "heartbeat" message back to the server
   });
 
+  socket.on('pothole', (data) => {
+    setPotholeCount(data.data);
+    socket.emit('pothole', { data });
+  });
+
   return (
     <div>
       <h1>About Hole Dat</h1>
       <StatsChart />
       <div className='user-counter'>
-        <p>Current Users Signed Up: {userCount}</p>
+        <p>Current Number of Users Signed Up: {userCount}</p>
       </div>
       <PotholesChart />
+      <div className='pothole-counter'>
+        <p>Total Potholes Submitted: {potholeCount}</p>
+      </div>
     </div>
   );
 };

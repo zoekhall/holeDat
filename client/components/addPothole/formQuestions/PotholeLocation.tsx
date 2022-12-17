@@ -10,12 +10,12 @@ const mapToken =
   'pk.eyJ1IjoiemFjaG1hcnVsbG8iLCJhIjoiY2xhazZ5aGxyMDQ3bzNwbzZ2Z3N0b3lpMyJ9.65G-mwqhbWFy77O_I0LkOg';
 
 const PotholeLocation = ({ handleLocation }) => {
-  const [location, setLocation] = useState<string>(''); //stores address from input form 
-  const [buttonMessage, setButtonMessage] = useState<string>('Add Approximate Address'); //message to be updated when user clicks button 
+  const [location, setLocation] = useState<string>(''); //stores address from input form
+  const [buttonMessage, setButtonMessage] = useState<string>('Add Approximate Address'); //message to be updated when user clicks button
 
-  //turns address into lat and lon coordinates 
+  //turns address into lat and lon coordinates
   const updateLatLon = () => {
-    const formattedLocation = location.split(' ').join('%20'); //turn into 
+    const formattedLocation = location.split(' ').join('%20'); //turn into
     const mapAPI2 = `https://api.mapbox.com/geocoding/v5/mapbox.places/${formattedLocation}.json?language=en&limit=5&proximity=-121.90662,37.42827&country=US&access_token=${mapToken}`;
     axios
       .get(mapAPI2)
@@ -30,11 +30,11 @@ const PotholeLocation = ({ handleLocation }) => {
         .get('/api/pothole/')
         .then((data) => {
           // potholes = data.data;
-          console.log(data.data);
+          //console.log(data.data);
         })
         .catch((err) => console.error('Failure to Submit Rating', err));
     };
-  
+
   return (
     <Form.Group className='mb-5'>
       <Form.Label>Where Dat Pothole At?</Form.Label>

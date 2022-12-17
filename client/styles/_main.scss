@@ -27,25 +27,12 @@ h1 {
   background-color: $DarkColor2;
   border: $LightColor2
 }
-}
 
-@media (prefers-color-scheme: dark) {
-  .dark-mode {
-      color: white;
-      background: black;
-      height: 100%;
-  
-      h1 {
-        color: white;
-      }
-  
-      #mainNavbar {
-        color: white;
-        background-color: $DarkColor1;
-      }
-    }
+#ratingGroupDiv {
+    background-color: $DarkColor2;
+    border: $LightColor2 solid 2px
 }
-
+}
 
 #swiper,
 #swipper {

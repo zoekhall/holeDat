@@ -53,7 +53,8 @@ function User() {
           setEditTrigger(!editTrigger)
         }}>Apply changes</button>}
       <Logout />
-      <UserStats userId={''} />
+      <p>{user.user_id}</p>
+      <UserStats userId={-1} />
     </div>
   );
 }

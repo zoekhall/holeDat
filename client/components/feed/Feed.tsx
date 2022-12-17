@@ -48,25 +48,26 @@ function Feed() {
 
 
   const sortByRateing = () => {
-    let idArr: number[] = globalFeed.map(img => img.pothole_id)
+    let idArr: number[] = globalFeed.map(img => img.pothole_id) // get an array of all the images pothole_id's
 
     const sortImage = (ratingArr) => {
-      let resultArr: any[] = [[], []]
+      let resultArr: any[] = [[], []] // index 0 is the ones with ratings, index 1 is the ones without ratings
 
       const idArr = ratingArr.map(val => val.pothole_id)
       for (let i = 0; i < globalFeed.length; i++) {
-        if (!idArr.includes(globalFeed[i].pothole_id)) {
-          resultArr[1].push(globalFeed[i])
-        }
+        if (!idArr.includes(globalFeed[i].pothole_id)) { // if the array of potholeId's dosent have the current pothole imgObj potholeId
+          resultArr[1].push(globalFeed[i]) // send to index 1 of resultArr
+        }  // if the current imgObj popthole Id value is included in the array of pothole ids
         resultArr[0].push(globalFeed.find(e => e.pothole_id === idArr[i]))
+
       }
 
-      setGlobalFeed([...resultArr.flat().filter(n => n !== undefined)])
+      setGlobalFeed([...resultArr.flat().filter(n => n !== undefined)]) // flatten the array and filter out undefined values
     }
 
 
     axios.post('/api/rating/potholeAtIds', { idArr, }) // send an array of image id's
-      .then(data => sortImage(data.data))
+      .then(data => sortImage(data.data)) // retrieve an array of ratingg objects
       .catch(err => console.log(err));
   }
 

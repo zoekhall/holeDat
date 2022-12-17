@@ -7,20 +7,11 @@ export const getAllPotholes = (cb) => {
 };
 
 export const postPothole = (cb, obj) => {
-  Pothole.findOrCreate({
-    where: { lat: obj.lat, lon: obj.lon },
-    defaults: obj,
-  })
+  Pothole.create(obj)
     .then((data) => {
-      return cb(data);
+      cb(data);
     })
     .catch((err) => console.error(err));
-}
-
-export const nearPotholes = () => {
-  Pothole.findAll({
-    where: {}
-  })
-}
+};
 
 export default getAllPotholes;

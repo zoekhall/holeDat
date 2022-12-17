@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { EffectCards } from 'swiper';
+import { Pagination, Navigation, Autoplay } from 'swiper';
 
 import 'swiper/css';
 import 'swiper/css/bundle';
-import 'swiper/css/effect-cards';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 
 const PImageSlider = () => {
   type phImg = {
@@ -29,21 +30,32 @@ const PImageSlider = () => {
 
   return (
     <>
-      <Swiper id='swiper' loop={true} effect={'cards'} grabCursor={true} modules={[EffectCards]} className='mySwiper' >
+      <Swiper
+        id='swiper'
+        loop={true}
+        grabCursor={true}
+        modules={[Navigation, Pagination, Autoplay]}
+        navigation={true}
+        pagination={{ clickable: true }}
+        className='mySwiper'
+        autoplay={{
+          delay: 3000,
+          disableOnInteraction: true,
+        }}
+        style={{ width: '100%' }}
+      >
         {PImages.map((image) => {
           return (
-            <SwiperSlide key={image.image_id} style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              borderRadius: '18px'
-            }}
+            <SwiperSlide
+              key={image.image_id}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                borderRadius: '18px',
+              }}
             >
-              <img
-                style={{ borderRadius: '18px' }}
-                src={image.photoURL}
-                width='200'
-              />
+              <img style={{ borderRadius: '18px' }} src={image.photoURL} width='100%' />
             </SwiperSlide>
           );
         })}

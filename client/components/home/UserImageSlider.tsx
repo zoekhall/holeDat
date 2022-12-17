@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { EffectCards } from 'swiper';
+import { EffectCards, Autoplay } from 'swiper';
 
 import 'swiper/css';
 import 'swiper/css/bundle';
@@ -36,14 +36,17 @@ const UserImageSlider = () => {
         loop={true}
         effect={'cards'}
         grabCursor={true}
-        modules={[EffectCards]}
+        modules={[EffectCards, Autoplay]}
         className='mySwiper'
+        autoplay={{
+          delay: 3000,
+          disableOnInteraction: true,
+        }}
       >
         {recentPics.map((user) => {
           return (
             <SwiperSlide key={user.user_id}>
               <img
-                style={{ borderRadius: '100px' }}
                 src={user.photo}
                 referrerPolicy={'no-referrer'}
                 onClick={() => console.log(user.name)}

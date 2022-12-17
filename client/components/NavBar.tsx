@@ -1,12 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useEffect, useState } from 'react';
-import axios from 'axios'
+import axios from 'axios';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
-import { TUser } from '../types/user'
-import { DarkModeSwitch } from 'react-toggle-dark-mode';
+import { TUser } from '../types/user';import { DarkModeSwitch } from 'react-toggle-dark-mode';
 
 const localMode = localStorage.getItem('mode');
 if (localMode === 'dark-mode') { //if mode isn't dark mode - set it
@@ -17,16 +16,17 @@ if (localMode === 'dark-mode') { //if mode isn't dark mode - set it
 
 const NavBar = () => {
   const menuItems = ['Map', 'About', 'Feed'];
-  const [user, setUser] = useState<TUser | null>(null)
+  const [user, setUser] = useState<TUser | null>(null);
   const [mode, setMode] = useState<any>('')
 
   const checkUser = () => {
-    axios.get('/api/user/me')
-      .then(data => setUser(data.data))
-      .catch(err => console.log(err))
-  }
+    axios
+      .get('/api/user/me')
+      .then((data) => setUser(data.data))
+      .catch((err) => console.log(err));
+  };
 
-  useEffect(checkUser, [])
+  useEffect(checkUser, []);
 
     useEffect(() => { 
     setMode(localMode);

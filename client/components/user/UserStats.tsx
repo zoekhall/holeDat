@@ -14,15 +14,27 @@ export const UserStats = ({ userId }) => {
         pothole_id: number;
     };
 
+
     const [uploadedPotholes, setUploadedPotholes] = useState<phImg[]>([]);
 
     const getUserPotholes = () => {
-        console.log(userId);
-        axios.get('/api/imgs/atUser' + 6)
-            .then(data => {
-                setUploadedPotholes(data.data)
-            })
-            .catch(err => console.log(err));
+        if (userId === -1) {
+            axios.get('/api/user/current')
+                .then(data => {
+                    axios.get('/api/imgs/atUser' + data.data.user_id)
+                        .then(data => {
+                            setUploadedPotholes(data.data)
+                        })
+                        .catch(err => console.log(err));
+                })
+                .catch(err => console.log(err))
+        } else {
+            axios.get('/api/imgs/atUser' + userId)
+                .then(data => {
+                    setUploadedPotholes(data.data)
+                })
+                .catch(err => console.log(err));
+        }
 
     }
 

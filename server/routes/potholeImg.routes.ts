@@ -69,7 +69,7 @@ imgs.get('/potholeimg:id', (req: Request, res: Response) => {
 });
 
 imgs.get('/stats', (req: Request, res: Response) => {
-  getTopThree((data) => res.status(231).send(data));
+  getTopThree((data) => res.status(231).send(data.splice(0, 3)));
 });
 
 imgs.get('/phstats', (req: Request, res: Response) => {
@@ -81,11 +81,8 @@ imgs.get('/phstats', (req: Request, res: Response) => {
 });
 
 imgs.get('/atUser:id', (req: Request, res: Response) => {
-  const { id } = req.params
-  if (!id) {
-    console.log(req.user, 'user')
-  }
-  getPotholeAtUserId(id, (data) => res.status(200).send(data))
-})
+  const { id } = req.params;
+  getPotholeAtUserId(id, (data) => res.status(200).send(data));
+});
 
 export default imgs;

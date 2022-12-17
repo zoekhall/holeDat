@@ -6,7 +6,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
 import { DarkModeSwitch } from 'react-toggle-dark-mode';
-
+import { TUser } from '../types/user'
 
 const localMode = localStorage.getItem('mode');
 
@@ -16,7 +16,7 @@ if (localMode === 'dark-mode') { //if mode isn't dark mode - set it
 }
 const NavBar = () => {
   const menuItems = ['Map', 'About', 'Feed'];
-  const [user, setUser] = useState<any>({})
+  const [user, setUser] = useState<TUser | null>(null)
   const [mode, setMode] = useState<any>('')
 
   const checkUser = () => {
@@ -54,7 +54,7 @@ const NavBar = () => {
           width='50'
         />
       </Navbar.Brand>
-      {user.id ? (
+      {user?.id &&
         <Button variant='outline-dark' href='/AddPothole' style={{ marginRight: '10%' }}>
           <i className='bi bi-plus-circle'></i>
         </Button>
@@ -78,8 +78,10 @@ const NavBar = () => {
       <Navbar.Collapse id='basic-navbar-nav'>
         <Nav className='me-auto'>
           {menuItems.map((item, i) => (
-            <Nav.Link key={i} href={`/${item}`}>
-              {item}
+            <Nav.Link key={i}>
+              <Link to={`/${item}`}>
+                {item}
+              </Link>
             </Nav.Link>
           ))}
         </Nav>

@@ -6,6 +6,8 @@ import {
   getPotholeImgByPhId,
   getTopThree,
   getAllPotholeImgByPhId,
+  getPotholeAtUserId,
+  getTopPotholes,
   postImg,
 } from '../models/imgs.model';
 import multer from 'multer';
@@ -13,7 +15,6 @@ import dotenv from 'dotenv';
 import fs from 'fs-extra';
 dotenv.config();
 import cloudinary from 'cloudinary';
-import { getGraphData } from '../models/user.model';
 
 const upload = multer({ dest: './tmp/' }).single('file');
 
@@ -24,23 +25,24 @@ imgs.get('/', (req: Request, res: Response) => {
 
 // Adds img to Cloud
 imgs.post('/addimg', upload, (req: any, res: Response) => {
-  const api_key = process.env.API_KEY
-  const cloud_name = process.env.CLOUD_NAME
-  const api_secret = process.env.CLOUD_SECRET
-  const file = req.file.path
-  cloudinary.v2.uploader.upload(file, { api_key, api_secret, cloud_name })
-    .then(data => {
-      res.status(201).json(data.url)
+  const api_key = process.env.API_KEY;
+  const cloud_name = process.env.CLOUD_NAME;
+  const api_secret = process.env.CLOUD_SECRET;
+  const file = req.file.path;
+  cloudinary.v2.uploader
+    .upload(file, { api_key, api_secret, cloud_name })
+    .then((data) => {
+      res.status(201).json(data.url);
     })
-    .catch(err => console.log(err))
-  fs.emptyDir('./tmp')
-})
+    .catch((err) => console.log(err));
+  fs.emptyDir('./tmp');
+});
 
 imgs.post('/postImg', (req: any, res: Response) => {
-  postImg(data => res.status(201).send(data), req.body)
-})
-
-// get ALL imgs of pothole by id
+  postImg((data) => res.status(201).send(data), req.body);
+});
+//
+// get ALL imgs of pothole by id AND user data
 imgs.get('/potholeimgs:id', (req: Request, res: Response) => {
   const { id } = req.params;
   getAllPotholeImgByPhId(id, (data) => {
@@ -67,11 +69,23 @@ imgs.get('/potholeimg:id', (req: Request, res: Response) => {
 });
 
 imgs.get('/stats', (req: Request, res: Response) => {
-  getTopThree((data) => {
-    let arrA: any = [];
-    arrA = data.sort((a, b) => b.count - a.count).splice(0, 3);
-    getGraphData(arrA, (data) => res.status(200).send(data));
+  getTopThree((data) => res.status(231).send(data));
+});
+
+imgs.get('/phstats', (req: Request, res: Response) => {
+  getTopPotholes((data) => {
+    let arrB: any = [];
+    arrB = data.sort((a, b) => b.count - a.count).splice(0, 3);
+    res.status(200).send(arrB);
   });
 });
+
+imgs.get('/atUser:id', (req: Request, res: Response) => {
+  const { id } = req.params
+  if (!id) {
+    console.log(req.user, 'user')
+  }
+  getPotholeAtUserId(id, (data) => res.status(200).send(data))
+})
 
 export default imgs;

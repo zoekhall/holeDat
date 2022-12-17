@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from "swiper";
 import { useLocation, Link } from 'react-router-dom';
+import CommentForm from './CommentForm';
 
 
 const Pothole = () => {
@@ -67,7 +68,11 @@ const Pothole = () => {
       <h2><strong>Pothole Profile</strong></h2>
       <h1>{addy[0]}</h1>
     </div>
-    <Swiper className='mySwiper' pagination={true} effect={'cards'} grabCursor={true} modules={[Pagination]}>
+    <Swiper className='mySwiper'
+      pagination={true}
+      effect={'cards'}
+      grabCursor={true}
+      modules={[Pagination]}>
       {PImages.map((image, i) => {
         return (
           <SwiperSlide key={i}>
@@ -77,17 +82,19 @@ const Pothole = () => {
             />
             <div className="post_caption">
               <div className="caption">
-                <p>{image.caption}</p>
                 <Link to={'/User:' + image.userId}>
-                  <img className="avatar capElem rounded-circle shadow-sm p-3 mb-5 bg-white rounded" alt="avatar2" src={image.userPhoto} />
+                  <img className="avatar capElem rounded-circle shadow-sm p-3 mb-5 bg-white rounded"
+                    alt="avatar2"
+                    src={image.userPhoto} />
                 </Link>
-                <h5>{image.userName}</h5>
+                <strong>{image.userName}</strong><p>{image.caption}</p>
               </div>
             </div>
           </SwiperSlide>
         );
       })}
     </Swiper>
+    <CommentForm />
   </div>;
 }
 

@@ -16,7 +16,8 @@ export const getPotholeImgByPhId = (id: string, cb) => {
     .catch((err) => cb(err));
 };
 
-//gets all pothole imgs based on pothole_id
+// gets all pothole imgs based on pothole_id and marries with corresponding user data
+// based on the matching pothole_ids
 export const getAllPotholeImgByPhId = (id: string, cb) => {
   PotholeIMG.findAll({
     where: { pothole_id: id },
@@ -48,16 +49,11 @@ export const getTopPotholes = (cb) => {
 };
 
 //creates image
-export const postImg = async (cb, obj, photoURL) => {
-  const pothole = await Pothole.findOne({
-    where: { pothole_id: obj.pothole_id },
-  });
-
-  obj.photoURL = photoURL;
-  await pothole
-    ?.createPotholeImg(obj)
+export const postImg = async (cb, obj) => {
+  PotholeIMG.create(obj)
     .then((data) => {
+      console.log(data);
       cb(data);
     })
-    .catch((err) => console.error(err));
+    .catch((err) => console.log(err));
 };

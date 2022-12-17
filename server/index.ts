@@ -6,6 +6,7 @@ import sessions from 'express-session';
 import passport from 'passport';
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
 import User from './db/schema/user.schema';
+import Pothole from './db/schema/pothole.schema';
 import rootRouter from './routes/index';
 import './db/index';
 import './automation'
@@ -106,6 +107,9 @@ socketServer.on('connection', (socket: any) => {
     User.findAll({}).then((data) => socket.emit('heartbeat', { data: data.length }));
   }, 500);
 
+  setInterval(() => {
+    Pothole.count({}).then((data) => socket.emit('pothole', { data }));
+  }, 500);
   // Set up a listener for the "heartbeat" message
   socket.on('heartbeat', (data) => {
     return data;

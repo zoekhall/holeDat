@@ -38,6 +38,7 @@ app.use(
 
 app.use('/', express.static(path.resolve('dist')));
 app.use('/Pothole:id', isLoggedIn, express.static(path.resolve('dist')));
+app.use('/Feed', isLoggedIn, express.static(path.resolve('dist')));
 app.use('/User', isLoggedIn, express.static(path.resolve('dist')));
 app.use('/User:id', isLoggedIn, express.static(path.resolve('dist')));
 app.use('/AddPothole', isLoggedIn, express.static(path.resolve('dist')));

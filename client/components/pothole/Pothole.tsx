@@ -8,7 +8,7 @@ import CommentForm from './CommentForm';
 
 const Pothole = () => {
 
-  const id = Number(useLocation().pathname.split(':')[1]);
+  const id: number = Number(useLocation().pathname.split(':')[1]);
 
   type phImg = {
     image_id: number;
@@ -24,6 +24,7 @@ const Pothole = () => {
 
   const [PImages, setPImages] = useState<phImg[]>([]);
   const [addy, setAddy] = useState<string[]>([]);
+  const [phId] = useState<number>(id);
 
   // get pothole images by potholeID
   const getAllPotholeImgByPhId = () => {
@@ -94,7 +95,7 @@ const Pothole = () => {
         );
       })}
     </Swiper>
-    <CommentForm />
+    <CommentForm phId={phId} />
   </div>;
 }
 

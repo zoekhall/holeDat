@@ -40,19 +40,20 @@ export const getTopThree = (cb) => {
 
 //gets top 3 potholes with most images
 export const getTopPotholes = (cb) => {
-  PotholeIMG.findAndCountAll({
-    attributes: ['pothole_id'],
-    group: ['pothole_id', 'photoURL'],
+  PotholeIMG.count({
+    col: 'pothole_id',
+    group: ['pothole_id'],
   }).then((potholes) => {
-    cb(potholes.count);
+    cb(potholes);
   });
 };
 
-export const getPotholeAtUserId = (id, cb) => { // gets all potholes that have the user id set to id param
+export const getPotholeAtUserId = (id, cb) => {
+  // gets all potholes that have the user id set to id param
   PotholeIMG.findAll({ where: { user_id: id } })
-    .then(data => cb(data))
-    .catch(err => console.log(err));
-}
+    .then((data) => cb(data))
+    .catch((err) => console.log(err));
+};
 
 //creates image
 export const postImg = async (cb, obj) => {

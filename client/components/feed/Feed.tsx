@@ -17,7 +17,7 @@ function Feed() {
 
   const getAllImgs = () => {
     // gets all images of all potholes
-    axios.get('/api/imgs')
+    axios.get('/api/imgs/feed')
       .then((data) => setGlobalFeed(data.data)) // sets globalFeed to an array of objects
       .catch((err) => console.log(err));
   };

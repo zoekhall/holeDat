@@ -4,6 +4,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from "swiper";
 import { useLocation, Link } from 'react-router-dom';
 import CommentForm from './CommentForm';
+import Likes from './Likes'
 
 const Pothole = () => {
 
@@ -72,9 +73,9 @@ const Pothole = () => {
       effect={'cards'}
       grabCursor={true}
       modules={[Pagination]}>
-      {PImages.map((image, i) => {
+      {PImages.map((image) => {
         return (
-          <SwiperSlide key={i}>
+          <SwiperSlide key={image.image_id}>
             <img className='potHole_img'
               src={image.photoURL}
               alt="test"
@@ -92,9 +93,10 @@ const Pothole = () => {
           </SwiperSlide>
         );
       })}
+      <Likes />
     </Swiper>
     <CommentForm phId={phId} />
-  </div>;
+  </div >;
 }
 
 export default Pothole;

@@ -15,6 +15,7 @@ const MapBox = (prop) => {
   };
   const mapbox_token = 'pk.eyJ1IjoiemFjaG1hcnVsbG8iLCJhIjoiY2xhazZ5aGxyMDQ3bzNwbzZ2Z3N0b3lpMyJ9.65G-mwqhbWFy77O_I0LkOg'
   const [markers, setMarkers] = useState<markerType[]>([]);
+  const [style, setStyle] = useState<string>('mapbox://styles/mapbox/light-v10')
 
   const getMarkers = () => {
     axios
@@ -22,10 +23,27 @@ const MapBox = (prop) => {
       .then((data) => setMarkers(data.data))
       .catch((err) => console.error(err));
   };
+  const mode = () => {
+    if (!document.querySelector('.dark-mode')) {
+      setStyle('mapbox://styles/mapbox/light-v10');
+    } else {
+      setStyle('mapbox://styles/mapbox/dark-v10');
+    }
+  }
+
+  document.querySelector('.mode')?.addEventListener('click', () => {
+    if (style === 'mapbox://styles/mapbox/light-v10') {
+      setStyle('mapbox://styles/mapbox/dark-v10');
+    } else {
+      setStyle('mapbox://styles/mapbox/light-v10');
+    }
+  })
+
 
   useEffect(() => {
     getMarkers()
-  }, []);
+    mode()
+  }, [style]);
 
   return (
     <Map
@@ -40,7 +58,7 @@ const MapBox = (prop) => {
         zoom: 12,
         pitch: 60,
       }}
-      mapStyle='mapbox://styles/mapbox/light-v11'
+      mapStyle={style}
     >
       {
         markers.map((marker) => {

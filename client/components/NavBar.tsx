@@ -61,7 +61,7 @@ const NavBar = () => {
           <i className='bi bi-plus-circle'></i>
         </Button>
       )}
-      <DarkModeSwitch checked={mode} onChange={toggleMode} size={30} />
+      <DarkModeSwitch className='mode' checked={mode} onChange={toggleMode} size={30} />
       {!user?.photo ? (
         <Button href='/auth/google/callback' variant='flat'>
           Sign In

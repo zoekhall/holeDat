@@ -80,7 +80,10 @@ imgs.get('/phstats', (req: Request, res: Response) => {
   getTopPotholes((data) => {
     let arrB: any = [];
     arrB = data.sort((a, b) => b.count - a.count).splice(0, 3);
-    res.status(200).send(arrB);
+    arrB.forEach((ph, i) => {
+      getPotholeImgByPhId(ph.pothole_id, (v: any) => (arrB[i].photoURL = v.dataValues.photoURL));
+    });
+    setTimeout(() => res.status(200).send(arrB), 500);
   });
 });
 

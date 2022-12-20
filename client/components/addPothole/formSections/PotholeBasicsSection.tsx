@@ -5,9 +5,11 @@ import Button from 'react-bootstrap/Button';
 import PropTypes from 'prop-types';
 import PotholeLocation from '../formQuestions/PotholeLocation';
 import PotholeStatus from '../formQuestions/PotholeStatus';
+import CheckPothole from './CheckPothole';
 
 const PotholeBasics = ({ assignPotholeId }) => {
   const [potholeId, setPotholeId] = useState<number>(0);
+  const [creationStatus, setCreationStatus] = useState<string>('');
 
   const potObj: { fixed: boolean; lat: number; lon: number } = {
     fixed: false,
@@ -24,14 +26,16 @@ const PotholeBasics = ({ assignPotholeId }) => {
     })
       .then(({data}) => {
         setPotholeId(data.data.pothole_id); //sets state to returned number]
-        potholeCreationResponse(data.status)
+        setCreationStatus(data.status);
       })
       .catch((err) => console.error('FAILURE TO ADD/RETRIEVE POTHOLE', err));
   };
 
-  const creationResponse = (status) => {
-    if (status ==== 'alreadyExists') {
-      return 'hi'
+  const creationResponse = () => {
+    if (creationStatus === 'alreadyExists') {
+      return (
+        <CheckPothole/>
+      )
     }
   }
 
@@ -45,7 +49,9 @@ const PotholeBasics = ({ assignPotholeId }) => {
           potObj.lon = lon;
         }}
       />
-      <div>{creationResponse}</div>
+
+      {creationResponse()}
+
       {/* Contains Pothole Status Input */}
       <PotholeStatus handleStatus={(newStatus: boolean) => (potObj.fixed = newStatus)} />
       <Button

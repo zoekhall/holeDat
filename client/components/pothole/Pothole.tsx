@@ -34,6 +34,7 @@ const Pothole = () => {
           const { image_id, caption, photoURL } = each
           const { user_id, name, photo } = each.User
           const { lat, lon, fixed } = each.Pothole
+          console.log(lat, lon)
           return ({
             image_id,
             caption,
@@ -46,7 +47,6 @@ const Pothole = () => {
             fixed
           })
         })
-
         setPImages(resObj)
         return data.data[0].Pothole
       })

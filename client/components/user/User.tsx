@@ -39,22 +39,24 @@ function User() {
   useEffect(getUserData, [])
 
   return (
-    <div>
-      <p>User</p>
-      <img src={user.photo} style={{ borderRadius: '18px' }} alt="Image" width='50%' height='50%' />
+    <>
+      <div>
+        <p>User</p>
+        <img src={user.photo} style={{ borderRadius: '18px' }} alt="Image" width='30%' height='30%' />
 
 
-      <h1>name: {!editTrigger ? user.name : <input onChange={handleInputChange} value={text} type='text' name='text' placeholder={user.name}></input>}</h1>
+        <h1>name: {!editTrigger ? user.name : <input onChange={handleInputChange} value={text} type='text' name='text' placeholder={user.name}></input>}</h1>
 
-      {!editTrigger ?
-        <button onClick={() => setEditTrigger(!editTrigger)}>Edit profile</button> :
-        <button onClick={() => {
-          applyEditChanges(text)
-          setEditTrigger(!editTrigger)
-        }}>Apply changes</button>}
-      <Logout />
-      <UserStats userId={-1} />
-    </div>
+        {!editTrigger ?
+          <button onClick={() => setEditTrigger(!editTrigger)}>Edit profile</button> :
+          <button onClick={() => {
+            applyEditChanges(text)
+            setEditTrigger(!editTrigger)
+          }}>Apply changes</button>}
+        <Logout />
+        <UserStats userId={-1} />
+      </div>
+    </>
   );
 }
 

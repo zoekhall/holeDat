@@ -5,11 +5,16 @@ import { Link } from 'react-router-dom';
 const FeedEntry = ({ imgObj }) => {
 
   const [addy, setAddy] = useState('')
+  const [userPhoto, setUserPhoto] = useState('')
 
   const getAddress = () => {
     const { lat, lon } = imgObj.addressDetails
     axios.get('/api/location/getAddy', { params: { lat, lon } }) // on every image object get location
       .then(data => setAddy(data.data))
+      .catch(err => console.log(err));
+
+    axios.get('/api/user/UserAtId' + imgObj.user_id)
+      .then(data => setUserPhoto(data.data.photo))
       .catch(err => console.log(err));
   }
 
@@ -26,6 +31,7 @@ const FeedEntry = ({ imgObj }) => {
           height='50%'
         />
       </Link>
+      <img src={userPhoto} alt='Image' width="10%"></img>
     </div>
   );
 };

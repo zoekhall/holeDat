@@ -1,13 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useEffect } from 'react';
 import Form from 'react-bootstrap/Form';
-import PotholeStatus from './formQuestions/PotholeStatus';
-import PotholeLocation from './formQuestions/PotholeLocation';
+// import PotholeStatus from './formQuestions/PotholeStatus';
+// import PotholeLocation from './formQuestions/PotholeLocation';
 import PotholePic from './formQuestions/PotholePic';
 import Button from 'react-bootstrap/Button';
 import PotholeRating from './formQuestions/PotholeRating';
 import axios from 'axios';
 import PotholeCaption from './formQuestions/PotholeCaption';
+import PotholeBasics from './formSections/PotholeBasicsSection';
 
 function AddPothole() {
   const potObj: { fixed: boolean; lat: number; lon: number; user_id: number } = {
@@ -42,21 +43,6 @@ function AddPothole() {
       .catch((err) => console.error('Failure to Get User', err));
   }, []);
 
-  //add pothole to database and assign potholeId
-  const handlePotholeSubmit = () => {
-    axios({
-      method: 'post',
-      url: '/api/pothole/addPothole',
-      data: potObj,
-    })
-      .then((data) => {
-        ratingObj.pothole_id = data.data.pothole_id;
-        imgObj.pothole_id = data.data.pothole_id;
-        //console.log(data.data)
-      })
-      .catch((err) => console.error('Failure to Submit Pothole', err));
-  };
-
   //add rating to database
   const handleRatingSubmit = () => {
     axios({
@@ -70,7 +56,6 @@ function AddPothole() {
   const handleImageToCloud = file => {
     const formData = new FormData();
     formData.append('file', file);
-
     if (formData) {
       axios({
         method: 'post',
@@ -91,21 +76,15 @@ function AddPothole() {
     }).catch((err) => console.error('Failure to Submit Image', err));
   }
 
-  // const [mapView, setMapView] = useState<boolean>(false);
-
-  // const mapping = () => {
-  //   if (mapView === true) {
-  //     return <FormMapView/>
-  //   } else {
-  //     return 'nope'
-  //   }
-  // }
-
   return (
     <Form id='addPothole'>
       <h1>Report a Pothole</h1>
+      <PotholeBasics assignPotholeId={(id) => {
+        ratingObj.pothole_id = id;
+        imgObj.pothole_id = id;
+      }} />
       {/* <div>What are the Basics?</div> */}
-      <div>
+      {/* <div>
         <PotholeLocation
           handleLocation={(lat: number, lon: number) => {
             potObj.lat = lat;
@@ -117,7 +96,7 @@ function AddPothole() {
         <Button type='button' variant='outlined-dark' onClick={handlePotholeSubmit}>
           Confirm Pothole Location and Status
         </Button>
-      </div>
+      </div> */}
       <br/>
       {/* <div>{mapping()}</div> */}
 

@@ -21,7 +21,6 @@ const PotholePic = ({handleImage}) => {
           }
         }}
       >
-        <Form.Label>Upload a Picture of Dat Pothole</Form.Label>
         <InputGroup id='addPotLocation'>
           <Form.Control type='file' required />
           <div>

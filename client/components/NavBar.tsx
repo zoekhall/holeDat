@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Nav from 'react-bootstrap/Nav';
@@ -5,10 +6,19 @@ import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
 import { TUser } from '../types/user';
+import { DarkModeSwitch } from 'react-toggle-dark-mode';
+
+const localMode = localStorage.getItem('mode');
+if (localMode === 'dark-mode') { //if mode isn't dark mode - set it
+  document.body.classList.add('dark-mode');
+  localStorage.setItem('mode', 'dark-mode'); //
+}
+
 
 const NavBar = () => {
   const menuItems = ['Map', 'About', 'Feed'];
   const [user, setUser] = useState<TUser | null>(null);
+  const [mode, setMode] = useState<any>('')
 
   const checkUser = () => {
     axios
@@ -18,6 +28,22 @@ const NavBar = () => {
   };
 
   useEffect(checkUser, []);
+
+  useEffect(() => {
+    setMode(localMode);
+  }, []);
+
+  const toggleMode = () => {
+    if (mode !== 'dark-mode') { //if mode isn't dark mode - set it
+      document.body.classList.add('dark-mode');
+      localStorage.setItem('mode', 'dark-mode'); //
+      setMode('dark-mode')
+    } else {
+      document.body.classList.remove('dark-mode');
+      localStorage.removeItem('mode') //if it is equal - remove it
+      setMode('')
+    }
+  };
 
   return (
     <Navbar expand='lg' id='mainNavbar'>
@@ -35,7 +61,7 @@ const NavBar = () => {
           <i className='bi bi-plus-circle'></i>
         </Button>
       )}
-
+      <DarkModeSwitch className='mode' checked={mode} onChange={toggleMode} size={30} />
       {!user?.photo ? (
         <Button href='/auth/google/callback' variant='flat'>
           Sign In
@@ -59,3 +85,6 @@ const NavBar = () => {
 };
 
 export default NavBar;
+
+
+

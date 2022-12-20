@@ -18,7 +18,10 @@ user.get('/current', (req: Request, res: Response) => { // gets the user object 
 
 user.get('/users', (req: Request, res: Response) => {
   const resObj = Object.values(req.query);
-  const userObjs = resObj.map((userId) => getUserData(userId, (val) => console.log(val)));
+  const userObjs = resObj.map((userId) => getUserData(userId, (val) => {
+  //  console.log(val)
+  }
+  ));
   res.status(200).send(userObjs);
 });
 

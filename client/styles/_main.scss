@@ -9,6 +9,31 @@ $LightColor2: #BDD5EA;
 $ShadowColor: #000;
 $regularText: 'DM Sans', sans-serif;
 
+.dark-mode {
+  color: white;
+  background: $DarkColor1;
+  height: 100%;
+
+h1 {
+  color: white;
+}
+
+#mainNavbar {
+  color: white;
+  background-color: $DarkColor2;
+}
+
+#addPothole {
+  background-color: $DarkColor2;
+  border: $LightColor2
+}
+
+#ratingGroupDiv {
+    background-color: $DarkColor2;
+    border: $LightColor2 solid 2px
+}
+}
+
 #swiper,
 #swipper {
   margin: 0;
@@ -34,7 +59,7 @@ body {
   background-attachment: fixed;
   height: 100%;
   font-family: $regularText;
-  z-index: -1; // ZM
+  // z-index: -1; // ZM
 }
 
 #app {

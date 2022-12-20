@@ -3,17 +3,21 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import axios from 'axios';
 import moment from 'moment';
+import User from '../user/User';
 
 interface Comment {
   name: string;
   text: string;
   time: string | number;
-  pfp: string
+  pfp: string;
+  userId_com: number | undefined;
+  com_id: number;
 }
 
 interface User {
   name: string;
   photo: string;
+  userId_user: number | undefined;
 }
 
 type CommentFormArgs = {
@@ -25,7 +29,8 @@ const CommentForm = ({ phId }: CommentFormArgs) => {
   const [inputValue, setInputValue] = useState('');
   const [user, setUser] = useState<User>({
     name: '',
-    photo: ''
+    photo: '',
+    userId_user: undefined
   });
 
   // handle submitting a new comment
@@ -36,17 +41,31 @@ const CommentForm = ({ phId }: CommentFormArgs) => {
       name: user.name,
       text: inputValue,
       time: new Date().toISOString(),
-      pfp: user.photo
+      pfp: user.photo,
+      userId_com: user.userId_user,
+      com_id: 0,
     };
 
-    const reqArr: [string, number] = [newComment.text, phId]
-    axios.post('/api/comments/add', reqArr)
-      .catch(err => console.error(err))
-
-    setComments([newComment, ...comments]);
-    setInputValue('');
+    const reqArr: [string, number] = [newComment.text.trim(), phId]
+    if (inputValue.trim().length >= 1) {
+      axios.post('/api/comments/add', reqArr)
+        .then(({ data }) => {
+          const resCom: Comment = {
+            name: user.name,
+            text: data.text,
+            time: new Date().toISOString(),
+            pfp: user.photo,
+            userId_com: user.userId_user,
+            com_id: data.comment_id
+          }
+          setComments([resCom, ...comments]);
+        })
+        .catch(err => console.error(err))
+      setInputValue('');
+    }
   }
 
+  // will need to add comId here for each comment
   const getCommentForPh = () => {
     const potholeId: number = phId
     axios.get('/api/comments/perPh', { params: { potholeId } })
@@ -57,6 +76,8 @@ const CommentForm = ({ phId }: CommentFormArgs) => {
             text: each.text,
             time: each.createdAt,
             pfp: each.User.photo,
+            userId_com: each.User.user_id,
+            com_id: each.comment_id
           }
           return eachC
         }))
@@ -69,8 +90,17 @@ const CommentForm = ({ phId }: CommentFormArgs) => {
       .then(data => {
         setUser({
           name: data.data.name,
-          photo: data.data.photo
+          photo: data.data.photo,
+          userId_user: data.data.user_id
         })
+      })
+  }
+
+  const handleDelete = (id: number) => {
+    axios.delete('/api/comments', { params: { id } })
+      .then(() => {
+        const deletedComments: Comment[] = comments.filter((each) => each.com_id !== id)
+        setComments(deletedComments)
       })
   }
 
@@ -82,29 +112,37 @@ const CommentForm = ({ phId }: CommentFormArgs) => {
   return (
     <div>
       {user?.name &&
-      <Form
-      className='post_commentBox'
-      onSubmit={handleSubmit}>
-        <input className='post_input'
-          placeholder='Add Comment'
-          type="text"
-          value={inputValue}
-          onChange={event => setInputValue(event.target.value)}
+        <Form
+          className='post_commentBox'
+          onSubmit={handleSubmit}>
+          <input className='post_input'
+            placeholder='Add Comment'
+            type='text'
+            value={inputValue}
+            onChange={event => setInputValue(event.target.value)}
           />
-        <Button
-          className='post_button'
-          variant='outlined-dark'
-          type="submit">
-          Post
-        </Button>
-      </Form>
-          }
+          <Button
+            className='post_button'
+            variant='outlined-dark'
+            type='submit'>
+            Post
+          </Button>
+        </Form>
+      }
       {comments.map(renderComment => {
         return (
-          <div key={renderComment.time}>
+          <div key={renderComment.com_id}>
             <img src={renderComment.pfp} alt='pfp' width={'30px'} />
             <b>{renderComment.name}:</b> <h6>{renderComment.text}</h6>
             <p>{moment(renderComment.time).format('MMMM Do YYYY, h:mm a')}</p>
+            {user.userId_user === renderComment.userId_com &&
+              <Button
+                onClick={() => handleDelete(renderComment.com_id)}
+                className='post_button'
+                variant='outlined-dark'
+                type="submit">
+                Delete
+              </Button>}
           </div>
         )
       })}

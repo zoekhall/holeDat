@@ -65,7 +65,6 @@ const Pothole = () => {
 
   return <div className="post">
     <div className="post_header">
-      <h2><strong>Pothole Profile</strong></h2>
       <h1>{addy[0]}</h1>
     </div>
     <Swiper className='mySwiper'

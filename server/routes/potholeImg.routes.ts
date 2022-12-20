@@ -81,14 +81,17 @@ imgs.get('/phstats', (req: Request, res: Response) => {
   getTopPotholes((data) => {
     let arrB: any = [];
     arrB = data.sort((a, b) => b.count - a.count).splice(0, 3);
-    res.status(200).send(arrB);
+    arrB.forEach((ph, i) => {
+      getPotholeImgByPhId(ph.pothole_id, (v: any) => (arrB[i].photoURL = v.dataValues.photoURL));
+    });
+    setTimeout(() => res.status(200).send(arrB), 500);
   });
 });
 
-imgs.get('/atUser:id', (req: Request, res: Response) => { // calls a function to get all pothole images at with a userId of id
-  const { id } = req.params
-  getPotholeAtUserId(id, (data) => res.status(200).send(data))
-})
-
+imgs.get('/atUser:id', (req: Request, res: Response) => {
+  // calls a function to get all pothole images at with a userId of id
+  const { id } = req.params;
+  getPotholeAtUserId(id, (data) => res.status(200).send(data));
+});
 
 export default imgs;

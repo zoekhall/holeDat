@@ -12,6 +12,7 @@ const PotholesChart = () => {
     axios
       .get('/api/imgs/phstats')
       .then((data) => {
+        console.log(data.data);
         setPotholes(data.data);
       })
       .catch((err) => console.log(err));

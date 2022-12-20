@@ -3,6 +3,7 @@ import express, { Request, Response } from 'express';
 const imgs = express.Router();
 import {
   getAllImgs,
+  getAllImgsWithAddress,
   getPotholeImgByPhId,
   getTopThree,
   getAllPotholeImgByPhId,
@@ -69,7 +70,7 @@ imgs.get('/potholeimg:id', (req: Request, res: Response) => {
 });
 
 imgs.get('/feed', (req: Request, res: Response) => {
-  getAllImgs((data) => res.status(222).send(data));
+  getAllImgsWithAddress((data) => res.status(200).send(data));
 });
 
 imgs.get('/stats', (req: Request, res: Response) => {
@@ -80,7 +81,10 @@ imgs.get('/phstats', (req: Request, res: Response) => {
   getTopPotholes((data) => {
     let arrB: any = [];
     arrB = data.sort((a, b) => b.count - a.count).splice(0, 3);
-    res.status(200).send(arrB);
+    arrB.forEach((ph, i) => {
+      getPotholeImgByPhId(ph.pothole_id, (v: any) => (arrB[i].photoURL = v.dataValues.photoURL));
+    });
+    setTimeout(() => res.status(200).send(arrB), 500);
   });
 });
 

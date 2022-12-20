@@ -10,6 +10,7 @@ function Feed() {
     createdAt: string;
     updatedAt: string;
     pothole_id: number;
+    addressDetails: object;
   };
 
   const [globalFeed, setGlobalFeed] = useState<phImg[]>([]);
@@ -50,7 +51,7 @@ function Feed() {
   };
 
 
-  const sortByRateing = (option) => {
+  const sortByRating = (option) => {
 
     let idArr: number[] = globalFeed.map(img => img.pothole_id) // get an array of all the images pothole_id's
 
@@ -67,7 +68,7 @@ function Feed() {
       }
       if (option === 'H') {
         setGlobalFeed([...resultArr.flat().filter(n => n !== undefined)]) // flatten the array and filter out undefined values
-      } else {
+      } else if (option === 'L') {
         setGlobalFeed([...resultArr.flat().filter(n => n !== undefined).reverse()]) // flatten the array and filter out undefined values
       }
     }
@@ -86,8 +87,8 @@ function Feed() {
     <div>
       <button onClick={getAllImgs}>Reset</button>
       <h1>Pothole Feed</h1>
-      Sort: <button onClick={sortByNew}>New</button> <button onClick={sortByUnique}>Unique</button> <button onClick={() => sortByRateing('H')}>Rateing(highest)</button>
-      <button onClick={sortByOld}>Old</button> <button onClick={() => sortByRateing('L')}>Rating(lowest)</button>
+      Sort: <button onClick={sortByNew}>New</button> <button onClick={sortByUnique}>Unique</button> <button onClick={() => sortByRating('H')}>Rating(highest)</button>
+      <button onClick={sortByOld}>Old</button> <button onClick={() => sortByRating('L')}>Rating(lowest)</button>
       {globalFeed.map((imgVal) => (
         <FeedEntry key={imgVal.image_id} imgObj={imgVal} />
       ))}

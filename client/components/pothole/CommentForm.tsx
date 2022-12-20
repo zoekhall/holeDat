@@ -115,7 +115,10 @@ const CommentForm = ({ phId }: CommentFormArgs) => {
         <Form
           className='post_commentBox'
           onSubmit={handleSubmit}>
-          <input className='post_input'
+          <Form.Control as='textarea'
+            rows={1}
+            className='post_input'
+            maxLength={255}
             placeholder='Add Comment'
             type='text'
             value={inputValue}

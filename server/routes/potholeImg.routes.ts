@@ -68,6 +68,10 @@ imgs.get('/potholeimg:id', (req: Request, res: Response) => {
   });
 });
 
+imgs.get('/feed', (req: Request, res: Response) => {
+  getAllImgs((data) => res.status(222).send(data));
+});
+
 imgs.get('/stats', (req: Request, res: Response) => {
   getTopThree((data) => res.status(231).send(data.splice(0, 3)));
 });

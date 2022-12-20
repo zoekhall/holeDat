@@ -11,7 +11,7 @@ interface Comment {
   time: string | number;
   pfp: string;
   userId_com: number | undefined;
-  // comId: 
+  com_id: number;
 }
 
 interface User {
@@ -42,15 +42,26 @@ const CommentForm = ({ phId }: CommentFormArgs) => {
       text: inputValue,
       time: new Date().toISOString(),
       pfp: user.photo,
-      userId_com: user.userId_user
+      userId_com: user.userId_user,
+      com_id: 0,
     };
 
     const reqArr: [string, number] = [newComment.text.trim(), phId]
     if (inputValue.trim().length >= 1) {
-    axios.post('/api/comments/add', reqArr)
-      .catch(err => console.error(err))
-    setComments([newComment, ...comments]);
-    setInputValue('');
+      axios.post('/api/comments/add', reqArr)
+        .then(({ data }) => {
+          const resCom: Comment = {
+            name: user.name,
+            text: data.text,
+            time: new Date().toISOString(),
+            pfp: user.photo,
+            userId_com: user.userId_user,
+            com_id: data.comment_id
+          }
+          setComments([resCom, ...comments]);
+        })
+        .catch(err => console.error(err))
+      setInputValue('');
     }
   }
 
@@ -65,7 +76,8 @@ const CommentForm = ({ phId }: CommentFormArgs) => {
             text: each.text,
             time: each.createdAt,
             pfp: each.User.photo,
-            userId_com: each.User.user_id
+            userId_com: each.User.user_id,
+            com_id: each.comment_id
           }
           return eachC
         }))
@@ -81,6 +93,14 @@ const CommentForm = ({ phId }: CommentFormArgs) => {
           photo: data.data.photo,
           userId_user: data.data.user_id
         })
+      })
+  }
+
+  const handleDelete = (id: number) => {
+    axios.delete('/api/comments', { params: { id } })
+      .then(() => {
+        const deletedComments: Comment[] = comments.filter((each) => each.com_id !== id)
+        setComments(deletedComments)
       })
   }
 
@@ -111,17 +131,18 @@ const CommentForm = ({ phId }: CommentFormArgs) => {
       }
       {comments.map(renderComment => {
         return (
-          <div key={renderComment.time}>
+          <div key={renderComment.com_id}>
             <img src={renderComment.pfp} alt='pfp' width={'30px'} />
             <b>{renderComment.name}:</b> <h6>{renderComment.text}</h6>
             <p>{moment(renderComment.time).format('MMMM Do YYYY, h:mm a')}</p>
             {user.userId_user === renderComment.userId_com &&
               <Button
-              className='post_button'
-              variant='outlined-dark'
-              type="submit">
-              Delete
-            </Button>}
+                onClick={() => handleDelete(renderComment.com_id)}
+                className='post_button'
+                variant='outlined-dark'
+                type="submit">
+                Delete
+              </Button>}
           </div>
         )
       })}

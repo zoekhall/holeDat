@@ -5,7 +5,7 @@ interface LikesAttributes {
   likes_id: number;
   likeType: boolean;
   user_id: number;
-  pothole_id: number;
+  image_id: number;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -29,7 +29,7 @@ const Like: ModelDefined<LikesAttributes, LikesCreationAttributes> = sequelize.d
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    pothole_id: {
+    image_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },

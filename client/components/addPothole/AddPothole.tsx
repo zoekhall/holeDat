@@ -1,16 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, {useState} from 'react';
 import Form from 'react-bootstrap/Form';
-// import PotholeStatus from './formQuestions/PotholeStatus';
-// import PotholeLocation from './formQuestions/PotholeLocation';
-// import PotholePic from './formQuestions/PotholePic';
-import Button from 'react-bootstrap/Button';
-// import PotholeRating from './formQuestions/PotholeRating';
+import BasicsSection from './formSections/BasicsSection';
+import CheckPothole from './formSections/CheckPothole';
+import ImageSection from './formSections/ImageSection';
+import RatingSection from './formSections/RatingSection';
 // import axios from 'axios';
-// import PotholeCaption from './formQuestions/PotholeCaption';
-import PotholeBasics from './formSections/BasicsSection';
-// import axios from 'axios';
-// import CheckPothole from './formSections/CheckPothole';
 
 function AddPothole() {
   // const [potholeId, setPotholeId] = useState<number>(0);
@@ -22,44 +17,32 @@ function AddPothole() {
     ratingObj: {},
     imageObj: {},
   };
-
-  // const determineView = () =>
-    // console.log(view);
-    // console.log(potentialPotholes);
-    // if (view === 'potholeBasics') {
-
-    // }
-
-  // const handleSubmit = () => {
-  //   axios({
-  //     method: 'post',
-  //     url: '/api/pothole/addPothole',
-  //     data: masterObj
-  //   })
-  //     .then(data => {
-  //       setPotholeId(data.data.pothole_id); //sets state to returned number]
-  //     })
-  //   .catch(err => console.error('FAILURE TO SUBMIT', err))
-  // }
-
+  
+  //Fill out the masterObj
   const createMasterObj = (name: string, obj: object) => (masterObj[name] = obj);
+
+  const handleView = () => {
+  if (view === 'imageSection') {
+      <ImageSection />
+    } else if (view === 'ratingSection') {
+      <RatingSection />
+    } else if (view === 'checkPothole') {
+    <CheckPothole potentialPotholes={potentialPotholes} />
+    } else {
+        return (
+          <BasicsSection
+            createMasterObj={createMasterObj}
+            setView={setView}
+            setPotentialPotholes={setPotentialPotholes}
+          />
+        );
+      } 
+
+  
 
   return (
     <Form id='addPothole'>
-      {/* <h1>Report a Pothole</h1> */}
-      <PotholeBasics createMasterObj={createMasterObj} setView={setView} setPotentialPotholes={setPotentialPotholes} />;
-      <Button
-        type='button'
-        variant='outlined-dark'
-        onClick={() => {
-          console.log(view)
-          console.log(potentialPotholes)
-          console.log(masterObj)
-          // handleSubmit();
-        }}
-      >
-        Submit
-      </Button>
+      {handleView()}
     </Form>
   );
 }

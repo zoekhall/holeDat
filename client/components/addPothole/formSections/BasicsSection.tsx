@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import PotholeLocation from '../formQuestions/PotholeLocation';
 import PotholeStatus from '../formQuestions/PotholeStatus';
 
-const PotholeBasics = ({ setView, createMasterObj, setPotentialPotholes }) => {
+const BasicsSection = ({ setView, createMasterObj, setPotentialPotholes }) => {
   const potObj: { fixed: boolean; lat: number; lon: number } = {
     fixed: false,
     lat: 0, 
@@ -31,7 +31,6 @@ const PotholeBasics = ({ setView, createMasterObj, setPotentialPotholes }) => {
 
   return (
     <Form.Group>
-      {/* Contains Map Address Input and LatLon Conversion Button */}
       <PotholeLocation 
         //sets pothole lat and lon
         handleLocation={(lat: number, lon: number) => {
@@ -39,8 +38,6 @@ const PotholeBasics = ({ setView, createMasterObj, setPotentialPotholes }) => {
           potObj.lon = lon;
         }}
       />
-
-      {/* Contains Pothole Status Input */}
       <PotholeStatus
         //sets pothole status
         handleStatus={(newStatus: boolean) => (potObj.fixed = newStatus)} />
@@ -48,8 +45,7 @@ const PotholeBasics = ({ setView, createMasterObj, setPotentialPotholes }) => {
         type='button'
         variant='outlined-dark'
         onClick={() => {
-          console.log(potObj);
-          checkPotholeExistence(); //see if pothole exists 
+          checkPotholeExistence(); //see if pothole exists and setView / potentialPotholes
           createMasterObj('potObj', potObj); //add pothole obj to master obj
         }}
       >
@@ -59,10 +55,10 @@ const PotholeBasics = ({ setView, createMasterObj, setPotentialPotholes }) => {
   );
 };
 
-PotholeBasics.propTypes = {
+BasicsSection.propTypes = {
   setView: PropTypes.func.isRequired,
   createMasterObj: PropTypes.func.isRequired,
   setPotentialPotholes: PropTypes.func.isRequired,
 };
 
-export default PotholeBasics;
+export default BasicsSection;

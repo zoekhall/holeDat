@@ -1,22 +1,19 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useEffect } from 'react';
+import React from 'react';
 import Form from 'react-bootstrap/Form';
-// import PotholeStatus from './formQuestions/PotholeStatus';
-// import PotholeLocation from './formQuestions/PotholeLocation';
-import PotholePic from './formQuestions/PotholePic';
 import Button from 'react-bootstrap/Button';
-import PotholeRating from './formQuestions/PotholeRating';
+import PropTypes from 'prop-types'
 import axios from 'axios';
-import PotholeCaption from './formQuestions/PotholeCaption';
-// import PotholeBasics from './formSections/PotholeBasicsSection';
+import PotholePic from '../formQuestions/PotholePic';
+import PotholeCaption from '../formQuestions/PotholeCaption';
 
-function ImageSection() {
 
+function ImageSection({ userId, createMasterObj, potholeId, setView }) {
   const imgObj: { photoURL: string; caption: string; pothole_id: number; user_id: number } = {
     photoURL: '',
     caption: '',
-    user_id: 0,
-    pothole_id: 0,
+    user_id: userId,
+    pothole_id: potholeId,
   };
 
   //add image to cloud
@@ -34,31 +31,29 @@ function ImageSection() {
     }
   };
 
-  //add image to database
-  const handleImageSubmit = () => {
-    axios({
-      method: 'post',
-      url: '/api/imgs/postImg',
-      data: imgObj,
-    }).catch((err) => console.error('Failure to Submit Image', err));
-  };
-
   return (
-    <Form.Group >
-
+    <Form.Group>
       <PotholeCaption handleCaption={(val: string) => (imgObj.caption = val)} />
       <PotholePic handleImage={(file) => handleImageToCloud(file)} />
-
       <Button
         type='button'
         variant='outlined-dark'
         onClick={() => {
-          handleImageSubmit();
+          createMasterObj('imgObj', imgObj); //add pothole obj to master obj
+          setView('ratingSection');
         }}
       >
+        Next
       </Button>
     </Form.Group>
   );
 }
+
+ImageSection.propTypes = {
+  userId: PropTypes.number.isRequired,
+  createMasterObj: PropTypes.func.isRequired,
+  potholeId: PropTypes.number.isRequired,
+  setView: PropTypes.func.isRequired, 
+};
 
 export default ImageSection;

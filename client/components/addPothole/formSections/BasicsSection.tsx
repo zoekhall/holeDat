@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import PotholeLocation from '../formQuestions/PotholeLocation';
 import PotholeStatus from '../formQuestions/PotholeStatus';
 
-const BasicsSection = ({ setView, createMasterObj, setPotentialPotholes }) => {
+const BasicsSection = ({ setView, createMasterObj }) => {
   const potObj: { fixed: boolean; lat: number; lon: number } = {
     fixed: false,
     lat: 0, 
@@ -19,14 +19,13 @@ const BasicsSection = ({ setView, createMasterObj, setPotentialPotholes }) => {
       method: 'POST', 
       url: '/api/pothole/findPothole',
       data: potObj
-    }).then(({data}) => {
-      setPotentialPotholes(data);
-      if(data.length > 0){
-        setView('checkPothole')
-      } else {
-        setView('imageSection')
-      }
+    // }).then(() => {
+      // setPotentialPotholes(data);
+      // if(data.length > 0){
+      //   setView('checkPothole') 
+      // } 
     })
+    .catch(err => console.error(err))
   }
 
   return (
@@ -47,6 +46,7 @@ const BasicsSection = ({ setView, createMasterObj, setPotentialPotholes }) => {
         onClick={() => {
           checkPotholeExistence(); //see if pothole exists and setView / potentialPotholes
           createMasterObj('potObj', potObj); //add pothole obj to master obj
+          setView('imageSection');
         }}
       >
         Next
@@ -58,7 +58,7 @@ const BasicsSection = ({ setView, createMasterObj, setPotentialPotholes }) => {
 BasicsSection.propTypes = {
   setView: PropTypes.func.isRequired,
   createMasterObj: PropTypes.func.isRequired,
-  setPotentialPotholes: PropTypes.func.isRequired,
+  // setPotentialPotholes: PropTypes.func.isRequired,
 };
 
 export default BasicsSection;

@@ -5,21 +5,14 @@ import Button from 'react-bootstrap/Button';
 import PotholeRating from '../formQuestions/PotholeRating';
 import PropTypes from 'prop-types'
 
-function RatingSection({ userId, createMasterObj, potholeId, handleSubmit }) {
-  const ratingObj: { overall: number; pothole_id: number; user_id: number } = {
-    overall: 0,
-    pothole_id: potholeId,
-    user_id: userId,
-  };
-
+function RatingSection({ handleSubmit, handleRating }) {
   return (
     <Form.Group>
-      <PotholeRating handleRating={(rating: number) => (ratingObj.overall = rating)} />
+      <PotholeRating handleRating={handleRating} />
       <Button
-        type='submit'
+        type='button'
         variant='outlined-dark'
         onClick={() => {
-          createMasterObj('ratingObj', ratingObj); //add pothole obj to master obj
           handleSubmit();
         }}
       >
@@ -30,9 +23,7 @@ function RatingSection({ userId, createMasterObj, potholeId, handleSubmit }) {
 }
 
 RatingSection.propTypes = {
-  userId: PropTypes.number.isRequired,
-  createMasterObj: PropTypes.func.isRequired,
-  potholeId: PropTypes.number.isRequired,
   handleSubmit: PropTypes.func.isRequired,
+  handleRating: PropTypes.func.isRequired,
 };
 export default RatingSection;

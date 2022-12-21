@@ -11,7 +11,6 @@ const PotholeCaption = ({ handleCaption }) => {
         className='mb-5'
         onChange={(e) => handleCaption((e.target as HTMLInputElement).value)} //changes caption in parent
       >
-        <Form.Label> Describe Dat Pothole </Form.Label>
         <Form.Control as='textarea' required />
       </Form.Group>
   );

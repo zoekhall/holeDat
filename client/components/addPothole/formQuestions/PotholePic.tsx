@@ -25,7 +25,7 @@ const PotholePic = ({handleImage}) => {
           <Form.Control type='file' required />
           <div>
             <Button type='button' variant='outlined-dark' onClick={() => handleImage(file)}>
-              Add Photo
+              Confirm Photo
             </Button>
           </div>
         </InputGroup>

@@ -8,14 +8,7 @@ import PotholePic from '../formQuestions/PotholePic';
 import PotholeCaption from '../formQuestions/PotholeCaption';
 
 
-function ImageSection({ userId, createMasterObj, potholeId, setView }) {
-  const imgObj: { photoURL: string; caption: string; pothole_id: number; user_id: number } = {
-    photoURL: '',
-    caption: '',
-    user_id: userId,
-    pothole_id: potholeId,
-  };
-
+function ImageSection({ setView, setProgress, handleCaption, handleImageURL }) {
   //add image to cloud
   const handleImageToCloud = (file) => {
     const formData = new FormData();
@@ -26,21 +19,28 @@ function ImageSection({ userId, createMasterObj, potholeId, setView }) {
         url: '/api/imgs/addimg',
         data: formData,
       })
-        .then((data) => (imgObj.photoURL = data.data))
+        .then(({data}) => handleImageURL(data))
         .catch((err) => console.error('Failure to Submit Image to Cloud', err));
     }
   };
 
   return (
     <Form.Group>
-      <PotholeCaption handleCaption={(val: string) => (imgObj.caption = val)} />
+      <h2>Pothole Imagery</h2>
+      <Form.Group>
+        <Form.Label>Add A Picture of Dat Pothole</Form.Label>
       <PotholePic handleImage={(file) => handleImageToCloud(file)} />
+      </Form.Group>
+
+      <Form.Group><Form.Label></Form.Label>
+      <PotholeCaption handleCaption={handleCaption} />
+      </Form.Group>
       <Button
         type='button'
         variant='outlined-dark'
         onClick={() => {
-          createMasterObj('imgObj', imgObj); //add pothole obj to master obj
           setView('ratingSection');
+          setProgress(100);
         }}
       >
         Next
@@ -50,10 +50,10 @@ function ImageSection({ userId, createMasterObj, potholeId, setView }) {
 }
 
 ImageSection.propTypes = {
-  userId: PropTypes.number.isRequired,
-  createMasterObj: PropTypes.func.isRequired,
-  potholeId: PropTypes.number.isRequired,
-  setView: PropTypes.func.isRequired, 
+  setView: PropTypes.func.isRequired,
+  setProgress: PropTypes.func.isRequired,
+  handleCaption: PropTypes.func.isRequired,
+  handleImageURL: PropTypes.func.isRequired,
 };
 
 export default ImageSection;

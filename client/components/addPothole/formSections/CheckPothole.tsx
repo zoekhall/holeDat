@@ -7,69 +7,55 @@
 // const mapToken =
 //   'pk.eyJ1IjoiemFjaG1hcnVsbG8iLCJhIjoiY2xhazZ5aGxyMDQ3bzNwbzZ2Z3N0b3lpMyJ9.65G-mwqhbWFy77O_I0LkOg';
 
-// const CheckPothole = ( ) => {
+// const CheckPothole = () => {
 //   const potentialPotholes = [
 //     { pothole_id: 85, lat: 29.93815, lon: -90.06856 },
 //     { pothole_id: 92, lat: 37.29856, lon: -90.06823 },
 //   ];
-  
-//   let potholeObjs: Array<[string, string[]]> = [];
 
-//   const getAddressAndPotholeImg = (id) => {
-//     axios
-//       .get('/api/imgs/potholeimgs' + id)
-//       .then(({data}) => {
-//         const photoUrls: string[] = data.map((each) => { //array of urls
-//           return each.photoURL;
+//   // const [potTupes, setPotTupes] = useState<object[]>([]);
+
+//   const makePotholeObj = () => {
+//     const potholeTuples: object[] = potentialPotholes.map((pothole, id) => {
+//       // let potholeTuple: [string[], string];
+//       let potholeTuple: { address: string; photoURLs: string[] } = {
+//         address: '',
+//         photoURLs: [],
+//       }
+//       // potholeTuple = [[], ''];
+//       //get photoURLS
+//       axios('/api/imgs/potholeimgs' + pothole.pothole_id)
+//         .then(({ data }) => {
+//           potholeTuple.photoURLs = data.map((pothole, id) => pothole.photoURL)
 //         })
-//         return [data[0].Pothole, photoUrls];
-//       })
-//       .then((data) => {
-//         const { lon, lat } = data[0];
-//         const photoUrls = data[1];
-//         return axios(`https://api.mapbox.com/geocoding/v5/mapbox.places/${lon},${lat}.json?access_token=${mapToken}`)
-//           .then(({ data }) => {
-//             potholeObjs.push([data.features[0].place_name.split(',')[0], photoUrls]);
-//           })
-//             .catch((err) => console.log(err));
-//       }).catch((err) => console.log(err));
+//         .catch((err) => console.error(err));
+
+//       //getaddress
+//       axios(
+//         `https://api.mapbox.com/geocoding/v5/mapbox.places/${pothole.lon},${pothole.lat}.json?access_token=${mapToken}`
+//       )
+//         .then(({ data }) => {
+//           potholeTuple.address = data.features[0].place_name.split(',')[0];
+//         })
+//         .catch((err) => console.error(err));
+      
+      
+//       return (<div key={id}>YOOOSFOSHFKLSD:F</div>);
+//     });
+//     // setPotTupes(potholeTuples);
+//     return <div>{potholeTuples[0].address}</div>;
 //   };
 
 //   useEffect(() => {
-//     potentialPotholes.forEach((each) => getAddressAndPotholeImg(each.pothole_id))
+//     makePotholeObj();
 //   }, []);
 
-  
-
 //   return (
-//     <div className='post'>
-//       {potholeObjs.map((potObj, i) => {
-//         return (
-//           <div key={i}>
-//             <div className='post_header'>{ potObj[0]}</div>
-//             {/* <Swiper
-//               className='mySwiper'
-//               pagination={true}
-//               effect={'cards'}
-//               grabCursor={true}
-//               modules={[Pagination]}
-//             >
-//               {potObj[1].map((image, i) => {
-//                 return (
-//                   <SwiperSlide key={i}>
-//                     <img className='potHole_img' src={image.photoURL} alt={potObj[0]} />
-//                   </SwiperSlide>
-//                 );
-//               })}
-//             </Swiper> */}
-//           </div>
-//         )
-//       }
-//       )}
+//     <div>
+//       <div>{makePotholeObj()}</div>
 //     </div>
 //   );
-// };
-
+// }
 // // CheckPothole.propTypes = {
 // //   potentialPotholes: PropTypes.array.isRequired,
 // // };

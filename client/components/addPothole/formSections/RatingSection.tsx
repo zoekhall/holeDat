@@ -1,8 +1,8 @@
 // /* eslint-disable @typescript-eslint/no-explicit-any */
 // import React, { useEffect } from 'react';
 // import Form from 'react-bootstrap/Form';
-// import PotholeStatus from './formQuestions/PotholeStatus';
-// import PotholeLocation from './formQuestions/PotholeLocation';
+// // import PotholeStatus from './formQuestions/PotholeStatus';
+// // import PotholeLocation from './formQuestions/PotholeLocation';
 // import PotholePic from './formQuestions/PotholePic';
 // import Button from 'react-bootstrap/Button';
 // import PotholeRating from './formQuestions/PotholeRating';
@@ -11,12 +11,6 @@
 // import PotholeBasics from './formSections/PotholeBasicsSection';
 
 // function AddPothole() {
-//   const potObj: { fixed: boolean; lat: number; lon: number; user_id: number } = {
-//     fixed: false,
-//     lat: 0,
-//     lon: 0,
-//   };
-
 //   const ratingObj: { overall: number; pothole_id: number; user_id: number } = {
 //     overall: 0,
 //     pothole_id: 0,
@@ -37,25 +31,9 @@
 //       .then((data) => {
 //         imgObj.user_id = data.data.user_id;
 //         ratingObj.user_id = data.data.user_id;
-//         potObj.user_id = data.data.user_id;
 //       })
 //       .catch((err) => console.error('Failure to Get User', err));
 //   }, []);
-
-//   //add pothole to database and assign potholeId
-//   const handlePotholeSubmit = () => {
-//     axios({
-//       method: 'post',
-//       url: '/api/pothole/addPothole',
-//       data: potObj,
-//     })
-//       .then((data) => {
-//         ratingObj.pothole_id = data.data.pothole_id;
-//         imgObj.pothole_id = data.data.pothole_id;
-//         //console.log(data.data)
-//       })
-//       .catch((err) => console.error('Failure to Submit Pothole', err));
-//   };
 
 //   //add rating to database
 //   const handleRatingSubmit = () => {
@@ -70,7 +48,6 @@
 //   const handleImageToCloud = (file) => {
 //     const formData = new FormData();
 //     formData.append('file', file);
-
 //     if (formData) {
 //       axios({
 //         method: 'post',
@@ -93,19 +70,14 @@
 
 //   return (
 //     <Form id='addPothole'>
+//       <h1>Report a Pothole</h1>
 //       <PotholeBasics
-//         assignPotholeId={(potholeId) => {
-//           ratingObj.pothole_id = potholeId;
-//           imgObj.pothole_id = potholeId;
+//         assignPotholeId={(id) => {
+//           ratingObj.pothole_id = id;
+//           imgObj.pothole_id = id;
 //         }}
 //       />
 
-//       <br />
-//       {/* <div>{mapping()}</div> */}
-
-//       {/* <Button onClick={() => setMapView(true)}>TESTING</Button> */}
-
-//       {/* <div>What Does It Look Like?</div> */}
 //       <PotholeCaption handleCaption={(val: string) => (imgObj.caption = val)} />
 //       <PotholePic handleImage={(file) => handleImageToCloud(file)} />
 

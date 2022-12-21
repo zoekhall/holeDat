@@ -1,119 +1,61 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useEffect } from 'react';
+import React, {useState} from 'react';
 import Form from 'react-bootstrap/Form';
 // import PotholeStatus from './formQuestions/PotholeStatus';
 // import PotholeLocation from './formQuestions/PotholeLocation';
-import PotholePic from './formQuestions/PotholePic';
+// import PotholePic from './formQuestions/PotholePic';
 import Button from 'react-bootstrap/Button';
-import PotholeRating from './formQuestions/PotholeRating';
-import axios from 'axios';
-import PotholeCaption from './formQuestions/PotholeCaption';
-import PotholeBasics from './formSections/PotholeBasicsSection';
+// import PotholeRating from './formQuestions/PotholeRating';
+// import axios from 'axios';
+// import PotholeCaption from './formQuestions/PotholeCaption';
+import PotholeBasics from './formSections/BasicsSection';
+// import axios from 'axios';
+// import CheckPothole from './formSections/CheckPothole';
 
 function AddPothole() {
-  const potObj: { fixed: boolean; lat: number; lon: number; user_id: number } = {
-    fixed: false,
-    lat: 0,
-    lon: 0,
-    user_id: 0,
+  // const [potholeId, setPotholeId] = useState<number>(0);
+  const [view, setView] = useState<string>('potholeBasics')
+  const [potentialPotholes, setPotentialPotholes] = useState([]);
+
+  const masterObj: { potObj: object; ratingObj: object; imageObj: object } = {
+    potObj: {},
+    ratingObj: {},
+    imageObj: {},
   };
 
-  const ratingObj: { overall: number; pothole_id: number; user_id: number } = {
-    overall: 0,
-    pothole_id: 0,
-    user_id: 0,
-  };
+  // const determineView = () =>
+    // console.log(view);
+    // console.log(potentialPotholes);
+    // if (view === 'potholeBasics') {
 
-  const imgObj: { photoURL: string; caption: string; pothole_id: number; user_id: number } = {
-    photoURL: '',
-    caption: '',
-    user_id: 0,
-    pothole_id: 0,
-  };
+    // }
 
-  //get user and add to img and rating objects
-  useEffect(() => {
-    axios
-      .get('/api/user/me')
-      .then((data) => {
-        imgObj.user_id = data.data.user_id;
-        ratingObj.user_id = data.data.user_id;
-        potObj.user_id = data.data.user_id;
-      })
-      .catch((err) => console.error('Failure to Get User', err));
-  }, []);
+  // const handleSubmit = () => {
+  //   axios({
+  //     method: 'post',
+  //     url: '/api/pothole/addPothole',
+  //     data: masterObj
+  //   })
+  //     .then(data => {
+  //       setPotholeId(data.data.pothole_id); //sets state to returned number]
+  //     })
+  //   .catch(err => console.error('FAILURE TO SUBMIT', err))
+  // }
 
-  //add rating to database
-  const handleRatingSubmit = () => {
-    axios({
-      method: 'post',
-      url: '/api/rating/addRating',
-      data: ratingObj,
-    }).catch((err) => console.error('Failure to Submit Rating', err));
-  };
-
-  //add image to cloud
-  const handleImageToCloud = file => {
-    const formData = new FormData();
-    formData.append('file', file);
-    if (formData) {
-      axios({
-        method: 'post',
-        url: '/api/imgs/addimg',
-        data: formData,
-      })
-        .then(data => imgObj.photoURL = data.data)
-        .catch(err => console.error('Failure to Submit Image to Cloud', err));
-    }
-  };
-
-  //add image to database
-  const handleImageSubmit = () => {
-    axios({
-      method: 'post',
-      url: '/api/imgs/postImg',
-      data: imgObj,
-    }).catch((err) => console.error('Failure to Submit Image', err));
-  }
+  const createMasterObj = (name: string, obj: object) => (masterObj[name] = obj);
 
   return (
     <Form id='addPothole'>
-      <h1>Report a Pothole</h1>
-      <PotholeBasics assignPotholeId={(id) => {
-        ratingObj.pothole_id = id;
-        imgObj.pothole_id = id;
-      }} />
-      {/* <div>What are the Basics?</div> */}
-      {/* <div>
-        <PotholeLocation
-          handleLocation={(lat: number, lon: number) => {
-            potObj.lat = lat;
-            potObj.lon = lon;
-          }}
-        />
-
-        <PotholeStatus handleStatus={(newStatus: boolean) => (potObj.fixed = newStatus)} />
-        <Button type='button' variant='outlined-dark' onClick={handlePotholeSubmit}>
-          Confirm Pothole Location and Status
-        </Button>
-      </div> */}
-      <br/>
-      {/* <div>{mapping()}</div> */}
-
-      {/* <Button onClick={() => setMapView(true)}>TESTING</Button> */}
-
-      {/* <div>What Does It Look Like?</div> */}
-      <PotholeCaption handleCaption={(val: string) => (imgObj.caption = val)} />
-      <PotholePic handleImage={(file) => handleImageToCloud(file)} />
-
-      {/* <div>What Do You Rate It?</div> */}
-      <PotholeRating handleRating={(rating: number) => (ratingObj.overall = rating)} />
+      {/* <h1>Report a Pothole</h1> */}
+      <PotholeBasics createMasterObj={createMasterObj} setView={setView} setPotentialPotholes={setPotentialPotholes} />;
       <Button
-        type='submit'
+        type='button'
         variant='outlined-dark'
         onClick={() => {
-          handleRatingSubmit();
-          handleImageSubmit();
+          console.log(view)
+          console.log(potentialPotholes)
+          console.log(masterObj)
+          // handleSubmit();
         }}
       >
         Submit

@@ -23,7 +23,7 @@ export const issueBadges = async () =>{
           {badge_id: 3},
           {where: {user_id: each.user_id}}
         )
-       } else if(each.count >= 5){
+       } else if(each.count >= 2){
         User.update(
           {badge_id: 4},
           {where: {user_id: each.user_id}}

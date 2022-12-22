@@ -12,7 +12,6 @@ const PotholeStatus = ({ handleStatus }) => {
 
   return (
     <Form.Group id='addPotStatus' className='mb-5'>
-      <Form.Label>Is Dat Pothole Fixed?</Form.Label>
       {['Not Fixed', 'Fixed'].map((label, id) => (
         <div key={`inline-${id}`}>
           <Form.Check

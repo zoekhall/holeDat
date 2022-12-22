@@ -1,42 +1,29 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, {useState} from 'react';
+import React from 'react';
 import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
 import PropTypes from 'prop-types';
-import { InputGroup } from 'react-bootstrap';
 
-const PotholePic = ({handleImage}) => {
-
-  const [file, setFile] = useState<any>(null);
+//photo upload box
+const PotholePic = ({ setFile }) => {
 
   return (
-    <>
-      <Form.Group
-        controlId='uploadPotPhoto'
-        className='mb-5'
-        onChange={(e) => {
-          const event = e.target as HTMLInputElement;
-          if (event.files !== null) {
-            setFile(event.files[0]);
-          }
-        }}
-      >
-        <Form.Label>Upload a Picture of Dat Pothole</Form.Label>
-        <InputGroup id='addPotLocation'>
-          <Form.Control type='file' required />
-          <div>
-            <Button type='button' variant='outlined-dark' onClick={() => handleImage(file)}>
-              Add Photo
-            </Button>
-          </div>
-        </InputGroup>
-      </Form.Group>
-    </>
-  );
-};
+  <Form.Group
+    controlId='uploadPotPhoto'
+    className='mb-5'
+    onChange={(e) => {
+      //when a file is selected, set the file state to that photo object
+      const event = e.target as HTMLInputElement;
+      if (event.files !== null) {
+        setFile(event.files[0]);
+      }
+    }}
+  >
+    <Form.Control type='file' required />
+  </Form.Group>
+)};
 
 PotholePic.propTypes = {
-  handleImage: PropTypes.func.isRequired,
+  setFile: PropTypes.func.isRequired,
 };
 
 export default PotholePic;

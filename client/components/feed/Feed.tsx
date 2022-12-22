@@ -11,6 +11,8 @@ function Feed() {
     updatedAt: string;
     pothole_id: number;
     addressDetails: object;
+    badge_id: number;
+    fixed: boolean;
   };
 
   const [globalFeed, setGlobalFeed] = useState<phImg[]>([]);
@@ -22,8 +24,6 @@ function Feed() {
       .then((data) => setGlobalFeed(data.data)) // sets globalFeed to an array of objects
       .catch((err) => console.log(err));
   };
-
-
 
   const sortByNew = () => {
     // sorts the current filter by new
@@ -50,7 +50,6 @@ function Feed() {
     setGlobalFeed([...resultArr]);
   };
 
-
   const sortByRating = (option) => {
 
     let idArr: number[] = globalFeed.map(img => img.pothole_id) // get an array of all the images pothole_id's
@@ -69,7 +68,7 @@ function Feed() {
       if (option === 'H') {
         setGlobalFeed([...resultArr.flat().filter(n => n !== undefined)]) // flatten the array and filter out undefined values
       } else if (option === 'L') {
-        setGlobalFeed([...resultArr.flat().filter(n => n !== undefined).reverse()]) // flatten the array and filter out undefined values
+        setGlobalFeed([...resultArr.flat().reverse().filter(n => n !== undefined)]) // flatten the array and filter out undefined values
       }
     }
 
@@ -80,6 +79,13 @@ function Feed() {
 
   }
 
+  const sortByFixed = () => {
+    if (globalFeed.filter(val => val.fixed === true).length === 0) {
+      console.log('All is broken (:')
+    } else {
+      setGlobalFeed([...globalFeed.filter(val => val.fixed === true)])
+    }
+  }
 
 
   useEffect(getAllImgs, []);
@@ -88,7 +94,7 @@ function Feed() {
       <button onClick={getAllImgs}>Reset</button>
       <h1>Pothole Feed</h1>
       Sort: <button onClick={sortByNew}>New</button> <button onClick={sortByUnique}>Unique</button> <button onClick={() => sortByRating('H')}>Rating(highest)</button>
-      <button onClick={sortByOld}>Old</button> <button onClick={() => sortByRating('L')}>Rating(lowest)</button>
+      <button onClick={sortByOld}>Old</button> <button onClick={() => sortByRating('L')}>Rating(lowest)</button> <button onClick={sortByFixed}>Fixed</button>
       {globalFeed.map((imgVal) => (
         <FeedEntry key={imgVal.image_id} imgObj={imgVal} />
       ))}

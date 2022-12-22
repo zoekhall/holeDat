@@ -21,7 +21,6 @@ const ratingArray = [1, 2, 3, 4, 5]; //rating values
 const PotholeRating = ({ handleRating }) => {
   return (
     <Form.Group controlId='ratingPot' className='mb-5'>
-      <Form.Label>Rate Dat Pothole</Form.Label>
       <div id='ratingGroupDiv' className='ratingElem'>
         <p>Barely a Dent</p>
         <div id='cones' className='ratingElem'>

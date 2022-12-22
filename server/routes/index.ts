@@ -7,15 +7,17 @@ import imgs from './potholeImg.routes';
 import pothole from './pothole.routes';
 import user from './user.routes';
 import rating from './rating.routes';
-import location from './location.routes'
-import comments from './comments.routes'
+import location from './location.routes';
+import comments from './comments.routes';
+import badges from './badges.routes'
 
 //rootRouter.use('/location', location);
-rootRouter.use('/location', location)
+rootRouter.use('/location', location);
 rootRouter.use('/imgs', imgs);
 rootRouter.use('/pothole', pothole);
 rootRouter.use('/user', user);
 rootRouter.use('/rating', rating);
-rootRouter.use('/comments', comments)
+rootRouter.use('/comments', comments);
+rootRouter.use('/badges', badges);
 
 export default rootRouter;

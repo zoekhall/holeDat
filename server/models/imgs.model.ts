@@ -14,16 +14,17 @@ export const getAllImgsWithAddress = (cb) => {
 
   const addAddress = (potholeIdArr, potholeArr) => {
     Pothole.findAll({ // find all potholes and get lat lon and pothole id
-      attributes: ['pothole_id', 'lat', 'lon',
+      attributes: ['pothole_id', 'lat', 'lon', 'fixed',
         [Sequelize.literal("0"), 'potholeIdArr']],
       where: { pothole_id: potholeIdArr }
     })
       .then(data => {
-        let latLonObj = data.map(data => [data.lat, data.lon, data.pothole_id]) // take the lat lon and on each pothole add the lat lon that corrisponds witht he pothole_id
+        let latLonObj = data.map(data => [data.lat, data.lon, data.pothole_id, data.fixed]) // take the lat lon and on each pothole add the lat lon that corrisponds witht he pothole_id
         potholeArr.forEach(imgObj => {
           latLonObj.forEach(latLonArr => {
             if (latLonArr[2] === imgObj.pothole_id) {
               imgObj.addressDetails = { lat: latLonArr[0], lon: latLonArr[1], pothole_id: latLonArr[2] }
+              imgObj.fixed = latLonArr[3]
             }
           })
         })
@@ -37,7 +38,6 @@ export const getAllImgsWithAddress = (cb) => {
     .then((data) => data.map(val => val.dataValues))
     .then(data => addAddress(data.map(val => val.pothole_id), data))
     .catch((err) => console.error(err));
-  console.log(cb)
 };
 
 

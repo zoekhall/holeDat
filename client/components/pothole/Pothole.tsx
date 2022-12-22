@@ -69,7 +69,7 @@ const Pothole = () => {
       .catch((err) => console.log(err));
   };
 
-  const getUser = () => {
+  const  getUser = () => {
     axios.get('/api/user/me')
       .then(data => {
         setUser({
@@ -79,6 +79,7 @@ const Pothole = () => {
         })
       })
   }
+
 
   useEffect(() => {
     getUser()

@@ -105,14 +105,14 @@ User.belongsTo(Badge, {
 //NEED TO REVISIT.. SHOULD LIKES HAVE A POTHOLE IMG SOURCE KEY INSTEAD OF POTHOLE?
 //POTHOLE IMG CONNECTIONS
 // PotholeIMG 1-> Likes
-// PotholeIMG.hasMany(Like, {
-//   sourceKey: 'user_id',
-//   foreignKey: 'user_id',
-// });
-// Like.belongsTo(PotholeIMG, {
-//   foreignKey: 'user_id',
-//   targetKey: 'user_id',
-// });
+PotholeIMG.hasMany(Like, {
+  sourceKey: 'image_id',
+  foreignKey: 'image_id',
+});
+Like.belongsTo(PotholeIMG, {
+  foreignKey: 'image_id',
+  targetKey: 'image_id',
+});
 
 sequelize.sync();
 

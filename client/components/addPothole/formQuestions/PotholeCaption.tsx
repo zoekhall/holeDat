@@ -3,22 +3,19 @@ import React from 'react';
 import Form from 'react-bootstrap/Form';
 import PropTypes from 'prop-types';
 
-const PotholeCaption = ({ handleCaption }) => {
-
-  return (
-      <Form.Group
-        controlId='addPotCaption'
-        className='mb-5'
-        onChange={(e) => handleCaption((e.target as HTMLInputElement).value)} //changes caption in parent
-      >
-        <Form.Label> Describe Dat Pothole </Form.Label>
-        <Form.Control as='textarea' required />
-      </Form.Group>
-  );
-};
+//photo caption text-box
+const PotholeCaption = ({ setCaption }) => (
+  <Form.Group
+    controlId='addPotCaption'
+    className='mb-5'
+    onChange={ (e) => setCaption((e.target as HTMLInputElement).value) } //changes caption in parent
+  >
+    <Form.Control as='textarea' required />
+  </Form.Group>
+);
 
 PotholeCaption.propTypes = {
-  handleCaption: PropTypes.func.isRequired,
+  setCaption: PropTypes.func.isRequired,
 };
 
 export default PotholeCaption;

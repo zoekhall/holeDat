@@ -19,7 +19,7 @@ export const getAllImgsWithAddress = (cb) => {
       where: { pothole_id: potholeIdArr }
     })
       .then(data => {
-        let latLonObj = data.map(data => [data.lat, data.lon, data.pothole_id, data.fixed]) // take the lat lon and on each pothole add the lat lon that corrisponds witht he pothole_id
+        const latLonObj = data.map(data => [data.lat, data.lon, data.pothole_id, data.fixed]) // take the lat lon and on each pothole add the lat lon that corrisponds witht he pothole_id
         potholeArr.forEach(imgObj => {
           latLonObj.forEach(latLonArr => {
             if (latLonArr[2] === imgObj.pothole_id) {
@@ -66,7 +66,7 @@ export const getTopThree = (cb) => {
     include: { model: User, attributes: ['user_id', 'photo', 'name'] },
     group: ['PotholeIMG.user_id', 'User.photo', 'User.name'],
   }).then((users) => {
-    cb(users.sort((a, b) => b.count - a.count).splice(0, 3));
+    cb(users.sort((a, b) => b.count - a.count));
   });
 };
 

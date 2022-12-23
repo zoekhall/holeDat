@@ -1,13 +1,13 @@
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import PotholePic from '../formQuestions/PotholePic';
 import PotholeCaption from '../formQuestions/PotholeCaption';
-
+import { ColorContext } from '../AddPothole';
 /*!
 Add pothole to the database - retrieve id --- id needs to be attached to image and to rating
 Add image to cloud 
@@ -17,6 +17,7 @@ Add rating and status to database
 
 function ImageSection({ setImgObj, setView, setProgress }) {
   const [file, setFile] = useState<any>(null);
+  const contextOfColor = useContext(ColorContext)
 
   const imgObj: { photoURL: string; caption: string; pothole_id: number; user_id: number } = {
   photoURL: '',
@@ -46,7 +47,7 @@ function ImageSection({ setImgObj, setView, setProgress }) {
 
   return (
     <Form.Group>
-      <h2>Pothole Imagery</h2>
+      <h2 style={{color: contextOfColor?.color}}>Pothole Imagery</h2>
       <Form.Group>
         <Form.Label>Add A Picture of Dat Pothole</Form.Label>
         <PotholePic setFile={(file) => setFile(file)} />

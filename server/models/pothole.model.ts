@@ -1,7 +1,6 @@
 import Pothole from '../db/schema/pothole.schema';
 import { Op } from 'sequelize';
 
-Retrieve 
 export const getAllPotholes = (cb) => {
   Pothole.findAll({})
     .then((data) => cb(data))

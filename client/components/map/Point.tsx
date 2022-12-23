@@ -14,15 +14,10 @@ const Point = prop => {
 
   const [showPopup, setShowPopup] = useState(true);
   const [plothole, setPlothole] = useState<phObj>()
-  const [addy, setAddy] = useState('')
 
   const getInfo = () => {
     axios.get('/api/imgs/potholeimg' + prop.marker.pothole_id)
       .then(data => setPlothole(data.data))
-      .then(() => {
-        axios.get(`/api/location/getAddy`, { params: { lat, lon } })
-          .then(data => setAddy(data.data.split(',')))
-      })
       .then(() => {
         if (Math.abs(userLocation[0] - lat) < .000000000001 && Math.abs(userLocation[1] - lon) < .00000000001 && userLocation.length !== 0) {
           setShowPopup(false)
@@ -31,7 +26,7 @@ const Point = prop => {
       .catch(err => console.log(err))
 
   }
-  
+
   useEffect(getInfo, [])
 
   return (
@@ -54,8 +49,9 @@ const Point = prop => {
         >
           {plothole ?
             <div className='mapPopup'>
-              <Link to={'/Pothole:' + pothole_id}><p>{addy[0]}</p></Link>
-              <img src={plothole.photoURL} alt='potholeImg' width={100} />
+              <Link to={'/Pothole:' + pothole_id}>
+                <img src={plothole.photoURL} alt='potholeImg' width={100} />
+              </Link>
             </div>
             : ''}
         </Popup>

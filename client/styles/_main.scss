@@ -14,24 +14,24 @@ $regularText: 'DM Sans', sans-serif;
   background: $DarkColor1;
   height: 100%;
 
-h1 {
-  color: white;
-}
+  h1 {
+    color: white;
+  }
 
-#mainNavbar {
-  color: white;
-  background-color: $DarkColor2;
-}
+  #mainNavbar {
+    color: white;
+    background-color: $DarkColor2;
+  }
 
-#addPothole {
-  background-color: $DarkColor2;
-  border: $LightColor2
-}
+  #addPothole {
+    background-color: $DarkColor2;
+    border: $LightColor2
+  }
 
-#ratingGroupDiv {
+  #ratingGroupDiv {
     background-color: $DarkColor2;
     border: $LightColor2 solid 2px
-}
+  }
 }
 
 #swiper,
@@ -224,4 +224,20 @@ body {
 
 .mapboxgl-popup-content {
   padding: 3px;
+}
+
+
+.voting-cones>svg,
+.voting-cones>svg:hover {
+  width: 15%;
+}
+
+.fixed {
+  display: flex;
+  flex-direction: row;
+  gap: 3px;
+}
+
+.clickCone {
+  fill: #FE5F55
 }

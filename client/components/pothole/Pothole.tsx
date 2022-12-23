@@ -64,12 +64,12 @@ const Pothole = () => {
       .then((data) => {
         const { lat, lon } = data
         axios('/api/location/getAddy', { params: { lat, lon } })
-          .then(data => setAddy(data.data.split(',')))
+          .then(data => setAddy(data.data.split(',')[0]))
       })
       .catch((err) => console.log(err));
   };
 
-  const  getUser = () => {
+  const getUser = () => {
     axios.get('/api/user/me')
       .then(data => {
         setUser({
@@ -88,7 +88,12 @@ const Pothole = () => {
 
   return <div className="post">
     <div className="post_header">
-      <h1>{addy[0]}</h1>
+      <h1>{addy}</h1>
+      <Link to={'/Rating:' + id} state={{ addy, user }}>
+        {user?.userId_user &&
+          <button>Rate</button>
+        }
+      </Link>
     </div>
     <Swiper className='mySwiper'
       pagination={true}

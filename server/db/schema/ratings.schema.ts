@@ -1,5 +1,5 @@
 import sequelize from '../db.server';
-import { DataTypes, NonAttribute, CreationOptional, InferAttributes, InferCreationAttributes, Model, ForeignKey } from 'sequelize';
+import { DataTypes, NonAttribute, CreationOptional, InferAttributes, InferCreationAttributes, Model, ForeignKey, BOOLEAN, INTEGER } from 'sequelize';
 import Pothole from './pothole.schema';
 
 class Rating extends Model<InferAttributes<Rating>, InferCreationAttributes<Rating>> {
@@ -9,7 +9,7 @@ class Rating extends Model<InferAttributes<Rating>, InferCreationAttributes<Rati
   declare user_id: number;
   declare createdAt: CreationOptional<Date>;
   declare updatedAt: CreationOptional<Date>;
-
+  declare fixed: boolean;
   declare pothole?: NonAttribute<Pothole>;
 }
 
@@ -23,8 +23,12 @@ Rating.init(
       unique: true,
     },
     overall: {
-      type: new DataTypes.FLOAT,
+      type: INTEGER,
       allowNull: false,
+    },
+    fixed: {
+      type: BOOLEAN,
+      allowNull: true,
     },
     user_id: {
       type: new DataTypes.INTEGER,

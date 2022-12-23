@@ -4,7 +4,6 @@ const badges = express.Router()
 
 badges.get('/getBadge:id', (req: Request, res: Response) => {
     const { id } = req.params
-    console.log(id)
     getBadgeAtId(id, (data) => res.status(200).send(data))
 
 })

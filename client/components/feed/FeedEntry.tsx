@@ -10,8 +10,14 @@ const FeedEntry = ({ imgObj }) => {
     name: string
   }
 
+  type userObj = {
+    name: string
+    user_id: number
+    photo: string
+  }
+
   const [addy, setAddy] = useState('')
-  const [userPhoto, setUserPhoto] = useState('')
+  const [user, setUser] = useState<userObj>()
   const [badge, setBadge] = useState<badgeObj>()
   const [hoverBool, setHoverBool] = useState<boolean>(false)
 
@@ -33,7 +39,7 @@ const FeedEntry = ({ imgObj }) => {
 
     axios.get('/api/user/UserAtId' + imgObj.user_id)
       .then(data => {
-        setUserPhoto(data.data.photo)
+        setUser(data.data)
         getBadgeData(data.data.badge_id)
       })
       .catch(err => console.log(err));
@@ -56,7 +62,9 @@ const FeedEntry = ({ imgObj }) => {
           height='50%'
         />
       </Link>
-      <img src={userPhoto} alt='Image' width="10%"></img>
+      <Link to={`/User:${user?.user_id}`}>
+        <img src={user?.photo} alt='Image' width="10%"></img>
+      </Link>
       <img onMouseOver={() => onBadgeHover(true)} onMouseOut={() => onBadgeHover(false)} src={badge?.imgUrl} alt='Image' width="10%"></img>
       {hoverBool ? badge?.description : badge?.name}
 

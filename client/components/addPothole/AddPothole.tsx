@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import Form from 'react-bootstrap/Form';
 import ProgressBar from 'react-bootstrap/ProgressBar';
-import BasicsSection from './formSections/BasicsSection';
+import BasicsSection from './formSections/LocationSection';
 import ImageSection from './formSections/ImageSection';
 import RatingSection from './formSections/RatingSection';
 import axios from 'axios';

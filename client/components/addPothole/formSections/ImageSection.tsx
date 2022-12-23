@@ -8,6 +8,13 @@ import axios from 'axios';
 import PotholePic from '../formQuestions/PotholePic';
 import PotholeCaption from '../formQuestions/PotholeCaption';
 
+/*!
+Add pothole to the database - retrieve id --- id needs to be attached to image and to rating
+Add image to cloud 
+Add image to database
+Add rating and status to database 
+*/
+
 function ImageSection({ setImgObj, setView, setProgress }) {
   const [file, setFile] = useState<any>(null);
 

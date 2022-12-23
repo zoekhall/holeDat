@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import PotholeLocation from '../formQuestions/PotholeLocation';
 import PotholeStatus from '../formQuestions/PotholeStatus';
 
-const BasicsSection = ({ setView, setPotObj, setProgress }) => {
+const LocationSection = ({ setView, setPotObj, setProgress }) => {
   const potObj: { fixed: boolean; lat: number; lon: number } = {
     fixed: false,
     lat: 0,
@@ -47,14 +47,14 @@ const BasicsSection = ({ setView, setPotObj, setProgress }) => {
   );
 };
 
-BasicsSection.propTypes = {
+LocationSection.propTypes = {
   setView: PropTypes.func.isRequired,
   setPotObj: PropTypes.func.isRequired,
   setProgress: PropTypes.func.isRequired,
   // setPotentialPotholes: PropTypes.func.isRequired,
 };
 
-export default BasicsSection;
+export default LocationSection;
 
 //STORAGE
   //FIND POTOBJ, if potobj exists - return status 'checkPothole' - else - return status 'image'

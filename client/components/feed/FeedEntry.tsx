@@ -4,15 +4,16 @@ import { Link } from 'react-router-dom';
 
 const FeedEntry = ({ imgObj }) => {
 
-  // type badgeObj = {
-  //   imgUrl: string;
-  //   description: string;
-  //   name: string
-  // }
+  type badgeObj = {
+    imgUrl: string;
+    description: string;
+    name: string
+  }
 
   const [addy, setAddy] = useState('')
   const [userPhoto, setUserPhoto] = useState('')
-  //const [badge, setBadge] = useState<badgeObj>()
+  const [badge, setBadge] = useState<badgeObj>()
+  const [hoverBool, setHoverBool] = useState<boolean>(false)
 
   const getAddress = () => {
     const { lat, lon } = imgObj.addressDetails
@@ -20,7 +21,7 @@ const FeedEntry = ({ imgObj }) => {
     const getBadgeData = (userData) => {
       if (userData !== 0) {
         axios.get('/api/badges/getBadge' + userData)
-          .then(data => console.log(data.data))
+          .then(data => setBadge(data.data))
           .catch(err => console.log(err));
       }
     }
@@ -38,6 +39,10 @@ const FeedEntry = ({ imgObj }) => {
       .catch(err => console.log(err));
   }
 
+  const onBadgeHover = (option) => {
+    setHoverBool(option)
+  }
+
   useEffect(getAddress, [])
   return (
     <div>
@@ -52,6 +57,9 @@ const FeedEntry = ({ imgObj }) => {
         />
       </Link>
       <img src={userPhoto} alt='Image' width="10%"></img>
+      <img onMouseOver={() => onBadgeHover(true)} onMouseOut={() => onBadgeHover(false)} src={badge?.imgUrl} alt='Image' width="10%"></img>
+      {hoverBool ? badge?.description : badge?.name}
+
     </div>
   );
 };

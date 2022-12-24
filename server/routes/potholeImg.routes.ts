@@ -70,7 +70,8 @@ imgs.get('/potholeimg:id', (req: Request, res: Response) => {
 });
 
 imgs.get('/feed', (req: Request, res: Response) => {
-  getAllImgsWithAddress((data) => res.status(200).send(data));
+  const { offset } = req.query
+  getAllImgsWithAddress(offset, (data) => res.status(200).send(data));
 });
 
 imgs.get('/stats', (req: Request, res: Response) => {

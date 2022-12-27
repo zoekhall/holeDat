@@ -105,33 +105,20 @@ body {
   background-color: $LightColor2;
 }
 
-.mapboxgl-marker>svg path {
-  fill: $PrimaryColor;
-}
+
 
 .page-content {
   display: flex;
-  // width: 80%;
-  // background-color: #f7f7ff;
   padding: 30px;
   margin: 30px;
   margin-top: 20px;
   flex-direction: column;
-  // border: 1px solid $DarkColor1;
   border-radius: 10px;
   z-index: 1;
   height: 100%;
-
 }
 
-.map-box {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  left: 0;
-  z-index: 0;
-  top: 70px;
-}
+
 
 
 // POTHOLE PROFILE SCSS
@@ -205,26 +192,6 @@ body {
 
 
 
-.mapPopup {
-  display: flex;
-  margin-top: 15px;
-  flex-direction: column;
-  align-items: center;
-
-}
-
-.mapPopup a,
-.map-box p {
-  margin: 0;
-}
-
-.mapPopup img {
-  border-radius: 3px;
-}
-
-.mapboxgl-popup-content {
-  padding: 3px;
-}
 
 
 .voting-cones>svg,

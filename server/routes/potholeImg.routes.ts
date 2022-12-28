@@ -15,7 +15,9 @@ import multer from 'multer';
 import dotenv from 'dotenv';
 import fs from 'fs-extra';
 dotenv.config();
+// import axios from 'axios';
 import cloudinary from 'cloudinary';
+// import { postRating } from '../models/rating.model';
 
 const upload = multer({ dest: './tmp/' }).single('file');
 
@@ -30,6 +32,7 @@ imgs.post('/addimg', upload, (req: any, res: Response) => {
   const cloud_name = process.env.CLOUD_NAME;
   const api_secret = process.env.CLOUD_SECRET;
   const file = req.file.path;
+
   cloudinary.v2.uploader
     .upload(file, { api_key, api_secret, cloud_name })
     .then((data) => {
@@ -42,7 +45,8 @@ imgs.post('/addimg', upload, (req: any, res: Response) => {
 imgs.post('/postImg', (req: any, res: Response) => {
   postImg((data) => res.status(201).send(data), req.body);
 });
-//
+
+  
 // get ALL imgs of pothole by id AND user data
 imgs.get('/potholeimgs:id', (req: Request, res: Response) => {
   const { id } = req.params;

@@ -40,7 +40,6 @@ export const getAllImgsWithAddress = (cb) => {
     .catch((err) => console.error(err));
 };
 
-
 //gets pothole img based on pothole_id
 export const getPotholeImgByPhId = (id: string, cb) => {
   PotholeIMG.findOne({ where: { pothole_id: id } })

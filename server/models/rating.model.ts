@@ -1,7 +1,6 @@
 import Pothole from '../db/schema/pothole.schema';
 import Rating from '../db/schema/ratings.schema';
 
-
 export const postRating = async (cb, obj) => {
   const pothole = await Pothole.findOne({
     where: { pothole_id: obj.pothole_id },

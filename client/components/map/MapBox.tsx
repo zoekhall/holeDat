@@ -15,7 +15,7 @@ const MapBox = (prop) => {
   };
   const mapbox_token = 'pk.eyJ1IjoiemFjaG1hcnVsbG8iLCJhIjoiY2xhazZ5aGxyMDQ3bzNwbzZ2Z3N0b3lpMyJ9.65G-mwqhbWFy77O_I0LkOg'
   const [markers, setMarkers] = useState<markerType[]>([]);
-  const [style, setStyle] = useState<string>('mapbox://styles/mapbox/streets-v12')
+  const [style, setStyle] = useState<string>('mapbox://styles/jorcar1986/clc6iejcx000y14t0iaefvyss')
 
   const getMarkers = () => {
     axios
@@ -25,17 +25,17 @@ const MapBox = (prop) => {
   };
   const mode = () => {
     if (!document.querySelector('.dark-mode')) {
-      setStyle('mapbox://styles/mapbox/streets-v12');
+      setStyle('mapbox://styles/jorcar1986/clc6iejcx000y14t0iaefvyss');
     } else {
       setStyle('mapbox://styles/mapbox/dark-v10');
     }
   }
 
   document.querySelector('.mode')?.addEventListener('click', () => {
-    if (style === 'mapbox://styles/mapbox/streets-v12') {
+    if (style === 'mapbox://styles/jorcar1986/clc6iejcx000y14t0iaefvyss') {
       setStyle('mapbox://styles/mapbox/dark-v10');
     } else {
-      setStyle('mapbox://styles/mapbox/streets-v12');
+      setStyle('mapbox://styles/jorcar1986/clc6iejcx000y14t0iaefvyss');
     }
   })
 

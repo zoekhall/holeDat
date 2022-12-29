@@ -42,7 +42,7 @@ const Point = prop => {
         <Popup
           longitude={lon}
           latitude={lat}
-          anchor='bottom'
+          anchor='center'
           closeOnClick={false}
           onClose={() => setShowPopup(true)}
           focusAfterOpen={true}

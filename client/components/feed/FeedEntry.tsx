@@ -15,7 +15,6 @@ const FeedEntry = ({ imgObj }: any) => {
   const [hoverBool, setHoverBool] = useState<boolean>(false)
 
   const getInfo = () => {
-    console.log(imgObj.badge_id, 'TESTING')
     axios.get('/api/badges/getBadge', { params: { badgeId: imgObj.badge_id } })
       .then(({ data }) => setBadge(data))
       .catch(err => console.log(err));

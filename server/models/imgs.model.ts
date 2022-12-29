@@ -9,13 +9,15 @@ export const getAllImgs = (cb) => {
     .catch((err) => console.error(err));
 };
 
-export const getAllImgsWithAddress = (offset, cb) => {
+export const getAllImgsWithAddress = (offset, sortBy, order, fixedSatus, cb) => {
   const limit = 3;
   PotholeIMG.findAll({
-    include: [User, Pothole],
+    include: [{model: User},{model: Pothole, where: {'fixed': fixedSatus}}],
     limit,
     offset,
-  }).then(data => cb(data.map(val => val.dataValues)))
+    order: [[sortBy, order]]
+  })
+  .then(data => cb(data.map(val => val.dataValues)))
 };
 
 

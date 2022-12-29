@@ -9,15 +9,13 @@ import {
   getAllPotholeImgByPhId,
   getPotholeAtUserId,
   getTopPotholes,
-  postImg,
+  // postImg,
 } from '../models/imgs.model';
 import multer from 'multer';
 import dotenv from 'dotenv';
 import fs from 'fs-extra';
 dotenv.config();
-// import axios from 'axios';
 import cloudinary from 'cloudinary';
-// import { postRating } from '../models/rating.model';
 
 const upload = multer({ dest: './tmp/' }).single('file');
 
@@ -39,12 +37,13 @@ imgs.post('/addimg', upload, (req: any, res: Response) => {
       res.status(201).json(data.url);
     })
     .catch((err) => console.log(err));
+  
   fs.emptyDir('./tmp');
 });
 
-imgs.post('/postImg', (req: any, res: Response) => {
-  postImg((data) => res.status(201).send(data), req.body);
-});
+// imgs.post('/postImg', (req: any, res: Response) => {
+//   postImg((data) => res.status(201).send(data), req.body);
+// });
 
   
 // get ALL imgs of pothole by id AND user data

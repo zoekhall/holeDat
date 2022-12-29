@@ -9,7 +9,7 @@ import { LocationContext } from '../AddPothole';
 const mapToken =
   'pk.eyJ1IjoiemFjaG1hcnVsbG8iLCJhIjoiY2xhazZ5aGxyMDQ3bzNwbzZ2Z3N0b3lpMyJ9.65G-mwqhbWFy77O_I0LkOg';
 
-//componenent with the location search input form and ability to transform address into lat/lon
+//Componenent with the location search input form. Assigns lat/lon to location context
 const PotholeLocation = () => {
   const [location, setLocation] = useState<string>(''); //stores address from input form
   const [buttonMessage, setButtonMessage] = useState<string>('Add Approximate Address'); //message to be updated when user clicks button

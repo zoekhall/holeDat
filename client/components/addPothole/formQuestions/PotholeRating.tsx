@@ -33,7 +33,7 @@ const PotholeRating = () => {
                 id={`${num}`}
                 onClick={() => {
                   const newStatusContents = {...statusContents};
-                  newStatusContents.rating = num;
+                  newStatusContents.overall = num;
                   setStatusContents(newStatusContents);
                 }}
                 className='cone'

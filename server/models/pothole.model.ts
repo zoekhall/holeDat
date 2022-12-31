@@ -19,11 +19,11 @@ export const findAndAddPothole = (cb, obj) => {
       if (data.length === 0) { //if no potholes are returned/match 
         Pothole.create(obj) //create pothole if pothole does not already exist
           .then((data) => {
-            cb(data); 
+            cb(data.pothole_id); 
           })
           .catch((err) => console.error('FAILURE TO CREATE POTHOLE', err));
       } else {
-        cb(data);
+        cb(data[0].pothole_id);
       }
     })
     .catch((err) => console.error('FAILURE TO FIND POTHOLE', err));

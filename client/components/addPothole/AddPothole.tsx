@@ -28,11 +28,11 @@ export const ImageContext = createContext<ImageContextType>({
   setImageContents: () => {},
 });
 interface StatusContextType {
-  statusContents: { fixed: any; overall: number; user_id: number };
-  setStatusContents: Dispatch<SetStateAction<{ fixed: any; overall: number; user_id: number } >>;
+  statusContents: { fixed: any; rating: number; user_id: number };
+  setStatusContents: Dispatch<SetStateAction<{ fixed: any; rating: number; user_id: number } >>;
 }
 export const StatusContext = createContext<StatusContextType>({
-  statusContents: { fixed: false, overall: 0, user_id: 0  },
+  statusContents: { fixed: false, rating: 0, user_id: 0  },
   setStatusContents: () => {},
 });
 
@@ -44,7 +44,7 @@ const AddPothole = () => {
 
   const [coordinates, setCoordinates] = useState({lat:0, lon:0});
   const [imageContents, setImageContents] = useState({ file: null, caption: '', photoURL: '' , user_id: 0});
-  const [statusContents, setStatusContents] = useState({ fixed: false, overall: 0, user_id: 0 });
+  const [statusContents, setStatusContents] = useState({ fixed: false, rating: 0, user_id: 0 });
 
   //* Set the User Id *//
   useEffect(() => {
@@ -57,21 +57,26 @@ const AddPothole = () => {
   }, []);
 
   //* Handle Submission *//
-  const handleSubmit = () => {
-    const formData = new FormData();
+  const handleSubmit = async () => {
 
-    if(imageContents.file){
+    if (imageContents.file) {
+      const formData = new FormData();
       formData.append('file', imageContents.file);
       axios.post('/api/imgs/addimg', formData)
-      .catch(err => console.error('Failure to Submit Image to Cloud', err))
+        .then(({ data }) => {
+          const updatedImageContents = { ...imageContents };
+          updatedImageContents.photoURL = data;
+
+          const masterObj = { coordinates, updatedImageContents, statusContents, user_id };
+          console.log(masterObj);
+
+          axios.post('/api/pothole/addPothole', masterObj)
+            .catch(err => console.log('Failure to Add Pothole to Database', err))
+
+        })
+        .catch(err => console.error('Failure to Submit Image to Cloud', err))
     }
-
-    const masterObj = { coordinates, imageContents, statusContents, user_id };
-
-    axios.post('/api/pothole/addPothole', masterObj)
-    .catch(err => console.log('Failure to Add Pothole to Database', err))
-
-    console.log(masterObj);
+    
   }
 
   //* Handle Which Section of the Form is Rendered *//

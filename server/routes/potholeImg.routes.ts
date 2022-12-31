@@ -41,6 +41,7 @@ imgs.post('/addimg', upload, (req: any, res: Response) => {
   fs.emptyDir('./tmp');
 });
 
+
 // imgs.post('/postImg', (req: any, res: Response) => {
 //   postImg((data) => res.status(201).send(data), req.body);
 // });

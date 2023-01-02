@@ -45,13 +45,13 @@ Table of Contents
 ## Features
 
   ### Home Page
-    Here you will find various statistics about our user base and reported potholes. The global navigation bar at the top of the page allows you to access other areas of the site and also provides the option to toggle between light and dark mode. We hope you find this page informative and user-friendly.
+  Here you will find various statistics about our user base and reported potholes. The global navigation bar at the top of the page allows you to access other areas of the site and also provides the option to toggle between light and dark mode. We hope you find this page informative and user-friendly.
 
   ### About Page
-    Our "About" page features real-time updated trackers that show the number of users signed up for HoleDat and the number of potholes submitted through the app. This gives you a sense of the impact that HoleDat is having in your community and helps you stay informed about the status of pothole repairs. We also have a range of user statistics on the "About" page, including charts that show the number of potholes reported by neighborhood and the overall trend of pothole repair efforts over time. These statistics give you a deeper understanding of the pothole situation in New Orleans and how HoleDat is helping to address it.
+  Our "About" page features real-time updated trackers that show the number of users signed up for HoleDat and the number of potholes submitted through the app. This gives you a sense of the impact that HoleDat is having in your community and helps you stay informed about the status of pothole repairs. We also have a range of user statistics on the "About" page, including charts that show the number of potholes reported by neighborhood and the overall trend of pothole repair efforts over time. These statistics give you a deeper understanding of the pothole situation in New Orleans and how HoleDat is helping to address it.
 
   ### Map
-    The map feature of our application is a central hub for pothole tracking and reporting. It allows users to view an interactive map of the city, with each pothole represented by a marker. By clicking on a marker, users can view information about the pothole and the user who reported it. Additionally, users can report new potholes by clicking on an empty area of the map and filling out a form. The map feature is powered by the Mapbox GL and React Map GL libraries, providing a smooth and responsive user experience. With the map feature, our application provides a comprehensive and intuitive platform for pothole tracking and reporting.
+  The map feature of our application is a central hub for pothole tracking and reporting. It allows users to view an interactive map of the city, with each pothole represented by a marker. By clicking on a marker, users can view information about the pothole and the user who reported it. Additionally, users can report new potholes by clicking on an empty area of the map and filling out a form. The map feature is powered by the Mapbox GL and React Map GL libraries, providing a smooth and responsive user experience. With the map feature, our application provides a comprehensive and intuitive platform for pothole tracking and reporting.
 
   ### User Profile
 

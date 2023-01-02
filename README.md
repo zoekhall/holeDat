@@ -12,7 +12,9 @@ Table of Contents
   - [About Page](#about-page)
   - [Map](#map)
   - [User Profile](#user-profile)
+  - [Feed](#feed)
   - [Pothole Profile](#pothole-profile)
+  - [Pothole Submission](#pothole-submission)
 - [Call to Action](#call-to-action)
 - [Tech Stack](#tech-stack)
 
@@ -54,9 +56,16 @@ Table of Contents
   The map feature of our application is a central hub for pothole tracking and reporting. It allows users to view an interactive map of the city, with each pothole represented by a marker. By clicking on a marker, users can view information about the pothole and the user who reported it. Additionally, users can report new potholes by clicking on an empty area of the map and filling out a form. The map feature is powered by the Mapbox GL and React Map GL libraries, providing a smooth and responsive user experience. With the map feature, our application provides a comprehensive and intuitive platform for pothole tracking and reporting.
 
   ### User Profile
+  The user profile page in the holeDat app allows users to view a list of all the pothole images they have uploaded to the app. It also includes a feature for users to edit their name as it appears in the app. This page provides users with an overview of their contributions to the app and allows them to personalize their user experience.
+
+  ### Feed
+  The feed feature is a paginated display of pothole images uploaded by users, along with accompanying badges. Users can click on a pothole image or badge to view the corresponding profile page. The feed also includes a filtering system that allows users to sort the displayed images by various criteria such as "old," "new," "fixed," and "not fixed." This feature is implemented using state-of-the-art pagination and filtering techniques, and provides a dynamic and user-friendly way for users to browse and interact with reported potholes.
 
   ### Pothole Profile
+  The Pothole Profile is a module within the holeDat app that enables users to submit and monitor potholes within their region. By creating a Pothole Profile, users can input precise data about the location and dimensions of the pothole, as well as any damages to their vehicle. They also have the option to include photographs of the pothole for visual reference. This data is saved in the Pothole Profile and can be retrieved by other users within the app. By generating a Pothole Profile, users can contribute to the enhancement of road safety and quality in their community.
 
+  ### Pothole Submission
+  The pothole submission page is a simple and intuitive interface that allows users to report new potholes in the web-app. To submit a pothole, users simply need to fill out a form with the pothole's location and any additional information they would like to provide. Once the form is submitted, the new pothole will be added to the map and visible to all users. This feature is designed to be quick and easy to use, ensuring that users can quickly and efficiently report potholes and contribute to the overall effort to improve road infrastructure in the city.
 
 ## Call to Action
   If you are tired of navigating pothole-ridden roads in New Orleans and want to be part of the solution, then look no further! Our pothole tracking application empowers users to easily report and view potholes in the area, and helps city officials prioritize repairs and improve road infrastructure. Don't wait any longer, join the fight against potholes!

@@ -9,7 +9,7 @@ import {
   getAllPotholeImgByPhId,
   getPotholeAtUserId,
   getTopPotholes,
-  postImg,
+  // postImg,
 } from '../models/imgs.model';
 import multer from 'multer';
 import dotenv from 'dotenv';
@@ -30,19 +30,23 @@ imgs.post('/addimg', upload, (req: any, res: Response) => {
   const cloud_name = process.env.CLOUD_NAME;
   const api_secret = process.env.CLOUD_SECRET;
   const file = req.file.path;
+
   cloudinary.v2.uploader
     .upload(file, { api_key, api_secret, cloud_name })
     .then((data) => {
       res.status(201).json(data.url);
     })
     .catch((err) => console.log(err));
+  
   fs.emptyDir('./tmp');
 });
 
-imgs.post('/postImg', (req: any, res: Response) => {
-  postImg((data) => res.status(201).send(data), req.body);
-});
-//
+
+// imgs.post('/postImg', (req: any, res: Response) => {
+//   postImg((data) => res.status(201).send(data), req.body);
+// });
+
+  
 // get ALL imgs of pothole by id AND user data
 imgs.get('/potholeimgs:id', (req: Request, res: Response) => {
   const { id } = req.params;

@@ -1,21 +1,25 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React from 'react';
+import React, { useContext } from 'react';
 import Form from 'react-bootstrap/Form';
-import PropTypes from 'prop-types';
+import { ImageContext } from '../AddPothole';
 
 //photo caption text-box
-const PotholeCaption = ({ setCaption }) => (
-  <Form.Group
-    controlId='addPotCaption'
-    className='mb-5'
-    onChange={ (e) => setCaption((e.target as HTMLInputElement).value) } //changes caption in parent
-  >
-    <Form.Control as='textarea' required />
-  </Form.Group>
-);
+const PotholeCaption = () =>{
+  const { imageContents, setImageContents } = useContext(ImageContext);
 
-PotholeCaption.propTypes = {
-  setCaption: PropTypes.func.isRequired,
-};
+  return (
+    <Form.Group
+      controlId='addPotCaption'
+      className='mb-5'
+      onChange={(e) => {
+        const newImageContents = {...imageContents};
+        newImageContents.caption = (e.target as HTMLInputElement).value;
+        setImageContents(newImageContents);
+      }} //changes caption in parent
+    >
+      <Form.Control as='textarea' required />
+    </Form.Group>
+  );
+}
 
 export default PotholeCaption;

@@ -1,12 +1,9 @@
 import sequelize from '../db.server';
 import Rating from './ratings.schema';
-import {Association, NonAttribute, Model, DataTypes, InferAttributes, InferCreationAttributes, CreationOptional, HasManyCreateAssociationMixin } from 'sequelize';
+import {Association, NonAttribute, Model, DataTypes, CreationOptional, HasManyCreateAssociationMixin } from 'sequelize';
 import PotholeIMG from './potholeImgs.schema';
 
-class Pothole extends Model<
-  InferAttributes<Pothole, { omit: 'ratings'; potholeimgs }>,
-  InferCreationAttributes<Pothole, { omit: 'ratings'; potholeimgs }>
-> {
+class Pothole extends Model{
   declare pothole_id: CreationOptional<number>;
   declare fixed: boolean;
   declare lat: number;

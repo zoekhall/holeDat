@@ -2,46 +2,36 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-const FeedEntry = ({ imgObj }) => {
+const FeedEntry = ({ imgObj }: any) => {
 
-  // type badgeObj = {
-  //   imgUrl: string;
-  //   description: string;
-  //   name: string
-  // }
+  type badgeObj = {
+    imgUrl: string;
+    description: string;
+    name: string
+  }
 
   const [addy, setAddy] = useState('')
-  const [userPhoto, setUserPhoto] = useState('')
-  //const [badge, setBadge] = useState<badgeObj>()
+  const [badge, setBadge] = useState<badgeObj>()
+  const [hoverBool, setHoverBool] = useState<boolean>(false)
 
-  const getAddress = () => {
-    const { lat, lon } = imgObj.addressDetails
-
-    const getBadgeData = (userData) => {
-      if (userData !== 0) {
-        axios.get('/api/badges/getBadge' + userData)
-          .then(data => console.log(data.data))
-          .catch(err => console.log(err));
-      }
-    }
-
-
-    axios.get('/api/location/getAddy', { params: { lat, lon } }) // on every image object get location
-      .then(data => setAddy(data.data))
+  const getInfo = () => {
+    axios.get('/api/badges/getBadge', { params: { badgeId: imgObj.badge_id } })
+      .then(({ data }) => setBadge(data))
       .catch(err => console.log(err));
 
-    axios.get('/api/user/UserAtId' + imgObj.user_id)
-      .then(data => {
-        setUserPhoto(data.data.photo)
-        getBadgeData(data.data.badge_id)
-      })
+    axios.get('/api/location/getAddy', { params: { lat: imgObj.lat, lon: imgObj.lon } }) // on every image object get location
+      .then(({ data }) => setAddy(data.split(',')[0]))
       .catch(err => console.log(err));
   }
 
-  useEffect(getAddress, [])
+  const onBadgeHover = (option) => {
+    setHoverBool(option)
+  }
+
+  useEffect(getInfo, [])
   return (
     <div>
-      <h3>{addy.split(',')[0]}</h3>
+      <h3>{addy}</h3 >
       <Link to={`/Pothole:${imgObj.pothole_id}`}>
         <img
           style={{ borderRadius: '18px' }}
@@ -51,7 +41,9 @@ const FeedEntry = ({ imgObj }) => {
           height='50%'
         />
       </Link>
-      <img src={userPhoto} alt='Image' width="10%"></img>
+      <img src={imgObj.photo} alt='Image' width="10%"></img>
+      <img onMouseOver={() => onBadgeHover(true)} onMouseOut={() => onBadgeHover(false)} src={badge?.imgUrl} alt='Image' width="10%"></img>
+      {hoverBool ? badge?.description : badge?.name}
     </div>
   );
 };

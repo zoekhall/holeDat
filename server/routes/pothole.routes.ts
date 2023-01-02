@@ -6,12 +6,12 @@ import { addRating } from '../models/rating.model';
 import { postImg } from '../models/imgs.model';
 
 pothole.get('/', (req: Request, res: Response) => {
-  getAllPothole(data=> res.status(200).send(data));
+  getAllPothole(data => res.status(200).send(data));
 });
 
 pothole.post('/findPothole', (req: Request, res: Response) => {
   getMatchingPotholes(data => res.status(200).send(data)
-  , req.body);
+    , req.body);
 });
 
 pothole.post('/addPothole', (req: Request, res: Response) => {
@@ -20,8 +20,6 @@ pothole.post('/addPothole', (req: Request, res: Response) => {
   const { fixed, rating } = statusContents;
   const { caption, photoURL } = updatedImageContents;
 
-  // console.log(coordinates, 'coords', updatedImageContents, 'imgs', statusContents, 'stats', user_id, 'usr')
-
   findAndAddPothole((data) => { 
     const pothole_id = data;
     addRating(pothole_id, fixed, rating, user_id);
@@ -29,6 +27,7 @@ pothole.post('/addPothole', (req: Request, res: Response) => {
   }, coordinates)
 
   res.sendStatus(201);
+
 });
 
 export default pothole;

@@ -1,0 +1,70 @@
+@import 'main';
+
+
+.map-box {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 70px;
+}
+
+.mapPopup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3px;
+}
+
+
+.mapboxgl-popup-close-button,
+.mapboxgl-popup-close-button button:not(:disabled),
+.mapboxgl-popup-close-button>button>[type=button]:not(:disabled):focus {
+  box-shadow: -1px 2px black;
+  border-radius: 100%;
+  background-color: #F2CC8F;
+  border: 2px solid black;
+  margin: -5px;
+}
+
+.mapPopup a,
+.map-box p {
+  margin: 0;
+  padding: 0;
+}
+
+.mapPopup img {
+  object-fit: cover;
+  height: 80px;
+  width: 80px;
+  border-radius: 30px;
+  padding: 0;
+  margin: 0;
+  box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.5);
+  border: 3px solid black;
+}
+
+.mapboxgl-popup-content {
+  padding: 0;
+  background-color: rgba(0, 0, 0, 0);
+  box-shadow: none;
+}
+
+.mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip {
+  border-top-color: rgb(0, 0, 0);
+}
+
+.mapboxgl-ctrl-zoom-in,
+.mapboxgl-ctrl-icon,
+.mapboxgl-ctrl-compass,
+.mapboxgl-ctrl-fullscreen,
+.mapboxgl-ctrl-geolocate {
+  background-color: #E07A5F;
+  border: 2px solid black;
+}
+
+.mapboxgl-marker>svg {
+  path {
+    fill: #E07A5F
+  }
+}

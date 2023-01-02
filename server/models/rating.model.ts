@@ -13,13 +13,13 @@ export const postRating = async (obj, pothole_id) => {
 
 export const getPotholesAtIds = (idArray, cb) => {
   const sortRating = (ratingArray) => {
-    const resultArr = ratingArray.sort((a, b) => b.overall - a.overall)
-    cb(resultArr)
-  }
+    const resultArr = ratingArray.sort((a, b) => b.overall - a.overall);
+    cb(resultArr);
+  };
 
   Rating.findAll({ where: { pothole_id: idArray } })
     .then((data) => sortRating(data))
-    .catch(err => console.log(err));
+    .catch((err) => console.log(err));
 };
 
 export const addRating = (pothole_id: number, fixed:boolean, rating: number, user_id:number) => {
@@ -32,5 +32,11 @@ export const addRating = (pothole_id: number, fixed:boolean, rating: number, use
         Rating.update({ fixed, overall: rating }, { where: { pothole_id, user_id } })
           .catch(err => console.log(err))
     }
-  })
-}
+  });
+};
+
+export const getAllRatingsById = async (id, cb) => {
+  Rating.findAll({ where: { pothole_id: id } })
+    .then((data) => cb(data))
+    .catch((err) => console.error(err));
+};

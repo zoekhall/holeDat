@@ -26,7 +26,6 @@ const StatusSection = ({handleSubmit}) => (
   </Form.Group>
 );
 
-
 StatusSection.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
 };

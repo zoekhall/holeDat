@@ -20,7 +20,7 @@ const PotholePic = () => {
       className='mb-5'
     >
       <Form.Control type='file' onChange={handleChange} required />
-      <img src={imageContents.photoURL} />
+      <img id='inputImg' src={imageContents.photoURL} />
     </Form.Group> 
 )};
 

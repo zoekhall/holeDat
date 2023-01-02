@@ -19,7 +19,7 @@ const StatusSection = ({handleSubmit}) => (
       <PotholeStatus />
     </Form.Group>
 
-    <Button type='button' variant='outlined-dark' onClick={handleSubmit}>
+    <Button type='submit' variant='outlined-dark' onClick={handleSubmit}>
       Submit Your Pothole
     </Button>
 

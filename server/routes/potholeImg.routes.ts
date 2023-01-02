@@ -75,7 +75,7 @@ imgs.get('/potholeimg:id', (req: Request, res: Response) => {
 
 imgs.get('/feed', (req: Request, res: Response) => {
   const { offset, sortAge, fixedStatus } = req.query
-  console.log(sortAge)
+  // console.log(sortAge)
   if(sortAge === 'New'){
     getAllImgsWithAddress(offset, 'createdAt', 'DESC', fixedStatus, (data) => res.status(200).send(data));
   } else if( sortAge === 'Old'){

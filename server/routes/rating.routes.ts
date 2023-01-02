@@ -1,4 +1,5 @@
 import express, { Request, Response } from 'express';
+import { getAllRatingsById } from '../models/rating.model';
 const rating = express.Router();
 
 import { getPotholesAtIds, addRating } from '../models/rating.model';

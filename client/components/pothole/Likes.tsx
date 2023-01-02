@@ -11,28 +11,31 @@ const Likes = ({ user, image }: any) => {
   const { image_id } = image
   const { userId_user } = user
 
-  const sendLike = (bol: boolean) => {
-    axios.post('/api/likes/', { params: { bol, userId_user, image_id } })
+  const sendLike = (bool: boolean) => {
+    axios.post('/api/likes/', { params: { bol: bool, userId_user, image_id } })
       .then(() => {
-        if (!bol && usersLike && usersLike !== null) {
-          setUsersLike(bol) /// ^ V --2
-          setRatio(ratio - 2)
-        } else if (bol && !usersLike && usersLike !== null) {
-          setUsersLike(bol) /// V ^ ++2
-          setRatio(ratio + 2)
-        } else if (bol && usersLike && usersLike !== null) {
-          setUsersLike(null) /// ^ ^
-          setRatio(ratio - 1)
-        } else if (!bol && !usersLike && usersLike !== null) {
-          setUsersLike(null) // V V +1
-          setRatio(ratio + 1)
-        } else if (usersLike === null && bol) {
-          setUsersLike(bol) // - ^ +1
-          setRatio(ratio + 1)
-        } else if (usersLike === null && !bol) {
-          setUsersLike(bol) // - v -1
-          setRatio(ratio - 1)
+        const isUsersLike = usersLike !== null
+        let newBol: boolean | null = bool
+        if (isUsersLike) {
+          if (!bool && usersLike) {
+            setRatio(ratio - 2)
+          } else if (bool && !usersLike) {
+            setRatio(ratio + 2)
+          } else if (bool && usersLike) {
+            newBol = null/// ^ ^
+            setRatio(ratio - 1)
+          } else if (!bool && !usersLike) {
+            newBol = null // V V +1
+            setRatio(ratio + 1)
+          }
+        } else {
+          if (bool) {
+            setRatio(ratio + 1)
+          } else if (!bool) {
+            setRatio(ratio - 1)
+          }
         }
+        setUsersLike(newBol)
       })
       .catch(err => console.log(err))
   }
@@ -74,7 +77,7 @@ const Likes = ({ user, image }: any) => {
     getUserLike()
     getLikes()
   }, [])
-  
+
   useEffect(handleColor, [usersLike])
 
   return (

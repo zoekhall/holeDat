@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import FeedEntry from './FeedEntry';
+import InfiniteScroll from 'react-infinite-scroll-component';
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import ToggleButton from 'react-bootstrap/ToggleButton';
 
 function Feed() {
   type phImg = {
@@ -10,94 +13,112 @@ function Feed() {
     createdAt: string;
     updatedAt: string;
     pothole_id: number;
-    addressDetails: object;
+    lat: number,
+    lon: number,
     badge_id: number;
     fixed: boolean;
+    user_id: number;
+    name: string;
+    photo: string;
   };
 
   const [globalFeed, setGlobalFeed] = useState<phImg[]>([]);
-
+  const [sortAge, setSortAge] = useState<string>('')
+  const [sortFix, setSortFixed] = useState<boolean>(false)
 
   const getAllImgs = () => {
-    // gets all images of all potholes
-    axios.get('/api/imgs/feed')
-      .then((data) => setGlobalFeed(data.data)) // sets globalFeed to an array of objects
+    axios.get('/api/imgs/feed', { params: { offset: globalFeed.length, sortAge, fixedStatus: sortFix } })
+      .then(({ data }) => {
+        const resArr = data.map(each => {
+          const { caption, user_id, updatedAt, pothole_id, photoURL, image_id, createdAt } = each
+          const { name, photo, badge_id } = each.User
+          const { lat, lon, fixed } = each.Pothole
+          const resObj: phImg = { image_id, photoURL, caption, createdAt, updatedAt, pothole_id, lat, lon, fixed, user_id, name, photo, badge_id }
+          return resObj
+        })
+        setGlobalFeed([globalFeed, resArr].flat())
+      })
       .catch((err) => console.log(err));
+
   };
 
-  const sortByNew = () => {
-    // sorts the current filter by new
-    let resultArr = globalFeed.sort((a, b) => {
-      return new Date(a.createdAt).valueOf() - new Date(b.createdAt).valueOf(); //sort the array by the createdAt value
-    });
-    setGlobalFeed([...resultArr]); // sets globalFeed to the previous globalfeed sorted by date
-  };
 
-  const sortByOld = () => {
-    sortByNew()
-    setGlobalFeed([...globalFeed.reverse()]);
+
+  const handleClickAge = age => {
+    setGlobalFeed([])
+    setSortAge(age)
   }
-
-  const sortByUnique = () => {
-    let filtArr: number[] = [];
-    let resultArr = globalFeed.filter((val) => {
-      if (!filtArr.includes(val.pothole_id)) {
-        // if the pothole_id has not already been seen
-        filtArr.push(val.pothole_id);
-        return true;
-      }
-    });
-    setGlobalFeed([...resultArr]);
-  };
-
-  const sortByRating = (option) => {
-
-    let idArr: number[] = globalFeed.map(img => img.pothole_id) // get an array of all the images pothole_id's
-
-    const sortImage = (ratingArr) => { // sorts the objImg by rating of the pothole attached, subsequently it removes duplicate pothole_ids forcingg a unique like filter
-      let resultArr: any[] = [[], []] // index 0 is the ones with ratings, index 1 is the ones without ratings
-
-      const idArr = ratingArr.map(val => val.pothole_id)
-      for (let i = 0; i < globalFeed.length; i++) {
-        if (!idArr.includes(globalFeed[i].pothole_id)) { // if the array of potholeId's dosent have the current pothole imgObj potholeId
-          resultArr[1].push(globalFeed[i]) // send to index 1 of resultArr
-        }  // if the current imgObj popthole Id value is included in the array of pothole ids
-        resultArr[0].push(globalFeed.find(e => e.pothole_id === idArr[i]))
-
-      }
-      if (option === 'H') {
-        setGlobalFeed([...resultArr.flat().filter(n => n !== undefined)]) // flatten the array and filter out undefined values
-      } else if (option === 'L') {
-        setGlobalFeed([...resultArr.flat().reverse().filter(n => n !== undefined)]) // flatten the array and filter out undefined values
-      }
-    }
-
-
-    axios.post('/api/rating/potholeAtIds', { idArr, }) // send an array of image id's
-      .then(data => sortImage(data.data)) // retrieve an array of ratingg objects
-      .catch(err => console.log(err));
-
-  }
-
-  const sortByFixed = () => {
-    if (globalFeed.filter(val => val.fixed === true).length === 0) {
-      console.log('All is broken (:')
-    } else {
-      setGlobalFeed([...globalFeed.filter(val => val.fixed === true)])
-    }
+  const handleClickStatus = status => {
+    setGlobalFeed([])
+    setSortFixed(status)
   }
 
 
-  useEffect(getAllImgs, []);
+
+  useEffect(() => setSortAge('New'), [])
+
+  useEffect(getAllImgs, [sortAge])
+  useEffect(getAllImgs, [sortFix])
+
   return (
     <div>
-      <button onClick={getAllImgs}>Reset</button>
       <h1>Pothole Feed</h1>
-      Sort: <button onClick={sortByNew}>New</button> <button onClick={sortByUnique}>Unique</button> <button onClick={() => sortByRating('H')}>Rating(highest)</button>
-      <button onClick={sortByOld}>Old</button> <button onClick={() => sortByRating('L')}>Rating(lowest)</button> <button onClick={sortByFixed}>Fixed</button>
-      {globalFeed.map((imgVal) => (
-        <FeedEntry key={imgVal.image_id} imgObj={imgVal} />
-      ))}
+      <ButtonGroup className="mb-2">
+        <ToggleButton
+          type="radio"
+          variant="primary"
+          checked={sortAge === 'New'}
+          value="new"
+          onClick={() => handleClickAge('New')}
+        >
+          New
+        </ToggleButton>
+        <ToggleButton
+          type="radio"
+          variant="secondary"
+          name="radio"
+          value='old'
+          checked={sortAge === 'Old'}
+          onClick={() => handleClickAge('Old')}
+        >
+          Old
+        </ToggleButton>
+      </ButtonGroup>
+
+      <ButtonGroup className="mb-2">
+        <ToggleButton
+          type="radio"
+          variant="secondary"
+          checked={sortFix}
+          value="fixed"
+          onClick={() => handleClickStatus(true)}
+        >
+          Fixed
+        </ToggleButton>
+        <ToggleButton
+          type="radio"
+          variant="secondary"
+          name="radio"
+          value='nFixed'
+          checked={!sortFix}
+          onClick={() => handleClickStatus(false)}
+        >
+          Not Fixed
+        </ToggleButton>
+      </ButtonGroup>
+
+
+
+      <InfiniteScroll
+        dataLength={globalFeed.length} //This is important field to render the next data
+        next={getAllImgs}
+        hasMore={true}
+        loader={<h4>Loading...</h4>}
+      >
+        {globalFeed && globalFeed.map((imgVal) => (
+          <FeedEntry key={imgVal.image_id} imgObj={imgVal} />
+        ))}
+      </InfiniteScroll>
     </div>
   );
 }

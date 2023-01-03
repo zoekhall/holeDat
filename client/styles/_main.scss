@@ -14,24 +14,24 @@ $regularText: 'DM Sans', sans-serif;
   background: $DarkColor1;
   height: 100%;
 
-h1 {
-  color: white;
-}
+  h1 {
+    color: white;
+  }
 
-#mainNavbar {
-  color: white;
-  background-color: $DarkColor2;
-}
+  #mainNavbar {
+    color: white;
+    background-color: $DarkColor2;
+  }
 
-#addPothole {
-  background-color: $DarkColor2;
-  border: $LightColor2
-}
+  #addPothole {
+    background-color: $DarkColor2;
+    border: $LightColor2
+  }
 
-#ratingGroupDiv {
+  #ratingGroupDiv {
     background-color: $DarkColor2;
     border: $LightColor2 solid 2px
-}
+  }
 }
 
 #swiper,
@@ -105,33 +105,20 @@ body {
   background-color: $LightColor2;
 }
 
-.mapboxgl-marker>svg path {
-  fill: $PrimaryColor;
-}
+
 
 .page-content {
   display: flex;
-  // width: 80%;
-  // background-color: #f7f7ff;
   padding: 30px;
   margin: 30px;
   margin-top: 20px;
   flex-direction: column;
-  // border: 1px solid $DarkColor1;
   border-radius: 10px;
   z-index: 1;
   height: 100%;
-
 }
 
-.map-box {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  left: 0;
-  z-index: 0;
-  top: 70px;
-}
+
 
 
 // POTHOLE PROFILE SCSS
@@ -205,23 +192,19 @@ body {
 
 
 
-.mapPopup {
+
+
+.voting-cones>svg,
+.voting-cones>svg:hover {
+  width: 15%;
+}
+
+.fixed {
   display: flex;
-  margin-top: 15px;
-  flex-direction: column;
-  align-items: center;
-
+  flex-direction: row;
+  gap: 3px;
 }
 
-.mapPopup a,
-.map-box p {
-  margin: 0;
-}
-
-.mapPopup img {
-  border-radius: 3px;
-}
-
-.mapboxgl-popup-content {
-  padding: 3px;
+.clickCone {
+  fill: #FE5F55
 }

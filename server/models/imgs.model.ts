@@ -1,4 +1,3 @@
-import Sequelize from '../db/db.server';
 import Pothole from '../db/schema/pothole.schema';
 import PotholeIMG from '../db/schema/potholeImgs.schema';
 import User from '../db/schema/user.schema';
@@ -10,34 +9,15 @@ export const getAllImgs = (cb) => {
     .catch((err) => console.error(err));
 };
 
-export const getAllImgsWithAddress = (cb) => {
-
-  const addAddress = (potholeIdArr, potholeArr) => {
-    Pothole.findAll({ // find all potholes and get lat lon and pothole id
-      attributes: ['pothole_id', 'lat', 'lon', 'fixed',
-        [Sequelize.literal("0"), 'potholeIdArr']],
-      where: { pothole_id: potholeIdArr }
-    })
-      .then(data => {
-        const latLonObj = data.map(data => [data.lat, data.lon, data.pothole_id, data.fixed]) // take the lat lon and on each pothole add the lat lon that corrisponds witht he pothole_id
-        potholeArr.forEach(imgObj => {
-          latLonObj.forEach(latLonArr => {
-            if (latLonArr[2] === imgObj.pothole_id) {
-              imgObj.addressDetails = { lat: latLonArr[0], lon: latLonArr[1], pothole_id: latLonArr[2] }
-              imgObj.fixed = latLonArr[3]
-            }
-          })
-        })
-        cb(potholeArr)
-      })
-      .catch(err => console.log(err))
-  }
-
-
-  PotholeIMG.findAll({})
-    .then((data) => data.map(val => val.dataValues))
-    .then(data => addAddress(data.map(val => val.pothole_id), data))
-    .catch((err) => console.error(err));
+export const getAllImgsWithAddress = (offset, sortBy, order, fixedSatus, cb) => {
+  const limit = 3;
+  PotholeIMG.findAll({
+    include: [{model: User},{model: Pothole, where: {'fixed': fixedSatus}}],
+    limit,
+    offset,
+    order: [[sortBy, order]]
+  })
+  .then(data => cb(data.map(val => val.dataValues)))
 };
 
 

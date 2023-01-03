@@ -2,9 +2,9 @@ import express, { Request, Response } from "express";
 import { getBadgeAtId } from '../models/badges.model'
 const badges = express.Router()
 
-badges.get('/getBadge:id', (req: Request, res: Response) => {
-    const { id } = req.params
-    getBadgeAtId(id, (data) => res.status(200).send(data))
+badges.get('/getBadge', (req: Request, res: Response) => {
+    const { badgeId } = req.query
+    getBadgeAtId(badgeId, (data) => res.status(200).send(data.dataValues))
 
 })
 

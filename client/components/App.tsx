@@ -12,18 +12,9 @@ import Feed from './feed/Feed';
 import MapView from './map/MapView';
 import NoPage from './NoPage';
 import AddPothole from './addPothole/AddPothole';
-
+import Rating from './pothole/Rating'
 
 const App = () => {
-  // const getCurrentTheme = () => window.matchMedia("(prefers-color-scheme: dark)").matches;
-  //const [isDarkTheme, setIsDarkTheme] = useState(getCurrentTheme());
-  // const mqListener = (e => {
-  //   setIsDarkTheme(e.matches);
-  // });
-
-  // useEffect(() => {
-
-  // }, []);
 
   return (
     <BrowserRouter>
@@ -32,6 +23,7 @@ const App = () => {
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='Pothole:id' element={<Pothole />} />
+          <Route path='Rating:id' element={<Rating />} />
           <Route path='User' element={<User />} />
           <Route path='User:id' element={<NonUserProfile />} />
           <Route path='Map' element={<MapView />} />

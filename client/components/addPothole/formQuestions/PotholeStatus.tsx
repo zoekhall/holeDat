@@ -1,14 +1,9 @@
-import React, {useState} from 'react';
+import React, { useContext } from 'react';
 import Form from 'react-bootstrap/Form';
-import PropTypes from 'prop-types';
+import { StatusContext } from '../AddPothole';
 
-const PotholeStatus = ({ handleStatus }) => {
-  const [status, setStatus] = useState<boolean>(false);
-  
-  const finalStatus = (stat) => {
-    setStatus(stat === 'Not Fixed' ? false : true);
-    handleStatus(status);
-  }
+const PotholeStatus = () => {
+  const { statusContents, setStatusContents } = useContext(StatusContext);
 
   return (
     <Form.Group id='addPotStatus' className='mb-5'>
@@ -19,16 +14,16 @@ const PotholeStatus = ({ handleStatus }) => {
             label={label}
             name='group1'
             type='radio'
-            onChange={() => finalStatus(label)}
+            onChange={() => {
+              const newStatusContents = { ...statusContents };
+              newStatusContents.fixed = label === 'Not Fixed' ? false : true;
+              setStatusContents(newStatusContents);
+            }}
           />
         </div>
       ))}
     </Form.Group>
   );
-}
-
-PotholeStatus.propTypes = {
-  handleStatus: PropTypes.func.isRequired
 }
 
 export default PotholeStatus;

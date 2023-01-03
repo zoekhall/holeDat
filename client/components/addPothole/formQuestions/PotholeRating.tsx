@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
-import React from 'react';
+import React, { useContext } from 'react';
 import Form from 'react-bootstrap/Form';
-import PropTypes from 'prop-types';
+import { StatusContext } from '../AddPothole';
 
 const coneSVG = //cone svg
   (
@@ -18,7 +18,9 @@ const coneSVG = //cone svg
 
 const ratingArray = [1, 2, 3, 4, 5]; //rating values
 
-const PotholeRating = ({ handleRating }) => {
+const PotholeRating = () => {
+  const { statusContents, setStatusContents } = useContext(StatusContext);
+
   return (
     <Form.Group controlId='ratingPot' className='mb-5'>
       <div id='ratingGroupDiv' className='ratingElem'>
@@ -26,7 +28,16 @@ const PotholeRating = ({ handleRating }) => {
         <div id='cones' className='ratingElem'>
           {ratingArray.map((num) => {
             return (
-              <span key={num} id={`${num}`} onClick={() => handleRating(num)} className='cone'>
+              <span
+                key={num}
+                id={`${num}`}
+                onClick={() => {
+                  const newStatusContents = {...statusContents};
+                  newStatusContents.rating = num;
+                  setStatusContents(newStatusContents);
+                }}
+                className='cone'
+              >
                 {coneSVG}
               </span>
             );
@@ -36,10 +47,6 @@ const PotholeRating = ({ handleRating }) => {
       </div>
     </Form.Group>
   );
-};
-
-PotholeRating.propTypes = {
-  handleRating: PropTypes.func.isRequired,
 };
 
 export default PotholeRating;

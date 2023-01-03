@@ -1,29 +1,27 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React from 'react';
+import React, { useContext } from 'react';
 import Form from 'react-bootstrap/Form';
-import PropTypes from 'prop-types';
+import { ImageContext } from '../AddPothole';
 
-//photo upload box
-const PotholePic = ({ setFile }) => {
+//Component with the photo upload box. Assigns photo file and url to image context
+const PotholePic = () => {
+  const { imageContents, setImageContents } = useContext(ImageContext)
+
+  const handleChange = (e) => {
+    const newImageContents = { ...imageContents };
+    newImageContents.file = e.target.files[0];
+    newImageContents.photoURL = URL.createObjectURL(e.target.files[0]);
+    setImageContents(newImageContents);
+  }
 
   return (
-  <Form.Group
-    controlId='uploadPotPhoto'
-    className='mb-5'
-    onChange={(e) => {
-      //when a file is selected, set the file state to that photo object
-      const event = e.target as HTMLInputElement;
-      if (event.files !== null) {
-        setFile(event.files[0]);
-      }
-    }}
-  >
-    <Form.Control type='file' required />
-  </Form.Group>
+    <Form.Group
+      controlId='uploadPotPhoto'
+      className='mb-5'
+    >
+      <Form.Control type='file' onChange={handleChange} required />
+      <img src={imageContents.photoURL} />
+    </Form.Group> 
 )};
-
-PotholePic.propTypes = {
-  setFile: PropTypes.func.isRequired,
-};
 
 export default PotholePic;

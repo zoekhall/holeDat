@@ -42,7 +42,7 @@ const Point = prop => {
         <Popup
           longitude={lon}
           latitude={lat}
-          anchor='center'
+          anchor='bottom'
           closeOnClick={false}
           onClose={() => setShowPopup(true)}
           focusAfterOpen={true}
@@ -50,7 +50,7 @@ const Point = prop => {
           {plothole ?
             <div className='mapPopup'>
               <Link to={'/Pothole:' + pothole_id}>
-                <img src={plothole.photoURL} alt='potholeImg' width={100} />
+                <img src={plothole.photoURL} alt='potholeImg' />
               </Link>
             </div>
             : ''}

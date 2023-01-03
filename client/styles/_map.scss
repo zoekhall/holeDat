@@ -10,39 +10,39 @@
 }
 
 .mapPopup {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 3px;
+  margin: 0px;
+  border-radius: 15px;
+  padding: 0;
+  box-shadow: -3px -3px 0px rgb(0, 0, 0);
+  border: 2px solid black;
 }
 
+.mapPopup:hover {
+  box-shadow: none;
+}
+
+.mapPopup img {
+  border-radius: 11px;
+  object-fit: cover;
+  height: 100px;
+  width: 100px;
+}
 
 .mapboxgl-popup-close-button,
 .mapboxgl-popup-close-button button:not(:disabled),
 .mapboxgl-popup-close-button>button>[type=button]:not(:disabled):focus {
-  box-shadow: -1px 2px black;
+  box-shadow: -1px 1px black;
   border-radius: 100%;
   background-color: #F2CC8F;
   border: 2px solid black;
-  margin: -5px;
+  margin: -10px;
 }
 
-.mapPopup a,
-.map-box p {
-  margin: 0;
-  padding: 0;
+.mapboxgl-popup-close-button:hover {
+  background-color: #E07A5F;
+  box-shadow: none;
 }
 
-.mapPopup img {
-  object-fit: cover;
-  height: 80px;
-  width: 80px;
-  border-radius: 30px;
-  padding: 0;
-  margin: 0;
-  box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.5);
-  border: 3px solid black;
-}
 
 .mapboxgl-popup-content {
   padding: 0;

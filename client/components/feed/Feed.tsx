@@ -114,6 +114,16 @@ function Feed() {
         next={getAllImgs}
         hasMore={true}
         loader={<h4>Loading...</h4>}
+
+        refreshFunction={getAllImgs}
+        pullDownToRefresh
+        pullDownToRefreshThreshold={25}
+        pullDownToRefreshContent={
+          <h3 style={{ textAlign: 'center' }}>&#8595; Pull down to refresh</h3>
+        }
+        releaseToRefreshContent={
+          <h3 style={{ textAlign: 'center' }}>&#8593; Release to refresh</h3>
+        }
       >
         {globalFeed && globalFeed.map((imgVal) => (
           <FeedEntry key={imgVal.image_id} imgObj={imgVal} />

@@ -8,7 +8,8 @@ getUserData(9000, data=>
   expect(typeof data).toBe('object'))
 )
 
-test("getRecentUsers is returns an Array", ()=>
+test("getRecentUsers returns an Array", ()=>
 getRecentUsers(data=>
   expect(Array.isArray(data)).toBe(true))
 )
+

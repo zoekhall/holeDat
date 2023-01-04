@@ -11,7 +11,7 @@ const PotholePlot = (prop) => {
   const [style, setStyle] = useState<string>(
     'mapbox://styles/jorcar1986/clc6iejcx000y14t0iaefvyss'
   );
-  const { coordinates, pothole_id, updateMap } = prop; 
+  const { coordinates, pothole_id } = prop; 
 
   useEffect(() => {
     if (!document.querySelector('.dark-mode')) {
@@ -23,11 +23,8 @@ const PotholePlot = (prop) => {
 
   useEffect(() => {
     console.log(coordinates, pothole_id, 'effectively')
-  },[coordinates])
-  
-  if (updateMap === 0) {
-      return null;
-    } else {
+  },[pothole_id])
+
       return (
         <Form.Group>
           <Map
@@ -56,7 +53,6 @@ const PotholePlot = (prop) => {
           </Map>
         </Form.Group>
       );
-  }
 };
 
 export default PotholePlot;

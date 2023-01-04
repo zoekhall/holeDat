@@ -15,7 +15,6 @@ const PotholeLocation = () => {
   const [location, setLocation] = useState<string>(''); //stores address from input form
   const { coordinates, setCoordinates } = useContext(LocationContext) //set coordinates using AddPothole LocationContext
   const [pothole_id, setPothole_id] = useState<number>(0);
-  const [updateMap, setUpdateMap] = useState<number>(0);
 
   //turns address into lat and lon coordinates
   const updateLatLon = () => {
@@ -41,10 +40,6 @@ const PotholeLocation = () => {
       })
   }, [coordinates]);
 
-  useEffect(() => {
-    setUpdateMap(updateMap + 1);
-  }, [pothole_id])
-
   return (
     <Form.Group className='mb-3'>
       <Form.Group>
@@ -69,7 +64,7 @@ const PotholeLocation = () => {
           Enter
         </Button>
       </Form.Group>
-      <PotholePlot coordinates={ coordinates } pothole_id={ pothole_id } updateMap={updateMap} />
+      <PotholePlot coordinates={ coordinates } pothole_id={ pothole_id } />
     </Form.Group>
   );
 };

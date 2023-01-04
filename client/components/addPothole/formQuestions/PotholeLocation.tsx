@@ -14,10 +14,10 @@ const mapToken =
 const PotholeLocation = (prop) => {
   const [location, setLocation] = useState<string>(''); //stores address from input form
   const { coordinates, setCoordinates } = useContext(LocationContext) //set coordinates using AddPothole LocationContext
-  // const [pothole_id, setPothole_id] = useState<number>(0);
+  const [pothole_id, setPothole_id] = useState<number>(0);
   const [renderMap, setRenderMap] = useState<boolean>(false);
   const isMounted = useRef(false);
-  const { pothole_id, setPothole_id } = prop; 
+  const { setSubmissionStatus } = prop; 
 
   //turns address into lat and lon coordinates
   const updateLatLon = () => {
@@ -29,8 +29,7 @@ const PotholeLocation = (prop) => {
           newCoordinates.lat = data.features[0].center[1];
           newCoordinates.lon = data.features[0].center[0];
           setCoordinates(newCoordinates);
-        }
-      )
+        })
       .catch((err) => console.error('FAILURE TO TURN ADDRESS INTO COORDINATES', err));
   };
 
@@ -41,12 +40,19 @@ const PotholeLocation = (prop) => {
         const potholeId = data.length > 0 ? data[0].pothole_id : 0;
         setPothole_id(potholeId);
       })
-    
-  }, [coordinates]);
+      .catch(err => console.error('FAILURE TO FINDPOTHOLEID', err))
+    isMounted.current ? setRenderMap(true) : (isMounted.current = true);
+    }, [coordinates]);
 
-  useEffect(() => {
-    isMounted.current ? setRenderMap(true) : isMounted.current = true;
-  }, [coordinates])
+  //makes sure the map renders with the pothole id 
+  // useEffect(() => {
+  //   isMounted.current ? setRenderMap(true) : isMounted.current = true;
+  // }, [coordinates])
+
+  // useEffect(() => {
+  //           pothole_id === 0 ? setSubmissionStatus('notInDB') : setSubmissionStatus('inDB');
+
+  // })
   
   const handleMapRender = () => {
     if (renderMap === true) {
@@ -75,9 +81,9 @@ const PotholeLocation = (prop) => {
       </InputGroup>
         <Button
           variant='flat'
-          onClick={() => updateLatLon()}
+          onClick={() => {updateLatLon()}}
         >
-          Enter
+          Confirm Pothole Address
         </Button>
         {handleMapRender()}
       </Form.Group>

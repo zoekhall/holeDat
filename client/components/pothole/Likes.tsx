@@ -1,7 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const Likes = ({ user, image }: any) => {
+interface User {
+  name: string;
+  photo: string;
+  userId_user: number | undefined;
+}
+
+const Likes = ({ user, image }: { user: User, image: { [key: string]: number | boolean | string } }) => {
 
   const [ratio, setRatio] = useState<number>(0)
   const [usersLike, setUsersLike] = useState<boolean | null>(null)

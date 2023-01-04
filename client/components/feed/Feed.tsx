@@ -5,7 +5,7 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import ToggleButton from 'react-bootstrap/ToggleButton';
 
-function Feed() {
+const Feed: React.FC = () => {
   type phImg = {
     image_id: number;
     photoURL: string;
@@ -45,12 +45,16 @@ function Feed() {
 
 
   const handleClickAge = age => {
-    setGlobalFeed([])
-    setSortAge(age)
+    if (age !== sortAge) {
+      setGlobalFeed([])
+      setSortAge(age)
+    }
   }
   const handleClickStatus = status => {
-    setGlobalFeed([])
-    setSortFixed(status)
+    if (status !== sortFix) {
+      setGlobalFeed([])
+      setSortFixed(status)
+    }
   }
 
 
@@ -125,8 +129,8 @@ function Feed() {
           <h3 style={{ textAlign: 'center' }}>&#8593; Release to refresh</h3>
         }
       >
-        {globalFeed && globalFeed.map((imgVal) => (
-          <FeedEntry key={imgVal.image_id} imgObj={imgVal} />
+        {globalFeed && globalFeed.map((imgObj: phImg) => (
+          <FeedEntry key={imgObj.image_id} imgObj={imgObj} />
         ))}
       </InfiniteScroll>
     </div>

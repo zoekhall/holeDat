@@ -53,6 +53,7 @@ const PotholePlot = (prop) => {
           </Map>
         </Form.Group>
       );
+  
 };
 
 export default PotholePlot;

@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext, useEffect, useRef } from 'react';
 import axios from 'axios';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
@@ -15,6 +15,8 @@ const PotholeLocation = () => {
   const [location, setLocation] = useState<string>(''); //stores address from input form
   const { coordinates, setCoordinates } = useContext(LocationContext) //set coordinates using AddPothole LocationContext
   const [pothole_id, setPothole_id] = useState<number>(0);
+  const [renderMap, setRenderMap] = useState<boolean>(false);
+  const isMounted = useRef(false);
 
   //turns address into lat and lon coordinates
   const updateLatLon = () => {
@@ -40,6 +42,18 @@ const PotholeLocation = () => {
       })
   }, [coordinates]);
 
+  useEffect(() => {
+    isMounted.current ? setRenderMap(true) : isMounted.current = true;
+  }, [pothole_id])
+  
+  const handleMapRender = () => {
+    if (renderMap === true) {
+      return <PotholePlot coordinates={coordinates} pothole_id={pothole_id} />
+    } else {
+      return null;
+    }
+  }
+
   return (
     <Form.Group className='mb-3'>
       <Form.Group>
@@ -63,8 +77,8 @@ const PotholeLocation = () => {
         >
           Enter
         </Button>
+        {handleMapRender()}
       </Form.Group>
-      <PotholePlot coordinates={ coordinates } pothole_id={ pothole_id } />
     </Form.Group>
   );
 };

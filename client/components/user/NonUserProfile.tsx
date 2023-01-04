@@ -12,7 +12,7 @@ const NonUserProfile = () => {
         photo: string;
     }
 
-    let [profile, setProfile] = useState<userObj>({ name: '', user_id: 0, photo: '' });
+    const [profile, setProfile] = useState<userObj>({ name: '', user_id: 0, photo: '' });
 
     const getUserData = () => {
         axios.get('/api/user/userAtId' + id) // get user data of the user at the id

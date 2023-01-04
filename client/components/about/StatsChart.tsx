@@ -6,7 +6,7 @@ import axios from 'axios';
 ChartJS.register(CategoryScale, LinearScale, BarElement);
 
 const StatsChart = () => {
-  const [users, setUsers] = useState<any>([]);
+  const [users, setUsers] = useState<{ [key: string]: string | undefined }[]>([]);
 
   const statsImgs = () => {
     axios

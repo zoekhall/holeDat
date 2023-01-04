@@ -4,9 +4,14 @@ import { Bar } from 'react-chartjs-2';
 import axios from 'axios';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement);
+interface element {
+  pothole_id: number;
+  count: number
+  photoURL: string;
+}
 
 const PotholesChart = () => {
-  const [potholes, setPotholes] = useState<any>([]);
+  const [potholes, setPotholes] = useState<element[]>([]);
 
   const phstatsImgs = () => {
     axios

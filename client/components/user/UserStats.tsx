@@ -9,7 +9,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
 
-export const UserStats = ({ userId }) => {
+export const UserStats = ({ userId }: { userId: number }) => {
 
     type phImg = { // type of the pothole images
         image_id: number;

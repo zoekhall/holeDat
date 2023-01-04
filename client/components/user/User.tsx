@@ -10,9 +10,9 @@ function User() {
     photo: string;
   }
 
-  let [user, setUser] = useState<userObj>({ name: '', user_id: 0, photo: '' });
-  let [editTrigger, setEditTrigger] = useState(false);
-  let [text, setText] = useState('');
+  const [user, setUser] = useState<userObj>({ name: '', user_id: 0, photo: '' });
+  const [editTrigger, setEditTrigger] = useState(false);
+  const [text, setText] = useState('');
 
   const getUserData = () => { // gget the currently logged in users data
     axios.get('/api/user/current')
@@ -22,7 +22,7 @@ function User() {
 
   const editUsername = (username) => { // edit the username of loggged in user
     axios.patch('/api/user/edit/username', { name: username })
-      .then(data => getUserData())
+      .then(() => getUserData())
       .catch(err => console.log(err));
   }
 

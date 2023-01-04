@@ -29,8 +29,8 @@ const PotholePlot = (prop) => {
         <Form.Group>
           <Map
             initialViewState={{
-              latitude: 29.9682,
-              longitude: -90.03989,
+              latitude: coordinates.lat,
+              longitude: coordinates.lon,
               zoom: 15,
               pitch: 60,
             }}

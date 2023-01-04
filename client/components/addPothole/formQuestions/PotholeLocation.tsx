@@ -11,12 +11,13 @@ const mapToken =
   'pk.eyJ1IjoiemFjaG1hcnVsbG8iLCJhIjoiY2xhazZ5aGxyMDQ3bzNwbzZ2Z3N0b3lpMyJ9.65G-mwqhbWFy77O_I0LkOg';
 
 //Componenent with the location search input form. Assigns lat/lon to location context
-const PotholeLocation = () => {
+const PotholeLocation = (prop) => {
   const [location, setLocation] = useState<string>(''); //stores address from input form
   const { coordinates, setCoordinates } = useContext(LocationContext) //set coordinates using AddPothole LocationContext
-  const [pothole_id, setPothole_id] = useState<number>(0);
+  // const [pothole_id, setPothole_id] = useState<number>(0);
   const [renderMap, setRenderMap] = useState<boolean>(false);
   const isMounted = useRef(false);
+  const { pothole_id, setPothole_id } = prop; 
 
   //turns address into lat and lon coordinates
   const updateLatLon = () => {
@@ -40,11 +41,12 @@ const PotholeLocation = () => {
         const potholeId = data.length > 0 ? data[0].pothole_id : 0;
         setPothole_id(potholeId);
       })
+    
   }, [coordinates]);
 
   useEffect(() => {
     isMounted.current ? setRenderMap(true) : isMounted.current = true;
-  }, [pothole_id])
+  }, [coordinates])
   
   const handleMapRender = () => {
     if (renderMap === true) {

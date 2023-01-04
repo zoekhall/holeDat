@@ -49,9 +49,9 @@ const PotholeLocation = () => {
       <div>
         <Button
           variant='flat'
-          onClick={(e) => {
+          onClick={() => {
             if (location) {
-              e.currentTarget.disabled = true;
+              // e.currentTarget.disabled = true;
               setButtonMessage('Address Added');
               updateLatLon();
             }

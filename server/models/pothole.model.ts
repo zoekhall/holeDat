@@ -37,7 +37,7 @@ export const getMatchingPotholes = (cb, obj) => {
       lon: { [Op.between]: [obj.lon - 0.0001, obj.lon + 0.0001] },
     },
   })
-    .then((data) => cb(data))
+    .then((data) => {console.log(data, 'getMatchingPotholes'); cb(data)})
     .catch((err) => console.log('FAILURE TO MATCH POTHOLE', err));
 };
 

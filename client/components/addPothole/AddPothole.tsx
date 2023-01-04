@@ -9,6 +9,7 @@ import LocationSection from './formSections/LocationSection';
 import ImageSection from './formSections/ImageSection';
 import StatusSection from './formSections/StatusSection';
 import Submitted from './formSections/Submitted';
+import PotholePlot from './formQuestions/PotholePoint';
 
 /* -------------------------------- Contexts -------------------------------- */
 interface LocationContextType {
@@ -38,7 +39,7 @@ export const StatusContext = createContext<StatusContextType>({
 
 /* --------------------------- Main Form Component -------------------------- */
 const AddPothole = () => {
-  const sections: Array<string> = ['Welcome', 'Location', 'Image', 'Status'];
+  const sections: Array<string> = ['Welcome', 'Location', 'Map', 'Image', 'Status'];
   const [view, setView] = useState<string>('Welcome');
   const [progress, setProgress] = useState<number>(0);
   const [user_id, setUser_id] = useState<number>(0);
@@ -90,6 +91,12 @@ const AddPothole = () => {
       return (
         <LocationContext.Provider value={{ coordinates, setCoordinates }}>
           <LocationSection />
+        </LocationContext.Provider>
+      );
+    } else if (view === 'Map') {
+      return (
+        <LocationContext.Provider value={{ coordinates, setCoordinates }}>
+          <PotholePlot />
         </LocationContext.Provider>
       );
     } else if (view === 'Image') {

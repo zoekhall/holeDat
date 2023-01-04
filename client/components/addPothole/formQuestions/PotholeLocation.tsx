@@ -1,10 +1,11 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import axios from 'axios';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import InputGroup from 'react-bootstrap/InputGroup';
 import { AddressAutofill } from '@mapbox/search-js-react';
 import { LocationContext } from '../AddPothole';
+import PotholePlot from './PotholeMap';
 
 const mapToken =
   'pk.eyJ1IjoiemFjaG1hcnVsbG8iLCJhIjoiY2xhazZ5aGxyMDQ3bzNwbzZ2Z3N0b3lpMyJ9.65G-mwqhbWFy77O_I0LkOg';
@@ -12,9 +13,10 @@ const mapToken =
 //Componenent with the location search input form. Assigns lat/lon to location context
 const PotholeLocation = () => {
   const [location, setLocation] = useState<string>(''); //stores address from input form
-  const [buttonMessage, setButtonMessage] = useState<string>('Add Approximate Address'); //message to be updated when user clicks button
   const { coordinates, setCoordinates } = useContext(LocationContext) //set coordinates using AddPothole LocationContext
-  
+  const [pothole_id, setPothole_id] = useState<number>(0);
+  const [updateMap, setUpdateMap] = useState<number>(0);
+
   //turns address into lat and lon coordinates
   const updateLatLon = () => {
     const formattedLocation = location.split(' ').join('%20'); //format location to be read by mapbox
@@ -30,8 +32,22 @@ const PotholeLocation = () => {
       .catch((err) => console.error('FAILURE TO TURN ADDRESS INTO COORDINATES', err));
   };
 
+  useEffect(() => {
+    axios
+      .post('/api/pothole/findPothole', { lat: coordinates.lat, lon: coordinates.lon })
+      .then(({ data }) => {
+        const potholeId = data.length > 0 ? data[0].pothole_id : 0;
+        setPothole_id(potholeId);
+      })
+  }, [coordinates]);
+
+  useEffect(() => {
+    setUpdateMap(updateMap + 1);
+  }, [pothole_id])
+
   return (
     <Form.Group className='mb-3'>
+      <Form.Group>
       <InputGroup id='addPotLocation'>
         <AddressAutofill accessToken={mapToken} browserAutofillEnabled={true}>
           <Form.Control
@@ -46,20 +62,14 @@ const PotholeLocation = () => {
           />
         </AddressAutofill>
       </InputGroup>
-      <div>
         <Button
           variant='flat'
-          onClick={() => {
-            if (location) {
-              // e.currentTarget.disabled = true;
-              setButtonMessage('Address Added');
-              updateLatLon();
-            }
-          }}
+          onClick={() => updateLatLon()}
         >
-          {buttonMessage}
+          Enter
         </Button>
-      </div>
+      </Form.Group>
+      <PotholePlot coordinates={ coordinates } pothole_id={ pothole_id } updateMap={updateMap} />
     </Form.Group>
   );
 };

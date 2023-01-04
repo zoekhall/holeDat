@@ -9,7 +9,6 @@ import LocationSection from './formSections/LocationSection';
 import ImageSection from './formSections/ImageSection';
 import StatusSection from './formSections/StatusSection';
 import Submitted from './formSections/Submitted';
-import PotholePlot from './formQuestions/PotholePoint';
 
 /* -------------------------------- Contexts -------------------------------- */
 interface LocationContextType {
@@ -93,12 +92,12 @@ const AddPothole = () => {
           <LocationSection />
         </LocationContext.Provider>
       );
-    } else if (view === 'Map') {
-      return (
-        <LocationContext.Provider value={{ coordinates, setCoordinates }}>
-          <PotholePlot />
-        </LocationContext.Provider>
-      );
+    // } else if (view === 'Map') {
+    //   return (
+    //     <LocationContext.Provider value={{ coordinates, setCoordinates }}>
+  
+    //     </LocationContext.Provider>
+    //   );
     } else if (view === 'Image') {
       return (
         <ImageContext.Provider value={{ imageContents, setImageContents }}>

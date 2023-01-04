@@ -30,6 +30,7 @@ export const findAndAddPothole = (cb, obj) => {
 };
 
 export const getMatchingPotholes = (cb, obj) => {
+  console.log(obj, 'obj in getmatchingpotholes')
   Pothole.findAll({
     //determine if there is a pothole that exists between these coordinates
     where: {

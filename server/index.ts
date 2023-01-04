@@ -72,6 +72,7 @@ passport.use(
   )
 );
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 passport.serializeUser((user: any, done) => {
   done(null, user.id);
 });
@@ -101,6 +102,7 @@ const socketServer = new Server(8081, {
   },
 })
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 socketServer.on('connection', (socket: any) => {
   // Set up an interval to send a "heartbeat" message every 10 seconds
   setInterval(() => {

@@ -2,7 +2,23 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-const FeedEntry = ({ imgObj }: any) => {
+
+interface phImg {
+  image_id: number;
+  photoURL: string;
+  caption: string;
+  createdAt: string;
+  updatedAt: string;
+  pothole_id: number;
+  lat: number,
+  lon: number,
+  badge_id: number;
+  fixed: boolean;
+  user_id: number;
+  name: string;
+  photo: string;
+}
+const FeedEntry = ({ imgObj }: { imgObj: phImg }) => {
 
   type badgeObj = {
     imgUrl: string;

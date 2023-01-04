@@ -1,5 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import { StatusContext } from '../AddPothole';
 
@@ -20,6 +20,7 @@ const ratingArray = [1, 2, 3, 4, 5]; //rating values
 
 const PotholeRating = () => {
   const { statusContents, setStatusContents } = useContext(StatusContext);
+  const [isPicked, setIsPicked] = useState<boolean>(false);
 
   return (
     <Form.Group controlId='ratingPot' className='mb-5'>
@@ -35,8 +36,9 @@ const PotholeRating = () => {
                   const newStatusContents = {...statusContents};
                   newStatusContents.rating = num;
                   setStatusContents(newStatusContents);
+                  setIsPicked(!isPicked);
                 }}
-                className='cone'
+                className={isPicked === false ? 'picked' : 'cone'}
               >
                 {coneSVG}
               </span>

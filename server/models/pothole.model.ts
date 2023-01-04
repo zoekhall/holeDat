@@ -29,7 +29,6 @@ export const findAndAddPothole = (cb, obj) => {
     .catch((err) => console.error('FAILURE TO FIND POTHOLE', err));
 };
 
-
 export const getMatchingPotholes = (cb, obj) => {
   Pothole.findAll({
     //determine if there is a pothole that exists between these coordinates

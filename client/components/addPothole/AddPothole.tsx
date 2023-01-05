@@ -38,8 +38,8 @@ export const StatusContext = createContext<StatusContextType>({
 
 /* --------------------------- Main Form Component -------------------------- */
 const AddPothole = () => {
-  const sections: Array<string> = ['Location', 'Image', 'Status'];
-  const [view, setView] = useState<string>('Location');
+  const sections: Array<string> = ['Welcome', 'Location', 'Image', 'Status'];
+  const [view, setView] = useState<string>('Welcome');
   const [progress, setProgress] = useState<number>(0);
   const [user_id, setUser_id] = useState<number>(0);
   const [coordinates, setCoordinates] = useState({ lat: 0, lon: 0 });
@@ -89,7 +89,7 @@ const AddPothole = () => {
     if (view === 'Location') {
       return (
         <LocationContext.Provider value={{ coordinates, setCoordinates }}>
-          <LocationSection setView={setView} view={view} />
+          <LocationSection />
         </LocationContext.Provider>
       );
     } else if (view === 'Image') {
@@ -104,7 +104,13 @@ const AddPothole = () => {
           <StatusSection />
         </StatusContext.Provider>
       );
-    }
+    } else {
+      return (
+        <div>
+          <h5>Time to Submit a Pothole to the Pothole Panoply!</h5>
+          <h6>Fill out this quick form in order to submit a pothole!</h6>
+        </div>
+      );}
   };
 
   //* Handle Form Components //*
@@ -117,7 +123,6 @@ const AddPothole = () => {
       <div>
         <h1>Report a Pothole</h1>
         {handleSectionalView()}
-        <ProgressBar now={progress} />
         <Button
           type='button'
           variant='outlined-dark'
@@ -125,6 +130,7 @@ const AddPothole = () => {
         >
           Next
         </Button>
+        <ProgressBar now={progress} />
       </div>
     );
 

@@ -1,55 +1,60 @@
 /* eslint-disable react/no-unescaped-entities */
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import Form from 'react-bootstrap/Form';
 import PotholeLocation from '../formQuestions/PotholeLocation';
+import PotholePlot from '../formQuestions/PotholeMap';
+import { LocationContext } from '../AddPothole';
 
-const LocationSection = (prop) => {
-  const [submissionStatus, setSubmissionStatus] = useState<string>('notSubmitted')
-  const { setView, view } = prop;
+const LocationSection = () => {
+  const { coordinates } = useContext(LocationContext);
+  const [sectionView, setSectionView] = useState<string>('initialView');
+  const [pothole_id, setPothole_id] = useState<number>(0);
+  const [location, setLocation] = useState<string>(''); //stores address from input form
 
-  const handleSubmissionStatus = () => {
-    const submissionText =
-      submissionStatus === 'notInDB'
-        ? `Wow! You're Submitting a Brand New Pothole`
-        : `This Pothole Already Has a Profile But It Still Needs Your Photo and Rating!`;
-        if (submissionStatus === 'notInDB') {
-          return (
-            <div>
-              <h4>{submissionText}</h4>
-              <p>
-                After Seeing it On the Map, If This is Not the Pothole You're Looking For, Click
-                Below to Enter a New Pothole Address
-              </p>
-              <button onClick={() => {
-                setView('Location');
-                console.log(view)
-              }}>Enter New Address</button>
-            </div>
-          );
-        } else if(submissionStatus === 'inDB') {
-          return <h4>inDB</h4>;
-        } else {
-          return null;
-        }
-  }
+  const handleLocationView = () => {
+    if (sectionView === 'initialView') {
+      return (
+        <Form.Group>
+          <Form.Text className='text-muted'>
+            Enter the Address You Think is Closest to the Pothole
+          </Form.Text>
+          <PotholeLocation setSectionView={setSectionView} setPothole_id={setPothole_id} setLocation={setLocation} location={location} />
+        </Form.Group>
+      );
+    } else {
+      return (
+        <div>
+          <h4>
+            {sectionView === 'newPothole'
+              ? `Wow! You're Submitting a Brand New Pothole at ${location}!`
+              : 'This Pothole Already Has a Profile But Needs Your Input!'}
+          </h4>
+          <p>
+            {sectionView === 'newPothole'
+              ? ''
+              : "If you'd like to check out its pothole profile, you can click on the marker/pothole picture. You will be directed to the profile and will have to restart the form"}
+          </p>
+          <PotholePlot coordinates={coordinates} pothole_id={pothole_id} />
+          <button
+            onClick={() => {
+              setSectionView('initialView');
+            }}
+          >
+            Enter New Address
+          </button>
+        </div>
+      );
+    }
+  };
 
   return (
     <Form.Group>
-      <h5>Time to Submit a Pothole to the Pothole Panoply!</h5>
-      <p>Let's Start with the Pothole's Approximate Location</p>
-      <br style={{ borderBottom: '1px dashed black' }}></br>
-      
       <Form.Group>
         <Form.Label>Where Abouts is Dat Pothole Located?</Form.Label>
-        <br></br>
-        <Form.Text className='text-muted'>
-          Enter the Address You Think is Closest to the Pothole
-        </Form.Text>
-
-        {handleSubmissionStatus()}
-        <PotholeLocation setSubmissionStatus={setSubmissionStatus} />
+        {handleLocationView()}
       </Form.Group>
     </Form.Group>
-  );};
+  );
+};
 
 export default LocationSection;

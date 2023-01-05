@@ -5,19 +5,18 @@ import Button from 'react-bootstrap/Button';
 import InputGroup from 'react-bootstrap/InputGroup';
 import { AddressAutofill } from '@mapbox/search-js-react';
 import { LocationContext } from '../AddPothole';
-import PotholePlot from './PotholeMap';
+import Alert from 'react-bootstrap/Alert';
+// import PotholePlot from './PotholeMap';
 
 const mapToken =
   'pk.eyJ1IjoiemFjaG1hcnVsbG8iLCJhIjoiY2xhazZ5aGxyMDQ3bzNwbzZ2Z3N0b3lpMyJ9.65G-mwqhbWFy77O_I0LkOg';
 
 //Componenent with the location search input form. Assigns lat/lon to location context
 const PotholeLocation = (prop) => {
-  const [location, setLocation] = useState<string>(''); //stores address from input form
   const { coordinates, setCoordinates } = useContext(LocationContext); //set coordinates using AddPothole LocationContext
-  const [pothole_id, setPothole_id] = useState<number>(0);
-  const [renderMap, setRenderMap] = useState<boolean>(false);
   const isMounted = useRef(false);
-  const { setSubmissionStatus } = prop;
+  const [showError, setShowError] = useState<boolean>(false);
+  const { setSectionView, setPothole_id, setLocation, location } = prop;
 
   //turns address into lat and lon coordinates
   const updateLatLon = () => {
@@ -31,8 +30,12 @@ const PotholeLocation = (prop) => {
         newCoordinates.lat = data.features[0].center[1];
         newCoordinates.lon = data.features[0].center[0];
         setCoordinates(newCoordinates);
+        console.log(data)
       })
-      .catch((err) => console.error('FAILURE TO TURN ADDRESS INTO COORDINATES', err));
+      .catch((err) => {
+        setShowError(true)
+        console.error('FAILURE TO TURN ADDRESS INTO COORDINATES', err)
+      });
   };
 
   //when coordinates change - find the id and set up render of map
@@ -47,23 +50,21 @@ const PotholeLocation = (prop) => {
       //after finding the pothole id - use it to set the status and render the map
       .then((potholeId) => {
         if (isMounted.current) {
-          setRenderMap(true);
-          potholeId === 0 ? setSubmissionStatus('notInDB') : setSubmissionStatus('inDB');
+          potholeId === 0 ? setSectionView('newPothole') : setSectionView('existingPothole');
         } else {
           isMounted.current = true;
         }
       })
-      .catch((err) => console.error('FAILURE TO FINDPOTHOLEID', err));
+      .catch((err) => console.error('FAILURE TO FIND POTHOLEID', err));
   }, [coordinates]);
 
-  //function to render the map once the coordinates changed and map has been rendered
-  const handleMapRender = () => {
-    if (renderMap === true) {
-      return <PotholePlot coordinates={coordinates} pothole_id={pothole_id} />;
+  const handleShowError = () => {
+    if (showError === true) {
+      return <Alert variant='danger'>Oops! That is Not an Address! Try Again</Alert>;
     } else {
       return null;
     }
-  };
+  }
 
   return (
     <Form.Group className='mb-3'>
@@ -84,13 +85,13 @@ const PotholeLocation = (prop) => {
             />
           </AddressAutofill>
         </InputGroup>
+        {handleShowError()}
         <Button
           variant='flat'
           onClick={() => updateLatLon()} //on click coordinates are determined
         >
           Confirm Pothole Address
         </Button>
-        {handleMapRender()}
       </Form.Group>
     </Form.Group>
   );

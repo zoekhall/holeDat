@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom'
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 import axios from 'axios';
@@ -52,7 +53,9 @@ const StatsChart = () => {
       />
       <div className='chart-images'>
         {users.map((user) => (
-          <img width={50} key={user.user_id} src={user.photo} referrerPolicy='no-referrer' />
+          <Link key={user.user_id} to={'/User:' + user.user_id}>
+            <img width={50} src={user.photo} referrerPolicy='no-referrer' />
+          </Link>
         ))}
       </div>
     </div>

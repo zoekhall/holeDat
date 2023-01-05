@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 import axios from 'axios';
+import { Link } from 'react-router-dom'
 
 ChartJS.register(CategoryScale, LinearScale, BarElement);
 interface element {
@@ -57,12 +58,16 @@ const PotholesChart = () => {
       />
       <div className='chart-images'>
         {potholes.map((pothole) => (
-          <img
-            width={50}
+          <Link
             key={pothole.pothole_id}
-            src={pothole.photoURL}
-            referrerPolicy='no-referrer'
-          />
+            to={`/Pothole:${pothole.pothole_id}`}
+          >
+            <img
+              width={50}
+              src={pothole.photoURL}
+              referrerPolicy='no-referrer'
+            />
+          </Link>
         ))}
       </div>
     </div>

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { EffectCards, Autoplay } from 'swiper';
 
@@ -46,11 +47,12 @@ const UserImageSlider = () => {
         {recentPics.map((user) => {
           return (
             <SwiperSlide key={user.user_id}>
-              <img
-                src={user.photo}
-                referrerPolicy={'no-referrer'}
-                onClick={() => console.log(user.name)}
-              />
+              <Link to={'/User:' + user.user_id} >
+                <img
+                  src={user.photo}
+                  referrerPolicy={'no-referrer'}
+                />
+              </Link>
             </SwiperSlide>
           );
         })}

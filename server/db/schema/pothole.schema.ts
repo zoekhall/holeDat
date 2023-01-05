@@ -1,16 +1,22 @@
 import sequelize from '../db.server';
 import Rating from './ratings.schema';
-import {Association, NonAttribute, Model, DataTypes, CreationOptional, HasManyCreateAssociationMixin } from 'sequelize';
+import {
+  Association,
+  NonAttribute,
+  Model,
+  DataTypes,
+  CreationOptional,
+  HasManyCreateAssociationMixin,
+} from 'sequelize';
 import PotholeIMG from './potholeImgs.schema';
 
-class Pothole extends Model{
+class Pothole extends Model {
   declare pothole_id: CreationOptional<number>;
   declare fixed: boolean;
   declare lat: number;
   declare lon: number;
   declare createdAt: CreationOptional<Date>;
   declare updatedAt: CreationOptional<Date>;
-
 
   declare ratings?: NonAttribute<Rating[]>;
   declare potholeimgs?: NonAttribute<PotholeIMG[]>;
@@ -31,24 +37,23 @@ Pothole.init(
       unique: true,
     },
     fixed: {
-      type: new DataTypes.BOOLEAN,
+      type: new DataTypes.BOOLEAN(),
       // allowNull: false,
     },
     lat: {
-      type: new DataTypes.FLOAT,
+      type: new DataTypes.FLOAT(),
       allowNull: false,
     },
     lon: {
-      type: new DataTypes.FLOAT,
+      type: new DataTypes.FLOAT(),
       allowNull: false,
     },
     createdAt: DataTypes.DATE,
     updatedAt: DataTypes.DATE,
-
   },
   {
     tableName: 'potholes',
-    sequelize
+    sequelize,
   }
 );
 
@@ -57,5 +62,3 @@ Pothole.init(
 })();
 
 export default Pothole;
-
-

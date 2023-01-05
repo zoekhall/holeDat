@@ -13,20 +13,20 @@ const mapToken =
 const PotholeLocation = () => {
   const [location, setLocation] = useState<string>(''); //stores address from input form
   const [buttonMessage, setButtonMessage] = useState<string>('Add Approximate Address'); //message to be updated when user clicks button
-  const { coordinates, setCoordinates } = useContext(LocationContext)
-  
+  const { coordinates, setCoordinates } = useContext(LocationContext);
+
   //turns address into lat and lon coordinates
   const updateLatLon = () => {
     const formattedLocation = location.split(' ').join('%20'); //turn into
-    axios(`https://api.mapbox.com/geocoding/v5/mapbox.places/${formattedLocation}.json?language=en&limit=5&proximity=-121.90662,37.42827&country=US&access_token=${mapToken}`)
-      .then(
-        ({ data }) => {
-          const newCoordinates = { ...coordinates };
-          newCoordinates.lat = data.features[0].center[1];
-          newCoordinates.lon = data.features[0].center[0];
-          setCoordinates(newCoordinates);
-        }
-      )
+    axios(
+      `https://api.mapbox.com/geocoding/v5/mapbox.places/${formattedLocation}.json?language=en&limit=5&proximity=-121.90662,37.42827&country=US&access_token=${mapToken}`
+    )
+      .then(({ data }) => {
+        const newCoordinates = { ...coordinates };
+        newCoordinates.lat = data.features[0].center[1];
+        newCoordinates.lon = data.features[0].center[0];
+        setCoordinates(newCoordinates);
+      })
       .catch((err) => console.log(err));
   };
 

@@ -7,8 +7,7 @@ import PropTypes from 'prop-types';
 import PotholePic from '../formQuestions/PotholePic';
 import PotholeCaption from '../formQuestions/PotholeCaption';
 
-const ImageSection = ({setView, setProgress} ) => (
-  
+const ImageSection = ({ setView, setProgress }) => (
   <Form.Group>
     <h2>Pothole Imagery</h2>
     <Form.Group>

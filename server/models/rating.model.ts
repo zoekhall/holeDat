@@ -6,9 +6,7 @@ export const postRating = async (obj, pothole_id) => {
     where: { pothole_id },
   });
 
-  await pothole
-    ?.createRating(obj)
-    .catch((err) => console.error(err));
+  await pothole?.createRating(obj).catch((err) => console.error(err));
 };
 
 export const getPotholesAtIds = (idArray, cb) => {
@@ -22,15 +20,16 @@ export const getPotholesAtIds = (idArray, cb) => {
     .catch((err) => console.log(err));
 };
 
-export const addRating = (pothole_id: number, fixed:boolean, rating: number, user_id:number) => {
-  Rating.findOne({where: {pothole_id, user_id}})
-    .then(data => {
-      if (!data) {
-        Rating.create({ pothole_id, fixed, overall: rating, user_id })
-      .catch(err=> console.log(err))
-    } else{
-        Rating.update({ fixed, overall: rating }, { where: { pothole_id, user_id } })
-          .catch(err => console.log(err))
+export const addRating = (pothole_id: number, fixed: boolean, rating: number, user_id: number) => {
+  Rating.findOne({ where: { pothole_id, user_id } }).then((data) => {
+    if (!data) {
+      Rating.create({ pothole_id, fixed, overall: rating, user_id }).catch((err) =>
+        console.log(err)
+      );
+    } else {
+      Rating.update({ fixed, overall: rating }, { where: { pothole_id, user_id } }).catch((err) =>
+        console.log(err)
+      );
     }
   });
 };

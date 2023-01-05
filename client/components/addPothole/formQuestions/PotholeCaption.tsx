@@ -4,7 +4,7 @@ import Form from 'react-bootstrap/Form';
 import { ImageContext } from '../AddPothole';
 
 //photo caption text-box
-const PotholeCaption = () =>{
+const PotholeCaption = () => {
   const { imageContents, setImageContents } = useContext(ImageContext);
 
   return (
@@ -12,7 +12,7 @@ const PotholeCaption = () =>{
       controlId='addPotCaption'
       className='mb-5'
       onChange={(e) => {
-        const newImageContents = {...imageContents};
+        const newImageContents = { ...imageContents };
         newImageContents.caption = (e.target as HTMLInputElement).value;
         setImageContents(newImageContents);
       }} //changes caption in parent
@@ -20,6 +20,6 @@ const PotholeCaption = () =>{
       <Form.Control as='textarea' required />
     </Form.Group>
   );
-}
+};
 
 export default PotholeCaption;

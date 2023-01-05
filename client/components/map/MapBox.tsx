@@ -13,9 +13,12 @@ const MapBox = (prop) => {
     pothole_id: number;
     updatedAt: string;
   };
-  const mapbox_token = 'pk.eyJ1IjoiemFjaG1hcnVsbG8iLCJhIjoiY2xhazZ5aGxyMDQ3bzNwbzZ2Z3N0b3lpMyJ9.65G-mwqhbWFy77O_I0LkOg'
+  const mapbox_token =
+    'pk.eyJ1IjoiemFjaG1hcnVsbG8iLCJhIjoiY2xhazZ5aGxyMDQ3bzNwbzZ2Z3N0b3lpMyJ9.65G-mwqhbWFy77O_I0LkOg';
   const [markers, setMarkers] = useState<markerType[]>([]);
-  const [style, setStyle] = useState<string>('mapbox://styles/jorcar1986/clc6iejcx000y14t0iaefvyss')
+  const [style, setStyle] = useState<string>(
+    'mapbox://styles/jorcar1986/clc6iejcx000y14t0iaefvyss'
+  );
 
   const getMarkers = () => {
     axios
@@ -29,7 +32,7 @@ const MapBox = (prop) => {
     } else {
       setStyle('mapbox://styles/mapbox/dark-v10');
     }
-  }
+  };
 
   document.querySelector('.mode')?.addEventListener('click', () => {
     if (style === 'mapbox://styles/jorcar1986/clc6iejcx000y14t0iaefvyss') {
@@ -37,12 +40,11 @@ const MapBox = (prop) => {
     } else {
       setStyle('mapbox://styles/jorcar1986/clc6iejcx000y14t0iaefvyss');
     }
-  })
-
+  });
 
   useEffect(() => {
-    getMarkers()
-    mode()
+    getMarkers();
+    mode();
   }, [style]);
 
   return (
@@ -60,13 +62,11 @@ const MapBox = (prop) => {
       }}
       mapStyle={style}
     >
-      {
-        markers.map((marker) => {
-          if (!marker.fixed)
-            return <Point key={marker.pothole_id} marker={marker} userLocation={prop.userLocation} />;
-        })
-      }
-      < NavigationControl />
+      {markers.map((marker) => {
+        if (!marker.fixed)
+          return <Point key={marker.pothole_id} marker={marker} userLocation={prop.userLocation} />;
+      })}
+      <NavigationControl />
       <FullscreenControl />
       <GeolocateControl
         positionOptions={{ enableHighAccuracy: true }}
@@ -74,7 +74,7 @@ const MapBox = (prop) => {
         showUserHeading={true}
         fitBoundsOptions={{ maxZoom: 30 }}
       />
-    </Map >
+    </Map>
   );
 };
 

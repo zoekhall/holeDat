@@ -22,7 +22,7 @@ interface User {
 
 type CommentFormArgs = {
   phId: number;
-}
+};
 
 const CommentForm = ({ phId }: CommentFormArgs) => {
   const [comments, setComments] = useState<Comment[]>([]);
@@ -30,7 +30,7 @@ const CommentForm = ({ phId }: CommentFormArgs) => {
   const [user, setUser] = useState<User>({
     name: '',
     photo: '',
-    userId_user: undefined
+    userId_user: undefined,
   });
 
   // handle submitting a new comment
@@ -46,9 +46,10 @@ const CommentForm = ({ phId }: CommentFormArgs) => {
       com_id: 0,
     };
 
-    const reqArr: [string, number] = [newComment.text.trim(), phId]
+    const reqArr: [string, number] = [newComment.text.trim(), phId];
     if (inputValue.trim().length >= 1) {
-      axios.post('/api/comments/add', reqArr)
+      axios
+        .post('/api/comments/add', reqArr)
         .then(({ data }) => {
           const resCom: Comment = {
             name: user.name,
@@ -56,101 +57,100 @@ const CommentForm = ({ phId }: CommentFormArgs) => {
             time: new Date().toISOString(),
             pfp: user.photo,
             userId_com: user.userId_user,
-            com_id: data.comment_id
-          }
+            com_id: data.comment_id,
+          };
           setComments([resCom, ...comments]);
         })
-        .catch(err => console.error(err))
+        .catch((err) => console.error(err));
       setInputValue('');
     }
-  }
+  };
 
   // will need to add comId here for each comment
   const getCommentForPh = () => {
-    const potholeId: number = phId
-    axios.get('/api/comments/perPh', { params: { potholeId } })
-      .then(data => {
-        setComments(data.data.reverse().map(each => {
-          const eachC: Comment = {
-            name: each.User.name,
-            text: each.text,
-            time: each.createdAt,
-            pfp: each.User.photo,
-            userId_com: each.User.user_id,
-            com_id: each.comment_id
-          }
-          return eachC
-        }))
+    const potholeId: number = phId;
+    axios
+      .get('/api/comments/perPh', { params: { potholeId } })
+      .then((data) => {
+        setComments(
+          data.data.reverse().map((each) => {
+            const eachC: Comment = {
+              name: each.User.name,
+              text: each.text,
+              time: each.createdAt,
+              pfp: each.User.photo,
+              userId_com: each.User.user_id,
+              com_id: each.comment_id,
+            };
+            return eachC;
+          })
+        );
       })
-      .catch(data => console.log(data))
-  }
+      .catch((data) => console.log(data));
+  };
 
   const getUser = () => {
-    axios.get('/api/user/me')
-      .then(data => {
-        setUser({
-          name: data.data.name,
-          photo: data.data.photo,
-          userId_user: data.data.user_id
-        })
-      })
-  }
+    axios.get('/api/user/me').then((data) => {
+      setUser({
+        name: data.data.name,
+        photo: data.data.photo,
+        userId_user: data.data.user_id,
+      });
+    });
+  };
 
   const handleDelete = (id: number) => {
-    axios.delete('/api/comments', { params: { id } })
-      .then(() => {
-        const deletedComments: Comment[] = comments.filter((each) => each.com_id !== id)
-        setComments(deletedComments)
-      })
-  }
+    axios.delete('/api/comments', { params: { id } }).then(() => {
+      const deletedComments: Comment[] = comments.filter((each) => each.com_id !== id);
+      setComments(deletedComments);
+    });
+  };
 
   useEffect(() => {
-    getCommentForPh()
-    getUser()
-  }, [])
+    getCommentForPh();
+    getUser();
+  }, []);
 
   return (
     <div>
-      {user?.name &&
-        <Form
-          className='post_commentBox'
-          onSubmit={handleSubmit}>
-          <Form.Control as='textarea'
+      {user?.name && (
+        <Form className='post_commentBox' onSubmit={handleSubmit}>
+          <Form.Control
+            as='textarea'
             rows={1}
             className='post_input'
             maxLength={255}
             placeholder='Add Comment'
             type='text'
             value={inputValue}
-            onChange={event => setInputValue(event.target.value)}
+            onChange={(event) => setInputValue(event.target.value)}
           />
-          <Button
-            className='post_button'
-            variant='outlined-dark'
-            type='submit'>
+          <Button className='post_button' variant='outlined-dark' type='submit'>
             Post
           </Button>
         </Form>
-      }
-      {comments.map(renderComment => {
+      )}
+      {comments.map((renderComment) => {
         return (
           <div key={renderComment.com_id}>
             <img src={renderComment.pfp} alt='pfp' width={'30px'} />
             <b>{renderComment.name}:</b> <h6>{renderComment.text}</h6>
             <p>{moment(renderComment.time).format('MMMM Do YYYY, h:mm a')}</p>
-            {user.userId_user === renderComment.userId_com &&
+            {user.userId_user === renderComment.userId_com && (
               <Button
                 onClick={() => handleDelete(renderComment.com_id)}
                 className='post_button'
                 variant='outlined-dark'
-                type="submit">
+                type='submit'
+              >
                 Delete
-              </Button>}
+              </Button>
+            )}
           </div>
-        )
+        );
       })}
     </div>
   );
-}
+};
 
 export default CommentForm;

@@ -12,16 +12,18 @@ import axios from 'axios';
 
 /* -------------------------------- Contexts -------------------------------- */
 interface LocationContextType {
-  coordinates: {lat:number, lon:number}; 
-  setCoordinates: Dispatch<SetStateAction<{lat:number, lon:number}>>;
+  coordinates: { lat: number; lon: number };
+  setCoordinates: Dispatch<SetStateAction<{ lat: number; lon: number }>>;
 }
 export const LocationContext = createContext<LocationContextType>({
-  coordinates: {lat:0, lon:0},
+  coordinates: { lat: 0, lon: 0 },
   setCoordinates: () => {},
 });
 interface ImageContextType {
   imageContents: { file: any; caption: string; photoURL: string; user_id: number };
-  setImageContents: Dispatch<SetStateAction<{ file: any; caption: string; photoURL: string; user_id: number }>>;
+  setImageContents: Dispatch<
+    SetStateAction<{ file: any; caption: string; photoURL: string; user_id: number }>
+  >;
 }
 export const ImageContext = createContext<ImageContextType>({
   imageContents: { file: {}, caption: '', photoURL: '', user_id: 0 },
@@ -29,10 +31,10 @@ export const ImageContext = createContext<ImageContextType>({
 });
 interface StatusContextType {
   statusContents: { fixed: any; rating: number; user_id: number };
-  setStatusContents: Dispatch<SetStateAction<{ fixed: any; rating: number; user_id: number } >>;
+  setStatusContents: Dispatch<SetStateAction<{ fixed: any; rating: number; user_id: number }>>;
 }
 export const StatusContext = createContext<StatusContextType>({
-  statusContents: { fixed: false, rating: 0, user_id: 0  },
+  statusContents: { fixed: false, rating: 0, user_id: 0 },
   setStatusContents: () => {},
 });
 
@@ -42,8 +44,13 @@ const AddPothole = () => {
   const [progress, setProgress] = useState<number>(0);
   const [user_id, setUser_id] = useState<number>(0);
 
-  const [coordinates, setCoordinates] = useState({lat:0, lon:0});
-  const [imageContents, setImageContents] = useState({ file: null, caption: '', photoURL: '' , user_id: 0});
+  const [coordinates, setCoordinates] = useState({ lat: 0, lon: 0 });
+  const [imageContents, setImageContents] = useState({
+    file: null,
+    caption: '',
+    photoURL: '',
+    user_id: 0,
+  });
   const [statusContents, setStatusContents] = useState({ fixed: false, rating: 0, user_id: 0 });
 
   //* Set the User Id *//
@@ -58,11 +65,11 @@ const AddPothole = () => {
 
   //* Handle Submission *//
   const handleSubmit = async () => {
-
     if (imageContents.file) {
       const formData = new FormData();
       formData.append('file', imageContents.file);
-      axios.post('/api/imgs/addimg', formData)
+      axios
+        .post('/api/imgs/addimg', formData)
         .then(({ data }) => {
           const updatedImageContents = { ...imageContents };
           updatedImageContents.photoURL = data;
@@ -70,14 +77,13 @@ const AddPothole = () => {
           const masterObj = { coordinates, updatedImageContents, statusContents, user_id };
           console.log(masterObj);
 
-          axios.post('/api/pothole/addPothole', masterObj)
-            .catch(err => console.log('Failure to Add Pothole to Database', err))
-
+          axios
+            .post('/api/pothole/addPothole', masterObj)
+            .catch((err) => console.log('Failure to Add Pothole to Database', err));
         })
-        .catch(err => console.error('Failure to Submit Image to Cloud', err))
+        .catch((err) => console.error('Failure to Submit Image to Cloud', err));
     }
-    
-  }
+  };
 
   //* Handle Which Section of the Form is Rendered *//
   const handleView = () => {

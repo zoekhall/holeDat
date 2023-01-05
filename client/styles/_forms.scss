@@ -1,6 +1,7 @@
 @import 'main';
 
-#addPothole { //formatting for entire form
+#addPothole {
+  //formatting for entire form
   background-color: $LightColor1;
   border: 2px solid $DarkColor1;
   min-width: 400px;
@@ -8,8 +9,7 @@
   padding: 40px;
 }
 
-
-.progress-bar{
+.progress-bar {
   background-color: $DarkColor1;
 }
 
@@ -29,7 +29,8 @@
   height: 30px;
 }
 
-#ratingGroupDiv { //formating for rating cones
+#ratingGroupDiv {
+  //formating for rating cones
   display: flex;
   justify-content: center;
   align-items: center;
@@ -45,7 +46,8 @@
     align-items: center;
   }
 
-  p, #statusSwitch {
+  p,
+  #statusSwitch {
     width: 175px;
     margin: 0;
     text-align: center;
@@ -62,12 +64,10 @@
 
 #FormMap {
   position: fixed;
-  display:flex;
+  display: flex;
   justify-content: center;
   top: 35%;
-
 }
-
 
 //STORAGE - TRYING TO CHANGE ON CLICK
 // @mixin cone-color($color: primary, $effect: none) {

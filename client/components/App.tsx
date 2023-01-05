@@ -12,10 +12,9 @@ import Feed from './feed/Feed';
 import MapView from './map/MapView';
 import NoPage from './NoPage';
 import AddPothole from './addPothole/AddPothole';
-import Rating from './pothole/Rating'
+import Rating from './pothole/Rating';
 
 const App = () => {
-
   return (
     <BrowserRouter>
       <NavBar />
@@ -34,7 +33,7 @@ const App = () => {
         </Routes>
       </div>
     </BrowserRouter>
-  )
+  );
 };
 
 export default App;

@@ -10,7 +10,10 @@ interface CommentAttributes {
   updatedAt: Date;
 }
 
-type CommentCreationAttributes = Optional<CommentAttributes, 'comment_id' | 'createdAt' | 'updatedAt'>;
+type CommentCreationAttributes = Optional<
+  CommentAttributes,
+  'comment_id' | 'createdAt' | 'updatedAt'
+>;
 
 const Comment: ModelDefined<CommentAttributes, CommentCreationAttributes> = sequelize.define(
   'Comment',

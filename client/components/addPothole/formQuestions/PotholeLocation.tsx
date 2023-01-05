@@ -42,21 +42,18 @@ const PotholeLocation = (prop) => {
       .then(({ data }) => {
         const potholeId = data.length > 0 ? data[0].pothole_id : 0;
         setPothole_id(potholeId);
-        return potholeId; 
+        return potholeId;
       })
-      //after finding the pothole id - use it to set the status and render the map 
+      //after finding the pothole id - use it to set the status and render the map
       .then((potholeId) => {
-            if (isMounted.current) {
-              setRenderMap(true);
-              potholeId === 0 ? setSubmissionStatus('notInDB') : setSubmissionStatus('inDB');
-            } else {
-              isMounted.current = true;
-            }
+        if (isMounted.current) {
+          setRenderMap(true);
+          potholeId === 0 ? setSubmissionStatus('notInDB') : setSubmissionStatus('inDB');
+        } else {
+          isMounted.current = true;
+        }
       })
       .catch((err) => console.error('FAILURE TO FINDPOTHOLEID', err));
-    
-
-    
   }, [coordinates]);
 
   //function to render the map once the coordinates changed and map has been rendered
@@ -68,22 +65,19 @@ const PotholeLocation = (prop) => {
     }
   };
 
-  //set status of whether the pothole is already in db/not to render appropriate text in location section
-  // useEffect(() => {
-  //   pothole_id === 0 ? setSubmissionStatus('notInDB') : setSubmissionStatus('inDB');
-  // }, [pothole_id]);
-
   return (
     <Form.Group className='mb-3'>
       <Form.Group>
         <InputGroup id='addPotLocation'>
-          <AddressAutofill accessToken={mapToken} browserAutofillEnabled={true}>
+          <AddressAutofill
+            accessToken={mapToken}
+            browserAutofillEnabled={true}>
             <Form.Control
               id='mapfill'
               name='address'
               placeholder='Address'
               type='text'
-              autoComplete='street-address'
+              autoComplete='address-line1'
               onChange={(e) => {
                 setLocation(e.target.value);
               }}
@@ -92,7 +86,7 @@ const PotholeLocation = (prop) => {
         </InputGroup>
         <Button
           variant='flat'
-          onClick={() => updateLatLon()} //on click coordinates are determined 
+          onClick={() => updateLatLon()} //on click coordinates are determined
         >
           Confirm Pothole Address
         </Button>

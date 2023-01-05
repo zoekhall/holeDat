@@ -38,8 +38,8 @@ export const StatusContext = createContext<StatusContextType>({
 
 /* --------------------------- Main Form Component -------------------------- */
 const AddPothole = () => {
-  const sections: Array<string> = ['Welcome', 'Location', 'Map', 'Image', 'Status'];
-  const [view, setView] = useState<string>('Welcome');
+  const sections: Array<string> = ['Location', 'Image', 'Status'];
+  const [view, setView] = useState<string>('Location');
   const [progress, setProgress] = useState<number>(0);
   const [user_id, setUser_id] = useState<number>(0);
   const [coordinates, setCoordinates] = useState({ lat: 0, lon: 0 });
@@ -89,15 +89,9 @@ const AddPothole = () => {
     if (view === 'Location') {
       return (
         <LocationContext.Provider value={{ coordinates, setCoordinates }}>
-          <LocationSection />
+          <LocationSection setView={setView} view={view} />
         </LocationContext.Provider>
       );
-    // } else if (view === 'Map') {
-    //   return (
-    //     <LocationContext.Provider value={{ coordinates, setCoordinates }}>
-  
-    //     </LocationContext.Provider>
-    //   );
     } else if (view === 'Image') {
       return (
         <ImageContext.Provider value={{ imageContents, setImageContents }}>
@@ -110,8 +104,6 @@ const AddPothole = () => {
           <StatusSection />
         </StatusContext.Provider>
       );
-    } else {
-      return <h3>Fill out this quick form in order to submit a pothole!</h3>
     }
   };
 
@@ -135,6 +127,7 @@ const AddPothole = () => {
         </Button>
       </div>
     );
+
   };
 
   return <Form id='addPothole'>{handleFormComps()}</Form>;

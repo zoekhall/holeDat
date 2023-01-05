@@ -10,7 +10,7 @@ pothole.get('/', (req: Request, res: Response) => {
 });
 
 pothole.post('/findPothole', (req: Request, res: Response) => {
-  getMatchingPotholes((data) => res.status(200).send(data), req.body);
+  getMatchingPotholes(data => res.status(200).send(data), req.body);
 });
 
 pothole.post('/addPothole', (req: Request, res: Response) => {

@@ -9,7 +9,6 @@ import {
   getAllPotholeImgByPhId,
   getPotholeAtUserId,
   getTopPotholes,
-  // postImg,
 } from '../models/imgs.model';
 import multer from 'multer';
 import dotenv from 'dotenv';
@@ -40,10 +39,6 @@ imgs.post('/addimg', upload, (req: any, res: Response) => {
 
   fs.emptyDir('./tmp');
 });
-
-// imgs.post('/postImg', (req: any, res: Response) => {
-//   postImg((data) => res.status(201).send(data), req.body);
-// });
 
 // get ALL imgs of pothole by id AND user data
 imgs.get('/potholeimgs:id', (req: Request, res: Response) => {

@@ -21,7 +21,7 @@ const LocationSection = (prop) => {
                 Below to Enter a New Pothole Address
               </p>
               <button onClick={() => {
-                setView('Status');
+                setView('Location');
                 console.log(view)
               }}>Enter New Address</button>
             </div>

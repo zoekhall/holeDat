@@ -77,7 +77,7 @@ const PotholeLocation = (prop) => {
               name='address'
               placeholder='Address'
               type='text'
-              autoComplete='address-line1'
+              autoComplete='address-line1 country'
               onChange={(e) => {
                 setLocation(e.target.value);
               }}

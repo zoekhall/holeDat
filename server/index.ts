@@ -9,7 +9,7 @@ import User from './db/schema/user.schema';
 import Pothole from './db/schema/pothole.schema';
 import rootRouter from './routes/index';
 import './db/index';
-import './automation'
+import './automation';
 import { Server } from 'socket.io';
 const app = express();
 // running on port 5555 if no env available
@@ -100,7 +100,7 @@ const socketServer = new Server(8081, {
   cors: {
     origin: '*',
   },
-})
+});
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 socketServer.on('connection', (socket: any) => {

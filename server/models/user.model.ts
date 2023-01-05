@@ -15,6 +15,7 @@ export const getRecentUsers = (cb) => {
     .catch((err) => console.error(err));
 };
 
-export const changeUsername = (loggedInUser, newName) => { // finds the user with the userId of the logged in user and updates there name
+export const changeUsername = (loggedInUser, newName) => {
+  // finds the user with the userId of the logged in user and updates there name
   User.update({ name: newName }, { where: { user_id: loggedInUser.dataValues.user_id } });
 };

@@ -1,6 +1,5 @@
 @import 'main';
 
-
 .map-box {
   position: fixed;
   width: 100%;
@@ -30,19 +29,18 @@
 
 .mapboxgl-popup-close-button,
 .mapboxgl-popup-close-button button:not(:disabled),
-.mapboxgl-popup-close-button>button>[type=button]:not(:disabled):focus {
+.mapboxgl-popup-close-button > button > [type='button']:not(:disabled):focus {
   box-shadow: -1px 1px black;
   border-radius: 100%;
-  background-color: #F2CC8F;
+  background-color: #f2cc8f;
   border: 2px solid black;
   margin: -10px;
 }
 
 .mapboxgl-popup-close-button:hover {
-  background-color: #E07A5F;
+  background-color: #e07a5f;
   box-shadow: none;
 }
-
 
 .mapboxgl-popup-content {
   padding: 0;
@@ -59,12 +57,12 @@
 .mapboxgl-ctrl-compass,
 .mapboxgl-ctrl-fullscreen,
 .mapboxgl-ctrl-geolocate {
-  background-color: #E07A5F;
+  background-color: #e07a5f;
   border: 2px solid black;
 }
 
-.mapboxgl-marker>svg {
+.mapboxgl-marker > svg {
   path {
-    fill: #E07A5F
+    fill: #e07a5f;
   }
 }

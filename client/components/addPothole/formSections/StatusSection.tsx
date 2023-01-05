@@ -2,11 +2,11 @@
 import React from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 import PotholeRating from '../formQuestions/PotholeRating';
 import PotholeStatus from '../formQuestions/PotholeStatus';
 
-const StatusSection = ({handleSubmit}) => (
+const StatusSection = ({ handleSubmit }) => (
   <Form.Group>
     <Form.Group>
       <Form.Label>What Would You Rate Dat Dere Pothole?</Form.Label>
@@ -22,10 +22,8 @@ const StatusSection = ({handleSubmit}) => (
     <Button type='button' variant='outlined-dark' onClick={handleSubmit}>
       Submit Your Pothole
     </Button>
-
   </Form.Group>
 );
-
 
 StatusSection.propTypes = {
   handleSubmit: PropTypes.func.isRequired,

@@ -15,7 +15,8 @@ const sequelize = new Sequelize(DB_NAME, DB_USER, DB_PW, {
   logging: false,
 });
 
-sequelize.authenticate()
+sequelize
+  .authenticate()
   .then(() => {
     console.log('Server connected!');
   })

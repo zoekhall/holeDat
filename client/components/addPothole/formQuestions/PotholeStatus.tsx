@@ -24,6 +24,6 @@ const PotholeStatus = () => {
       ))}
     </Form.Group>
   );
-}
+};
 
 export default PotholeStatus;

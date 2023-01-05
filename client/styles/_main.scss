@@ -18,11 +18,11 @@
 @import '/node_modules/bootstrap/scss/bootstrap';
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans&display=swap');
 
-$PrimaryColor: #FE5F55;
+$PrimaryColor: #fe5f55;
 $DarkColor1: #495867;
 $DarkColor2: #577399;
-$LightColor1: #F7F7FF;
-$LightColor2: #BDD5EA;
+$LightColor1: #f7f7ff;
+$LightColor2: #bdd5ea;
 $ShadowColor: #000;
 $regularText: 'DM Sans', sans-serif;
 
@@ -42,12 +42,12 @@ $regularText: 'DM Sans', sans-serif;
 
   #addPothole {
     background-color: $DarkColor2;
-    border: $LightColor2
+    border: $LightColor2;
   }
 
   #ratingGroupDiv {
     background-color: $DarkColor2;
-    border: $LightColor2 solid 2px
+    border: $LightColor2 solid 2px;
   }
 }
 
@@ -93,7 +93,6 @@ body {
   margin: 5px;
 }
 
-
 #mainNavbar {
   background-color: $LightColor1;
   box-shadow: 0 3px 3px $ShadowColor;
@@ -122,8 +121,6 @@ body {
   background-color: $LightColor2;
 }
 
-
-
 .page-content {
   display: flex;
   padding: 30px;
@@ -134,9 +131,6 @@ body {
   z-index: 1;
   height: 100%;
 }
-
-
-
 
 // POTHOLE PROFILE SCSS
 .post {
@@ -195,24 +189,18 @@ body {
 
 // POTHOLE PROFILE SCSS
 
-
 .chart-images {
   display: flex;
   justify-content: space-evenly;
   padding-left: 1.25rem;
 }
 
-.chart-images>img {
+.chart-images > img {
   border-radius: 100px;
 }
 
-
-
-
-
-
-.voting-cones>svg,
-.voting-cones>svg:hover {
+.voting-cones > svg,
+.voting-cones > svg:hover {
   width: 15%;
 }
 

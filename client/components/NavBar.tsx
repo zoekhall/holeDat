@@ -9,16 +9,16 @@ import { TUser } from '../types/user';
 import { DarkModeSwitch } from 'react-toggle-dark-mode';
 
 const localMode = localStorage.getItem('mode');
-if (localMode === 'dark-mode') { //if mode isn't dark mode - set it
+if (localMode === 'dark-mode') {
+  //if mode isn't dark mode - set it
   document.body.classList.add('dark-mode');
   localStorage.setItem('mode', 'dark-mode'); //
 }
 
-
 const NavBar = () => {
   const menuItems = ['Map', 'About', 'Feed'];
   const [user, setUser] = useState<TUser | null>(null);
-  const [mode, setMode] = useState<any>('')
+  const [mode, setMode] = useState<any>('');
 
   const checkUser = () => {
     axios
@@ -34,14 +34,15 @@ const NavBar = () => {
   }, []);
 
   const toggleMode = () => {
-    if (mode !== 'dark-mode') { //if mode isn't dark mode - set it
+    if (mode !== 'dark-mode') {
+      //if mode isn't dark mode - set it
       document.body.classList.add('dark-mode');
       localStorage.setItem('mode', 'dark-mode'); //
-      setMode('dark-mode')
+      setMode('dark-mode');
     } else {
       document.body.classList.remove('dark-mode');
-      localStorage.removeItem('mode') //if it is equal - remove it
-      setMode('')
+      localStorage.removeItem('mode'); //if it is equal - remove it
+      setMode('');
     }
   };
 
@@ -85,6 +86,3 @@ const NavBar = () => {
 };
 
 export default NavBar;
-
-
-

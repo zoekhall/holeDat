@@ -3,7 +3,7 @@ import Form from 'react-bootstrap/Form';
 import { ImageContext } from '../AddPothole';
 
 //photo caption text-box
-const PotholeCaption = () =>{
+const PotholeCaption = () => {
   const { imageContents, setImageContents } = useContext(ImageContext);
 
   return (
@@ -19,6 +19,6 @@ const PotholeCaption = () =>{
       />
     </Form.Group>
   );
-}
+};
 
 export default PotholeCaption;

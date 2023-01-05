@@ -1,6 +1,14 @@
 import sequelize from '../db.server';
 import Pothole from './pothole.schema';
-import {CreationOptional, NonAttribute, ForeignKey, DataTypes, Model, InferCreationAttributes, InferAttributes } from 'sequelize';
+import {
+  CreationOptional,
+  NonAttribute,
+  ForeignKey,
+  DataTypes,
+  Model,
+  InferCreationAttributes,
+  InferAttributes,
+} from 'sequelize';
 
 class PotholeIMG extends Model<InferAttributes<PotholeIMG>, InferCreationAttributes<PotholeIMG>> {
   declare image_id: CreationOptional<number>;
@@ -10,7 +18,7 @@ class PotholeIMG extends Model<InferAttributes<PotholeIMG>, InferCreationAttribu
   declare pothole_id: ForeignKey<Pothole['pothole_id']>;
   declare createdAt: CreationOptional<Date>;
   declare updatedAt: CreationOptional<Date>;
-  
+
   declare pothole?: NonAttribute<Pothole>;
 }
 
@@ -42,15 +50,12 @@ PotholeIMG.init(
     tableName: 'potholeimgs',
   }
 );
-  
-  
+
 (async () => {
   await sequelize.sync();
 })();
 
 export default PotholeIMG;
-
-
 
 // interface ImageAttributes {
 //   image_id: number;

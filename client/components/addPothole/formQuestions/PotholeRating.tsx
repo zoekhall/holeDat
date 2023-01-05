@@ -33,7 +33,7 @@ const PotholeRating = () => {
                 key={num}
                 id={`${num}`}
                 onClick={() => {
-                  const newStatusContents = {...statusContents};
+                  const newStatusContents = { ...statusContents };
                   newStatusContents.rating = num;
                   setStatusContents(newStatusContents);
                   setIsPicked(!isPicked);

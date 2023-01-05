@@ -15,7 +15,7 @@ Pothole.hasMany(Rating, {
 });
 Rating.belongsTo(Pothole, {
   foreignKey: 'pothole_id',
-  targetKey: 'pothole_id'
+  targetKey: 'pothole_id',
 });
 
 // Pothole 1->many PotholeIMGs

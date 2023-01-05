@@ -12,6 +12,7 @@ const mapToken =
   'pk.eyJ1IjoiemFjaG1hcnVsbG8iLCJhIjoiY2xhazZ5aGxyMDQ3bzNwbzZ2Z3N0b3lpMyJ9.65G-mwqhbWFy77O_I0LkOg';
 
 //Componenent with the location search input form. Assigns lat/lon to location context
+
 const PotholeLocation = (prop) => {
   const { coordinates, setCoordinates } = useContext(LocationContext); //set coordinates using AddPothole LocationContext
   const isMounted = useRef(false);
@@ -21,10 +22,12 @@ const PotholeLocation = (prop) => {
   //turns address into lat and lon coordinates
   const updateLatLon = () => {
     const formattedLocation = location.split(' ').join('%20'); //format location to be read by mapbox
+
     axios(
       `https://api.mapbox.com/geocoding/v5/mapbox.places/${formattedLocation}.json?language=en&limit=5&proximity=-121.90662,37.42827&country=US&access_token=${mapToken}`
     )
       .then(({ data }) => {
+      
         //set the coordinates
         const newCoordinates = { ...coordinates };
         newCoordinates.lat = data.features[0].center[1];

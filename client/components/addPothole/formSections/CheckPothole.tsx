@@ -38,8 +38,7 @@
 //           potholeTuple.address = data.features[0].place_name.split(',')[0];
 //         })
 //         .catch((err) => console.error(err));
-      
-      
+
 //       return (<div key={id}>YOOOSFOSHFKLSD:F</div>);
 //     });
 //     // setPotTupes(potholeTuples);

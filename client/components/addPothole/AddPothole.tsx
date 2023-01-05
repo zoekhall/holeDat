@@ -70,7 +70,7 @@ const AddPothole = () => {
     //     .then(({ data }) => {
     const updatedImageContents = { ...imageContents };
     //       updatedImageContents.photoURL = data;
-
+    
     const masterObj = { coordinates, updatedImageContents, statusContents, user_id };
     console.log(masterObj);
 

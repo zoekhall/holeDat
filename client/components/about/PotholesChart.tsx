@@ -6,7 +6,7 @@ import axios from 'axios';
 ChartJS.register(CategoryScale, LinearScale, BarElement);
 interface element {
   pothole_id: number;
-  count: number
+  count: number;
   photoURL: string;
 }
 

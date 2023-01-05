@@ -9,7 +9,7 @@ import user from './user.routes';
 import rating from './rating.routes';
 import location from './location.routes';
 import comments from './comments.routes';
-import badges from './badges.routes'
+import badges from './badges.routes';
 import likes from './likes.routes';
 
 //rootRouter.use('/location', location);
@@ -19,8 +19,7 @@ rootRouter.use('/pothole', pothole);
 rootRouter.use('/user', user);
 rootRouter.use('/rating', rating);
 rootRouter.use('/badges', badges);
-rootRouter.use('/comments', comments)
-rootRouter.use('/likes', likes)
-
+rootRouter.use('/comments', comments);
+rootRouter.use('/likes', likes);
 
 export default rootRouter;

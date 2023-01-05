@@ -1,5 +1,15 @@
 import sequelize from '../db.server';
-import { DataTypes, NonAttribute, CreationOptional, InferAttributes, InferCreationAttributes, Model, ForeignKey, BOOLEAN, INTEGER } from 'sequelize';
+import {
+  DataTypes,
+  NonAttribute,
+  CreationOptional,
+  InferAttributes,
+  InferCreationAttributes,
+  Model,
+  ForeignKey,
+  BOOLEAN,
+  INTEGER,
+} from 'sequelize';
 import Pothole from './pothole.schema';
 
 class Rating extends Model<InferAttributes<Rating>, InferCreationAttributes<Rating>> {
@@ -31,7 +41,7 @@ Rating.init(
       allowNull: true,
     },
     user_id: {
-      type: new DataTypes.INTEGER,
+      type: new DataTypes.INTEGER(),
       allowNull: true,
     },
     createdAt: DataTypes.DATE,
@@ -39,7 +49,7 @@ Rating.init(
   },
   {
     sequelize,
-    tableName: 'ratings'
+    tableName: 'ratings',
   }
 );
 

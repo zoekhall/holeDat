@@ -7,11 +7,11 @@ const LocationSection = () => {
 
   const handleSubmissionStatus = () => {
         if (submissionStatus === 'notInDB') {
-          return <h4>yay</h4>;
+          return <h4>notInDB</h4>;
         } else if(submissionStatus === 'inDB') {
-          return <h4>poop</h4>;
+          return <h4>inDB</h4>;
         } else {
-          return <h4>hero</h4>
+          return <h4>notsubmitted</h4>
         }
   }
 

@@ -42,9 +42,21 @@ const PotholeLocation = (prop) => {
       .then(({ data }) => {
         const potholeId = data.length > 0 ? data[0].pothole_id : 0;
         setPothole_id(potholeId);
+        return potholeId; 
+      })
+      //after finding the pothole id - use it to set the status and render the map 
+      .then((potholeId) => {
+            if (isMounted.current) {
+              setRenderMap(true);
+              potholeId === 0 ? setSubmissionStatus('notInDB') : setSubmissionStatus('inDB');
+            } else {
+              isMounted.current = true;
+            }
       })
       .catch((err) => console.error('FAILURE TO FINDPOTHOLEID', err));
-    isMounted.current ? setRenderMap(true) : (isMounted.current = true);
+    
+
+    
   }, [coordinates]);
 
   //function to render the map once the coordinates changed and map has been rendered
@@ -57,9 +69,9 @@ const PotholeLocation = (prop) => {
   };
 
   //set status of whether the pothole is already in db/not to render appropriate text in location section
-  useEffect(() => {
-    pothole_id === 0 ? setSubmissionStatus('notInDB') : setSubmissionStatus('inDB');
-  });
+  // useEffect(() => {
+  //   pothole_id === 0 ? setSubmissionStatus('notInDB') : setSubmissionStatus('inDB');
+  // }, [pothole_id]);
 
   return (
     <Form.Group className='mb-3'>

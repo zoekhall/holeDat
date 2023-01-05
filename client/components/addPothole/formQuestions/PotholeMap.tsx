@@ -21,10 +21,6 @@ const PotholePlot = (prop) => {
     }
   }, [style]);
 
-  useEffect(() => {
-    console.log(coordinates, pothole_id, 'effectively')
-  },[pothole_id])
-
       return (
         <Form.Group>
           <Map

@@ -21,6 +21,8 @@ Table of Contents
 
 ## About HoleDat
 
+<center><img src='logo.svg' alt='logo' width=300 /></center>
+
 ### Description
 
 Hole Dat is a web application that helps users report and view potholes in the city of New Orleans. The app allows users to view a map of potholes in the area, view information about specific potholes, and report new potholes. The feed feature allows users to view recently added potholes and sort them by new or unique reports, and the pothole profile feature provides detailed information about each pothole and the user who reported it. With Hole Dat, residents of New Orleans can easily report potholes and see where others have been reported around the city. This helps the city to identify and fix potholes more efficiently, improving the safety and convenience of the roads for everyone. Whether you're a driver looking to avoid damaging your vehicle or a pedestrian trying to navigate the city, Hole Dat is a valuable resource for staying informed about potholes in the area.

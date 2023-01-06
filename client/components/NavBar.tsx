@@ -64,7 +64,6 @@ const NavBar = () => {
           <i className='bi bi-plus-circle'></i>
         </Button>
       )}
-      <DarkModeSwitch className='mode' checked={mode} onChange={toggleMode} size={30} />
       {!user?.photo ? (
         <Button href='/auth/google/callback' variant='flat'>
           Sign In
@@ -75,14 +74,18 @@ const NavBar = () => {
         </Link>
       )}
       <Navbar.Collapse id='basic-navbar-nav'>
-        <Nav className='me-auto'>
-          {menuItems.map((item, i) => (
-            <Nav.Link key={i} href={`/${menuPhrasing[i]}`}>
-              {item}
-              <p>{menuPhrasing[i]}</p>
-            </Nav.Link>
-          ))}
-        </Nav>
+        <div>
+        <DarkModeSwitch className='mode' checked={mode} onChange={toggleMode} size={30} />
+        </div>
+          <p>Mode</p>
+          <Nav className='me-auto'>
+            {menuItems.map((item, i) => (
+              <Nav.Link key={i} href={`/${menuPhrasing[i]}`}>
+                {item}
+                <p>{menuPhrasing[i]}</p>
+              </Nav.Link>
+            ))}
+          </Nav>
       </Navbar.Collapse>
     </Navbar>
   );

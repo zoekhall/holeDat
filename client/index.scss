@@ -1,4 +1,11 @@
 @import '../node_modules/bootstrap/scss/bootstrap';
-@import './styles/main';
-@import './styles/forms';
-@import './styles/map';
+// @import './styles/main';
+// @import './styles/forms';
+// @import './styles/map';
+
+//ABSTRACTS
+@import './styles/abstracts/variables';
+
+//BASE
+@import './styles/base/body';
+@import './styles/base/typography'

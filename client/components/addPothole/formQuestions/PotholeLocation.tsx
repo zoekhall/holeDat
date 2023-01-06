@@ -24,20 +24,19 @@ const PotholeLocation = (prop) => {
     const formattedLocation = location.split(' ').join('%20'); //format location to be read by mapbox
 
     axios(
-      `https://api.mapbox.com/geocoding/v5/mapbox.places/${formattedLocation}.json?language=en&limit=5&proximity=-121.90662,37.42827&country=US&access_token=${mapToken}`
+      `https://api.mapbox.com/geocoding/v5/mapbox.places/${formattedLocation}%2C%20Louisiana.json?language=en&limit=5&proximity=-121.90662,37.42827&country=US&access_token=${mapToken}`
     )
       .then(({ data }) => {
-      
         //set the coordinates
         const newCoordinates = { ...coordinates };
         newCoordinates.lat = data.features[0].center[1];
         newCoordinates.lon = data.features[0].center[0];
         setCoordinates(newCoordinates);
-        console.log(data)
+        console.log(data);
       })
       .catch((err) => {
-        setShowError(true)
-        console.error('FAILURE TO TURN ADDRESS INTO COORDINATES', err)
+        setShowError(true);
+        console.error('FAILURE TO TURN ADDRESS INTO COORDINATES', err);
       });
   };
 

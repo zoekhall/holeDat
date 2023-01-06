@@ -46,18 +46,14 @@ function User() {
 
   return (
     <>
-      <div>
-        <p>User</p>
+      <div className='userPf'>
+
         <img
           src={user.photo}
-          style={{ borderRadius: '18px' }}
           alt='Image'
-          width='30%'
-          height='30%'
         />
 
         <h1>
-          name:{' '}
           {!editTrigger ? (
             user.name
           ) : (

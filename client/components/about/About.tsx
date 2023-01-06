@@ -1,36 +1,18 @@
-import React, { useState } from 'react';
-import StatsChart from './StatsChart';
-import { io } from 'socket.io-client';
-import PotholesChart from './PotholesChart';
+import React from 'react';
 
 const About = () => {
-  const [userCount, setUserCount] = useState<number>(0);
-  const [potholeCount, setPotholeCount] = useState<number>(0);
 
-  const socket = io('ws://localhost:8081');
-  // Set up a listener for the "heartbeat" message
-  socket.on('heartbeat', (data) => {
-    setUserCount(data.data);
-    socket.emit('heartbeat', { data });
-    // Send a "heartbeat" message back to the server
-  });
-
-  socket.on('pothole', (data) => {
-    setPotholeCount(data.data);
-    socket.emit('pothole', { data });
-  });
 
   return (
     <div>
       <h1>About Hole Dat</h1>
-      <StatsChart />
-      <div className='user-counter'>
-        <p>Current Number of Users Signed Up: {userCount}</p>
-      </div>
-      <PotholesChart />
-      <div className='pothole-counter'>
-        <p>Total Potholes Submitted: {potholeCount}</p>
-      </div>
+      <h2>About our team:</h2>
+      <p>
+        The developers of Hole Dat - Jorge Carvajal, Sidney Holmes, Zoe Hall, Samuel Littell, and Zachary Marullo - are currently students at Operation Spark.
+        Operation Spark is a program that teaches individuals from underrepresented communities the skills needed to become software developers.
+        The app was developed as a way for us to apply the skills we learned in the program and to help address a common problem in their community.
+        The students worked collaboratively to design, build, and test the app, and they are excited to share it with the world.
+      </p>
     </div>
   );
 };

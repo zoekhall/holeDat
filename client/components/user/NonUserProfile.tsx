@@ -24,17 +24,12 @@ const NonUserProfile = () => {
 
   useEffect(getUserData, []);
   return (
-    <div>
-      <h1>TEST non user profile</h1>
+    <div className='userPf'>
+      <h1>{profile.name}</h1>
       <img
         src={profile.photo}
-        style={{ borderRadius: '18px' }}
         alt='Image'
-        width='50%'
-        height='50%'
       />
-      <h2>{profile.name}</h2>
-      <p>{id}</p>
       <UserStats userId={id} />
     </div>
   );

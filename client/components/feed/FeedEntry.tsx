@@ -57,7 +57,10 @@ const FeedEntry = ({ imgObj }: { imgObj: phImg }) => {
           height='50%'
         />
       </Link>
-      <img src={imgObj.photo} alt='Image' width='10%'></img>
+      <p>{imgObj.caption}</p>
+      <Link to={'/User:' + imgObj.user_id}>
+        <img src={imgObj.photo} alt='Image' width='10%'></img>
+      </Link>
       <img
         onMouseOver={() => onBadgeHover(true)}
         onMouseOut={() => onBadgeHover(false)}

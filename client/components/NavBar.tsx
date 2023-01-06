@@ -17,7 +17,8 @@ if (localMode === 'dark-mode') {
 }
 
 const NavBar = () => {
-  const menuItems = {Map, About, Feed};
+  const menuItems = [Map, About, Feed];
+  const menuPhrasing = ['Map', 'About', 'Feed'];
   const [user, setUser] = useState<TUser | null>(null);
   const [mode, setMode] = useState<any>('');
 
@@ -76,8 +77,9 @@ const NavBar = () => {
       <Navbar.Collapse id='basic-navbar-nav'>
         <Nav className='me-auto'>
           {menuItems.map((item, i) => (
-            <Nav.Link key={i} href={`/${item}`}>
+            <Nav.Link key={i} href={`/${menuPhrasing[i]}`}>
               {item}
+              <p>{menuPhrasing[i]}</p>
             </Nav.Link>
           ))}
         </Nav>

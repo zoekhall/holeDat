@@ -7,6 +7,7 @@ import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
 import { TUser } from '../types/user';
 import { DarkModeSwitch } from 'react-toggle-dark-mode';
+import {Map, About, Feed} from '../assets';
 
 const localMode = localStorage.getItem('mode');
 if (localMode === 'dark-mode') {
@@ -16,7 +17,7 @@ if (localMode === 'dark-mode') {
 }
 
 const NavBar = () => {
-  const menuItems = ['Map', 'About', 'Feed'];
+  const menuItems = {Map, About, Feed};
   const [user, setUser] = useState<TUser | null>(null);
   const [mode, setMode] = useState<any>('');
 

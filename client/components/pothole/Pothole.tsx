@@ -129,6 +129,7 @@ const Pothole = () => {
         className='mySwiper'
         pagination={true}
         effect={'cards'}
+        id='pfSlider'
         grabCursor={true}
         modules={[Pagination]}
       >

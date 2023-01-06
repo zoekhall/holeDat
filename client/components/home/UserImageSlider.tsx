@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom'
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { EffectCards, Autoplay } from 'swiper';
+import { Navigation, Pagination, Autoplay } from 'swiper';
 
 import 'swiper/css';
 import 'swiper/css/bundle';
@@ -33,11 +33,12 @@ const UserImageSlider = () => {
   return (
     <>
       <Swiper
-        id='swipper'
         loop={true}
-        effect={'cards'}
         grabCursor={true}
-        modules={[EffectCards, Autoplay]}
+        modules={[Navigation, Pagination, Autoplay]}
+        navigation={true}
+        slidesPerView={3}
+        pagination={{ clickable: true }}
         className='mySwiper'
         autoplay={{
           delay: 3000,

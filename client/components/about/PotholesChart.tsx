@@ -63,7 +63,6 @@ const PotholesChart = () => {
             to={`/Pothole:${pothole.pothole_id}`}
           >
             <img
-              width={50}
               src={pothole.photoURL}
               referrerPolicy='no-referrer'
             />

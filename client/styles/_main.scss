@@ -13,7 +13,7 @@
 
 // //Text Box
 
-// //General Container 
+// //General Container
 
 @import '/node_modules/bootstrap/scss/bootstrap';
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans&display=swap');
@@ -49,13 +49,6 @@ $regularText: 'DM Sans', sans-serif;
     background-color: $DarkColor2;
     border: $LightColor2 solid 2px;
   }
-}
-
-#swiper,
-#swipper {
-  margin: 0;
-  display: flex;
-  width: 50%;
 }
 
 .home {
@@ -192,7 +185,7 @@ body {
 .chart-images {
   display: flex;
   justify-content: space-evenly;
-  padding-left: 1.25rem;
+  gap: 10%;
 }
 
 .chart-images img {
@@ -215,4 +208,38 @@ body {
 
 .clickCone {
   fill: #FE5F55
+}
+
+
+.mySwiper img {
+  object-fit: cover;
+  width: 100px;
+  height: 100px;
+  border-radius: 10px;
+}
+
+.swiper-wrapper {
+  gap: 3px;
+}
+
+#pfSlider img {
+  object-fit: cover;
+  width: 300px;
+  height: 300px;
+}
+
+#pfSlider .caption img {
+  object-fit: cover;
+  width: 100px;
+  height: 100px;
+}
+
+.userPf {
+  width: 100%;
+}
+
+.userPf img {
+  object-fit: cover;
+  width: 100px;
+  height: 100px;
 }

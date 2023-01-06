@@ -54,7 +54,7 @@ const StatsChart = () => {
       <div className='chart-images'>
         {users.map((user) => (
           <Link key={user.user_id} to={'/User:' + user.user_id}>
-            <img width={50} src={user.photo} referrerPolicy='no-referrer' />
+            <img src={user.photo} referrerPolicy='no-referrer' />
           </Link>
         ))}
       </div>

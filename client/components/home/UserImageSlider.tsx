@@ -37,7 +37,7 @@ const UserImageSlider = () => {
         grabCursor={true}
         modules={[Navigation, Pagination, Autoplay]}
         navigation={true}
-        slidesPerView={3}
+        slidesPerView={4}
         pagination={{ clickable: true }}
         className='mySwiper'
         autoplay={{
@@ -53,6 +53,7 @@ const UserImageSlider = () => {
                   src={user.photo}
                   referrerPolicy={'no-referrer'}
                 />
+                <p>{user.name}</p>
               </Link>
             </SwiperSlide>
           );

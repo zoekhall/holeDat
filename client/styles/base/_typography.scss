@@ -1,11 +1,14 @@
 //FONT VARIABLES 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100&family=Spectral&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100&family=Spectral:ital,wght@0,400;1,800&display=swap');
+
 $Poppins: 'Poppins', sans-serif;
 $Spectral: 'Spectral', serif;
 
 //MAIN TITLE FONT 
 h1 {
   font-family: $Spectral;
+  font-weight: 800;
+  font-style: italic;
   font-size: 50px;
 }
 

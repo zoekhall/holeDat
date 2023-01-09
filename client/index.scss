@@ -1,11 +1,20 @@
 @import '../node_modules/bootstrap/scss/bootstrap';
-@import './styles/main';
+// @import './styles/main';
 // @import './styles/forms';
-@import './styles/storage/map';
+// @import './styles/storage/map';
 
 //ABSTRACTS
 @import './styles/abstracts/variables';
 
 //BASE
 @import './styles/base/body';
-@import './styles/base/typography'
+@import './styles/base/reset';
+@import './styles/base/typography';
+
+//LAYOUTS
+@import './styles/layouts/div';
+@import './styles/layouts/navigation';
+
+//Pages
+@import './styles/pages/map';
+@import './styles/pages/forms';

@@ -28,11 +28,10 @@ const Home = () => {
         <p>We are a </p>
         <p>Total Potholes Submitted: {potholeCount}</p>
         <p>Total Potholes Submitted: {userCount}</p>
-        <PotholesChart />
-        <StatsChart />
-
         <PImageSlider />
         <UserImageSlider />
+        <PotholesChart />
+        <StatsChart />
       </div>
     </>
   );

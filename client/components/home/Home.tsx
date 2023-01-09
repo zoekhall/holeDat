@@ -24,16 +24,14 @@ const Home = () => {
   return (
     <>
       <div className='home'>
-        <h1 className='home-title-page'>Home</h1>
-        <h2>Most Reported Potholes</h2>
-        <PotholesChart />
-        <h2>Most Active Users</h2>
-        <StatsChart />
+        <h1>Welcome to Hole Dat</h1>
+        <p>We are a </p>
         <p>Total Potholes Submitted: {potholeCount}</p>
         <p>Total Potholes Submitted: {userCount}</p>
-        <h2>Latest Reports!</h2>
+        <PotholesChart />
+        <StatsChart />
+
         <PImageSlider />
-        <h2>New Users</h2>
         <UserImageSlider />
       </div>
     </>

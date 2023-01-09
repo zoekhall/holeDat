@@ -32,7 +32,8 @@ const PImageSlider = () => {
   useEffect(getAllImgs, []);
 
   return (
-    <>
+    <div id='pothole-slider'>
+      <h2>Newest Reported Potholes</h2>
       <Swiper
         id='potholeSlider'
         loop={true}
@@ -63,7 +64,7 @@ const PImageSlider = () => {
           );
         })}
       </Swiper>
-    </>
+    </div>
   );
 };
 

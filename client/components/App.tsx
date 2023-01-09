@@ -18,20 +18,18 @@ const App = () => {
   return (
     <BrowserRouter>
       <NavBar />
-      <div className='page-content'>
-        <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='Pothole:id' element={<Pothole />} />
-          <Route path='Rating:id' element={<Rating />} />
-          <Route path='User' element={<User />} />
-          <Route path='User:id' element={<NonUserProfile />} />
-          <Route path='Map' element={<MapView />} />
-          <Route path='About' element={<About />} />
-          <Route path='Feed' element={<Feed />} />
-          <Route path='AddPothole' element={<AddPothole />} />
-          <Route path='*' element={<NoPage />} />
-        </Routes>
-      </div>
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='Pothole:id' element={<Pothole />} />
+        <Route path='Rating:id' element={<Rating />} />
+        <Route path='User' element={<User />} />
+        <Route path='User:id' element={<NonUserProfile />} />
+        <Route path='Map' element={<MapView />} />
+        <Route path='About' element={<About />} />
+        <Route path='Feed' element={<Feed />} />
+        <Route path='AddPothole' element={<AddPothole />} />
+        <Route path='*' element={<NoPage />} />
+      </Routes>
     </BrowserRouter>
   );
 };

@@ -31,7 +31,8 @@ const UserImageSlider = () => {
   useEffect(getRecentUsers, []);
 
   return (
-    <>
+    <div id='user-slider'>
+      <h2>Newest Users</h2>
       <Swiper
         loop={true}
         grabCursor={true}
@@ -59,7 +60,7 @@ const UserImageSlider = () => {
           );
         })}
       </Swiper>
-    </>
+    </div>
   );
 };
 

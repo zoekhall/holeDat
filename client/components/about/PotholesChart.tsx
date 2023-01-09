@@ -26,7 +26,8 @@ const PotholesChart = () => {
   useEffect(phstatsImgs, []);
 
   return (
-    <div className='chart'>
+    <div id='pothole-chart' className='chart'>
+      <h2>Top Potholes</h2>
       <Bar
         options={{
           responsive: true,
@@ -48,9 +49,9 @@ const PotholesChart = () => {
               data: potholes.map((pothole) => pothole.count),
               borderColor: 'rgb(53, 162, 235)',
               backgroundColor: [
-                'rgba(201, 176, 55, 0.5)',
-                'rgba(180, 180, 180, 0.5)',
-                'rgba(106, 56, 5, 0.5)',
+                '#E07A5F',
+                '#3D405B',
+                '#81B29A',
               ],
             },
           ],

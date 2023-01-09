@@ -28,16 +28,19 @@ const PImageSlider = () => {
       .catch((err) => console.log(err));
   };
 
+
   useEffect(getAllImgs, []);
 
   return (
-    <>
+    <div id='pothole-slider'>
+      <h2>Newest Reported Potholes</h2>
       <Swiper
+        id='potholeSlider'
         loop={true}
         grabCursor={true}
         modules={[Navigation, Pagination, Autoplay]}
         navigation={true}
-        slidesPerView={3}
+        slidesPerView={1}
         pagination={{ clickable: true }}
         className='mySwiper'
         autoplay={{
@@ -50,15 +53,18 @@ const PImageSlider = () => {
             <SwiperSlide
               key={image.image_id}
             >
-              <Link
-                to={`/Pothole:${image.pothole_id}`}>
-                <img src={image.photoURL} />
-              </Link>
+              <div className='pothole-slider'>
+                <Link
+                  to={`/Pothole:${image.pothole_id}`}>
+                  <img src={image.photoURL} />
+                  <p>{image.caption}</p>
+                </Link>
+              </div>
             </SwiperSlide>
           );
         })}
       </Swiper>
-    </>
+    </div>
   );
 };
 

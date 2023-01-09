@@ -1,13 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
 import { TUser } from '../types/user';
 import { DarkModeSwitch } from 'react-toggle-dark-mode';
-import {Map, About, Feed} from '../assets';
+import { Map, About, Feed } from '../assets';
 
 const localMode = localStorage.getItem('mode');
 if (localMode === 'dark-mode') {
@@ -49,45 +46,60 @@ const NavBar = () => {
   };
 
   return (
-    <Navbar expand='lg' id='mainNavbar'>
-      <Navbar.Toggle aria-controls='basic-navbar-nav' />
-      <Navbar.Brand href='/'>
-        Hole Dat
-        <img
-          src='https://res.cloudinary.com/di6gxsepn/image/upload/v1670816293/ybyqlkegpdct6x5xeauz.svg'
-          alt='logo'
-          width='50'
-        />
-      </Navbar.Brand>
-      {user?.id && (
-        <Button variant='outline-dark' href='/AddPothole' style={{ marginRight: '10%' }}>
-          <i className='bi bi-plus-circle'></i>
-        </Button>
-      )}
-      {!user?.photo ? (
-        <Button href='/auth/google/callback' variant='flat'>
-          Sign In
-        </Button>
-      ) : (
-        <Link to={'/User'}>
-          <img src={user.photo} alt='me' width={40} style={{ borderRadius: '100px' }} />
-        </Link>
-      )}
-      <Navbar.Collapse id='basic-navbar-nav'>
-        <div>
-        <DarkModeSwitch className='mode' checked={mode} onChange={toggleMode} size={30} />
+    <div className='nav-bar'>
+      <div className='top-border'>
+      </div>
+      <div className='top-nav'>
+        <div className='nav-bar-left'>
+          {user?.id ?
+            <Link to={'/User'}>
+              <img src={user.photo} alt='me' width={40} style={{ borderRadius: '100px' }} />
+            </Link>
+            :
+            <img src='https://cdn.onlinewebfonts.com/svg/img_87237.png' alt='anon' />
+          }
         </div>
+        <Link to='/'>
+          <div className='top-center'>
+            <h1>Hole Dat</h1>
+            <img
+              src='https://res.cloudinary.com/di6gxsepn/image/upload/v1670816293/ybyqlkegpdct6x5xeauz.svg'
+              alt='logo'
+              width='50'
+            />
+          </div>
+        </Link>
+        <div className='nav-bar-right'>
+          {user?.id ?
+            <Link to='/AddPothole'>
+              <i className='bi bi-plus-circle'></i>
+            </Link>
+            :
+            <a href='/auth/google/callback'>
+              <button>
+                Sign In
+              </button>
+            </a>
+          }
+        </div>
+      </div>
+      <div className='navbar'>
+        <div className='menu-item'>
+          <DarkModeSwitch className='mode' checked={mode} onChange={toggleMode} size={30} />
           <p>Mode</p>
-          <Nav className='me-auto'>
-            {menuItems.map((item, i) => (
-              <Nav.Link key={i} href={`/${menuPhrasing[i]}`}>
+        </div>
+        {menuItems.map((item, i) => (
+          <Link key={`${i}-${item}`} to={`/${menuPhrasing[i]}`}>
+            <div className='menu-item'>
+              <nav >
                 {item}
                 <p>{menuPhrasing[i]}</p>
-              </Nav.Link>
-            ))}
-          </Nav>
-      </Navbar.Collapse>
-    </Navbar>
+              </nav>
+            </div>
+          </Link>
+        ))}
+      </div>
+    </div >
   );
 };
 

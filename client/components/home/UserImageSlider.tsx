@@ -31,13 +31,14 @@ const UserImageSlider = () => {
   useEffect(getRecentUsers, []);
 
   return (
-    <>
+    <div id='user-slider'>
+      <h2>Newest Users</h2>
       <Swiper
         loop={true}
         grabCursor={true}
         modules={[Navigation, Pagination, Autoplay]}
         navigation={true}
-        slidesPerView={3}
+        slidesPerView={4}
         pagination={{ clickable: true }}
         className='mySwiper'
         autoplay={{
@@ -53,12 +54,13 @@ const UserImageSlider = () => {
                   src={user.photo}
                   referrerPolicy={'no-referrer'}
                 />
+                <p>{user.name}</p>
               </Link>
             </SwiperSlide>
           );
         })}
       </Swiper>
-    </>
+    </div>
   );
 };
 

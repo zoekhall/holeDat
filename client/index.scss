@@ -11,4 +11,10 @@
 @import './styles/base/reset';
 @import './styles/base/typography';
 
+//LAYOUTS
+@import './styles/layouts/div';
+@import './styles/layouts/navigation';
 
+//Pages
+@import './styles/pages/map';
+@import './styles/pages/forms';

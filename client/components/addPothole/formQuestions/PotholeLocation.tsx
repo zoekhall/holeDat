@@ -2,37 +2,38 @@ import React, { useState, useContext, useEffect, useRef } from 'react';
 import axios from 'axios';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import InputGroup from 'react-bootstrap/InputGroup';
+import FormGroup from 'react-bootstrap/FormGroup';
 import { AddressAutofill } from '@mapbox/search-js-react';
 import { LocationContext } from '../AddPothole';
 import Alert from 'react-bootstrap/Alert';
-// import PotholePlot from './PotholeMap';
 
 const mapToken =
   'pk.eyJ1IjoiemFjaG1hcnVsbG8iLCJhIjoiY2xhazZ5aGxyMDQ3bzNwbzZ2Z3N0b3lpMyJ9.65G-mwqhbWFy77O_I0LkOg';
 
-//Componenent with the location search input form. Assigns lat/lon to location context
-
+//Componenent with the location search Form form. Assigns lat/lon to location context
 const PotholeLocation = (prop) => {
   const { coordinates, setCoordinates } = useContext(LocationContext); //set coordinates using AddPothole LocationContext
-  const isMounted = useRef(false);
   const [showError, setShowError] = useState<boolean>(false);
+  const isMounted = useRef(false);
+  const [zip, setZip] = useState<string>('');
+  // const [city, setCity] = useState<string>('');
   const { setSectionView, setPothole_id, setLocation, location } = prop;
 
   //turns address into lat and lon coordinates
   const updateLatLon = () => {
-    const formattedLocation = location.split(' ').join('%20'); //format location to be read by mapbox
+    // const cityTime = city;
+    const formattedLocation = location.split(' ').join('%20').concat(`%2C%20${zip}`); //format location to be read by mapbox
+    // console.log(cityTime, 'city', zip, 'zip')
+    console.log(formattedLocation, 'location')
 
     axios(
-      `https://api.mapbox.com/geocoding/v5/mapbox.places/${formattedLocation}%2C%20Louisiana.json?language=en&limit=5&proximity=-121.90662,37.42827&country=US&access_token=${mapToken}`
+      `https://api.mapbox.com/geocoding/v5/mapbox.places/${formattedLocation}.json?language=en&limit=5&proximity=-121.90662,37.42827&country=US&access_token=${mapToken}`
     )
-      .then(({ data }) => {
-        //set the coordinates
+      .then(({ data }) => { 
         const newCoordinates = { ...coordinates };
         newCoordinates.lat = data.features[0].center[1];
         newCoordinates.lon = data.features[0].center[0];
         setCoordinates(newCoordinates);
-        console.log(data);
       })
       .catch((err) => {
         setShowError(true);
@@ -71,32 +72,49 @@ const PotholeLocation = (prop) => {
   return (
     <Form.Group className='mb-3'>
       <Form.Group>
-        <InputGroup id='addPotLocation'>
-          <AddressAutofill
-            accessToken={mapToken}
-            browserAutofillEnabled={true}>
+        <FormGroup id='addPotLocation'>
+          <AddressAutofill accessToken={mapToken} browserAutofillEnabled={true}>
             <Form.Control
-              id='mapfill'
               name='address'
               placeholder='Address'
               type='text'
-              autoComplete='address-line1 country'
+              autoComplete='address-line1'
               onChange={(e) => {
                 setLocation(e.target.value);
               }}
             />
           </AddressAutofill>
-        </InputGroup>
-        {handleShowError()}
-        <Button
-          variant='flat'
-          onClick={() => updateLatLon()} //on click coordinates are determined
-        >
-          Confirm Pothole Address
-        </Button>
+          {handleShowError()}
+          <Button variant='flat' onClick={() => updateLatLon()}>
+            Confirm Pothole Address
+          </Button>
+          <Form.Control
+            style={{ visibility: 'hidden' }}
+            name='postcode'
+            placeholder='Postcode'
+            type='text'
+            autoComplete='postal-code'
+            onChange={(e) => {
+              console.log(e, 'zip');
+              setZip(e.target.value);
+            }}
+          />
+        </FormGroup>
       </Form.Group>
     </Form.Group>
   );
 };
 
 export default PotholeLocation;
+
+
+          // <Form.Control
+          //   style={{ display: 'none' }}
+          //   name='city'
+          //   placeholder='City'
+          //   type='text'
+          //   autoComplete='address-level2'
+          //   onChange={(e) => {
+          //     setCity(e.target.value);
+          //   }}
+          // />;

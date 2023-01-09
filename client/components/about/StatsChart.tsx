@@ -21,7 +21,8 @@ const StatsChart = () => {
   useEffect(statsImgs, []);
 
   return (
-    <div className='chart'>
+    <div id='user-chart' className='chart'>
+      <h2>Top Users</h2>
       <Bar
         options={{
           responsive: true,
@@ -43,9 +44,9 @@ const StatsChart = () => {
               data: users.map((user) => user.count),
               borderColor: 'rgb(53, 162, 235)',
               backgroundColor: [
-                'rgba(201, 176, 55, 0.5)',
-                'rgba(180, 180, 180, 0.5)',
-                'rgba(106, 56, 5, 0.5)',
+                '#E07A5F',
+                '#3D405B',
+                '#81B29A',
               ],
             },
           ],

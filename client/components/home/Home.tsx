@@ -20,19 +20,18 @@ const Home = () => {
     setPotholeCount(data.data);
     socket.emit('pothole', { data });
   });
-  
+
   return (
     <>
       <div className='home'>
-        <h1 className='home-title-page'>Home</h1>
-        <PotholesChart />
-        <StatsChart />
+        <h1>Welcome to Hole Dat</h1>
+        <p>We are a </p>
         <p>Total Potholes Submitted: {potholeCount}</p>
         <p>Total Potholes Submitted: {userCount}</p>
-        <h4>Latest Reports!</h4>
         <PImageSlider />
-        <h4>New Users</h4>
         <UserImageSlider />
+        <PotholesChart />
+        <StatsChart />
       </div>
     </>
   );

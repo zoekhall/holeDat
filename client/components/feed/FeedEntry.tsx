@@ -50,26 +50,24 @@ const FeedEntry = ({ imgObj }: { imgObj: phImg }) => {
       <h3>{addy}</h3>
       <Link to={`/Pothole:${imgObj.pothole_id}`}>
         <img
-          style={{ borderRadius: '18px' }}
           src={imgObj.photoURL}
           alt='Image'
-          width='50%'
-          height='50%'
+          referrerPolicy='no-referrer'
         />
       </Link>
       <p>{imgObj.caption}</p>
       <Link to={'/User:' + imgObj.user_id}>
-        <img src={imgObj.photo} alt='Image' width='10%'></img>
+        <img src={imgObj.photo} alt='Image' />
       </Link>
       <img
         onMouseOver={() => onBadgeHover(true)}
         onMouseOut={() => onBadgeHover(false)}
         src={badge?.imgUrl}
         alt='Image'
-        width='10%'
-      ></img>
+        referrerPolicy='no-referrer'
+      />
       {hoverBool ? badge?.description : badge?.name}
-    </div>
+    </div >
   );
 };
 

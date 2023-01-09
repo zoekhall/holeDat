@@ -7,17 +7,19 @@ export const issueBadges = async () => {
   getTopThree((data) => {
     data.forEach((each) => {
       //issue plat
-      if (each.count >= 20) {
-        User.update({ badge_id: 1 }, { where: { user_id: each.user_id } });
+      if (each.count >= 5) {
+        User.update({ badge_id: 5 }, { where: { user_id: each.user_id } });
         //issue Gold
-      } else if (each.count >= 15) {
+      } else if (each.count >= 4) {
+        User.update({ badge_id: 1 }, { where: { user_id: each.user_id } });
+      } else if (each.count >= 3) {
         User.update({ badge_id: 2 }, { where: { user_id: each.user_id } });
-      } else if (each.count >= 10) {
-        User.update({ badge_id: 3 }, { where: { user_id: each.user_id } });
       } else if (each.count >= 2) {
+        User.update({ badge_id: 3 }, { where: { user_id: each.user_id } });
+      } else if (each.count >= 1) {
         User.update({ badge_id: 4 }, { where: { user_id: each.user_id } });
       } else {
-        User.update({ badge_id: 0 }, { where: { user_id: each.user_id } });
+        User.update({ badge_id: undefined }, { where: { user_id: each.user_id } });
       }
     });
   });

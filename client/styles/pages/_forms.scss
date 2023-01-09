@@ -1,109 +1,108 @@
-@import 'main';
 
-#addPothole {
-  //formatting for entire form
-  background-color: $LightColor1;
-  border: 2px solid $DarkColor1;
-  min-width: 400px;
-  width: 550px;
-  padding: 40px;
-}
-
-.progress-bar {
-  background-color: $DarkColor1;
-}
-
-.form-label {
-  font-size: 20px;
-}
-
-#addPotLocation {
-  width: 100%;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-}
-
-#statusSwitch {
-  width: 50px;
-  height: 30px;
-}
-
-#ratingGroupDiv {
-  //formating for rating cones
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  padding: 5%;
-  background-color: white;
-
-  #cones {
-    display: inline-flex;
-    justify-content: space-evenly;
-    min-width: 200px;
-    width: 300px;
-    align-items: center;
-  }
-
-  p,
-  #statusSwitch {
-    width: 175px;
-    margin: 0;
-    text-align: center;
-    padding: 0 10px;
-    font-size: 15px;
-  }
-}
-
-.bi-cone-striped:hover {
-  fill: $PrimaryColor;
-  width: 150%;
-  align-items: center;
-}
-
-#FormMap {
-  position: fixed;
-  display: flex;
-  justify-content: center;
-  top: 35%;
-}
-
-.picked {
-  fill: $PrimaryColor;
-}
-
-// #inputImg {
-//     margin-left: auto;
-//       margin-right: auto;
-//       display: block;
-//       width: 200px;
-//       height: 200px;
-//       float: left;
+// #addPothole {
+//   //formatting for entire form
+//   background-color: $LightColor1;
+//   border: 2px solid $DarkColor1;
+//   min-width: 400px;
+//   width: 550px;
+//   padding: 40px;
 // }
 
+// .progress-bar {
+//   background-color: $DarkColor1;
+// }
 
-//STORAGE - TRYING TO CHANGE ON CLICK
-// @mixin cone-color($color: primary, $effect: none) {
+// .form-label {
+//   font-size: 20px;
+// }
 
-//   @if ($color ==primary) {
-//     color: $DarkColor1;
+// #addPotLocation {
+//   width: 100%;
+//   display: flex;
+//   justify-content: flex-start;
+//   align-items: center;
+// }
 
-//     @if ($effect ==hover) {
-//       &:hover {
-//         fill: $PrimaryColor;
-//         width: 150%;
-//         align-items: center;
-//       }
-//     }
+// #statusSwitch {
+//   width: 50px;
+//   height: 30px;
+// }
+
+// #ratingGroupDiv {
+//   //formating for rating cones
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   width: 100%;
+//   padding: 5%;
+//   background-color: white;
+
+//   #cones {
+//     display: inline-flex;
+//     justify-content: space-evenly;
+//     min-width: 200px;
+//     width: 300px;
+//     align-items: center;
 //   }
 
-//   @if ($color ==secondary) {
-//     color: $PrimaryColor;
-
+//   p,
+//   #statusSwitch {
+//     width: 175px;
+//     margin: 0;
+//     text-align: center;
+//     padding: 0 10px;
+//     font-size: 15px;
 //   }
 // }
 
-// .bi-cone-striped {
-//   @include cone-color(primary, none);
+// .bi-cone-striped:hover {
+//   fill: $PrimaryColor;
+//   width: 150%;
+//   align-items: center;
 // }
+
+// #FormMap {
+//   position: fixed;
+//   display: flex;
+//   justify-content: center;
+//   top: 35%;
+// }
+
+// .picked {
+//   fill: $PrimaryColor;
+// }
+
+// // #inputImg {
+// //     margin-left: auto;
+// //       margin-right: auto;
+// //       display: block;
+// //       width: 200px;
+// //       height: 200px;
+// //       float: left;
+// // }
+
+
+// //STORAGE - TRYING TO CHANGE ON CLICK
+// // @mixin cone-color($color: primary, $effect: none) {
+
+// //   @if ($color ==primary) {
+// //     color: $DarkColor1;
+
+// //     @if ($effect ==hover) {
+// //       &:hover {
+// //         fill: $PrimaryColor;
+// //         width: 150%;
+// //         align-items: center;
+// //       }
+// //     }
+// //   }
+
+// //   @if ($color ==secondary) {
+// //     color: $PrimaryColor;
+
+// //   }
+// // }
+
+// // .bi-cone-striped {
+// //   @include cone-color(primary, none);
+// // }

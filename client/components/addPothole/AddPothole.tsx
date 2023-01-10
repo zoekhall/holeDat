@@ -2,14 +2,15 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import React, { useState, useEffect, createContext, Dispatch, SetStateAction } from 'react';
 import axios from 'axios';
-import Button from 'react-bootstrap/Button';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import Form from 'react-bootstrap/Form';
+import Container from 'react-bootstrap/Container';
 import LocationSection from './formSections/LocationSection';
 import ImageSection from './formSections/ImageSection';
 import StatusSection from './formSections/StatusSection';
-import Submitted from './formSections/Submitted';
-import Container from 'react-bootstrap/Container';
+import SubmittedSection from './formSections/SubmittedSection';
+import WelcomeSection from './formSections/WelcomeSection';
+
 
 /* -------------------------------- Contexts -------------------------------- */
 interface LocationContextType {
@@ -40,7 +41,7 @@ export const StatusContext = createContext<StatusContextType>({
 /* --------------------------- Main Form Component -------------------------- */
 const AddPothole = () => {
   const sections: Array<string> = ['Welcome', 'Location', 'Image', 'Status'];
-  const [view, setView] = useState<string>('Location');
+  const [view, setView] = useState<string>('Welcome');
   const [progress, setProgress] = useState<number>(0);
   const [user_id, setUser_id] = useState<number>(0);
   const [coordinates, setCoordinates] = useState({ lat: 0, lon: 0 });
@@ -71,9 +72,7 @@ const AddPothole = () => {
         .then(({ data }) => {
           const updatedImageContents = { ...imageContents };
           updatedImageContents.photoURL = data;
-
           const masterObj = { coordinates, updatedImageContents, statusContents, user_id };
-          console.log(masterObj);
 
           axios
             .post('/api/pothole/addPothole', masterObj)
@@ -89,19 +88,19 @@ const AddPothole = () => {
     if (view === 'Location') {
       return (
         <LocationContext.Provider value={{ coordinates, setCoordinates }}>
-          <LocationSection />
+          <LocationSection handleClick={handleClick} />
         </LocationContext.Provider>
       );
     } else if (view === 'Image') {
       return (
         <ImageContext.Provider value={{ imageContents, setImageContents }}>
-          <ImageSection />
+          <ImageSection handleClick={handleClick} />
         </ImageContext.Provider>
       );
     } else if (view === 'Status') {
       return (
         <StatusContext.Provider value={{ statusContents, setStatusContents }}>
-          <StatusSection />
+          <StatusSection handleSubmit={handleSubmit} />
         </StatusContext.Provider>
       );
     }
@@ -110,25 +109,13 @@ const AddPothole = () => {
   //* Handle Form Components //*
   const handleFormComps = () => {
     if (view === 'Welcome') {
-      return (
-        <Container className='formView'>
-          <h3>Report a Pothole</h3>
-          <h2>Time to Submit a Pothole to the Pothole Panoply!</h2>
-          <h4>Fill out this quick form in order to submit a pothole to our database </h4>
-          <Button className='formButton' type='button' onClick={handleClick}>
-            Report the Pothole
-          </Button>
-        </Container>
-      );
+      return <WelcomeSection handleClick={handleClick} />
     } else if (view === 'Submitted') {
-      return <Submitted />;
+      return <SubmittedSection />;
     } else {
       return (
-        <Form id='potholeForm'>
+        <Form id='potholeForm' className = 'formSectionView'>
           {handleSectionalView()}
-          <Button className='formButton' type='button' onClick={view === 'Status' ? handleSubmit : handleClick}>
-            Next
-          </Button>
           <ProgressBar now={progress} />
         </Form>
       );

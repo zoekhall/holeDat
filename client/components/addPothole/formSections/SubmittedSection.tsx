@@ -2,13 +2,13 @@
 import React from 'react';
 import Container from 'react-bootstrap/Container';
 
-const Submitted = () => {
+const SubmittedSection = () => {
 
   return (
-    <Container className='formView'>
+    <Container className='formSectionView'>
       <h2> You've Successfully Submitted Your Pothole! </h2>
     </Container>
   );
 }
 
-export default Submitted;
+export default SubmittedSection;

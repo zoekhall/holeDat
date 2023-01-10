@@ -14,9 +14,11 @@ pothole.post('/findPothole', (req: Request, res: Response) => {
 });
 
 pothole.post('/addPothole', (req: Request, res: Response) => {
-  const { coordinates, updatedImageContents, statusContents, user_id } = req.body;
-  const { fixed, rating } = statusContents;
-  const { caption, photoURL } = updatedImageContents;
+  const { coordinates, user_id } = req.body;
+  const { fixed, rating } = req.body.statusContents;
+  const { caption, photoURL } = req.body.updatedImageContents;
+
+  console.log(req.user)
 
   findAndAddPothole((data) => {
     const pothole_id = data;

@@ -1,8 +1,7 @@
+//GENERAL FORM
 #addPothole {
   position: relative;
-  // margin-top: 30%;
-  // width: 90%;
-  // height: 75%;
+  margin-top: 2em;
 }
 
 .formView{
@@ -10,24 +9,87 @@
   border: 2px solid $black;
   box-shadow: 6px 6px 0px $black;
   border-radius: 16px;
-  padding: 2em;
+  padding: 1em;
 }
 
-#potholeForm{
+.formSectionView{
   background-color: $muted-pearl;
   border: 2px solid $black;
   border-radius: 8px;
-  padding: 2em;
+  padding: 1em;
 }
 
-.formButton{
-  background-color: $red;
-  border: 1px solid $black;
-  box-shadow: 3px 3px 0px $black;
+//TEXT 
+.formText{
+  color: $black;
+  margin-bottom: 1em;
+  font-weight: 800;
+  display: block;
+}
+
+.formQuestion{
+  font-family: $Spectral;
+  font-size: 1em;
+}
+
+.formInfo{
+  font-family: $Poppins;
+  font-size: .75em;
   margin-bottom: 2em;
 }
 
-.progress-bar {
-  background-color: $blue;
-  border: 1px solid $black;
+.headerText{
+  font-size: 1.5em;
 }
+
+.subText{
+  font-size: .75em;
+}
+
+//BUTTONS 
+.formButton{
+  background-color: $muted-pearl;
+  border: 2px solid $black;
+  box-shadow: 3px 3px 0px $black;
+  color: $black;
+  &:hover,
+  &:focus {
+    border: 2px solid $black !important;
+    background-color: $red !important;
+  };
+  // margin-top: .75em;
+}
+  .genFormButton{
+    margin-top: .75em;
+  }
+
+  #nextFormButton {
+    margin-top: 2.25em;
+  }
+  
+  //WELCOME VIEW
+  #welcomeSection {
+    text-align: center;
+  }
+
+  //LOCATION VIEW
+  #formZip {
+    visibility: hidden;
+    position: absolute;
+    // left: -999em;
+  }
+
+  #mapGroup {
+    text-align: center;
+  }
+
+  //PROGRESS BAR
+.progress {
+  margin-top: 2em;
+  background-color: $muted-pearl;
+  border: 1px solid $black;
+  .progress-bar {
+    background-color: $green;
+  }
+}
+

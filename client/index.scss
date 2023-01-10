@@ -1,7 +1,6 @@
 @import '../node_modules/bootstrap/scss/bootstrap';
-// @import './styles/main';
-// @import './styles/forms';
-// @import './styles/storage/map';
+@import './styles/main';
+@import './styles/pages/forms';
 
 //ABSTRACTS
 @import './styles/abstracts/variables';
@@ -17,3 +16,4 @@
 
 //Pages
 @import './styles/pages/map';
+@import './styles/pages/feed';

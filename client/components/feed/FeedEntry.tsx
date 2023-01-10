@@ -46,18 +46,22 @@ const FeedEntry = ({ imgObj }: { imgObj: phImg }) => {
 
   useEffect(getInfo, []);
   return (
-    <div>
+    <div className='pothole-container'>
       <h3>{addy}</h3>
       <Link to={`/Pothole:${imgObj.pothole_id}`}>
         <img
           src={imgObj.photoURL}
           alt='Image'
           referrerPolicy='no-referrer'
+          className='pothole-img'
         />
       </Link>
-      <p>{imgObj.caption}</p>
+      <h2>{imgObj.caption}</h2>
       <Link to={'/User:' + imgObj.user_id}>
-        <img src={imgObj.photo} alt='Image' />
+        <img
+          src={imgObj.photo}
+          alt='Image'
+          className='user-img' />
       </Link>
       <img
         onMouseOver={() => onBadgeHover(true)}
@@ -65,6 +69,7 @@ const FeedEntry = ({ imgObj }: { imgObj: phImg }) => {
         src={badge?.imgUrl}
         alt='Image'
         referrerPolicy='no-referrer'
+        className='badge-img'
       />
       {hoverBool ? badge?.description : badge?.name}
     </div >

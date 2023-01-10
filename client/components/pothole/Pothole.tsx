@@ -6,6 +6,7 @@ import { useLocation, Link } from 'react-router-dom';
 import CommentForm from './CommentForm';
 import Likes from './Likes';
 
+
 const Pothole = () => {
   const id = Number(useLocation().pathname.split(':')[1]);
 
@@ -103,33 +104,33 @@ const Pothole = () => {
     <div className='post'>
       <div className='post_header'>
         <h1>{addy}</h1>
-        <Link to={'/Rating:' + id} state={{ addy, user }}>
-          {user?.userId_user && <button>Rate</button>}
-        </Link>
-        <div className='voting-cones'>
-          {Array.from(Array(5)).map((e, i) => {
-            return (
-              <svg
-                key={i}
-                xmlns='http://www.w3.org/2000/svg'
-                width='25'
-                fill='currentColor'
-                id={`cone-num-${i}`}
-                className={`${i < avg ? ' clickCone' : ''}`}
-                viewBox='0 0 16 16'
-              >
-                <path d='m9.97 4.88.953 3.811C10.159 8.878 9.14 9 8 9c-1.14 0-2.158-.122-2.923-.309L6.03 4.88C6.635 4.957 7.3 5 8 5s1.365-.043 1.97-.12zm-.245-.978L8.97.88C8.718-.13 7.282-.13 7.03.88L6.275 3.9C6.8 3.965 7.382 4 8 4c.618 0 1.2-.036 1.725-.098zm4.396 8.613a.5.5 0 0 1 .037.96l-6 2a.5.5 0 0 1-.316 0l-6-2a.5.5 0 0 1 .037-.96l2.391-.598.565-2.257c.862.212 1.964.339 3.165.339s2.303-.127 3.165-.339l.565 2.257 2.391.598z' />
-              </svg>
-            );
-          })}
+        <div className='rate-cones'>
+          <Link to={'/Rating:' + id} state={{ addy, user }}>
+            {user?.userId_user && <button>Rate</button>}
+          </Link>
+          <div className='voting-cones'>
+            {Array.from(Array(5)).map((e, i) => {
+              return (
+                <svg
+                  key={i}
+                  xmlns='http://www.w3.org/2000/svg'
+                  id={`cone-num-${i}`}
+                  className={`${i < avg ? 'clickCone' : ''}`}
+                  viewBox='0 0 16 16'
+                >
+                  <path d='m9.97 4.88.953 3.811C10.159 8.878 9.14 9 8 9c-1.14 0-2.158-.122-2.923-.309L6.03 4.88C6.635 4.957 7.3 5 8 5s1.365-.043 1.97-.12zm-.245-.978L8.97.88C8.718-.13 7.282-.13 7.03.88L6.275 3.9C6.8 3.965 7.382 4 8 4c.618 0 1.2-.036 1.725-.098zm4.396 8.613a.5.5 0 0 1 .037.96l-6 2a.5.5 0 0 1-.316 0l-6-2a.5.5 0 0 1 .037-.96l2.391-.598.565-2.257c.862.212 1.964.339 3.165.339s2.303-.127 3.165-.339l.565 2.257 2.391.598z' />
+                </svg>
+              );
+            })}
+            {voteCount}
+          </div>
         </div>
-        {voteCount}
       </div>
       <Swiper
         className='mySwiper'
         pagination={true}
         effect={'cards'}
-        id='pfSlider'
+        id='pothole-profile-slider'
         grabCursor={true}
         modules={[Pagination]}
       >
@@ -137,19 +138,17 @@ const Pothole = () => {
           return (
             <SwiperSlide key={image.image_id}>
               <img className='potHole_img' src={image.photoURL} alt='test' />
-              {user?.name && <Likes user={user} image={image} />}
               <div className='post_caption'>
-                <div className='caption'>
                   <Link to={'/User:' + image.userId}>
                     <img
-                      className='avatar capElem rounded-circle shadow-sm p-3 mb-5 bg-white rounded'
+                      className='avatar'
                       alt='avatar2'
                       src={image.userPhoto}
                     />
                   </Link>
-                  <strong>{image.userName}</strong>
+                  <h2>{image.userName}</h2>
                   <p>{image.caption}</p>
-                </div>
+                  {user?.name && <Likes user={user} image={image} />}
               </div>
             </SwiperSlide>
           );

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import axios from 'axios';
 import moment from 'moment';
@@ -125,9 +124,9 @@ const CommentForm = ({ phId }: CommentFormArgs) => {
             value={inputValue}
             onChange={(event) => setInputValue(event.target.value)}
           />
-          <Button className='post_button' variant='outlined-dark' type='submit'>
+          <button className='post_button'>
             Post
-          </Button>
+          </button>
         </Form>
       )}
       {comments.map((renderComment) => {
@@ -137,14 +136,13 @@ const CommentForm = ({ phId }: CommentFormArgs) => {
             <b>{renderComment.name}:</b> <h6>{renderComment.text}</h6>
             <p>{moment(renderComment.time).format('MMMM Do YYYY, h:mm a')}</p>
             {user.userId_user === renderComment.userId_com && (
-              <Button
+              <button
                 onClick={() => handleDelete(renderComment.com_id)}
                 className='post_button'
-                variant='outlined-dark'
                 type='submit'
               >
                 Delete
-              </Button>
+              </button>
             )}
           </div>
         );

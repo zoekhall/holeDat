@@ -1,5 +1,7 @@
 //nav styles
 // .mode svg,
+
+
 .menu-item svg {
   width: 20px;
   height: 20px;
@@ -42,6 +44,8 @@
   background-image: url('https://res.cloudinary.com/di6gxsepn/image/upload/v1672966189/ruplrcwnmb5trbkuefrj.svg');
   background-repeat: repeat;
   width: 100%;
+  box-shadow: 0px 0px 3px black;
+  border-bottom: 2px solid black;
 }
 
 .top-nav,

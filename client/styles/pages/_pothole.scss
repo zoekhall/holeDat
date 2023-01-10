@@ -1,0 +1,83 @@
+.post {
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: -3px 3px 0px black;
+  margin: 10px;
+
+  .post_header {
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+
+    .rate-cones {
+      align-items: center;
+      display: flex;
+    }
+
+    h1 {
+      font-size: xx-large;
+    }
+  }
+
+  button {
+    border-radius: 5px;
+    padding: 5px;
+    margin: 5px;
+  }
+
+  .swiper-slide {
+    margin: 10px 0px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 3px 3px black;
+
+    img {
+      margin: 10px;
+      object-fit: cover;
+      width: 100%;
+      height: 500px;
+      box-shadow: none;
+    }
+
+    .like_pics {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+
+      img {
+        background-color: transparent;
+        border: none;
+        box-shadow: none;
+        margin: 5px;
+        width: 25px;
+        height: 25px;
+      }
+    }
+  }
+
+  img.avatar {
+    border-radius: 10px;
+    width: 75px;
+    height: 75px;
+  }
+}
+
+.voting-cones svg {
+  width: 2em;
+}
+
+svg.clickCone {
+
+  path {
+    fill: #e07a5f
+  }
+}
+
+.post_caption {
+  display: flex;
+  background-color: #F2CC8F;
+}
+
+
+.pothole-profile-slider {}

@@ -2,17 +2,17 @@
 #addPothole {
   position: relative;
   margin-top: 2em;
+  font-weight: 800;
 }
 
-.formView{
+.formView {
   background-color: $yellow;
-  border: 2px solid $black;
-  box-shadow: 6px 6px 0px $black;
   border-radius: 16px;
   padding: 1em;
+  @include border-shadow;
 }
 
-.formSectionView{
+.formSectionView {
   background-color: $muted-pearl;
   border: 2px solid $black;
   border-radius: 8px;
@@ -20,76 +20,84 @@
 }
 
 //TEXT 
-.formText{
+.formText {
   color: $black;
   margin-bottom: 1em;
-  font-weight: 800;
-  display: block;
 }
 
-.formQuestion{
+.formQuestion {
   font-family: $Spectral;
   font-size: 1em;
 }
 
-.formInfo{
+.formInfo {
   font-family: $Poppins;
   font-size: .75em;
   margin-bottom: 2em;
 }
 
-.headerText{
-  font-size: 1.5em;
+.headerText {
+  font-size: 1.25em;
+  text-align: center;
 }
 
-.subText{
+.subText {
   font-size: .75em;
+  text-align: center;
+  color: black;
 }
 
 //BUTTONS 
-.formButton{
+.formButton {
+  @include border-shadow(2px 2px 0px $black);
   background-color: $muted-pearl;
-  border: 2px solid $black;
-  box-shadow: 3px 3px 0px $black;
   color: $black;
+
   &:hover,
   &:focus {
     border: 2px solid $black !important;
     background-color: $red !important;
-  };
+  }
+
+  ;
   // margin-top: .75em;
 }
-  .genFormButton{
-    margin-top: .75em;
-  }
 
-  #nextFormButton {
-    margin-top: 2.25em;
-  }
-  
-  //WELCOME VIEW
-  #welcomeSection {
-    text-align: center;
-  }
+.genFormButton {
+  margin-top: .75em;
+}
 
-  //LOCATION VIEW
-  #formZip {
-    visibility: hidden;
-    position: absolute;
-    // left: -999em;
-  }
+#nextFormButton {
+  margin-top: 2.25em;
+}
 
-  #mapGroup {
-    text-align: center;
-  }
+#buttons {
+  display: inline-block;
+}
 
-  //PROGRESS BAR
+//WELCOME VIEW
+#welcomeSection {
+  text-align: center;
+}
+
+//LOCATION VIEW
+#formZip {
+  visibility: hidden;
+  position: absolute;
+  // left: -999em;
+}
+
+#mapGroup {
+  @include border-shadow(2px 2px 0px $black);
+  text-align: center;
+}
+
+//PROGRESS BAR
 .progress {
   margin-top: 2em;
   background-color: $muted-pearl;
-  border: 1px solid $black;
+  @include border-shadow(1px 1px 0px $black);
   .progress-bar {
     background-color: $green;
   }
 }
-

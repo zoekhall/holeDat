@@ -15,8 +15,7 @@ const PotholeLocation = (prop) => {
   const { coordinates, setCoordinates } = useContext(LocationContext); //set coordinates using AddPothole LocationContext
   const [showError, setShowError] = useState<boolean>(false);
   const isMounted = useRef(false);
-  const [zip, setZip] = useState<string>('');
-  const { setSectionView, setPothole_id, setLocation, location } = prop;
+  const { setSectionView, setPothole_id, setLocation, location, setZip, zip } = prop;
 
   //turns address into lat and lon coordinates
   const updateLatLon = () => {

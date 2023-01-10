@@ -7,7 +7,7 @@ const Point = (prop) => {
   type phObj = {
     caption: string;
     photoURL: string;
-    exists: boolean; 
+    exists: boolean;
   };
   const { lon, lat, pothole_id } = prop.marker;
   const { userLocation } = prop;
@@ -16,19 +16,19 @@ const Point = (prop) => {
   const [plothole, setPlothole] = useState<phObj>();
 
   const getInfo = () => {
-    if(pothole_id){
-    axios.get('/api/imgs/potholeimg' + prop.marker.pothole_id)
-      .then(data => setPlothole({...data.data, ...{exists: true}}))
-      .then(() => {
-        if (
-          Math.abs(userLocation[0] - lat) < 0.000000000001 &&
-          Math.abs(userLocation[1] - lon) < 0.00000000001 &&
-          userLocation.length !== 0
-        ) {
-          setShowPopup(false);
-        }
-      })
-      .catch(err => console.log(err))
+    if (pothole_id) {
+      axios.get('/api/imgs/potholeimg' + prop.marker.pothole_id)
+        .then(data => setPlothole({ ...data.data, ...{ exists: true } }))
+        .then(() => {
+          if (
+            Math.abs(userLocation[0] - lat) < 0.000000000001 &&
+            Math.abs(userLocation[1] - lon) < 0.00000000001 &&
+            userLocation.length !== 0
+          ) {
+            setShowPopup(false);
+          }
+        })
+        .catch(err => console.log(err))
     }
     else {
       const pendingPothole: { caption: string; photoURL: string; exists: boolean } =
@@ -58,8 +58,8 @@ const Point = (prop) => {
         >
           {plothole ? (
             <div className='mapPopup'>
-              <Link to={ plothole.exists ? '/Pothole:' + pothole_id : ''}>
-                <img src={plothole.photoURL} alt='potholeImg' width={100} />
+              <Link to={plothole.exists ? '/Pothole:' + pothole_id : ''}>
+                <img src={plothole.photoURL} alt='potholeImg' />
               </Link>
             </div>
           ) : (

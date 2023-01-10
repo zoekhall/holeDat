@@ -53,7 +53,7 @@ const UserImageSlider = () => {
                   src={user.photo}
                   referrerPolicy={'no-referrer'}
                 />
-                <p>{user.name}</p>
+                <p>{user.name.split(' ')[0]}</p>
               </Link>
             </SwiperSlide>
           );

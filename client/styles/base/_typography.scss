@@ -9,29 +9,29 @@ h1 {
   font-family: $Spectral;
   font-weight: 800;
   font-style: italic;
-  font-size: 50px;
+  font-size: 2.5em; //ie 50px
 }
 
 //SUB-TITLE FONT 
 h2 {
   font-family: $Poppins;
-  font-size: 20px;
+  font-size: 1em; //ie 20px
 }
 
 //TITLE FONT 
 h3 {
   font-family: $Spectral;
-  font-size: 20px;
+  font-size: 1em; //ie 20px
 }
 
 //NAVBAR/OPTIONS/PROFILE FONT 
 h4 {
   font-family: $Poppins;
-  font-size: 12px;
+  font-size: 0.6em; //ie 12px
 }
 
 //TEXT FONT 
 p {
   font-family: $Poppins;
-  font-size: 10px;
+  font-size: 0.5em; //ie 10px
 }

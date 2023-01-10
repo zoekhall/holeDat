@@ -9,6 +9,7 @@ import LocationSection from './formSections/LocationSection';
 import ImageSection from './formSections/ImageSection';
 import StatusSection from './formSections/StatusSection';
 import Submitted from './formSections/Submitted';
+import Container from 'react-bootstrap/Container';
 
 /* -------------------------------- Contexts -------------------------------- */
 interface LocationContextType {
@@ -39,7 +40,7 @@ export const StatusContext = createContext<StatusContextType>({
 /* --------------------------- Main Form Component -------------------------- */
 const AddPothole = () => {
   const sections: Array<string> = ['Welcome', 'Location', 'Image', 'Status'];
-  const [view, setView] = useState<string>('Welcome');
+  const [view, setView] = useState<string>('Location');
   const [progress, setProgress] = useState<number>(0);
   const [user_id, setUser_id] = useState<number>(0);
   const [coordinates, setCoordinates] = useState({ lat: 0, lon: 0 });
@@ -62,25 +63,24 @@ const AddPothole = () => {
 
   //* Handle Submission *//
   const handleSubmit = () => {
-    // if (imageContents.file) {
-    //   const formData = new FormData();
-    //   formData.append('file', imageContents.file);
-    //   axios
-    //     .post('/api/imgs/addimg', formData)
-    //     .then(({ data }) => {
-    const updatedImageContents = { ...imageContents };
-    //       updatedImageContents.photoURL = data;
-    
-    const masterObj = { coordinates, updatedImageContents, statusContents, user_id };
-    console.log(masterObj);
+    if (imageContents.file) {
+      const formData = new FormData();
+      formData.append('file', imageContents.file);
+      axios
+        .post('/api/imgs/addimg', formData)
+        .then(({ data }) => {
+          const updatedImageContents = { ...imageContents };
+          updatedImageContents.photoURL = data;
 
-    //       axios
-    //         .post('/api/pothole/addPothole', masterObj)
-    //         .catch((err) => console.error('Failure to Add Pothole to Database', err));
-    //     })
-    //     .catch((err) => console.error('Failure to Submit Image to Cloud', err));
-    // }
+          const masterObj = { coordinates, updatedImageContents, statusContents, user_id };
+          console.log(masterObj);
 
+          axios
+            .post('/api/pothole/addPothole', masterObj)
+            .catch((err) => console.error('Failure to Add Pothole to Database', err));
+        })
+        .catch((err) => console.error('Failure to Submit Image to Cloud', err));
+    }
     setView('Submitted');
   };
 
@@ -104,39 +104,44 @@ const AddPothole = () => {
           <StatusSection />
         </StatusContext.Provider>
       );
-    } else {
-      return (
-        <div>
-          <h5>Time to Submit a Pothole to the Pothole Panoply!</h5>
-          <h6>Fill out this quick form in order to submit a pothole!</h6>
-        </div>
-      );}
+    }
   };
 
   //* Handle Form Components //*
   const handleFormComps = () => {
-    if (view === 'Submitted') {
+    if (view === 'Welcome') {
+      return (
+        <Container className='formView'>
+          <h3>Report a Pothole</h3>
+          <h2>Time to Submit a Pothole to the Pothole Panoply!</h2>
+          <h4>Fill out this quick form in order to submit a pothole to our database </h4>
+          <Button className='formButton' type='button' onClick={handleClick}>
+            Report the Pothole
+          </Button>
+        </Container>
+      );
+    } else if (view === 'Submitted') {
       return <Submitted />;
+    } else {
+      return (
+        <Form id='potholeForm'>
+          {handleSectionalView()}
+          <Button className='formButton' type='button' onClick={view === 'Status' ? handleSubmit : handleClick}>
+            Next
+          </Button>
+          <ProgressBar now={progress} />
+        </Form>
+      );
     }
-
-    return (
-      <div>
-        <h1>Report a Pothole</h1>
-        {handleSectionalView()}
-        <Button
-          type='button'
-          variant='outlined-dark'
-          onClick={view === 'Status' ? handleSubmit : handleClick}
-        >
-          Next
-        </Button>
-        <ProgressBar now={progress} />
-      </div>
-    );
-
   };
 
-  return <Form id='addPothole'>{handleFormComps()}</Form>;
+  return (
+    <Container id='addPothole'>
+      <Container className='formView' fluid>
+        {handleFormComps()}
+      </Container>
+    </Container>
+  );
 };
 
 export default AddPothole;

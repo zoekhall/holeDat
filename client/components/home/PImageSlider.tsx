@@ -39,6 +39,7 @@ const PImageSlider = () => {
         loop={true}
         grabCursor={true}
         modules={[Pagination, Autoplay]}
+        navigation={true}
         slidesPerView={1}
         pagination={{ clickable: true }}
         className='mySwiper'
@@ -52,10 +53,12 @@ const PImageSlider = () => {
             <SwiperSlide
               key={image.image_id}
             >
-              <div className='pothole-slider'>
+              <div className='pothole-slider-image'>
                 <Link
                   to={`/Pothole:${image.pothole_id}`}>
-                  <img src={image.photoURL} />
+                  <div className='pothole-image'>
+                    <img src={image.photoURL} />
+                  </div>
                   <p>{image.caption}</p>
                 </Link>
               </div>

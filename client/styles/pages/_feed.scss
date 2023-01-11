@@ -18,7 +18,6 @@
   box-shadow: 10px 10px 2px rgb(0, 0, 0);
 
   h2 {
-    background-color: #E07A5F;
     width: 80%;
     margin: auto;
     padding: 30px 19px;
@@ -28,6 +27,20 @@
   }
 }
 
+section {
+  background-color: #E07A5F;
+  width: 70%;
+  height: 50%;
+  margin: auto;
+}
+
+.user-img {
+  position: relative;
+  top: -80px;
+  left: 40px;
+  width: 5%;
+  height: 5%;
+}
 
 .pothole-img {
   width: 90%;

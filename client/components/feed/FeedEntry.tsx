@@ -56,22 +56,24 @@ const FeedEntry = ({ imgObj }: { imgObj: phImg }) => {
           className='pothole-img'
         />
       </Link>
-      <h2>{imgObj.caption}</h2>
-      <Link to={'/User:' + imgObj.user_id}>
+      <section>
+        <h2>{imgObj.caption}</h2>
+        <Link to={'/User:' + imgObj.user_id}>
+          <img
+            src={imgObj.photo}
+            alt='Image'
+            className='user-img' />
+        </Link>
         <img
-          src={imgObj.photo}
+          onMouseOver={() => onBadgeHover(true)}
+          onMouseOut={() => onBadgeHover(false)}
+          src={badge?.imgUrl}
           alt='Image'
-          className='user-img' />
-      </Link>
-      <img
-        onMouseOver={() => onBadgeHover(true)}
-        onMouseOut={() => onBadgeHover(false)}
-        src={badge?.imgUrl}
-        alt='Image'
-        referrerPolicy='no-referrer'
-        className='badge-img'
-      />
-      {hoverBool ? badge?.description : badge?.name}
+          referrerPolicy='no-referrer'
+          className='badge-img'
+        />
+        {hoverBool ? badge?.description : badge?.name}
+      </section>
     </div >
   );
 };

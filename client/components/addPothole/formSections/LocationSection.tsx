@@ -52,7 +52,7 @@ const LocationSection = (prop) => {
 
         <div id='buttons'>
           <Button 
-            className='formButton genFormButton'
+            className='Button genFormButton'
             onClick={() => {
               setLocation('');
               setZip('');

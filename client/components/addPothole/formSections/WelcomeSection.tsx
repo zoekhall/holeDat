@@ -13,7 +13,7 @@ const WelcomeSection = (prop) => {
         Upon submission you will find further instructions on how to quickly report the pothole to
         the city as well!
       </h4>
-      <Button className='formButton' id='reportButton' type='button' onClick={handleClick}>
+      <Button className='basicButton' id='reportButton' type='button' onClick={handleClick}>
         Report the Pothole
       </Button>
     </Container>

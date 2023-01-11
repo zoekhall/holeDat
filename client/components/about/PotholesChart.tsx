@@ -42,7 +42,7 @@ const PotholesChart = () => {
           },
         }}
         data={{
-          labels: ['1st', '2nd', '3rd'],
+          labels: ['', '', ''],
           datasets: [
             {
               label: 'Potholes added by day of the week',

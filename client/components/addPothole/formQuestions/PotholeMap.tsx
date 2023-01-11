@@ -22,7 +22,7 @@ const PotholePlot = (prop) => {
   }, [style]);
 
       return (
-        <Form.Group>
+        <Form.Group id='mapGroup'>
           <Map
             initialViewState={{
               latitude: coordinates.lat,
@@ -30,7 +30,7 @@ const PotholePlot = (prop) => {
               zoom: 15,
               pitch: 60,
             }}
-            style={{ width: 500, height: 400 }}
+            style={{ minWidth: 400, minHeight: 400 }}
             mapboxAccessToken={mapboxToken}
             mapStyle={style}
           >

@@ -1,108 +1,116 @@
+//GENERAL FORM
+#addPothole {
+  position: relative;
+  margin-top: 2em;
+  font-weight: 800;
+}
 
-// #addPothole {
-//   //formatting for entire form
-//   background-color: $LightColor1;
-//   border: 2px solid $DarkColor1;
-//   min-width: 400px;
-//   width: 550px;
-//   padding: 40px;
-// }
+.formView {
+  background-color: $yellow;
+  border-radius: 16px;
+  padding: 1em;
+  @include border-shadow;
+}
 
-// .progress-bar {
-//   background-color: $DarkColor1;
-// }
+.formSectionView {
+  background-color: $muted-pearl;
+  border: 2px solid $black;
+  border-radius: 8px;
+  padding: 1em;
+}
 
-// .form-label {
-//   font-size: 20px;
-// }
+//TEXT 
+.formText {
+  color: $black;
+  margin-bottom: 1em;
+}
 
-// #addPotLocation {
-//   width: 100%;
-//   display: flex;
-//   justify-content: flex-start;
-//   align-items: center;
-// }
+.formQuestion {
+  font-family: $Esteban;
+  font-size: 1em;
+}
 
-// #statusSwitch {
-//   width: 50px;
-//   height: 30px;
-// }
+.formInfo {
+  font-family: $Montserrat;
+  font-size: .75em;
+  margin-bottom: 2em;
+}
 
-// #ratingGroupDiv {
-//   //formating for rating cones
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   width: 100%;
-//   padding: 5%;
-//   background-color: white;
+.headerText {
+  font-size: 1.25em;
+  text-align: center;
+}
 
-//   #cones {
-//     display: inline-flex;
-//     justify-content: space-evenly;
-//     min-width: 200px;
-//     width: 300px;
-//     align-items: center;
-//   }
+.subText {
+  font-size: .75em;
+  text-align: center;
+  color: black;
+}
 
-//   p,
-//   #statusSwitch {
-//     width: 175px;
-//     margin: 0;
-//     text-align: center;
-//     padding: 0 10px;
-//     font-size: 15px;
-//   }
-// }
+//BUTTONS 
+.formButton {
+  font-family: $Montserrat;
+  font-size: 1em;
+  @include border-shadow(2px 2px 0px $black);
+  background-color: $muted-pearl;
+  color: $black;
 
-// .bi-cone-striped:hover {
-//   fill: $PrimaryColor;
-//   width: 150%;
-//   align-items: center;
-// }
+  &:hover,
+  &:focus {
+    border: 2px solid $black !important;
+    background-color: $red !important;
+  }
 
-// #FormMap {
-//   position: fixed;
-//   display: flex;
-//   justify-content: center;
-//   top: 35%;
-// }
+  ;
+  // margin-top: .75em;
+}
 
-// .picked {
-//   fill: $PrimaryColor;
-// }
+.genFormButton {
+  margin-top: .75em;
+}
 
-// // #inputImg {
-// //     margin-left: auto;
-// //       margin-right: auto;
-// //       display: block;
-// //       width: 200px;
-// //       height: 200px;
-// //       float: left;
-// // }
+#nextFormButton {
+  margin-top: 2.25em;
+}
 
+#buttons {
+  display: inline-block;
+}
 
-// //STORAGE - TRYING TO CHANGE ON CLICK
-// // @mixin cone-color($color: primary, $effect: none) {
+//WELCOME VIEW
+#welcomeSection {
+  text-align: center;
+}
 
-// //   @if ($color ==primary) {
-// //     color: $DarkColor1;
+//LOCATION VIEW
+#formZip {
+  visibility: hidden;
+  position: absolute;
+  // left: -999em;
+}
 
-// //     @if ($effect ==hover) {
-// //       &:hover {
-// //         fill: $PrimaryColor;
-// //         width: 150%;
-// //         align-items: center;
-// //       }
-// //     }
-// //   }
+#mapGroup {
+  @include border-shadow(2px 2px 0px $black);
+  text-align: center;
+}
 
-// //   @if ($color ==secondary) {
-// //     color: $PrimaryColor;
+//PHOTO
 
-// //   }
-// // }
-
-// // .bi-cone-striped {
-// //   @include cone-color(primary, none);
-// // }
+#imgInput{
+  width: 400;
+  height: 400;
+  img{
+    max-width: 100%;
+    min-width: 100%;
+    display: block;
+  }
+}
+//PROGRESS BAR
+.progress {
+  margin-top: 2em;
+  background-color: $muted-pearl;
+  @include border-shadow(1px 1px 0px $black);
+  .progress-bar {
+    background-color: $green;
+  }
+}

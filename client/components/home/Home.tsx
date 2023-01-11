@@ -24,14 +24,10 @@ const Home = () => {
   });
 
   socket.on('pothole', (data) => {
-    console.log(data)
-    setPotholeCount(data);
-    socket.emit('test', { data });
+    setPotholeCount(data.data);
+    socket.emit('pothole', { data });
   });
-  socket.on('test', (data) => {
-    console.log(data)
-    socket.emit('test', { data })
-  })
+
 
   return (
     <>

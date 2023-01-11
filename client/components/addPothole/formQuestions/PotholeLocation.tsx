@@ -78,7 +78,7 @@ const PotholeLocation = (prop) => {
           </AddressAutofill>
           {handleShowError()}
           <Button
-            className='formButton genFormButton'
+            className='basicButton genFormButton'
             id='confirmAddress'
             variant='primary'
             onClick={() => updateLatLon()}

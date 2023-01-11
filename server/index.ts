@@ -96,14 +96,14 @@ app.get(
 app.use('/api', rootRouter);
 
 // ZM
-const socketServer = new Server(8081, {
+const io = new Server(8081, {
   cors: {
     origin: '*',
   },
 });
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-socketServer.on('connection', (socket: any) => {
+io.on('connection', async (socket: any) => {
   // Set up an interval to send a "heartbeat" message every 10 seconds
   setInterval(() => {
     User.findAll({}).then((data) => socket.emit('heartbeat', { data: data.length }));
@@ -112,11 +112,8 @@ socketServer.on('connection', (socket: any) => {
   setInterval(() => {
     Pothole.count({}).then((data) => socket.emit('pothole', { data }));
   }, 500);
-  // Set up a listener for the "heartbeat" message
-  socket.on('heartbeat', (data) => {
-    return data;
-  });
 });
+
 //ZM
 
 // wildcard endpoint

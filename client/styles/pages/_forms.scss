@@ -26,12 +26,12 @@
 }
 
 .formQuestion {
-  font-family: $Spectral;
+  font-family: $Esteban;
   font-size: 1em;
 }
 
 .formInfo {
-  font-family: $Poppins;
+  font-family: $Montserrat;
   font-size: .75em;
   margin-bottom: 2em;
 }
@@ -49,7 +49,7 @@
 
 //BUTTONS 
 .formButton {
-  font-family: $Poppins;
+  font-family: $Montserrat;
   font-size: 1em;
   @include border-shadow(2px 2px 0px $black);
   background-color: $muted-pearl;

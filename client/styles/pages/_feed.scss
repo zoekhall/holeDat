@@ -1,0 +1,38 @@
+.infinite-scroll-component {
+  display: block;
+  margin-left: auto;
+  margin-right: auto
+}
+
+
+
+.pothole-container {
+  background: white;
+  width: 60%;
+  height: 20%;
+  display: block;
+  margin: 10px auto;
+  margin-bottom: 20px;
+
+  border: 2px solid rgb(0, 0, 0);
+  box-shadow: 10px 10px 2px rgb(0, 0, 0);
+
+  h2 {
+    background-color: #E07A5F;
+    width: 80%;
+    margin: auto;
+    padding: 30px 19px;
+    border-radius: 0px 0px 10px 10px;
+    color: black;
+    text-align: center;
+  }
+}
+
+
+.pothole-img {
+  width: 90%;
+  height: 70%;
+  border-radius: 2px;
+  margin: auto;
+  display: flex;
+}

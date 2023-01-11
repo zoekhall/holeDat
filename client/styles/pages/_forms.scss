@@ -49,6 +49,8 @@
 
 //BUTTONS 
 .formButton {
+  font-family: $Poppins;
+  font-size: 1em;
   @include border-shadow(2px 2px 0px $black);
   background-color: $muted-pearl;
   color: $black;
@@ -92,6 +94,17 @@
   text-align: center;
 }
 
+//PHOTO
+
+#imgInput{
+  width: 400;
+  height: 400;
+  img{
+    max-width: 100%;
+    min-width: 100%;
+    display: block;
+  }
+}
 //PROGRESS BAR
 .progress {
   margin-top: 2em;

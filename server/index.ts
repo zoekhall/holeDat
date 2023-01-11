@@ -103,20 +103,32 @@ const socketServer = new Server(8081, {
 });
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-socketServer.on('connection', (socket: any) => {
+socketServer.on('connection', async (socket: any) => {
   // Set up an interval to send a "heartbeat" message every 10 seconds
   setInterval(() => {
     User.findAll({}).then((data) => socket.emit('heartbeat', { data: data.length }));
   }, 500);
 
-  setInterval(() => {
-    Pothole.count({}).then((data) => socket.emit('pothole', { data }));
-  }, 500);
+  // setInterval(() => {
+  //   Pothole.count({}).then((data) => socket.emit('pothole', { data }));
+  // }, 500);
+   const pothole = await Pothole.count({})
+     .then((data)=> data)
+  socket.emit('pothole', pothole)//Pothole.count({}).then(data => data ));
+  //})
+  socket.emit('test',  10)//Pothole.count({}).then(data => data ));
+
+  //console.log(Pothole.count({}))
   // Set up a listener for the "heartbeat" message
-  socket.on('heartbeat', (data) => {
-    return data;
-  });
+  // socket.on('heartbeat', (data) => {
+  //   return data;
+  // });
 });
+socketServer.on('test',async (socket:any) => {
+const pothole = await Pothole.count({})
+     .then((data)=>  data)
+  socket.broadcast.emit('test', pothole)
+})
 //ZM
 
 // wildcard endpoint

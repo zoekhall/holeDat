@@ -47,58 +47,56 @@ const NavBar = () => {
 
   return (
     <div className='nav-bar'>
-      <div className='top-border'>
-      </div>
-      <div className='top-nav'>
-        <div className='nav-bar-left'>
-          {user?.id ?
-            <Link to={'/User'}>
-              <img src={user.photo} alt='me' width={40} style={{ borderRadius: '100px' }} />
-            </Link>
-            :
-            <img src='https://cdn.onlinewebfonts.com/svg/img_87237.png' alt='anon' />
-          }
+      <nav>
+        <div className='top-border'>
         </div>
-        <Link to='/'>
-          <div className='top-center'>
-            <h1>Hole Dat</h1>
-            <img
-              src='https://res.cloudinary.com/di6gxsepn/image/upload/v1670816293/ybyqlkegpdct6x5xeauz.svg'
-              alt='logo'
-              width='50'
-            />
+        <div className='top-nav'>
+          <div className='nav-bar-left'>
+            {user?.id &&
+              <Link to={'/User'}>
+                <img src={user.photo} alt='me' width={40} style={{ borderRadius: '100px' }} />
+              </Link>
+            }
           </div>
-        </Link>
-        <div className='nav-bar-right'>
-          {user?.id ?
-            <Link to='/AddPothole'>
-              <i className='bi bi-plus-circle'></i>
-            </Link>
-            :
-            <a href='/auth/google/callback'>
-              <button>
-                Sign In
-              </button>
-            </a>
-          }
-        </div>
-      </div>
-      <div className='navbar'>
-        <div className='menu-item'>
-          <DarkModeSwitch className='mode' checked={mode} onChange={toggleMode} size={30} />
-          <p>Mode</p>
-        </div>
-        {menuItems.map((item, i) => (
-          <Link key={`${i}-${item}`} to={`/${menuPhrasing[i]}`}>
-            <div className='menu-item'>
-              <nav >
-                {item}
-                <p>{menuPhrasing[i]}</p>
-              </nav>
+          <Link to='/'>
+            <div className='top-center'>
+              <h1>Hole Dat</h1>
+              <img
+                src='https://res.cloudinary.com/di6gxsepn/image/upload/v1670816293/ybyqlkegpdct6x5xeauz.svg'
+                alt='logo'
+                width='50'
+              />
             </div>
           </Link>
-        ))}
-      </div>
+          <div className='nav-bar-right'>
+            {user?.id ?
+              <Link to='/AddPothole'>
+                <i className='bi bi-plus-circle'></i>
+              </Link>
+              :
+              <a href='/auth/google/callback'>
+                <button>
+                  Sign In
+                </button>
+              </a>
+            }
+          </div>
+        </div>
+        <div className='navbar'>
+          <div className='menu-item mode'>
+            <DarkModeSwitch className='mode' checked={mode} onChange={toggleMode} size={30} />
+            <p>Mode</p>
+          </div>
+          {menuItems.map((item, i) => (
+            <Link key={`${i}-${item}`} to={`/${menuPhrasing[i]}`}>
+              <div className='menu-item'>
+                {item}
+                <p>{menuPhrasing[i]}</p>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </nav>
     </div >
   );
 };

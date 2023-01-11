@@ -16,9 +16,7 @@ const MapBox = (prop) => {
   const mapbox_token =
     'pk.eyJ1IjoiemFjaG1hcnVsbG8iLCJhIjoiY2xhazZ5aGxyMDQ3bzNwbzZ2Z3N0b3lpMyJ9.65G-mwqhbWFy77O_I0LkOg';
   const [markers, setMarkers] = useState<markerType[]>([]);
-  const [style, setStyle] = useState<string>(
-    'mapbox://styles/jorcar1986/clc6iejcx000y14t0iaefvyss'
-  );
+  const [style, setStyle] = useState<string>('mapbox://styles/jorcar1986/clc6iejcx000y14t0iaefvyss');
 
   const getMarkers = () => {
     axios
@@ -42,10 +40,11 @@ const MapBox = (prop) => {
     }
   });
 
+  useEffect(mode, [style]);
   useEffect(() => {
-    getMarkers();
-    mode();
-  }, [style]);
+    mode()
+    getMarkers()
+  }, [])
 
   return (
     <Map

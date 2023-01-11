@@ -10,9 +10,12 @@ import { io } from 'socket.io-client';
 
 const Home = () => {
   const host = location.hostname
+
+  const socketURL = host === 'localhost' ? 'http://localhost:8081' : 'https://holedat.com';
   const [userCount, setUserCount] = useState<number>(0);
   const [potholeCount, setPotholeCount] = useState<number>(0);
-  const socket = io(`ws://${host}:8081`);
+
+  const socket = io(socketURL);
   // Set up a listener for the "heartbeat" message
   socket.on('heartbeat', (data) => {
     setUserCount(data.data);
@@ -21,9 +24,14 @@ const Home = () => {
   });
 
   socket.on('pothole', (data) => {
-    setPotholeCount(data.data);
-    socket.emit('pothole', { data });
+    console.log(data)
+    setPotholeCount(data);
+    socket.emit('test', { data });
   });
+  socket.on('test', (data) => {
+    console.log(data)
+    socket.emit('test', { data })
+  })
 
   return (
     <>

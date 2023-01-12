@@ -42,6 +42,8 @@ const PImageSlider = () => {
         navigation={true}
         slidesPerView={1}
         pagination={{ clickable: true }}
+        className='mySwiper potholeSlider'
+
         autoplay={{
           delay: 3000,
           disableOnInteraction: true,

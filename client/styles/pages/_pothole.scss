@@ -1,22 +1,26 @@
 .post {
-  background-color: white;
-  border-radius: 5px;
-  box-shadow: -3px 3px 0px black;
-  margin: 10px;
+  padding: 0;
+  position: relative;
+  margin-top: 2em;
+  border-radius: 16px;
+  // background-color: $muted-pearl;
+  @include border-shadow;
 
   .post_header {
     margin: 10px;
     display: flex;
-    flex-direction: column;
+    flex-flow: no-wrap; // flex-direction: column;
 
-    .rate-cones {
-      align-items: center;
-      display: flex;
-    }
+    // #score {
+    // border: 1px black solid;
+    // border-radius: 50%;
+    // width: 40px;
+    // }
 
-    h1 {
-      font-size: xx-large;
-    }
+    // .rate-cones {
+    //   align-items: center;
+    //   display: flex;
+    // }
   }
 
   button {
@@ -26,17 +30,24 @@
   }
 
   .swiper-slide {
-    margin: 10px 0px;
-    display: flex;
+    // margin: 10px 0px;
+    // display: flex;
+    width: 100%;
+    padding: 0;
     flex-direction: column;
-    box-shadow: 3px 3px black;
+    // box-shadow: 3px 3px black;
 
     img {
-      margin: 10px;
       object-fit: cover;
-      width: 100%;
+      width: 95%;
       height: 500px;
       box-shadow: none;
+      text-align: center;
+      margin: auto;
+      margin-bottom: .5em;
+      display: block;
+      border: none;
+      border: 1px solid $black;
     }
 
     .like_pics {
@@ -60,24 +71,31 @@
     border-radius: 10px;
     width: 75px;
     height: 75px;
+    @include border-shadow(2px)
+  }
+
+  .voting-cones svg {
+    width: 2em;
+  }
+
+  svg.clickCone {
+
+    path {
+      fill: #e07a5f
+    }
+  }
+
+  .post_caption {
+    display: flex;
+    width: 100%;
+    background-color: $yellow;
+    border-radius: 0 0 15px 15px;
+    border-top: 1px solid $black;
+
+    #innerProfCapt {
+      background-color: $muted-pearl;
+      border-radius: 10px;
+      border: 1px solid $black;
+    }
   }
 }
-
-.voting-cones svg {
-  width: 2em;
-}
-
-svg.clickCone {
-
-  path {
-    fill: #e07a5f
-  }
-}
-
-.post_caption {
-  display: flex;
-  background-color: #F2CC8F;
-}
-
-
-.pothole-profile-slider {}

@@ -6,16 +6,16 @@ import Pothole from './db/schema/pothole.schema';
 export const issueBadges = async () => {
   getTopThree((data) => {
     data.forEach((each) => {
-      if (each.count >= 5) {
-        User.update({ badge_id: 5 }, { where: { user_id: each.user_id } });
-      } else if (each.count >= 4) {
+      if (each.count >= 50) {
         User.update({ badge_id: 1 }, { where: { user_id: each.user_id } });
-      } else if (each.count >= 3) {
+      } else if (each.count >= 40) {
         User.update({ badge_id: 2 }, { where: { user_id: each.user_id } });
-      } else if (each.count >= 2) {
+      } else if (each.count >= 30) {
         User.update({ badge_id: 3 }, { where: { user_id: each.user_id } });
-      } else if (each.count >= 1) {
+      } else if (each.count >= 20) {
         User.update({ badge_id: 4 }, { where: { user_id: each.user_id } });
+      } else if (each.count >= 10) {
+        User.update({ badge_id: 5 }, { where: { user_id: each.user_id } });
       } else {
         User.update({ badge_id: undefined }, { where: { user_id: each.user_id } });
       }
@@ -39,6 +39,6 @@ export const fixedAutomation = async () => {
     }
   });
 };
-fixedAutomation();
+setInterval(fixedAutomation, 100 * 60 * 15);
 
 setInterval(issueBadges, 1000 * 60 * 15);

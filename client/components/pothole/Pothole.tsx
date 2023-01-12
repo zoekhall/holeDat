@@ -105,7 +105,7 @@ const Pothole = () => {
   }, []);
 
   return (
-    <Container id='potholeProfile'>
+    <div id='potholeProfile'>
 
       <Container id='potholeSect' className='post'>
         <Container className='post_header'>
@@ -156,7 +156,7 @@ const Pothole = () => {
 
       {/* <CommentForm phId={phId} /> */}
       
-      </Container>
+      </div>
   );
 };
 

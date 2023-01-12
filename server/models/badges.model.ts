@@ -5,3 +5,9 @@ export const getBadgeAtId = (badgeId, cb) => {
     .then((data) => cb(data))
     .catch((err) => console.log(err));
 };
+
+export const getAllBadges = (cb) => {
+  Badge.findAll({})
+    .then((data) => cb(data))
+    .catch((err) => console.log(err));
+};

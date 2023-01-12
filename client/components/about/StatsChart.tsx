@@ -37,7 +37,7 @@ const StatsChart = () => {
           },
         }}
         data={{
-          labels: users.map((user) => user.name),
+          labels: users.map(() => ''),
           datasets: [
             {
               label: 'Potholes added by day of the week',
@@ -53,9 +53,10 @@ const StatsChart = () => {
         }}
       />
       <div className='chart-images'>
-        {users.map((user) => (
+        {users.map((user, i) => (
           <Link key={user.user_id} to={'/User:' + user.user_id}>
             <img src={user.photo} referrerPolicy='no-referrer' />
+            <p>{users[i].name}</p>
           </Link>
         ))}
       </div>

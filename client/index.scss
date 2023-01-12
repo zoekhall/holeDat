@@ -1,13 +1,13 @@
 @import '../node_modules/bootstrap/scss/bootstrap';
 @import './styles/main';
-// @import './styles/forms';
-// @import './styles/storage/map';
 
 //ABSTRACTS
 @import './styles/abstracts/variables';
+@import './styles/abstracts/mixins';
 
 //BASE
 @import './styles/base/body';
+@import './styles/base/buttons';
 @import './styles/base/reset';
 @import './styles/base/typography';
 
@@ -16,5 +16,8 @@
 @import './styles/layouts/navigation';
 
 //Pages
+@import './styles/pages/home';
 @import './styles/pages/map';
-@import './styles/pages/pothole'
+@import './styles/pages/pothole';
+@import './styles/pages/feed';;
+@import './styles/pages/forms';

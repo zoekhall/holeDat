@@ -15,17 +15,11 @@ const PotholeLocation = (prop) => {
   const { coordinates, setCoordinates } = useContext(LocationContext); //set coordinates using AddPothole LocationContext
   const [showError, setShowError] = useState<boolean>(false);
   const isMounted = useRef(false);
-  const [zip, setZip] = useState<string>('');
-  // const [city, setCity] = useState<string>('');
-  const { setSectionView, setPothole_id, setLocation, location } = prop;
+  const { setSectionView, setPothole_id, setLocation, location, setZip, zip } = prop;
 
   //turns address into lat and lon coordinates
   const updateLatLon = () => {
-    // const cityTime = city;
     const formattedLocation = location.split(' ').join('%20').concat(`%2C%20${zip}`); //format location to be read by mapbox
-    // console.log(cityTime, 'city', zip, 'zip')
-    console.log(formattedLocation, 'location')
-
     axios(
       `https://api.mapbox.com/geocoding/v5/mapbox.places/${formattedLocation}.json?language=en&limit=5&proximity=-121.90662,37.42827&country=US&access_token=${mapToken}`
     )
@@ -63,9 +57,7 @@ const PotholeLocation = (prop) => {
 
   const handleShowError = () => {
     if (showError === true) {
-      return <Alert variant='danger'>Oops! That is Not an Address! Try Again</Alert>;
-    } else {
-      return null;
+      return <Alert variant='danger'>Oops! That is Not an Address! Input enough of the address that you can click the full address when prompted</Alert>;
     }
   }
 
@@ -76,26 +68,30 @@ const PotholeLocation = (prop) => {
           <AddressAutofill accessToken={mapToken} browserAutofillEnabled={true}>
             <Form.Control
               name='address'
-              placeholder='Address'
+              placeholder='Enter the Address You Think is Closest to the Pothole'
               type='text'
-              autoComplete='address-line1'
+              autoComplete={`address-line1`}
               onChange={(e) => {
                 setLocation(e.target.value);
               }}
             />
           </AddressAutofill>
           {handleShowError()}
-          <Button variant='flat' onClick={() => updateLatLon()}>
+          <Button
+            className='basicButton genFormButton'
+            id='confirmAddress'
+            variant='primary'
+            onClick={() => updateLatLon()}
+          >
             Confirm Pothole Address
           </Button>
           <Form.Control
-            style={{ visibility: 'hidden' }}
+            id='formZip'
             name='postcode'
             placeholder='Postcode'
             type='text'
             autoComplete='postal-code'
             onChange={(e) => {
-              console.log(e, 'zip');
               setZip(e.target.value);
             }}
           />
@@ -106,15 +102,3 @@ const PotholeLocation = (prop) => {
 };
 
 export default PotholeLocation;
-
-
-          // <Form.Control
-          //   style={{ display: 'none' }}
-          //   name='city'
-          //   placeholder='City'
-          //   type='text'
-          //   autoComplete='address-level2'
-          //   onChange={(e) => {
-          //     setCity(e.target.value);
-          //   }}
-          // />;

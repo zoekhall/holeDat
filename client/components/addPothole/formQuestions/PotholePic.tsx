@@ -17,9 +17,11 @@ const PotholePic = () => {
   return (
     <Form.Group controlId='uploadPotPhoto' className='mb-5'>
       <Form.Control type='file' onChange={handleChange} required />
-      <img id='inputImg' src={imageContents.photoURL} />
-    </Form.Group> 
-)};
+      <div id='inputImg'>
+        <img src={imageContents.photoURL} />
+      </div>
+    </Form.Group>
+  );};
 
 
 export default PotholePic;

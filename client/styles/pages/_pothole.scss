@@ -1,3 +1,7 @@
+#pothole-profile-slider{
+  height: 100%;
+}
+
 .post {
   padding: 0;
   position: relative;
@@ -46,7 +50,7 @@
       margin: auto;
       margin-bottom: .5em;
       display: block;
-      border: none;
+      border-radius: 10px;
       border: 1px solid $black;
     }
 
@@ -71,7 +75,7 @@
     border-radius: 10px;
     width: 75px;
     height: 75px;
-    @include border-shadow(2px)
+    @include border-shadow(2px 2px)
   }
 
   .voting-cones svg {

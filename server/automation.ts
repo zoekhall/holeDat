@@ -6,10 +6,8 @@ import Pothole from './db/schema/pothole.schema';
 export const issueBadges = async () => {
   getTopThree((data) => {
     data.forEach((each) => {
-      //issue plat
       if (each.count >= 5) {
         User.update({ badge_id: 5 }, { where: { user_id: each.user_id } });
-        //issue Gold
       } else if (each.count >= 4) {
         User.update({ badge_id: 1 }, { where: { user_id: each.user_id } });
       } else if (each.count >= 3) {

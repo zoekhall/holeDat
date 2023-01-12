@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination, Autoplay } from 'swiper';
+import { Pagination, Autoplay, Navigation } from 'swiper';
 import { Link } from 'react-router-dom'
 
 import 'swiper/css';
@@ -32,17 +32,16 @@ const PImageSlider = () => {
   useEffect(getAllImgs, []);
 
   return (
-    <div id='pothole-slider'>
+    <div id='pothole-slider-content'>
       <h2>Newest Reported Potholes</h2>
       <Swiper
-        id='potholeSlider'
+        id='pothole-slider'
         loop={true}
         grabCursor={true}
-        modules={[Pagination, Autoplay]}
+        modules={[Navigation, Pagination, Autoplay]}
         navigation={true}
         slidesPerView={1}
         pagination={{ clickable: true }}
-        className='mySwiper'
         autoplay={{
           delay: 3000,
           disableOnInteraction: true,
@@ -53,15 +52,12 @@ const PImageSlider = () => {
             <SwiperSlide
               key={image.image_id}
             >
-              <div className='pothole-slider-image'>
-                <Link
-                  to={`/Pothole:${image.pothole_id}`}>
-                  <div className='pothole-image'>
-                    <img src={image.photoURL} />
-                  </div>
-                  <p>{image.caption}</p>
-                </Link>
-              </div>
+              <Link className='slider-content' to={`/Pothole:${image.pothole_id}`}>
+                <div className='slider-img'>
+                  <img className='pothole-image' src={image.photoURL} />
+                </div>
+                <p>{image.caption}</p>
+              </Link>
             </SwiperSlide>
           );
         })}

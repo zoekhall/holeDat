@@ -47,9 +47,9 @@ const NavBar = () => {
 
   return (
     <div className='nav-bar'>
+      <div className='top-border'>
+      </div>
       <nav>
-        <div className='top-border'>
-        </div>
         <div className='top-nav'>
           <div className='nav-bar-left'>
             {user?.id &&

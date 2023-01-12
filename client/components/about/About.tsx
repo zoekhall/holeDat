@@ -1,11 +1,12 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const About = () => {
+  const [badges, setBadges] = useState<any>();
   const getBadges = () => {
     axios
       .get('/api/badges/allBadges')
-      .then((data) => console.log(data.data))
+      .then((data) => setBadges(data.data))
       .catch((err) => console.log(err));
   };
 
@@ -62,6 +63,12 @@ const About = () => {
           serve as a visual representation of their progress and participation in the community. By
           tracking their badge level, users are incentivized to report more potholes and make a
           greater impact on their local road conditions.
+          {badges?.map((badge) => (
+            <div key={badge.badge_id} className='badge-images'>
+              <img src={badge.imgUrl} />
+              <p>{badge.description}</p>
+            </div>
+          ))}
         </p>
       </div>
       <div className='about-content'>

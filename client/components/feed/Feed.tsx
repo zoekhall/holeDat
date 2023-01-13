@@ -130,7 +130,7 @@ const Feed: React.FC = () => {
         loader={<h4>Loading...</h4>}
         refreshFunction={getAllImgs}
         pullDownToRefresh
-        pullDownToRefreshThreshold={25}
+        pullDownToRefreshThreshold={100}
         pullDownToRefreshContent={
           <h3 style={{ textAlign: 'center' }}>&#8595; Pull down to refresh</h3>
         }

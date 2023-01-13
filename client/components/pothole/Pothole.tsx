@@ -35,6 +35,14 @@ const Pothole = () => {
     badge_id: number;
   };
 
+  type badgeObj = {
+    badge_id: number;
+    imgUrl: string;
+    description: string;
+    name: string;
+  };
+
+  const [badge, setBadge] = useState<badgeObj[]>([]);
   const [PImages, setPImages] = useState<phImg[]>([]);
   const [addy, setAddy] = useState<string[]>([]);
   // const [phId] = useState<number>(id);
@@ -60,6 +68,11 @@ const Pothole = () => {
     });
   };
 
+  // const getBadge = (id) => {
+  //   console.log(id);
+  //   setBadge(id);
+  // }
+
   // get pothole images by potholeID
   const getAllPotholeImgByPhId = () => {
     axios
@@ -67,7 +80,7 @@ const Pothole = () => {
       .then((data) => {
         const resObj: [] = data.data.map((each) => {
           const { image_id, caption, photoURL } = each;
-          const { user_id, name, photo } = each.User;
+          const { user_id, name, photo, badge_id } = each.User;
           const { lat, lon, fixed } = each.Pothole;
           return {
             image_id,
@@ -76,12 +89,14 @@ const Pothole = () => {
             userId: user_id,
             userName: name,
             userPhoto: photo,
+            badge_id,
             lon,
             lat,
             fixed,
           };
         });
         setPImages(resObj);
+        //getBadge(data);
         return data.data[0].Pothole;
       })
       .then((data) => {
@@ -104,7 +119,14 @@ const Pothole = () => {
     });
   };
 
+  const getAllBadges = () => {
+    axios.get('/api/badges/allBadges')
+      .then(({ data }) => setBadge(data))
+      .catch(err => console.log(err))
+  }
+
   useEffect(() => {
+    getAllBadges()
     getUser();
     getAllPotholeImgByPhId();
     getAllRatingByPhId();
@@ -142,9 +164,24 @@ const Pothole = () => {
                   <Row>
                     <Col>
                       <Row>
-                        <Col xs={1} id='profBadge'>
-                          <div></div>
-                        </Col>
+                        {
+                          image?.badge_id &&
+                          <div>
+                            <Col xs={1} id='profBadge'>
+                              {badge.map(badges => {
+                                if (image.badge_id === badges.badge_id) {
+                                  return (
+                                    <div key={badges.badge_id}>
+                                      <p>Badge:</p>
+                                      <img src={badges.imgUrl} />
+                                    </div>
+                                  )
+                                }
+                              }
+                              )}
+                            </Col>
+                          </div>
+                        }
                         <Col xs={2} id='profAvatar'>
                           <Link to={'/User:' + image.userId}>
                             <img className='avatar' alt='avatar2' src={image.userPhoto} />

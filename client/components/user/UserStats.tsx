@@ -50,7 +50,7 @@ export const UserStats = ({ userId }: { userId: number }) => {
     useEffect(getUserPotholes, []);
 
     return (
-        <div>
+        <div id='pothole-slider-content'>
             <h1>Pothole Images Uploaded</h1>
             <Swiper
                 id='swiper'
@@ -59,7 +59,7 @@ export const UserStats = ({ userId }: { userId: number }) => {
                 modules={[Navigation, Pagination, Autoplay]}
                 navigation={true}
                 pagination={{ clickable: true }}
-                className='mySwiper'
+                className='mySwiper potholeSlider'
                 autoplay={{
                     delay: 3000,
                     disableOnInteraction: true,
@@ -70,8 +70,11 @@ export const UserStats = ({ userId }: { userId: number }) => {
                         <SwiperSlide
                             key={image.image_id}
                         >
-                            <Link to={`/Pothole:${image.pothole_id}`}>
-                                <img alt='pothole Image' src={image.photoURL} />
+                            <Link className='slider-content' to={`/Pothole:${image.pothole_id}`}>
+                                <div className='slider-img'>
+                                    <img className='pothole-image' alt='pothole Image' src={image.photoURL} />
+                                </div>
+                                <p>{image.caption}</p>
                             </Link>
                         </SwiperSlide>
                     );

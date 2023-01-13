@@ -11,21 +11,15 @@
 
   .post_header {
     margin: 10px;
-    #address{
-      padding: 0;
-      margin:0
-    }
+ 
     #score{
       height: 1.75em;
       width: 1.75em;
       border: 1px black solid;
       padding: auto;
       border-radius: 50%;
+      margin-left: 2em;
     }
-
-    // #rating_status{
-
-    // }
 
     div{
       display: flex;

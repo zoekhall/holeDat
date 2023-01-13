@@ -78,6 +78,12 @@
   margin-bottom: 2.5 em;
 }
 
+#addAddressInput{
+  @extend p;
+  padding: .25em;
+}
+
+//PHOTO VIEW
 #imgInput {
   margin-top: 1em;
   width: 400;
@@ -88,6 +94,11 @@
     min-width: 100%;
     display: block;
   }
+}
+
+#captionBox{
+  @extend p;
+  margin-bottom: 2em;
 }
 
 //PROGRESS BAR

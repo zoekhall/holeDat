@@ -14,11 +14,11 @@ const PotholeRating = () => {
     <Form.Group controlId='ratingPot' className='mb-5'>
       <Container id='ratingGroupDiv'>
         <Row>
-          <Col xs={3} className='text-center'>
-            <p className='ratingElem xsmall'>Harmless</p>
+          <Col xs={3} className='ratingElem'>
+            <p className='ratingText xsmall text-center'>Harmless</p>
           </Col>
-          <Col>
-            <div id='cones' className='ratingElem'>
+          <Col className='center ratingElem'>
+            <div id='cones'>
               {[1, 2, 3, 4, 5].map((num, i) => (
                 <svg
                   key={i}
@@ -41,8 +41,8 @@ const PotholeRating = () => {
               ))}
             </div>
           </Col>
-          <Col xs={3} className='text-center'>
-            <p className='ratingElem xsmall'>Treacherous</p>
+          <Col xs={3} className='ratingElem'>
+            <p className='ratingText xsmall text-center'>Treacherous</p>
           </Col>
         </Row>
       </Container>

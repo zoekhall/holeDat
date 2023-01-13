@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Autoplay, Navigation } from 'swiper';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
 import 'swiper/css';
 import 'swiper/css/bundle';
@@ -16,7 +16,7 @@ const PImageSlider = () => {
     caption: string;
     createdAt: string;
     updatedAt: string;
-    pothole_id: number
+    pothole_id: number;
   };
 
   const [PImages, setPImages] = useState<phImg[]>([]);
@@ -27,7 +27,6 @@ const PImageSlider = () => {
       .then((data) => setPImages(data.data))
       .catch((err) => console.log(err));
   };
-
 
   useEffect(getAllImgs, []);
 
@@ -43,7 +42,6 @@ const PImageSlider = () => {
         slidesPerView={1}
         pagination={{ clickable: true }}
         className='mySwiper potholeSlider'
-
         autoplay={{
           delay: 3000,
           disableOnInteraction: true,
@@ -51,9 +49,7 @@ const PImageSlider = () => {
       >
         {PImages.map((image) => {
           return (
-            <SwiperSlide
-              key={image.image_id}
-            >
+            <SwiperSlide key={image.image_id}>
               <Link className='slider-content' to={`/Pothole:${image.pothole_id}`}>
                 <div className='slider-img'>
                   <img className='pothole-image' src={image.photoURL} />

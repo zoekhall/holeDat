@@ -10,6 +10,7 @@
 @import './styles/base/buttons';
 @import './styles/base/reset';
 @import './styles/base/typography';
+@import './styles/base/general';
 
 //LAYOUTS
 @import './styles/layouts/div';
@@ -19,6 +20,7 @@
 @import './styles/pages/home';
 @import './styles/pages/map';
 @import './styles/pages/pothole';
-@import './styles/pages/feed';;
+@import './styles/pages/feed';
 @import './styles/pages/forms';
 @import './styles/pages/about';
+@import './styles/pages/users';

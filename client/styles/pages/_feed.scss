@@ -7,45 +7,65 @@
 
 
 .pothole-container {
-  background: white;
+  background: #f2cc8f;
   width: 60%;
   height: 20%;
   display: block;
   margin: 10px auto;
   margin-bottom: 20px;
-
   border: 2px solid rgb(0, 0, 0);
+  border-radius: 10px;
   box-shadow: 10px 10px 2px rgb(0, 0, 0);
 
   h2 {
     width: 80%;
     margin: auto;
-    padding: 30px 19px;
-    border-radius: 0px 0px 10px 10px;
     color: black;
     text-align: center;
+  }
+
+  h3 {
+    margin: 15px;
+  }
+
+  .pothole-img {
+    width: 90%;
+    height: 70%;
+    margin: 15px auto;
+    display: flex;
+    border-radius: 10px;
+    border: 2px solid black;
   }
 }
 
 section {
   background-color: #E07A5F;
-  width: 70%;
-  height: 50%;
-  margin: auto;
-}
-
-.user-img {
   position: relative;
-  top: -80px;
-  left: 40px;
-  width: 5%;
-  height: 5%;
-}
-
-.pothole-img {
-  width: 90%;
-  height: 70%;
-  border-radius: 2px;
-  margin: auto;
+  width: 100%;
+  height: 50%;
+  border-radius: 0px 0px 8px 8px;
   display: flex;
+  padding: 10px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row-reverse;
+  margin: auto;
+  border-top: 2px solid black;
+
+  .user-img {
+    object-fit: cover;
+    width: 70px;
+    height: 70px;
+    border-radius: 10px;
+    border: 2px solid black;
+  }
+
+  .badge-img {
+    position: absolute;
+    height: 38px;
+    left: 63px;
+    top: 3px;
+    min-width: 20px;
+    max-width: 50px;
+  }
 }

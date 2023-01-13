@@ -26,7 +26,7 @@ const FeedEntry = ({ imgObj }: { imgObj: phImg }) => {
 
   const [addy, setAddy] = useState('');
   const [badge, setBadge] = useState<badgeObj>();
-  const [hoverBool, setHoverBool] = useState<boolean>(false);
+  const [, setHoverBool] = useState<boolean>(false);
 
   const getInfo = () => {
     axios
@@ -72,7 +72,7 @@ const FeedEntry = ({ imgObj }: { imgObj: phImg }) => {
           referrerPolicy='no-referrer'
           className='badge-img'
         />
-        {hoverBool ? badge?.description : badge?.name}
+        {/* {hoverBool ? badge?.description : badge?.name} */}
       </section>
     </div >
   );

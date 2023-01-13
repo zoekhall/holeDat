@@ -120,13 +120,14 @@ const Pothole = () => {
   };
 
   const getAllBadges = () => {
-    axios.get('/api/badges/allBadges')
+    axios
+      .get('/api/badges/allBadges')
       .then(({ data }) => setBadge(data))
-      .catch(err => console.log(err))
-  }
+      .catch((err) => console.log(err));
+  };
 
   useEffect(() => {
-    getAllBadges()
+    getAllBadges();
     getUser();
     getAllPotholeImgByPhId();
     getAllRatingByPhId();
@@ -160,42 +161,41 @@ const Pothole = () => {
             return (
               <SwiperSlide key={image.image_id}>
                 <img className='potHole_img' src={image.photoURL} alt='test' />
-                <Container className='post_caption'>
+                <Container id='post_caption'>
                   <Row>
                     <Col>
                       <Row>
-                        {
-                          image?.badge_id &&
-                          <div>
-                            <Col xs={1} id='profBadge'>
-                              {badge.map(badges => {
-                                if (image.badge_id === badges.badge_id) {
-                                  return (
-                                    <div key={badges.badge_id}>
-                                      <p>Badge:</p>
-                                      <img src={badges.imgUrl} />
-                                    </div>
-                                  )
-                                }
+                        <Col xs={3} className='badgeAvatar'>
+                        {image?.badge_id && (
+                          <div id='profBadge'>
+                            {badge.map((badges) => {
+                              if (image.badge_id === badges.badge_id) {
+                                return (
+                                  <img
+                                    className='badgeBoy'
+                                    key={badges.badge_id}
+                                    src={badges.imgUrl}
+                                  />
+                                );
                               }
-                              )}
-                            </Col>
+                            })}
                           </div>
-                        }
-                        <Col xs={2} id='profAvatar'>
+                        )}
+
+                        <div id='profAvatar'>
                           <Link to={'/User:' + image.userId}>
                             <img className='avatar' alt='avatar2' src={image.userPhoto} />
                           </Link>
+                          </div>
                         </Col>
+
                         <Col id='innerProfCapt'>
-                          <div>
                             <h3>{image.userName}</h3>
                             <h4>{image.caption}</h4>
-                          </div>
                         </Col>
                       </Row>
                     </Col>
-                    <Col xs={2}>{user?.name && <Likes user={user} image={image} />}</Col>
+                    <Col>{user?.name && <Likes user={user} image={image} />}</Col>
                   </Row>
                 </Container>
               </SwiperSlide>
@@ -232,3 +232,4 @@ export default Pothole;
 //     {voteCount}
 //   </div>
 // </div>
+

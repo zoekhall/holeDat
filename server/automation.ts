@@ -17,7 +17,7 @@ export const issueBadges = async () => {
       } else if (each.count >= 10) {
         User.update({ badge_id: 5 }, { where: { user_id: each.user_id } });
       } else {
-        User.update({ badge_id: undefined }, { where: { user_id: each.user_id } });
+        User.update({ badge_id: 0 }, { where: { user_id: each.user_id } });
       }
     });
   });
@@ -39,6 +39,6 @@ export const fixedAutomation = async () => {
     }
   });
 };
-setInterval(fixedAutomation, 100 * 60 * 15);
+setInterval(fixedAutomation, 1000 * 60 * 15);
 
 setInterval(issueBadges, 1000 * 60 * 15);

@@ -9,7 +9,7 @@ const WelcomeSection = (prop) => {
     <Container className='formSectionView' id='welcomeSection'>
       <h3>Time to Report a Pothole!</h3>
       <h4>
-        Fill out this short form in order to submit a pothole to our database.
+        Fill out this short form in order to submit a pothole to our database. All questions are required in order to submit.
       </h4>
       <h4>
         Upon submission you will find further instructions on how to quickly report the pothole to

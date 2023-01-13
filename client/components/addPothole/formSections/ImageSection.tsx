@@ -19,8 +19,7 @@ const ImageSection = (prop) => {
         <Form.Label className='formQuestion'>Describe dat pothole</Form.Label>
         <br />
         <p className='formText'>
-          What are some of the pothole's most distinguishing characteristics? <br />
-          What should people be aware of with this pothole?
+          What are the pothole's most distinguishing characteristics?<br />
         </p>
         <PotholeCaption />
       </Form.Group>

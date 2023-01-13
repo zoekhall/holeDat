@@ -79,6 +79,7 @@
 }
 
 #imgInput {
+  margin-top: 1em;
   width: 400;
   height: 400;
 
@@ -103,4 +104,10 @@
 #addAddressInput{
   @extend p;
   padding: .25em;
+}
+
+
+#captionBox{
+  @extend p;
+  margin-bottom: 2em;
 }

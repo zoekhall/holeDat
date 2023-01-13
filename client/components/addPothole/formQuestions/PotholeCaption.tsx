@@ -9,6 +9,7 @@ const PotholeCaption = () => {
   return (
     <Form.Group controlId='addPotCaption' className='mb-2'>
       <Form.Control
+        id='captionBox'
         as='textarea'
         onChange={(e) => {
           const newImageContents = { ...imageContents };

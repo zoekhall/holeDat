@@ -42,8 +42,22 @@ const MapBox = ({ userLocation }: any) => {
       setMode(!mode)
     }
   })
+  const eventFire = (el, etype) => {
+    if (el.fireEvent) {
+      el.fireEvent('on' + etype);
+    } else {
+      const evObj = document.createEvent('Events');
+      evObj.initEvent(etype, true, false);
+      el.dispatchEvent(evObj);
+    }
+  }
 
-  useEffect(getMarkers, [])
+  useEffect(() => {
+    getMarkers()
+    setTimeout(() => {
+      eventFire(document.querySelector('.mapboxgl-ctrl-geolocate'), 'click');
+    }, 500)
+  }, [])
   useEffect(handleMode, [mode])
 
   return (

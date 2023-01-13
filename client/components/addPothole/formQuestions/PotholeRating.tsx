@@ -10,7 +10,7 @@ const PotholeRating = () => {
   return (
     <Form.Group controlId='ratingPot' className='mb-5'>
       <div id='ratingGroupDiv' className='ratingElem'>
-        <p>Barely a Dent</p>
+        <p>Not Hazardous</p>
         <div id='cones' className='ratingElem'>
           {[1, 2, 3, 4, 5].map((num, i) => (
             <svg
@@ -32,7 +32,7 @@ const PotholeRating = () => {
             </svg>
           ))}
         </div>
-        <p className='ratingElem'>It's a Doooozy!</p>
+        <p className='ratingElem'>Extremely Severe</p>
       </div>
     </Form.Group>
   );

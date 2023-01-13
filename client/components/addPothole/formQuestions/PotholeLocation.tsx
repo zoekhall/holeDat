@@ -63,12 +63,12 @@ const PotholeLocation = (prop) => {
 
   return (
     <Form.Group className='mb-3'>
-      <Form.Group>
+      {/* <Form.Group> */}
         <FormGroup id='addPotLocation'>
           <AddressAutofill accessToken={mapToken} browserAutofillEnabled={true}>
             <Form.Control
               name='address'
-              placeholder='Enter the Address You Think is Closest to the Pothole'
+              placeholder='Enter Approximate Address'
               type='text'
               autoComplete={`address-line1`}
               onChange={(e) => {
@@ -96,7 +96,7 @@ const PotholeLocation = (prop) => {
             }}
           />
         </FormGroup>
-      </Form.Group>
+      {/* </Form.Group> */}
     </Form.Group>
   );
 };

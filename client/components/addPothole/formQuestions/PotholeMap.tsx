@@ -1,25 +1,28 @@
 import React, { useState, useEffect } from 'react';
-import Map, { NavigationControl, FullscreenControl, GeolocateControl } from 'react-map-gl';
+import Map, { NavigationControl } from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import Form from 'react-bootstrap/Form';
 import Point from '../../map/Point';
 
-const mapboxToken =
-  'pk.eyJ1IjoiemFjaG1hcnVsbG8iLCJhIjoiY2xhazZ5aGxyMDQ3bzNwbzZ2Z3N0b3lpMyJ9.65G-mwqhbWFy77O_I0LkOg';
+const mapboxToken = 'pk.eyJ1IjoiemFjaG1hcnVsbG8iLCJhIjoiY2xhazZ5aGxyMDQ3bzNwbzZ2Z3N0b3lpMyJ9.65G-mwqhbWFy77O_I0LkOg';
+const mapStyle = 'mapbox://styles/jorcar1986/clc6iejcx000y14t0iaefvyss';
+const darkStyle = 'mapbox://styles/mapbox/dark-v10';
 
 const PotholePlot = (prop) => {
-  const [style, setStyle] = useState<string>(
-    'mapbox://styles/jorcar1986/clc6iejcx000y14t0iaefvyss'
-  );
+  const [mode, setMode] = useState<boolean>(document.body.classList.contains('dark-mode'));
+  const [style, setStyle] = useState<string>(mapStyle);
   const { coordinates, pothole_id } = prop; 
 
-  useEffect(() => {
-    if (!document.querySelector('.dark-mode')) {
-      setStyle('mapbox://styles/jorcar1986/clc6iejcx000y14t0iaefvyss');
-    } else {
-      setStyle('mapbox://styles/mapbox/dark-v10');
-    }
-  }, [style]);
+  document.querySelector('.mode')?.addEventListener('click', () => {
+    setMode(!mode);
+    style === mapStyle ? setStyle(darkStyle) : setStyle(mapStyle)
+  });
+  
+  const handleMode = () => {
+    mode ? setStyle(darkStyle) : setStyle(mapStyle);
+  };
+  
+  useEffect(handleMode, [mode]);
 
       return (
         <Form.Group id='mapGroup'>
@@ -39,13 +42,13 @@ const PotholePlot = (prop) => {
               userLocation={[29.935260993668, -90.08128396541]}
             />
             <NavigationControl />
-            <FullscreenControl />
+            {/* <FullscreenControl />
             <GeolocateControl
               positionOptions={{ enableHighAccuracy: true }}
               trackUserLocation={true}
               showUserHeading={true}
               fitBoundsOptions={{ maxZoom: 30 }}
-            />
+            /> */}
           </Map>
         </Form.Group>
       );

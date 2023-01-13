@@ -3,6 +3,7 @@
 $Esteban: 'Esteban', monospace;
 $Montserrat: 'Montserrat', sans-serif;
 
+//GENERAL HEADERS 
 $h1-font-sizes: (
   null : 40px,
   small : 48px,
@@ -35,32 +36,51 @@ $p-font-sizes: (
 h1 {
   @include font-size($h1-font-sizes);
   font-family: $Esteban;
-  font-weight: 900;
 }
 
 //SUB-TITLE FONT 
 h2 {
-  font-family: $Montserrat;
-  font-weight: 900;
   @include font-size($h2_h3-font-sizes);
 }
 
 //TITLE FONT 
 h3 {
   font-family: $Esteban;
-  font-weight: 900;
   @include font-size($h2_h3-font-sizes);
 }
 
 //NAVBAR/OPTIONS/PROFILE FONT 
 h4 {
-  font-family: $Montserrat;
   font-weight: 400;
+  @include font-size($h4-font-sizes);
 }
 
 //TEXT FONT 
 p {
-  font-family: $Montserrat;;
   font-weight: 400;
   @include font-size($p-font-sizes);
 }
+
+
+//SPECIFIC FONTS
+$button-font-sizes: (
+  null : 17px,
+  small : 19px,
+  medium: 21px,
+  large : 23px
+);
+
+// $form-question-font-sizes:(
+//   null : 17px,
+//   small : 19px,
+//   medium: 21px,
+//   large : 23px
+// );
+
+.buttonFont{
+  @include font-size($button-font-sizes);
+}
+
+// .formQuestionFont{
+//   @include font-size($form-question-font-sizes);
+// }

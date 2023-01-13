@@ -1,9 +1,8 @@
-$Montserrat: 'Montserrat', sans-serif;
 
 //BUTTONS
 .basicButton {
-  font-size: 1em;
   @include border-shadow(2px 2px);
+  padding: auto;
   background-color: $muted-pearl;
   color: $black;
 

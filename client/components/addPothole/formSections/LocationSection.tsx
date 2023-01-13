@@ -19,12 +19,9 @@ const LocationSection = (prop) => {
       return (
         <Form.Group>
           <Form.Label className='formQuestion'>What address is dat pothole located at?</Form.Label>
-          <br/>
-          <Form.Text className='formInfo'>
-            Input the address and click on the full address when you see it appear.
-            <br/>
-            Then 'Confirm the Pothole Address' by clicking the button.
-          </Form.Text>
+          <p className='formText'>
+            Input an address roughly in front of the pothole. Click on full address when you see it appear.
+          </p>
           <PotholeLocation
             setSectionView={setSectionView}
             setPothole_id={setPothole_id}
@@ -37,13 +34,13 @@ const LocationSection = (prop) => {
       );
     }
     return (
-      <div>
-        <h3 className='formText headerText'>
+      <div id='mapFormSection'>
+        <h3>
           {sectionView === 'newPothole'
             ? `You're Submitting a New Pothole at ${location}!`
             : `This Pothole Has a Profile at ${location}`}
         </h3>
-        <h4 className='formText subText'>
+        <h4>
           {sectionView === 'newPothole'
             ? ''
             : "And it needs your input! Click next to add your photo and rating to the pothole. If you'd like to check out this pothole's profile, you can click on the marker/pothole picture. You will be directed to the profile but be aware you will have to restart the form"}
@@ -52,7 +49,7 @@ const LocationSection = (prop) => {
 
         <div id='buttons'>
           <Button 
-            className='Button genFormButton'
+            className='basicButton genFormButton'
             onClick={() => {
               setLocation('');
               setZip('');
@@ -61,8 +58,7 @@ const LocationSection = (prop) => {
           >
             Enter New Address if Needed
           </Button>
-          <br></br>
-          <Button id='nextFormButton' className='formButton' type='button' onClick={handleClick}>
+          <Button id='nextFormButton' className='basicButton' type='button' onClick={handleClick}>
             Next
           </Button>
         </div>

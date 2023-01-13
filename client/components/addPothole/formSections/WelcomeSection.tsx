@@ -7,9 +7,11 @@ const WelcomeSection = (prop) => {
   const { handleClick } = prop;
   return (
     <Container className='formSectionView' id='welcomeSection'>
-      <h3 className='formText headerText'>Time to Report a Pothole!</h3>
-      <h4 className='formText subText'>
-        Fill out this short form in order to submit a pothole to our database. <br/>
+      <h3>Time to Report a Pothole!</h3>
+      <h4>
+        Fill out this short form in order to submit a pothole to our database.
+      </h4>
+      <h4>
         Upon submission you will find further instructions on how to quickly report the pothole to
         the city as well!
       </h4>

@@ -11,22 +11,24 @@ const ImageSection = (prop) => {
   return (
     <Form.Group>
       <Form.Group>
-        <Form.Label className='formQuestion'>Add a picture of dat pothole</Form.Label>
+        <Form.Label className='formQuestion'>Add a picture of the pothole</Form.Label>
         <PotholePic />
       </Form.Group>
 
       <Form.Group>
-        <Form.Label className='formQuestion'>Describe dat pothole</Form.Label>
-        <br/>
-        <Form.Text className='formInfo'>
-          What are some of the pothole's most distinguishing characteristics? <br />
-          What should people be aware of with this pothole?
-        </Form.Text>
+        <Form.Label className='formQuestion'>Describe the pothole</Form.Label>
+        <br />
+        <p className='formText'>
+          What are the pothole's most distinguishing characteristics?<br />
+        </p>
         <PotholeCaption />
       </Form.Group>
 
-      <Button id='nextFormButton' className='formButton' type='button' onClick={handleClick}>
-        Next
+      <Button id='nextFormButton' className='basicButton' type='button' onClick={handleClick}>
+        <div className='center' id='wtf'>
+          Next
+          <div className='arrow-button arrow-right'></div>
+        </div>
       </Button>
     </Form.Group>
   );};

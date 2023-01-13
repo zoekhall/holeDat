@@ -1,4 +1,4 @@
-//GENERAL FORM
+//GENERAL FORM STYLING
 #addPothole {
   position: relative;
   margin-top: 2em;
@@ -19,62 +19,50 @@
   padding: 1em;
 }
 
-//TEXT 
-.formText {
-  color: $black;
+//TEXT STYLING
+.formQuestion {
+  @extend h4;
   margin-bottom: 1em;
 }
 
-.formQuestion {
-  font-family: $Esteban;
+.formText {
+  margin-bottom: .75em;
+  color: $grey;
 }
 
-.formInfo {
-  font-family: $Montserrat;
-  margin-bottom: 2em;
+.header {
+  margin: 0;
 }
 
-.headerText {
-  text-align: center;
-}
-
-.subText {
-  text-align: center;
-  color: black;
-}
-
-//BUTTONS 
-.formButton {
-  font-family: $Montserrat;
-  @include border-shadow(2px 2px 0px $black);
-  background-color: $muted-pearl;
-  color: $black;
-
-  &:hover,
-  &:focus {
-    border: 2px solid $black !important;
-    background-color: $red !important;
-  }
-
-  ;
-  // margin-top: .75em;
-}
-
+//BUTTONS
 .genFormButton {
   margin-top: .75em;
 }
 
-#nextFormButton {
-  margin-top: 2.25em;
-}
-
 #buttons {
-  display: inline-block;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2em;
+
+  #resubmitFormButton {
+    margin-right: 1em;
+  }
+
+  #nextFormButton {
+    margin-left: 1em;
+    padding-right: .25em;
+  }
 }
 
 //WELCOME VIEW
-#welcomeSection {
+#welcomeSection,
+#mapFormSection {
   text-align: center;
+  h3,
+  h4,
+  p {
+    margin: 1em 0;
+  }
 }
 
 //LOCATION VIEW
@@ -87,25 +75,39 @@
 #mapGroup {
   @include border-shadow(2px 2px 0px $black);
   text-align: center;
+  margin-bottom: 2.5 em;
 }
 
-//PHOTO
-
-#imgInput{
+#imgInput {
+  margin-top: 1em;
   width: 400;
   height: 400;
-  img{
+
+  img {
     max-width: 100%;
     min-width: 100%;
     display: block;
   }
 }
+
 //PROGRESS BAR
 .progress {
   margin-top: 2em;
   background-color: $muted-pearl;
   @include border-shadow(1px 1px 0px $black);
+
   .progress-bar {
     background-color: $green;
   }
+}
+
+#addAddressInput{
+  @extend p;
+  padding: .25em;
+}
+
+
+#captionBox{
+  @extend p;
+  margin-bottom: 2em;
 }

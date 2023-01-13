@@ -1,8 +1,11 @@
 //general styling - background etc
+$Montserrat: 'Montserrat', sans-serif;
 
 #app {
   height: 100%;
   width: 100%;
+  font-family: $Montserrat;
+  font-weight: 900;
 }
 
 body {

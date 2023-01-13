@@ -11,20 +11,27 @@
 
   .post_header {
     margin: 10px;
-    display: flex;
-    flex-flow: no-wrap;
-    // flex-direction: column;
+    #address{
+      padding: 0;
+      margin:0
+    }
+    #score{
+      height: 1.75em;
+      width: 1.75em;
+      border: 1px black solid;
+      padding: auto;
+      border-radius: 50%;
+    }
 
-    // #score {
-    // border: 1px black solid;
-    // border-radius: 50%;
-    // width: 40px;
+    // #rating_status{
+
     // }
 
-    // .rate-cones {
-    //   align-items: center;
-    //   display: flex;
-    // }
+    div{
+      display: flex;
+      flex-flow: no-wrap;
+      align-items: center;
+    }
   }
 
   button {
@@ -129,3 +136,10 @@
     // max-width: 50px;
   }
 }
+
+// .post_header{
+  // div {
+  //   display: flex; 
+  //   flex-wrap: no-wrap; 
+  // }
+// }

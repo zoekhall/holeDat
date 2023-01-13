@@ -26,13 +26,14 @@ const FeedEntry = ({ imgObj }: { imgObj: phImg }) => {
 
   const [addy, setAddy] = useState('');
   const [badge, setBadge] = useState<badgeObj>();
-  const [hoverBool, setHoverBool] = useState<boolean>(false);
+  const [, setHoverBool] = useState<boolean>(false);
 
   const getInfo = () => {
-    axios
-      .get('/api/badges/getBadge', { params: { badgeId: imgObj.badge_id } })
-      .then(({ data }) => setBadge(data))
-      .catch((err) => console.log(err));
+    if (imgObj.badge_id !== 0)
+      axios
+        .get('/api/badges/getBadge', { params: { badgeId: imgObj.badge_id } })
+        .then(({ data }) => setBadge(data))
+        .catch((err) => console.log(err));
 
     axios
       .get('/api/location/getAddy', { params: { lat: imgObj.lat, lon: imgObj.lon } }) // on every image object get location
@@ -64,15 +65,18 @@ const FeedEntry = ({ imgObj }: { imgObj: phImg }) => {
             alt='Image'
             className='user-img' />
         </Link>
-        <img
-          onMouseOver={() => onBadgeHover(true)}
-          onMouseOut={() => onBadgeHover(false)}
-          src={badge?.imgUrl}
-          alt='Image'
-          referrerPolicy='no-referrer'
-          className='badge-img'
-        />
-        {hoverBool ? badge?.description : badge?.name}
+        {
+          badge &&
+          <img
+            onMouseOver={() => onBadgeHover(true)}
+            onMouseOut={() => onBadgeHover(false)}
+            src={badge?.imgUrl}
+            alt='Image'
+            referrerPolicy='no-referrer'
+            className='badge-img'
+          />
+        }
+        {/* {hoverBool ? badge?.description : badge?.name} */}
       </section>
     </div >
   );

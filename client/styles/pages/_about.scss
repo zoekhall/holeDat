@@ -1,0 +1,60 @@
+.about {
+  padding: 5% 10% 10%;
+}
+
+.about-content {
+  margin: 10px;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #F2CC8F;
+  border: 2px solid black;
+  box-shadow: 3px 3px black;
+  h1 {
+    margin: 10px;
+  }
+  p {
+    margin: 5px;
+    button {
+      margin: 10px;
+      padding: 3px;
+      background-color: #E07A5F;
+      border-radius: 10px;
+      box-shadow: 3px 3px black;
+    }
+  }
+}
+
+.team-photos {
+  display: flex;
+  justify-content: space-evenly;
+  img {
+    border-radius: 10px;
+    border: 2px solid black;
+    margin-bottom: 10px;
+  }
+}
+
+.badges {
+  display: flex;
+  flex-direction: column;
+}
+
+.badge-images {
+  display: flex;
+  justify-content: center;
+  border: 1.4px solid black;
+  padding: 9px;
+  margin: 3px;
+  align-items: center;
+  border-radius: 10px;
+  p {
+    display: flex;
+    margin: 10px;
+    width: 50%;
+    justify-content: flex-end;
+  }
+}
+
+.reported {
+  font-weight: bold;
+}

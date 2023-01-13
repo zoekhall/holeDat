@@ -6,7 +6,7 @@ const SubmittedSection = () => {
 
   return (
     <Container className='formSectionView'>
-      <h2> You've Successfully Submitted Your Pothole! </h2>
+      <h2> Pothole Submitted! </h2>
     </Container>
   );
 }

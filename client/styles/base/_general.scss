@@ -1,23 +1,20 @@
 //RATING CONES (Form and Profile)
 //all cones
 #ratingGroupDiv {
-  //formating for rating cones
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  padding: 5%;
+  // //formating for rating cones
+  // display: flex;
+  // justify-content: evenly;
+  // align-items: center;
+  // width: 100%;
+  // @extend p;
+  // margin-bottom: 1em;
 
   #cones {
     display: inline-flex;
-    justify-content: space-evenly;
-    min-width: 200px;
-    width: 300px;
+    justify-content:space-between;
     align-items: center;
   }
 }
-
-
 
 .bi-cone-striped:hover {
   fill: $red;
@@ -30,6 +27,7 @@ svg.clickCone {
   }
 }
 
+//CENTER
 .center{
   display: flex;
   justify-content: center;

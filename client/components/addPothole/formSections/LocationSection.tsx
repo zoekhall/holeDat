@@ -19,7 +19,7 @@ const LocationSection = (prop) => {
     if (sectionView === 'initialView') {
       return (
         <Form.Group>
-          <Form.Label className='formQuestion'>Where's dat pothole located at?</Form.Label>
+          <Form.Label className='formQuestion'>Where's the pothole located?</Form.Label>
           <p className='formText'>
             Input an approximate address for the pothole. Click on full address when you see it appear.
           </p>

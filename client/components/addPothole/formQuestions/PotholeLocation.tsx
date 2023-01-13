@@ -1,11 +1,11 @@
-import React, { useState, useContext, useEffect, useRef } from 'react';
 import axios from 'axios';
+import React, { useState, useContext, useEffect, useRef } from 'react';
+import { AddressAutofill } from '@mapbox/search-js-react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import FormGroup from 'react-bootstrap/FormGroup';
-import { AddressAutofill } from '@mapbox/search-js-react';
-import { LocationContext } from '../AddPothole';
 import Alert from 'react-bootstrap/Alert';
+import { LocationContext } from '../AddPothole';
 
 const mapToken =
   'pk.eyJ1IjoiemFjaG1hcnVsbG8iLCJhIjoiY2xhazZ5aGxyMDQ3bzNwbzZ2Z3N0b3lpMyJ9.65G-mwqhbWFy77O_I0LkOg';

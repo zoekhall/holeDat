@@ -13,6 +13,7 @@ const PotholePlot = (prop) => {
   const [style, setStyle] = useState<string>(mapStyle);
   const { coordinates, pothole_id } = prop; 
 
+  //handling map mode 
   document.querySelector('.mode')?.addEventListener('click', () => {
     setMode(!mode);
     style === mapStyle ? setStyle(darkStyle) : setStyle(mapStyle)
@@ -33,22 +34,16 @@ const PotholePlot = (prop) => {
               zoom: 15,
               pitch: 60,
             }}
-            style={{ minWidth: 400, minHeight: 400 }}
+            style={{ minWidth: 100, maxHeight: 400, minHeight:200 }}
             mapboxAccessToken={mapboxToken}
             mapStyle={style}
+            id='formMap'
           >
             <Point
               marker={{ ...coordinates, ...{ pothole_id } }}
               userLocation={[29.935260993668, -90.08128396541]}
             />
             <NavigationControl />
-            {/* <FullscreenControl />
-            <GeolocateControl
-              positionOptions={{ enableHighAccuracy: true }}
-              trackUserLocation={true}
-              showUserHeading={true}
-              fitBoundsOptions={{ maxZoom: 30 }}
-            /> */}
           </Map>
         </Form.Group>
       );

@@ -17,6 +17,8 @@
   }
 }
 
+
+
 .bi-cone-striped:hover {
   fill: $red;
   align-items: center;
@@ -26,4 +28,11 @@ svg.clickCone {
   path {
     fill: $red
   }
+}
+
+.center{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }

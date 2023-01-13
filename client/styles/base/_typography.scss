@@ -3,84 +3,76 @@
 $Esteban: 'Esteban', monospace;
 $Montserrat: 'Montserrat', sans-serif;
 
-//GENERAL HEADERS 
-$h1-font-sizes: (
-  null : 40px,
-  small : 48px,
-  medium: 60px,
-  large : 72px
-);
-
-$h2_h3-font-sizes: (
-  null : 28px,
-  small : 31px,
-  medium: 33px,
-  large : 36px
-);
-
-$h4-font-sizes: (
-  null : 19px,
-  small : 21px,
-  medium: 23px,
-  large : 26px
-);
-
-$p-font-sizes: (
-  null : (15px, 1.3),
-  small : 16px,
-  medium: (17px, 1.4),
-  large : (19px, 1.45),
-);
-
 //MAIN TITLE FONT 
 h1 {
-  @include font-size($h1-font-sizes);
+  font-size: calc(35px + 0.390625vw);
   font-family: $Esteban;
 }
 
 //SUB-TITLE FONT 
 h2 {
-  @include font-size($h2_h3-font-sizes);
+  font-size: calc(25px + 0.390625vw);
+  font-family: $Esteban;
 }
 
 //TITLE FONT 
 h3 {
   font-family: $Esteban;
-  @include font-size($h2_h3-font-sizes);
+  font-size: calc(20px + 0.390625vw);
 }
 
 //NAVBAR/OPTIONS/PROFILE FONT 
 h4 {
   font-weight: 400;
-  @include font-size($h4-font-sizes);
+  font-size: calc(17px + 0.390625vw);
 }
 
 //TEXT FONT 
 p {
   font-weight: 400;
-  @include font-size($p-font-sizes);
+  font-size: calc(15px + 0.390625vw);
+}
+
+//SPECIFIC TEXT
+.buttonFont{
+  font-size: calc(16px + 0.390625vw);
 }
 
 
-//SPECIFIC FONTS
-$button-font-sizes: (
-  null : 17px,
-  small : 19px,
-  medium: 21px,
-  large : 23px
-);
 
-// $form-question-font-sizes:(
+//STORAGE
+//GENERAL HEADERS 
+// $h1-font-sizes: (
+//   null : 40px,
+//   small : 48px,
+//   medium: 60px,
+//   large : 72px
+// );
+
+// $h2_h3-font-sizes: (
+//   null : 26px,
+//   small : 28px,
+//   medium: 33px,
+//   large : 36px
+// );
+
+// $h4-font-sizes: (
+//   null : 19px,
+//   small : 21px,
+//   medium: 23px,
+//   large : 26px
+// );
+
+// $p-font-sizes: (
+//   null : (15px, 1.3),
+//   small : 16px,
+//   medium: (17px, 1.4),
+//   large : (19px, 1.45),
+// );
+
+// $button-font-sizes: (
 //   null : 17px,
 //   small : 19px,
 //   medium: 21px,
 //   large : 23px
 // );
-
-.buttonFont{
-  @include font-size($button-font-sizes);
-}
-
-// .formQuestionFont{
-//   @include font-size($form-question-font-sizes);
-// }

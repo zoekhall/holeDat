@@ -5,10 +5,38 @@
   padding: auto;
   background-color: $muted-pearl;
   color: $black;
+  height: auto;
+
+  .arrow-right {
+    border-right: 2px solid $red;
+    border-top: 2px solid $red;
+    transform: translateX(-25%) rotate(45deg);
+  };
+  
+  .arrow-left {
+    border-bottom: 2px solid $red;
+    border-left: 2px solid $red;
+    transform: translateX(-25%) rotate(45deg);
+  };
 
   &:hover,
   &:focus {
     border: 2px solid $black !important;
     background-color: $red !important;
-  }
+    color: white !important;
+    .arrow-right{
+      border-right: 2px solid $white;
+      border-top: 2px solid $white;
+    }
+    .arrow-left{
+      border-left: 2px solid $white ;
+      border-bottom: 2px solid $white;
+    }
+  };
+}
+
+.arrow-button {
+  background-color: transparent;
+  height: 1em;
+  width: 1em;
 }

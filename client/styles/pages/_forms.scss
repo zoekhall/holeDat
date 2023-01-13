@@ -30,25 +30,33 @@
   color: $grey;
 }
 
+.header{
+  margin: 0;
+}
+
 //BUTTONS
 .genFormButton {
   margin-top: .75em;
 }
 
-#nextFormButton {
-  margin-top: 2.25em;
-}
-
-#buttons {
-  display: flex;
-  flex-flow: no-wrap;
+#buttons{
+  justify-content: center;
+  align-items: center;
+  margin-top: 2em;
+  #resubmitFormButton {
+    margin-right: 1em;
+  }
+  #nextFormButton {
+    margin-left: 1em;
+    padding-right: .25em;
+  }
 }
 
 //WELCOME VIEW
 #welcomeSection {
 text-align: center;
 >h3, h4 {
-    margin: 1em;
+    margin: 1em, 0;
   }
 }
 
@@ -62,13 +70,12 @@ text-align: center;
 #mapGroup {
   @include border-shadow(2px 2px 0px $black);
   text-align: center;
+  margin-bottom: 2.5 em;
 }
 
 #mapFormSection {
-  @extend #welcomeSection
+  @extend #welcomeSection;
 }
-
-//PHOTO
 
 #imgInput{
   width: 400;

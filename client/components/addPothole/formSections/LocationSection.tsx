@@ -1,10 +1,10 @@
 /* eslint-disable react/no-unescaped-entities */
 import React, { useContext, useState } from 'react';
 import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 import PotholeLocation from '../formQuestions/PotholeLocation';
 import PotholePlot from '../formQuestions/PotholeMap';
 import { LocationContext } from '../AddPothole';
-import { Button } from 'react-bootstrap';
 
 const LocationSection = (prop) => {
   const [sectionView, setSectionView] = useState<string>('initialView');
@@ -14,52 +14,67 @@ const LocationSection = (prop) => {
   const { coordinates } = useContext(LocationContext);
   const { handleClick } = prop;
 
+  //handling which section is showed: initial view vs pothole result views
   const handleLocationView = () => {
-    if (sectionView === 'initialView') {
-      return (
-        <Form.Group>
-          <Form.Label className='formQuestion'>What address is dat pothole located at?</Form.Label>
-          <p className='formText'>
-            Input an address roughly in front of the pothole. Click on full address when you see it appear.
-          </p>
-          <PotholeLocation
-            setSectionView={setSectionView}
-            setPothole_id={setPothole_id}
-            setLocation={setLocation}
-            location={location}
-            setZip={setZip}
-            zip={zip}
-          />
-        </Form.Group>
-      );
-    }
+    // if (sectionView === 'initialView') {
+    //   return (
+    //     <Form.Group>
+    //       <Form.Label className='formQuestion'>What address is dat pothole located at?</Form.Label>
+    //       <p className='formText'>
+    //         Input an approximate address for the pothole. Click on full address when you see it appear.
+    //       </p>
+    //       <PotholeLocation
+    //         setSectionView={setSectionView}
+    //         setPothole_id={setPothole_id}
+    //         setLocation={setLocation}
+    //         location={location}
+    //         setZip={setZip}
+    //         zip={zip}
+    //       />
+    //     </Form.Group>
+    //   );
+    // }
     return (
       <div id='mapFormSection'>
-        <h3>
+        <h3 className='header'>
+          {' '}
           {sectionView === 'newPothole'
-            ? `You're Submitting a New Pothole at ${location}!`
-            : `This Pothole Has a Profile at ${location}`}
+            ? `New Pothole At ${location}!`
+            : `Pothole Found At ${location}!`}{' '}
         </h3>
-        <h4>
+        <h4 className='formText'>
+          {' '}
           {sectionView === 'newPothole'
             ? ''
-            : "And it needs your input! Click next to add your photo and rating to the pothole. If you'd like to check out this pothole's profile, you can click on the marker/pothole picture. You will be directed to the profile but be aware you will have to restart the form"}
+            : 'Check out its profile by clicking on the marker/pothole picture. You will be directed to the profile but will have to restart the form.'}
         </h4>
         <PotholePlot coordinates={coordinates} pothole_id={pothole_id} />
-
         <div id='buttons'>
-          <Button 
-            className='basicButton genFormButton'
+          <Button
+            id='resubmitFormButton'
+            className='basicButton'
+            type='button'
             onClick={() => {
               setLocation('');
               setZip('');
               setSectionView('initialView');
             }}
           >
-            Enter New Address if Needed
+            <div className='center'>
+              <div className='arrow-button arrow-left'></div>
+              Resubmit
+            </div>
           </Button>
-          <Button id='nextFormButton' className='basicButton' type='button' onClick={handleClick}>
-            Next
+
+          <Button
+            id='nextFormButton'
+            className='basicButton'
+            type='button'
+            onClick={handleClick}>
+            <div className='center' id='wtf'>
+              Next
+              <div className='arrow-button arrow-right'></div>
+            </div>
           </Button>
         </div>
       </div>

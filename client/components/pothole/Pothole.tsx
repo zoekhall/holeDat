@@ -19,6 +19,7 @@ const Pothole = () => {
     name: string;
     photo: string;
     userId_user: number | undefined;
+    badge_id: number | undefined;
   }
 
   type phImg = {
@@ -31,6 +32,7 @@ const Pothole = () => {
     lat: number;
     lon: number;
     fixed: boolean;
+    badge_id: number;
   };
 
   const [PImages, setPImages] = useState<phImg[]>([]);
@@ -40,6 +42,7 @@ const Pothole = () => {
     name: '',
     photo: '',
     userId_user: undefined,
+    badge_id: undefined,
   });
   const [avg, setAvg] = useState<number>(0);
   // const [fixed, setFixed] = useState<boolean>(false);
@@ -96,6 +99,7 @@ const Pothole = () => {
         name: data.data.name,
         photo: data.data.photo,
         userId_user: data.data.user_id,
+        badge_id: data.data.badge_id,
       });
     });
   };

@@ -34,7 +34,7 @@ const PotholePlot = (prop) => {
               zoom: 15,
               pitch: 60,
             }}
-            style={{ minWidth: 100, maxHeight: 400 }}
+            style={{ minWidth: 100, height: 400 }}
             mapboxAccessToken={mapboxToken}
             mapStyle={style}
             id='formMap'

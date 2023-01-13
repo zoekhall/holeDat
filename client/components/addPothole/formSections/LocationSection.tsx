@@ -16,24 +16,24 @@ const LocationSection = (prop) => {
 
   //handling which section is showed: initial view vs pothole result views
   const handleLocationView = () => {
-    // if (sectionView === 'initialView') {
-    //   return (
-    //     <Form.Group>
-    //       <Form.Label className='formQuestion'>What address is dat pothole located at?</Form.Label>
-    //       <p className='formText'>
-    //         Input an approximate address for the pothole. Click on full address when you see it appear.
-    //       </p>
-    //       <PotholeLocation
-    //         setSectionView={setSectionView}
-    //         setPothole_id={setPothole_id}
-    //         setLocation={setLocation}
-    //         location={location}
-    //         setZip={setZip}
-    //         zip={zip}
-    //       />
-    //     </Form.Group>
-    //   );
-    // }
+    if (sectionView === 'initialView') {
+      return (
+        <Form.Group>
+          <Form.Label className='formQuestion'>Where's dat pothole located at?</Form.Label>
+          <p className='formText'>
+            Input an approximate address for the pothole. Click on full address when you see it appear.
+          </p>
+          <PotholeLocation
+            setSectionView={setSectionView}
+            setPothole_id={setPothole_id}
+            setLocation={setLocation}
+            location={location}
+            setZip={setZip}
+            zip={zip}
+          />
+        </Form.Group>
+      );
+    }
     return (
       <div id='mapFormSection'>
         <h3 className='header'>
@@ -42,12 +42,12 @@ const LocationSection = (prop) => {
             ? `New Pothole At ${location}!`
             : `Pothole Found At ${location}!`}{' '}
         </h3>
-        <h4 className='formText'>
+        <p className='formText'>
           {' '}
           {sectionView === 'newPothole'
             ? ''
             : 'Check out its profile by clicking on the marker/pothole picture. You will be directed to the profile but will have to restart the form.'}
-        </h4>
+        </p>
         <PotholePlot coordinates={coordinates} pothole_id={pothole_id} />
         <div id='buttons'>
           <Button

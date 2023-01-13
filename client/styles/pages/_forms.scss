@@ -30,7 +30,7 @@
   color: $grey;
 }
 
-.header{
+.header {
   margin: 0;
 }
 
@@ -39,13 +39,15 @@
   margin-top: .75em;
 }
 
-#buttons{
+#buttons {
   justify-content: center;
   align-items: center;
   margin-top: 2em;
+
   #resubmitFormButton {
     margin-right: 1em;
   }
+
   #nextFormButton {
     margin-left: 1em;
     padding-right: .25em;
@@ -53,9 +55,12 @@
 }
 
 //WELCOME VIEW
-#welcomeSection {
-text-align: center;
->h3, h4 {
+#welcomeSection,
+#mapFormSection {
+  text-align: center;
+
+  h3,
+  p {
     margin: 1em, 0;
   }
 }
@@ -73,25 +78,29 @@ text-align: center;
   margin-bottom: 2.5 em;
 }
 
-#mapFormSection {
-  @extend #welcomeSection;
-}
-
-#imgInput{
+#imgInput {
   width: 400;
   height: 400;
-  img{
+
+  img {
     max-width: 100%;
     min-width: 100%;
     display: block;
   }
 }
+
 //PROGRESS BAR
 .progress {
   margin-top: 2em;
   background-color: $muted-pearl;
   @include border-shadow(1px 1px 0px $black);
+
   .progress-bar {
     background-color: $green;
   }
+}
+
+#addAddressInput{
+  @extend p;
+  padding: .25em;
 }

@@ -17,16 +17,19 @@ const ImageSection = (prop) => {
 
       <Form.Group>
         <Form.Label className='formQuestion'>Describe dat pothole</Form.Label>
-        <br/>
-        <Form.Text className='formInfo'>
+        <br />
+        <p className='formText'>
           What are some of the pothole's most distinguishing characteristics? <br />
           What should people be aware of with this pothole?
-        </Form.Text>
+        </p>
         <PotholeCaption />
       </Form.Group>
 
-      <Button id='nextFormButton' className='formButton' type='button' onClick={handleClick}>
-        Next
+      <Button id='nextFormButton' className='basicButton' type='button' onClick={handleClick}>
+        <div className='center' id='wtf'>
+          Next
+          <div className='arrow-button arrow-right'></div>
+        </div>
       </Button>
     </Form.Group>
   );};

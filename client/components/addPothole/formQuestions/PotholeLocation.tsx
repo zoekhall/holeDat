@@ -57,16 +57,16 @@ const PotholeLocation = (prop) => {
 
   const handleShowError = () => {
     if (showError === true) {
-      return <Alert variant='danger'>Oops! That is Not an Address! Input enough of the address that you can click the full address when prompted</Alert>;
+      return <Alert variant='danger'>Oops! Not a Valid Address</Alert>;
     }
   }
 
   return (
     <Form.Group className='mb-3'>
-      {/* <Form.Group> */}
         <FormGroup id='addPotLocation'>
           <AddressAutofill accessToken={mapToken} browserAutofillEnabled={true}>
-            <Form.Control
+          <Form.Control
+            id='addAddressInput'
               name='address'
               placeholder='Enter Approximate Address'
               type='text'
@@ -96,7 +96,6 @@ const PotholeLocation = (prop) => {
             }}
           />
         </FormGroup>
-      {/* </Form.Group> */}
     </Form.Group>
   );
 };

@@ -8,14 +8,14 @@
   height: auto;
 
   .arrow-right {
-    border-right: 2px solid $red;
-    border-top: 2px solid $red;
+    border-right: 2px solid $black;
+    border-top: 2px solid $black;
     transform: translateX(-25%) rotate(45deg);
   };
   
   .arrow-left {
-    border-bottom: 2px solid $red;
-    border-left: 2px solid $red;
+    border-bottom: 2px solid $black;
+    border-left: 2px solid $black;
     transform: translateX(-25%) rotate(45deg);
   };
 

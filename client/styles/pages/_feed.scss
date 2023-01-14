@@ -15,7 +15,7 @@
   margin-bottom: 20px;
   border: 2px solid rgb(0, 0, 0);
   border-radius: 10px;
-  box-shadow: 10px 10px 2px rgb(0, 0, 0);
+  box-shadow: 3px 3px  rgb(0, 0, 0);
 
   h2 {
     width: 80%;
@@ -74,4 +74,8 @@ section {
   display: flex;
   justify-content: center;
   margin: 10px;
+}
+
+.btn-group {
+  margin: 5px;
 }

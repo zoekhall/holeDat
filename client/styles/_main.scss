@@ -9,7 +9,6 @@
 
 .menu-item,
 .nav-bar-left img {
-  font-size: 3rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -25,6 +24,12 @@
 }
 
 .nav-bar nav {
+
+  .nav-bar-right button,
+  p {
+    font-size: xx-small;
+  }
+
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -281,4 +286,3 @@ a {
   font-size: xx-small;
   padding-top: 5px;
 }
-

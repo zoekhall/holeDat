@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 import axios from 'axios';
@@ -23,6 +23,9 @@ const StatsChart = () => {
   return (
     <div id='user-chart' className='chart'>
       <h2>Top Users</h2>
+      <p className='chart-desc'>
+        This chart illustrates the top 3 users that have submitted the most potholes.
+      </p>
       <Bar
         options={{
           responsive: true,
@@ -43,11 +46,7 @@ const StatsChart = () => {
               label: 'Potholes added by day of the week',
               data: users.map((user) => user.count),
               borderColor: 'rgb(53, 162, 235)',
-              backgroundColor: [
-                '#E07A5F',
-                '#3D405B',
-                '#81B29A',
-              ],
+              backgroundColor: ['#E07A5F', '#3D405B', '#81B29A'],
             },
           ],
         }}

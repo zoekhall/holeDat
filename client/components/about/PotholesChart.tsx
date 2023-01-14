@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 import axios from 'axios';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement);
 interface element {
@@ -28,6 +28,9 @@ const PotholesChart = () => {
   return (
     <div id='pothole-chart' className='chart'>
       <h2>Top Potholes</h2>
+      <p className='chart-desc'>
+        This chart illustrates the to 3 potholes with the most associated images.
+      </p>
       <Bar
         options={{
           responsive: true,
@@ -48,25 +51,15 @@ const PotholesChart = () => {
               label: 'Potholes added by day of the week',
               data: potholes.map((pothole) => pothole.count),
               borderColor: 'rgb(53, 162, 235)',
-              backgroundColor: [
-                '#E07A5F',
-                '#3D405B',
-                '#81B29A',
-              ],
+              backgroundColor: ['#E07A5F', '#3D405B', '#81B29A'],
             },
           ],
         }}
       />
       <div className='chart-images'>
         {potholes.map((pothole) => (
-          <Link
-            key={pothole.pothole_id}
-            to={`/Pothole:${pothole.pothole_id}`}
-          >
-            <img
-              src={pothole.photoURL}
-              referrerPolicy='no-referrer'
-            />
+          <Link key={pothole.pothole_id} to={`/Pothole:${pothole.pothole_id}`}>
+            <img src={pothole.photoURL} referrerPolicy='no-referrer' />
           </Link>
         ))}
       </div>

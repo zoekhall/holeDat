@@ -1,4 +1,3 @@
-//RATING CONES (Form and Profile)
 //all cones
 #ratingGroupDiv {
   // display: inline-flex;
@@ -9,21 +8,21 @@
   // @extend p;
   // margin-bottom: 1em;
 
-  .ratingText{
+  .ratingText {
     text-align: center;
     line-height: 100px;
   }
 
-  .ratingElem{
+  .ratingElem {
     padding: 0;
   }
 
   #cones {
     display: inline-flex;
-    justify-content:space-between;
+    justify-content: space-between;
     align-items: center;
-    margin-left: .5em;
-    margin-right: .5em;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
   }
 }
 
@@ -34,15 +33,16 @@
 
 svg.clickCone {
   path {
-    fill: $red
+    fill: $red;
   }
 }
 
 //CENTER
-.center{
+.center {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
   text-align: center;
 }
+

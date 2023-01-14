@@ -58,7 +58,7 @@ const FeedEntry = ({ imgObj }: { imgObj: phImg }) => {
         />
       </Link>
       <section>
-        <h2>{imgObj.caption}</h2>
+        <p>{imgObj.caption}</p>
         <Link to={'/User:' + imgObj.user_id}>
           <img
             src={imgObj.photo}

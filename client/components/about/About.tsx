@@ -36,11 +36,17 @@ const About = () => {
       <div className='about-content'>
         <h1>About our team:</h1>
         <div className='team-photos'>
-          <img src='https://ca.slack-edge.com/T02P3HQD6-U031A9DEYP7-fc4cff5d5a3d-72' />
-          <img src='https://ca.slack-edge.com/T02P3HQD6-U021ZA4UMK4-3d5b064fb2ef-72' />
-          <img src='https://ca.slack-edge.com/T02P3HQD6-U03D5TUMZ09-73124c88bcff-72' />
-          <img src='https://ca.slack-edge.com/T02P3HQD6-U031A9H64J0-2230e77dd0d2-72' />
-          <img src='https://ca.slack-edge.com/T02P3HQD6-U039PKMULBW-e9d3c0bad176-72' />
+          <img
+            title='Jorge'
+            src='https://ca.slack-edge.com/T02P3HQD6-U031A9DEYP7-fc4cff5d5a3d-72'
+          />
+          <img title='Zoe' src='https://ca.slack-edge.com/T02P3HQD6-U021ZA4UMK4-3d5b064fb2ef-72' />
+          <img title='Zach' src='https://ca.slack-edge.com/T02P3HQD6-U03D5TUMZ09-73124c88bcff-72' />
+          <img
+            title='Sidney'
+            src='https://ca.slack-edge.com/T02P3HQD6-U031A9H64J0-2230e77dd0d2-72'
+          />
+          <img title='Sam' src='https://ca.slack-edge.com/T02P3HQD6-U039PKMULBW-e9d3c0bad176-72' />
         </div>
         <p>
           The developers of Hole Dat - Jorge Carvajal, Sidney Holmes, Zoe Hall, Samuel Littell, and

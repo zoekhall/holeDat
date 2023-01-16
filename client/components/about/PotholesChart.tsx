@@ -29,7 +29,7 @@ const PotholesChart = () => {
     <div id='pothole-chart' className='chart'>
       <h2>Top Potholes</h2>
       <p className='chart-desc'>
-        This chart illustrates the to 3 potholes with the most associated images.
+        This chart illustrates the top 3 potholes with the most associated images.
       </p>
       <Bar
         options={{

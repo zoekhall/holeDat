@@ -6,7 +6,7 @@ import { useLocation, Link } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-// import CommentForm from './CommentForm';
+import CommentForm from './CommentForm';
 import Likes from './Likes';
 import PotholeRating from '../addPothole/formQuestions/PotholeRating';
 import Switch from 'react-bootstrap/Switch';
@@ -45,7 +45,7 @@ const Pothole = () => {
   const [badge, setBadge] = useState<badgeObj[]>([]);
   const [PImages, setPImages] = useState<phImg[]>([]);
   const [addy, setAddy] = useState<string[]>([]);
-  // const [phId] = useState<number>(id);
+  const [phId] = useState<number>(id);
   const [user, setUser] = useState<User>({
     name: '',
     photo: '',
@@ -154,9 +154,9 @@ const Pothole = () => {
           </div>
 
           <div id='rating_status'>
-          <PotholeRating />
+            <PotholeRating />
           </div>
-          
+
           <div className='fixed'>
             <Switch checked={fixed} onChange={() => setFixed(!fixed)} />
             <p className='xsmall'>Not Fixed</p>
@@ -215,8 +215,9 @@ const Pothole = () => {
           })}
         </Swiper>
       </Container>
-
-      {/* <CommentForm phId={phId} /> */}
+      <Container className='comment-container'>
+        <CommentForm phId={phId} />
+      </Container>
     </div>
   );
 };

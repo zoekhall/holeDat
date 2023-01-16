@@ -1,11 +1,12 @@
-/* eslint-disable react/no-unescaped-entities */
 import React, { useContext, useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
 import PotholeLocation from '../formQuestions/PotholeLocation';
-import PotholePlot from '../formQuestions/PotholeMap';
+import PotholeMap from '../formQuestions/PotholeMap';
 import { LocationContext } from '../AddPothole';
 
+//location section view
 const LocationSection = (prop) => {
   const [sectionView, setSectionView] = useState<string>('initialView');
   const [pothole_id, setPothole_id] = useState<number>(0);
@@ -16,12 +17,13 @@ const LocationSection = (prop) => {
 
   //handling which section is showed: initial view vs pothole result views
   const handleLocationView = () => {
-    if (sectionView === 'initialView') {
+    if (sectionView === 'initialView') { //initial view
       return (
-        <Form.Group>
-          <Form.Label className='formQuestion'>Where's the pothole located?</Form.Label>
+        <Form.Group className='questionGroup'>
+          <Form.Label className='formQuestion'>Where is the pothole located?</Form.Label>
           <p className='formText'>
-            Input an approximate address for the pothole. Click on full address when you see it appear.
+            Input an approximate address for the pothole. Click on the full address when you see it
+            appear.
           </p>
           <PotholeLocation
             setSectionView={setSectionView}
@@ -35,20 +37,24 @@ const LocationSection = (prop) => {
       );
     }
     return (
-      <div id='mapFormSection'>
-        <h3 className='header'>
-          {' '}
-          {sectionView === 'newPothole'
-            ? `New Pothole At ${location}!`
-            : `Pothole Found At ${location}!`}{' '}
-        </h3>
-        <p className='formText'>
-          {' '}
-          {sectionView === 'newPothole'
-            ? ''
-            : 'Check out its profile by clicking on the marker/pothole picture. You will be directed to the profile but will have to restart the form.'}
-        </p>
-        <PotholePlot coordinates={coordinates} pothole_id={pothole_id} />
+      //the two potential result views
+      <Container id='mapFormSection'>
+        {sectionView === 'newPothole' ? (
+          <h3 className='header'>
+            New Pothole At&nbsp;<span className='newline italic'>{location}</span>
+          </h3>
+        ) : (
+          <h3 className='header'>
+            Pothole Found At&nbsp;<span className='newline italic'>{location}</span>
+          </h3>
+        )}
+        {sectionView === 'newPothole' ? null : (
+          <p className='formText'>
+            If you want to check out its profile, select the marker/pothole picture. You will have
+            to restart the form.
+          </p>
+        )}
+        <PotholeMap coordinates={coordinates} pothole_id={pothole_id} />
         <div id='buttons'>
           <Button
             id='resubmitFormButton'
@@ -70,14 +76,15 @@ const LocationSection = (prop) => {
             id='nextFormButton'
             className='basicButton'
             type='button'
-            onClick={handleClick}>
-            <div className='center' id='wtf'>
+            onClick={() => handleClick()}
+          >
+            <div className='center'>
               Next
               <div className='arrow-button arrow-right'></div>
             </div>
           </Button>
         </div>
-      </div>
+      </Container>
     );
   };
 

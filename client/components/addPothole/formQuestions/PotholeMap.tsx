@@ -8,12 +8,13 @@ const mapboxToken = 'pk.eyJ1IjoiemFjaG1hcnVsbG8iLCJhIjoiY2xhazZ5aGxyMDQ3bzNwbzZ2
 const mapStyle = 'mapbox://styles/jorcar1986/clc6iejcx000y14t0iaefvyss';
 const darkStyle = 'mapbox://styles/mapbox/dark-v10';
 
-const PotholePlot = (prop) => {
+//map displaying submitted address
+const PotholeMap = (prop) => {
   const [mode, setMode] = useState<boolean>(document.body.classList.contains('dark-mode'));
   const [style, setStyle] = useState<string>(mapStyle);
   const { coordinates, pothole_id } = prop; 
 
-  //handling map mode 
+  //handling map mode (dark vs light)
   document.querySelector('.mode')?.addEventListener('click', () => {
     setMode(!mode);
     style === mapStyle ? setStyle(darkStyle) : setStyle(mapStyle)
@@ -26,7 +27,7 @@ const PotholePlot = (prop) => {
   useEffect(handleMode, [mode]);
 
       return (
-        <Form.Group id='mapGroup'>
+        <Form.Group controlId='mapGroup'>
           <Map
             initialViewState={{
               latitude: coordinates.lat,
@@ -37,7 +38,6 @@ const PotholePlot = (prop) => {
             style={{ minWidth: 100, height: 400 }}
             mapboxAccessToken={mapboxToken}
             mapStyle={style}
-            id='formMap'
           >
             <Point
               marker={{ ...coordinates, ...{ pothole_id } }}
@@ -50,4 +50,4 @@ const PotholePlot = (prop) => {
   
 };
 
-export default PotholePlot;
+export default PotholeMap;

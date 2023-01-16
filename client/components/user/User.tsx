@@ -61,7 +61,7 @@ function User() {
 
   return (
     <>
-      <div className='userPf'>
+      <div className='user-profile'>
         <section className='avatar-container'>
           <img
             src={user.photo}
@@ -75,7 +75,7 @@ function User() {
           /> : <></>}
         </section>
 
-        <h2>
+        <h1>
           {!editTrigger ? (
             user.name
           ) : (
@@ -87,7 +87,7 @@ function User() {
               placeholder={user.name}
             ></input>
           )}
-        </h2>
+        </h1>
 
         {!editTrigger ? (
           <button onClick={() => setEditTrigger(!editTrigger)}>Edit Username</button>

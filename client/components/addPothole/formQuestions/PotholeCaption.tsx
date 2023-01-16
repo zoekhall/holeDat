@@ -7,9 +7,9 @@ const PotholeCaption = () => {
   const { imageContents, setImageContents } = useContext(ImageContext);
 
   return (
-    <Form.Group controlId='addPotCaption' className='mb-2'>
+    <Form.Group controlId='addPotCaption'>
       <Form.Control
-        id='captionBox'
+        className='captionBox'
         as='textarea'
         onChange={(e) => {
           const newImageContents = { ...imageContents };

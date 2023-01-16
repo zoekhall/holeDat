@@ -2,11 +2,12 @@ import React, { useContext } from 'react';
 import Form from 'react-bootstrap/Form';
 import { StatusContext } from '../AddPothole';
 
+//fixed or not fixed status
 const PotholeStatus = () => {
   const { statusContents, setStatusContents } = useContext(StatusContext);
 
   return (
-    <Form.Group id='addPotStatus' className='mb-5'>
+    <Form.Group id='addPotStatus'>
       {['Not Fixed', 'Fixed'].map((label, id) => (
         <div key={`inline-${id}`}>
           <Form.Check

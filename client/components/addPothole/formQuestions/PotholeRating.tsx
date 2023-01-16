@@ -1,21 +1,20 @@
 /* eslint-disable react/no-unescaped-entities */
 import React, { useContext, useState } from 'react';
-import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 import { StatusContext } from '../AddPothole';
 
+//rating cones 
 const PotholeRating = () => {
   const { statusContents, setStatusContents } = useContext(StatusContext);
   const [rating, setRating] = useState<number>(0);
 
   return (
-    <Form.Group controlId='ratingPot' className='mb-5'>
-      <Container id='ratingGroupDiv'>
+    <Container id='ratingPot' className='ratingGroupDiv'>
         <Row>
           <Col xs={3} className='ratingElem'>
-            <p className='ratingText xsmall text-center'>Harmless</p>
+            <p className='ratingText xsmall left'>Harmless</p>
           </Col>
           <Col className='center ratingElem'>
             <div id='cones'>
@@ -29,8 +28,6 @@ const PotholeRating = () => {
                     setRating(num);
                   }}
                   xmlns='http://www.w3.org/2000/svg'
-                  width='100%'
-                  height='100%'
                   fill='currentColor'
                   id={`cone-num-${i}`}
                   className={`bi-cone-striped${i < rating ? ' clickCone' : ''}`}
@@ -42,11 +39,10 @@ const PotholeRating = () => {
             </div>
           </Col>
           <Col xs={3} className='ratingElem'>
-            <p className='ratingText xsmall text-center'>Treacherous</p>
+            <p className='ratingText xsmall right'>Severe</p>
           </Col>
         </Row>
-      </Container>
-    </Form.Group>
+    </Container>
   );
 };
 

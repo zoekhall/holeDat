@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import FeedEntry from './FeedEntry';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
 import ToggleButton from 'react-bootstrap/ToggleButton';
 
 const Feed: React.FC = () => {
@@ -78,51 +78,41 @@ const Feed: React.FC = () => {
 
   return (
     <div>
-      <h1>Pothole Feed</h1>
-      <ButtonGroup className='mb-2'>
-        <ToggleButton
-          type='radio'
-          variant='primary'
-          checked={sortAge === 'New'}
-          value='new'
-          onClick={() => handleClickAge('New')}
-        >
-          New
-        </ToggleButton>
-        <ToggleButton
-          type='radio'
-          variant='secondary'
-          name='radio'
-          value='old'
-          checked={sortAge === 'Old'}
-          onClick={() => handleClickAge('Old')}
-        >
-          Old
-        </ToggleButton>
-      </ButtonGroup>
+      <div className='feed-buttons'>
+        <ToggleButtonGroup type="radio" name="age" defaultValue='new' className='mb-2'>
+          <ToggleButton
+            value='new'
+            id="tbg-radio-1"
+            onClick={() => handleClickAge('New')}
+          >
+            New
+          </ToggleButton>
+          <ToggleButton
+            value='old'
+            id="tbg-radio-2"
+            onClick={() => handleClickAge('Old')}
+          >
+            Old
+          </ToggleButton>
+        </ToggleButtonGroup>
 
-      <ButtonGroup className='mb-2'>
-        <ToggleButton
-          type='radio'
-          variant='secondary'
-          checked={sortFix}
-          value='fixed'
-          onClick={() => handleClickStatus(true)}
-        >
-          Fixed
-        </ToggleButton>
-        <ToggleButton
-          type='radio'
-          variant='secondary'
-          name='radio'
-          value='nFixed'
-          checked={!sortFix}
-          onClick={() => handleClickStatus(false)}
-        >
-          Not Fixed
-        </ToggleButton>
-      </ButtonGroup>
-
+        <ToggleButtonGroup type="radio" name="options" defaultValue='nFixed' className='mb-2'>
+          <ToggleButton
+            value='nFixed'
+            id="tbg-radio-3"
+            onClick={() => handleClickStatus(false)}
+          >
+            Busted
+          </ToggleButton>
+          <ToggleButton
+            value='fixed'
+            id="tbg-radio-4"
+            onClick={() => handleClickStatus(true)}
+          >
+            Fixed
+          </ToggleButton>
+        </ToggleButtonGroup>
+      </div>
       <InfiniteScroll
         dataLength={globalFeed.length} //This is important field to render the next data
         next={getAllImgs}
@@ -139,7 +129,7 @@ const Feed: React.FC = () => {
         }
       >
         {globalFeed &&
-          globalFeed.map((imgObj: phImg) => <FeedEntry key={imgObj.image_id} imgObj={imgObj} />)}
+          globalFeed.map((imgObj: phImg, i) => <FeedEntry key={`${i}-${imgObj.image_id}`} imgObj={imgObj} />)}
       </InfiniteScroll>
     </div>
   );

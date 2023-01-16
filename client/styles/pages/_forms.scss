@@ -133,4 +133,13 @@
   }
 }
 
+#addAddressInput{
+  @extend p;
+  padding: .25em;
+}
 
+
+#captionBox{
+  @extend p;
+  margin-bottom: 2em;
+}

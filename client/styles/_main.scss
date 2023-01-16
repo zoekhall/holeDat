@@ -9,7 +9,6 @@
 
 .menu-item,
 .nav-bar-left img {
-  font-size: 3rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -19,24 +18,30 @@
   border-radius: 100px;
   width: 50px;
   height: 50px;
-  border: 2px solid black;
-  box-shadow: 2px 2px 0 black;
+  border: 1px solid black;
+  box-shadow: 3px 3px 0 black;
 
 }
 
 .nav-bar nav {
+
+  .nav-bar-right button,
+  p {
+    font-size: xx-small;
+  }
+
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-around;
-  border-bottom: 2px solid black;
+  border-bottom: 1px solid black;
 }
 
 .top-nav,
 .navbar {
   margin-top: 5px;
   max-width: 500px;
-  min-width: 200px;
+  min-width: 300px;
 }
 
 .menu-item:hover,
@@ -98,7 +103,7 @@
 
 .chart {
   background-color: #F2CC8F;
-  border: 2px solid black;
+  border: 1px solid black;
   box-shadow: 3px 3px black;
   padding: 20px;
   border-radius: 10px;
@@ -160,12 +165,12 @@
       flex-direction: column;
       width: 250px;
       border-radius: 10px;
-      box-shadow: 5px 3px black;
+      box-shadow: 3px 3px 0 black;
       padding: 0px;
 
       .slider-img {
         border-radius: 10px 10px 0 0;
-        border: 2px solid black;
+        border: 1px solid black;
         background-color: #F2CC8F;
 
       }
@@ -178,7 +183,7 @@
         width: 100%;
         height: 10%;
         padding: 20px 10px;
-        border: 2px solid black;
+        border: 1px solid black;
         border-top: none;
         font-size: medium;
       }
@@ -189,14 +194,14 @@
         height: 200px;
         width: 200px;
         border-radius: 5px;
-        border: 2px solid black;
+        border: 1px solid black;
       }
     }
   }
 
   .swiper-button-prev,
   .swiper-button-next {
-    border: 3px solid black;
+    border: 1px solid black;
     background-color: #F2CC8F;
     color: #E07A5F;
     padding: 30px 20px;
@@ -205,6 +210,18 @@
 }
 
 #user-slider {
+  padding: 5px;
+  background-color: #F2CC8F;
+  border-radius: 10px;
+  border: 1px solid black;
+  box-shadow: 3px 3px black;
+
+  .swiper {
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: #E07A5F;
+  }
+
   .mySwiper img {
     object-fit: cover;
     width: 100%;
@@ -236,7 +253,7 @@
   .swiper-slide img {
     margin: 20px;
     background-color: black;
-    border: 2px solid black;
+    border: 1px solid black;
     box-shadow: 3px 3px 0px black;
     object-fit: cover;
     width: 100px;
@@ -266,9 +283,18 @@ a {
 
 .welcome {
   background-color: #F2CC8F;
-  border: 2px solid black;
+  border: 1px solid black;
   padding: 5px;
   border-radius: 10px;
   box-shadow: 3px 3px 0px black;
   margin: 10px;
+}
+
+.on-page .menu-item {
+  background-color: #81B29A;
+}
+
+.chart-desc {
+  font-size: xx-small;
+  padding-top: 5px;
 }

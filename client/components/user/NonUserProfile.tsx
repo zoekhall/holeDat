@@ -40,7 +40,7 @@ const NonUserProfile = () => {
 
   useEffect(getUserData, []);
   return (
-    <div className='userPf'>
+    <div className='user-profile'>
       <section className='avatar-container'>
         <img
           src={profile.photo}
@@ -52,8 +52,8 @@ const NonUserProfile = () => {
           src={badge?.imgUrl}
           alt='Image'
         />
+        <h1>{profile.name}</h1>
       </section>
-      <h1>{profile.name}</h1>
       <UserStats userId={id} />
     </div>
   );

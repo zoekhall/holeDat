@@ -78,51 +78,53 @@ const Feed: React.FC = () => {
 
   return (
     <div>
-      <h1>Pothole Feed</h1>
-      <ButtonGroup className='mb-2'>
-        <ToggleButton
-          type='radio'
-          variant='primary'
-          checked={sortAge === 'New'}
-          value='new'
-          onClick={() => handleClickAge('New')}
-        >
-          New
-        </ToggleButton>
-        <ToggleButton
-          type='radio'
-          variant='secondary'
-          name='radio'
-          value='old'
-          checked={sortAge === 'Old'}
-          onClick={() => handleClickAge('Old')}
-        >
-          Old
-        </ToggleButton>
-      </ButtonGroup>
+      <div className='feed-buttons'>
+        <ButtonGroup className='mb-2'>
+          <ToggleButton
+            type='radio'
+            variant='secondary'
+            name='radio'
+            value='new'
+            checked={sortAge === 'New'}
+            onClick={() => handleClickAge('New')}
+          >
+            New
+          </ToggleButton>
+          <ToggleButton
+            type='radio'
+            variant='secondary'
+            name='radio'
+            value='old'
+            checked={sortAge === 'Old'}
+            onClick={() => handleClickAge('Old')}
+          >
+            Old
+          </ToggleButton>
+        </ButtonGroup>
 
-      <ButtonGroup className='mb-2'>
-        <ToggleButton
-          type='radio'
-          variant='secondary'
-          checked={sortFix}
-          value='fixed'
-          onClick={() => handleClickStatus(true)}
-        >
-          Fixed
-        </ToggleButton>
-        <ToggleButton
-          type='radio'
-          variant='secondary'
-          name='radio'
-          value='nFixed'
-          checked={!sortFix}
-          onClick={() => handleClickStatus(false)}
-        >
-          Not Fixed
-        </ToggleButton>
-      </ButtonGroup>
-
+        <ButtonGroup className='mb-2'>
+          <ToggleButton
+            type='radio'
+            variant='secondary'
+            name='radio'
+            value='fixed'
+            checked={sortFix}
+            onClick={() => handleClickStatus(true)}
+          >
+            Fixed
+          </ToggleButton>
+          <ToggleButton
+            type='radio'
+            variant='secondary'
+            name='radio'
+            value='nFixed'
+            checked={!sortFix}
+            onClick={() => handleClickStatus(false)}
+          >
+            Not Fixed
+          </ToggleButton>
+        </ButtonGroup>
+      </div>
       <InfiniteScroll
         dataLength={globalFeed.length} //This is important field to render the next data
         next={getAllImgs}

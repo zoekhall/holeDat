@@ -12,18 +12,24 @@ const StatusSection = (prop) => {
   return (
     <Form.Group>
       <Form.Group>
-        <Form.Label className='formQuestion'>What would you rate dat dere pothole?</Form.Label>
-        <Form.Text className='text-muted'>Rate in cones the severity of the pothole </Form.Text>
+        <Form.Label className='formQuestion'>What would you rate the pothole?</Form.Label>
+        <p className='formText'>
+          Rate in cones the severity of the pothole with 5 cones indicating the most severe potholes
+          and 1 cone indicating a pothole that is not hazardous.
+        </p>
         <PotholeRating />
       </Form.Group>
 
       <Form.Group>
-        <Form.Label className='formQuestion'>Is Dat Pothole Fixed?</Form.Label>
+        <Form.Label className='formQuestion'>Is the Pothole Fixed?</Form.Label>
         <PotholeStatus />
       </Form.Group>
 
-      <Button id='nextFormButton' className='formButton' type='button' onClick={handleSubmit}>
-        Next
+      <Button id='nextFormButton' className='basicButton' type='button' onClick={handleSubmit}>
+        <div className='center' id='wtf'>
+          Submit
+          <div className='arrow-button arrow-right'></div>
+        </div>
       </Button>
     </Form.Group>
   );};

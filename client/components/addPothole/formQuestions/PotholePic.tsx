@@ -17,7 +17,7 @@ const PotholePic = () => {
   return (
     <Form.Group controlId='uploadPotPhoto' className='mb-5'>
       <Form.Control type='file' onChange={handleChange} required />
-      <div id='inputImg'>
+      <div id='imgInput'>
         <img src={imageContents.photoURL} />
       </div>
     </Form.Group>

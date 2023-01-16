@@ -17,6 +17,7 @@ const NavBar = () => {
   const menuItems = [Map, About, Feed];
   const menuPhrasing = ['Map', 'About', 'Feed'];
   const [user, setUser] = useState<TUser | null>(null);
+  const [page, setPage] = useState<string>('');
   const [mode, setMode] = useState<any>('');
 
   const checkUser = () => {
@@ -45,6 +46,10 @@ const NavBar = () => {
     }
   };
 
+  const handlePage = (page) => {
+    setPage(page)
+  }
+
   return (
     <div className='nav-bar'>
       <div className='top-border'>
@@ -53,12 +58,12 @@ const NavBar = () => {
         <div className='top-nav'>
           <div className='nav-bar-left'>
             {user?.id &&
-              <Link to={'/User'}>
+              <Link onClick={() => setPage('')} to={'/User'}>
                 <img src={user.photo} alt='me' width={40} style={{ borderRadius: '100px' }} />
               </Link>
             }
           </div>
-          <Link to='/'>
+          <Link onClick={() => setPage('')} to='/'>
             <div className='top-center'>
               <h1>Hole Dat</h1>
               <img
@@ -70,7 +75,7 @@ const NavBar = () => {
           </Link>
           <div className='nav-bar-right'>
             {user?.id ?
-              <Link to='/AddPothole'>
+              <Link to='/AddPothole' onClick={() => setPage('')}>
                 <i className='bi bi-plus-circle'></i>
               </Link>
               :
@@ -88,7 +93,12 @@ const NavBar = () => {
             <p>Mode</p>
           </div>
           {menuItems.map((item, i) => (
-            <Link key={`${i}-${item}`} to={`/${menuPhrasing[i]}`}>
+            <Link
+              onClick={() => handlePage(menuPhrasing[i])}
+              className={`${menuPhrasing[i] === page ? 'on-page' : ''}`}
+              key={`${i}-${item}`}
+              to={`/${menuPhrasing[i]}`}
+            >
               <div className='menu-item'>
                 {item}
                 <p>{menuPhrasing[i]}</p>

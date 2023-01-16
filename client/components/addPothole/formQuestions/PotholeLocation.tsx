@@ -1,11 +1,11 @@
-import React, { useState, useContext, useEffect, useRef } from 'react';
 import axios from 'axios';
+import React, { useState, useContext, useEffect, useRef } from 'react';
+import { AddressAutofill } from '@mapbox/search-js-react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import FormGroup from 'react-bootstrap/FormGroup';
-import { AddressAutofill } from '@mapbox/search-js-react';
-import { LocationContext } from '../AddPothole';
 import Alert from 'react-bootstrap/Alert';
+import { LocationContext } from '../AddPothole';
 
 const mapToken =
   'pk.eyJ1IjoiemFjaG1hcnVsbG8iLCJhIjoiY2xhazZ5aGxyMDQ3bzNwbzZ2Z3N0b3lpMyJ9.65G-mwqhbWFy77O_I0LkOg';
@@ -57,18 +57,18 @@ const PotholeLocation = (prop) => {
 
   const handleShowError = () => {
     if (showError === true) {
-      return <Alert variant='danger'>Oops! That is Not an Address! Input enough of the address that you can click the full address when prompted</Alert>;
+      return <Alert variant='danger'>Oops! Not a Valid Address</Alert>;
     }
   }
 
   return (
     <Form.Group className='mb-3'>
-      <Form.Group>
         <FormGroup id='addPotLocation'>
           <AddressAutofill accessToken={mapToken} browserAutofillEnabled={true}>
-            <Form.Control
+          <Form.Control
+            id='addAddressInput'
               name='address'
-              placeholder='Enter the Address You Think is Closest to the Pothole'
+              placeholder='Enter Approximate Address'
               type='text'
               autoComplete={`address-line1`}
               onChange={(e) => {
@@ -96,7 +96,6 @@ const PotholeLocation = (prop) => {
             }}
           />
         </FormGroup>
-      </Form.Group>
     </Form.Group>
   );
 };

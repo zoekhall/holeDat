@@ -11,8 +11,8 @@
 
   .post_header {
     margin: 10px;
- 
-    #score{
+
+    #score {
       height: 1.75em;
       width: 1.75em;
       border: 1px black solid;
@@ -21,7 +21,7 @@
       margin-left: 2em;
     }
 
-    div{
+    div {
       display: flex;
       flex-flow: no-wrap;
       align-items: center;
@@ -92,16 +92,17 @@
     margin-left: 8em;
   }
 
-  
+
 }
 
-.badgeAvatar{
+.badgeAvatar {
   display: flex;
   flex-wrap: no-wrap;
 }
 
 #profAvatar {
   padding: 0;
+
   img.avatar {
     padding: 0;
     @include border-shadow(2.5px 2.5px);
@@ -113,7 +114,7 @@
   }
 }
 
-#profBadge{
+#profBadge {
   border: none;
   padding: 0;
   // margin-left: -40;
@@ -121,6 +122,7 @@
   position: relative;
   bottom: .60em;
   left: 1em;
+
   .badgeBoy {
     object-fit: fill; // position: absolute;
     // left: 3em;
@@ -132,9 +134,30 @@
   }
 }
 
+
+
+// EVERYTHING UNDER THIS COMMENT IS FOR COMMENT FORM
+.comment-container {
+  background: #f2cc8f;
+  width: 60%;
+  height: 20%;
+  display: block;
+  margin: 10px auto;
+  margin-bottom: 20px;
+  border: 2px solid rgb(0, 0, 0);
+  border-radius: 10px;
+  box-shadow: 3px 3px rgb(0, 0, 0);
+}
+
+
+
+
+
+
+
 // .post_header{
-  // div {
-  //   display: flex; 
-  //   flex-wrap: no-wrap; 
-  // }
+// div {
+//   display: flex;
+//   flex-wrap: no-wrap;
+// }
 // }

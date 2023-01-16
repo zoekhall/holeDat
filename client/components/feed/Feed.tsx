@@ -121,7 +121,7 @@ const Feed: React.FC = () => {
             checked={!sortFix}
             onClick={() => handleClickStatus(false)}
           >
-            Not Fixed
+            Busted
           </ToggleButton>
         </ButtonGroup>
       </div>

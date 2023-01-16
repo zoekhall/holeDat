@@ -76,10 +76,7 @@ const LocationSection = (prop) => {
             id='nextFormButton'
             className='basicButton'
             type='button'
-            onClick={() => {
-              handleClick();
-              console.log(location, 'location', coordinates, 'coords');
-            }}
+            onClick={() => handleClick()}
           >
             <div className='center'>
               Next

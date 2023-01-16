@@ -141,7 +141,7 @@ const Feed: React.FC = () => {
         }
       >
         {globalFeed &&
-          globalFeed.map((imgObj: phImg) => <FeedEntry key={imgObj.image_id} imgObj={imgObj} />)}
+          globalFeed.map((imgObj: phImg, i) => <FeedEntry key={`${i}-${imgObj.image_id}`} imgObj={imgObj} />)}
       </InfiniteScroll>
     </div>
   );

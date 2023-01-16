@@ -1,7 +1,5 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination, Navigation, Autoplay } from 'swiper';
 import { Link } from 'react-router-dom'
 
 import 'swiper/css';
@@ -51,35 +49,18 @@ export const UserStats = ({ userId }: { userId: number }) => {
 
     return (
         <div id='pothole-slider-content'>
-            <h1>Pothole Images Uploaded</h1>
-            <Swiper
-                id='swiper'
-                loop={true}
-                grabCursor={true}
-                modules={[Navigation, Pagination, Autoplay]}
-                navigation={true}
-                pagination={{ clickable: true }}
-                className='mySwiper potholeSlider'
-                autoplay={{
-                    delay: 3000,
-                    disableOnInteraction: true,
-                }}
-            >
+            <h2>Pothole Images Uploaded</h2>
+            <div className='image-grid'>
                 {uploadedPotholes.map((image) => {
                     return (
-                        <SwiperSlide
-                            key={image.image_id}
-                        >
-                            <Link className='slider-content' to={`/Pothole:${image.pothole_id}`}>
-                                <div className='slider-img'>
-                                    <img className='pothole-image' alt='pothole Image' src={image.photoURL} />
-                                </div>
-                                <p>{image.caption}</p>
-                            </Link>
-                        </SwiperSlide>
+                        <Link key={image.image_id} className='slider-content' to={`/Pothole:${image.pothole_id}`}>
+                            <div className='slider-img'>
+                                <img className='pothole-image' alt='pothole Image' src={image.photoURL} />
+                            </div>
+                        </Link>
                     );
                 })}
-            </Swiper>
+            </div>
         </div>
     );
 };

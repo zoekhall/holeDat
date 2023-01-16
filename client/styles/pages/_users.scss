@@ -1,0 +1,60 @@
+.user-profile {
+  width: 75%;
+  margin: auto;
+
+  button {
+    margin: 15px;
+  }
+}
+
+.user-avatar {
+  border-radius: 10px;
+  width: 40%;
+  min-width: 100px;
+  max-width: 200px;
+  border: 1px solid black;
+  box-shadow: 3px 3px black;
+}
+
+.image-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.slider-content {
+  margin: 10px;
+}
+
+.slider-img {
+  padding: 5px;
+  border-radius: 10px;
+  background-color: #F2CC8F;
+  border: 1px solid black;
+  box-shadow: 3px 3px black;
+}
+
+.pothole-image {
+  border-radius: 10px;
+  object-fit: cover;
+  width: 250px;
+  height: 250px;
+  border: 1px solid black;
+}
+
+.user-badge {
+  position: absolute;
+  height: 25%;
+  margin: -20px;
+}
+
+.avatar-container {
+  position: relative;
+  padding: 30px 10px 0;
+
+  h1 {
+    padding: 20px 0;
+  }
+
+
+}

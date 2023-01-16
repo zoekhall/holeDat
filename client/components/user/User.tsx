@@ -10,15 +10,30 @@ function User() {
     photo: string;
   };
 
+  type badgeObj = {
+    imgUrl: string;
+    description: string;
+    name: string;
+  };
+
   const [user, setUser] = useState<userObj>({ name: '', user_id: 0, photo: '' });
   const [editTrigger, setEditTrigger] = useState(false);
   const [text, setText] = useState('');
+  const [badge, setBadge] = useState<badgeObj>();
+
 
   const getUserData = () => {
     // gget the currently logged in users data
     axios
       .get('/api/user/current')
-      .then((data) => setUser(data.data)) // set the logged in user data to user
+      .then((data) => {
+        setUser(data.data)
+        if (data.data.badge_id !== 0) {
+          axios.get('/api/badges/getBadge', { params: { badgeId: data.data.badge_id } })
+            .then(({ data }) => setBadge(data))
+            .catch((err) => console.log(err));
+        }
+      }) // set the logged in user data to user
       .catch((err) => console.log(err));
   };
 
@@ -46,12 +61,19 @@ function User() {
 
   return (
     <>
-      <div className='userPf'>
-
-        <img
-          src={user.photo}
-          alt='Image'
-        />
+      <div className='user-profile'>
+        <section className='avatar-container'>
+          <img
+            src={user.photo}
+            alt='Image'
+            className='user-avatar'
+          />
+          {badge?.imgUrl ? <img
+            className='user-badge'
+            src={badge?.imgUrl}
+            alt='Image'
+          /> : <></>}
+        </section>
 
         <h1>
           {!editTrigger ? (
@@ -68,7 +90,7 @@ function User() {
         </h1>
 
         {!editTrigger ? (
-          <button onClick={() => setEditTrigger(!editTrigger)}>Edit profile</button>
+          <button onClick={() => setEditTrigger(!editTrigger)}>Edit Username</button>
         ) : (
           <button
             onClick={() => {

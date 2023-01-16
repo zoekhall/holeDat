@@ -3,6 +3,7 @@ import Form from 'react-bootstrap/Form';
 import axios from 'axios';
 import moment from 'moment';
 import User from '../user/User';
+import Button from 'react-bootstrap/esm/Button';
 
 interface Comment {
   name: string;
@@ -124,9 +125,9 @@ const CommentForm = ({ phId }: CommentFormArgs) => {
             value={inputValue}
             onChange={(event) => setInputValue(event.target.value)}
           />
-          <button className='post_button'>
+          <Button className='basicButton'>
             Post
-          </button>
+          </Button>
         </Form>
       )}
       {comments.map((renderComment) => {
@@ -136,13 +137,13 @@ const CommentForm = ({ phId }: CommentFormArgs) => {
             <b>{renderComment.name}:</b> <h6>{renderComment.text}</h6>
             <p>{moment(renderComment.time).format('MMMM Do YYYY, h:mm a')}</p>
             {user.userId_user === renderComment.userId_com && (
-              <button
+              <Button
                 onClick={() => handleDelete(renderComment.com_id)}
-                className='post_button'
+                className='basicButton'
                 type='submit'
               >
-                Delete
-              </button>
+                X
+              </Button>
             )}
           </div>
         );

@@ -1,0 +1,28 @@
+.userPf {
+  width: 75%;
+  margin: auto;
+}
+
+.user-avatar {
+  border-radius: 10px;
+  width: 60%;
+}
+
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.user-badge {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  left: 203px;
+  top: 37px;
+  zoom: 0.5;
+}
+
+.avatar-container {
+  position: relative;
+  padding: 30px;
+}

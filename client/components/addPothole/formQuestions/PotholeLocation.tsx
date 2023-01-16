@@ -3,16 +3,15 @@ import React, { useState, useContext, useEffect, useRef } from 'react';
 import { AddressAutofill } from '@mapbox/search-js-react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import FormGroup from 'react-bootstrap/FormGroup';
 import Alert from 'react-bootstrap/Alert';
 import { LocationContext } from '../AddPothole';
 
 const mapToken =
   'pk.eyJ1IjoiemFjaG1hcnVsbG8iLCJhIjoiY2xhazZ5aGxyMDQ3bzNwbzZ2Z3N0b3lpMyJ9.65G-mwqhbWFy77O_I0LkOg';
 
-//Componenent with the location search Form form. Assigns lat/lon to location context
+//location search form. Determines and assigns lat/lon to location context
 const PotholeLocation = (prop) => {
-  const { coordinates, setCoordinates } = useContext(LocationContext); //set coordinates using AddPothole LocationContext
+  const { coordinates, setCoordinates } = useContext(LocationContext); 
   const [showError, setShowError] = useState<boolean>(false);
   const isMounted = useRef(false);
   const { setSectionView, setPothole_id, setLocation, location, setZip, zip } = prop;
@@ -55,6 +54,7 @@ const PotholeLocation = (prop) => {
       .catch((err) => console.error('FAILURE TO FIND POTHOLEID', err));
   }, [coordinates]);
 
+  //handles if an error is caught to propmt user to add a valid address
   const handleShowError = () => {
     if (showError === true) {
       return <Alert variant='danger'>Oops! Not a Valid Address</Alert>;
@@ -62,40 +62,42 @@ const PotholeLocation = (prop) => {
   }
 
   return (
-    <Form.Group className='mb-3'>
-        <FormGroup id='addPotLocation'>
-          <AddressAutofill accessToken={mapToken} browserAutofillEnabled={true}>
+    <Form.Group controlId='addPotLocation'>
+      <Form.Group className='questionGroup'>
+        <AddressAutofill accessToken={mapToken} browserAutofillEnabled={true}>
           <Form.Control
-            id='addAddressInput'
-              name='address'
-              placeholder='Enter Approximate Address'
-              type='text'
-              autoComplete={`address-line1`}
-              onChange={(e) => {
-                setLocation(e.target.value);
-              }}
-            />
-          </AddressAutofill>
-          {handleShowError()}
-          <Button
-            className='basicButton genFormButton'
-            id='confirmAddress'
-            variant='primary'
-            onClick={() => updateLatLon()}
-          >
-            Confirm Pothole Address
-          </Button>
-          <Form.Control
-            id='formZip'
-            name='postcode'
-            placeholder='Postcode'
+            className='addAddressInput'
+            name='address'
+            placeholder='Enter Approximate Address'
             type='text'
-            autoComplete='postal-code'
+            autoComplete={`address-line1`}
             onChange={(e) => {
-              setZip(e.target.value);
+              setLocation(e.target.value);
             }}
           />
-        </FormGroup>
+        </AddressAutofill>
+        {handleShowError()}
+      </Form.Group>
+      <Button
+        className='basicButton genFormButton'
+        variant='primary'
+        onClick={() => {
+          updateLatLon();
+          console.log(coordinates);
+        }}
+      >
+        Confirm Address
+      </Button>
+      <Form.Control
+        className='formZip'
+        name='postcode'
+        placeholder='Postcode'
+        type='text'
+        autoComplete='postal-code'
+        onChange={(e) => {
+          setZip(e.target.value);
+        }}
+      />
     </Form.Group>
   );
 };

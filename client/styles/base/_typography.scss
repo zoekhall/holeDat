@@ -30,19 +30,26 @@ h4 {
 //TEXT FONT 
 p {
   font-weight: 400;
+<<<<<<< HEAD
   line-height: 26px;
   font-size: calc(15px + 0.390625vw);
+=======
+  font-size: calc(14px + 0.390625vw);
+>>>>>>> 6c5f9a306c2a2e7265b6504e3db7887bfa4c2df4
 }
 
 //SPECIFIC TEXT
 .buttonFont{
-  font-size: calc(16px + 0.390625vw);
+  font-size: calc(15px + 0.390625vw);
 }
 
 .xsmall{
-  font-size: calc(13px + 0.390625vw)
+  font-size: calc(11px + 0.390625vw)
 }
 
+.italic{
+  font-style: italic;
+}
 
 
 //STORAGE

@@ -3,7 +3,7 @@ import React, { useContext } from 'react';
 import Form from 'react-bootstrap/Form';
 import { ImageContext } from '../AddPothole';
 
-//Component with the photo upload box. Assigns photo file and url to image context
+//photo upload box. Assigns photo file and url to image context
 const PotholePic = () => {
   const { imageContents, setImageContents } = useContext(ImageContext);
 
@@ -15,7 +15,7 @@ const PotholePic = () => {
   };
 
   return (
-    <Form.Group controlId='uploadPotPhoto' className='mb-5'>
+    <Form.Group controlId='uploadPotPhoto'>
       <Form.Control type='file' onChange={handleChange} required />
       <div id='imgInput'>
         <img src={imageContents.photoURL} />

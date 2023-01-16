@@ -20,7 +20,7 @@ const upload = multer({ dest: './tmp/' }).single('file');
 
 // returns all images of pothole (a test endpoint)
 imgs.get('/', (req: Request, res: Response) => {
-  getAllImgs((data) => res.status(222).send(data));
+  getAllImgs((data) => res.status(222).send(data.slice(0, 3)));
 });
 
 // Adds img to Cloud

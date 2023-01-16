@@ -57,7 +57,7 @@ const FeedEntry = ({ imgObj }: { imgObj: phImg }) => {
           className='pothole-img'
         />
       </Link>
-      <section>
+      <section className='caption-container'>
         <p>{imgObj.caption}</p>
         <Link to={'/User:' + imgObj.user_id}>
           <img

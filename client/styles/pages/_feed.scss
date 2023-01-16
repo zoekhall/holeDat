@@ -17,12 +17,11 @@
   border-radius: 10px;
   box-shadow: 3px 3px rgb(0, 0, 0);
 
-  p {
+  h2 {
     width: 80%;
     margin: auto;
     color: black;
     text-align: center;
-    word-break: break-all;
   }
 
   h3 {
@@ -39,7 +38,7 @@
   }
 }
 
-.img-border {
+.caption-container {
   background-color: #E07A5F;
   position: relative;
   width: 100%;

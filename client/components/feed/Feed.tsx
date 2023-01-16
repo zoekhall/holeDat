@@ -78,7 +78,6 @@ const Feed: React.FC = () => {
 
   return (
     <div>
-      <h1>Pothole Feed</h1>
       <ButtonGroup className='mb-2'>
         <ToggleButton
           type='radio'
@@ -86,6 +85,7 @@ const Feed: React.FC = () => {
           checked={sortAge === 'New'}
           value='new'
           onClick={() => handleClickAge('New')}
+          className='feed-button'
         >
           New
         </ToggleButton>

@@ -125,17 +125,19 @@ const CommentForm = ({ phId }: CommentFormArgs) => {
             value={inputValue}
             onChange={(event) => setInputValue(event.target.value)}
           />
-          <Button className='basicButton'>
+          <Button className='basicButton' id='postButton' type='submit'>
             Post
           </Button>
         </Form>
       )}
       {comments.map((renderComment) => {
         return (
-          <div key={renderComment.com_id}>
-            <img src={renderComment.pfp} alt='pfp' width={'30px'} />
-            <b>{renderComment.name}:</b> <h6>{renderComment.text}</h6>
-            <p>{moment(renderComment.time).format('MMMM Do YYYY, h:mm a')}</p>
+          <div className='comment' key={renderComment.com_id}>
+            <img className='avatar-comment' src={renderComment.pfp} alt='pfp' />
+            <div className="comment-info">
+              <h3>{renderComment.name}</h3> <p>{renderComment.text}</p>
+              <p className='time-comment'>{moment(renderComment.time).format('MMMM Do YYYY, h:mm a')}</p>
+            </div>
             {user.userId_user === renderComment.userId_com && (
               <Button
                 onClick={() => handleDelete(renderComment.com_id)}

@@ -121,6 +121,7 @@ $dark-car-background-2: #764132;
 .btn-primary {
   --bs-btn-color: $detail;
   --bs-btn-hover-bg: #1472cf;
+  --bs-btn-border-color: #000000;
   --bs-btn-hover-border-color: #565e64;
   --bs-btn-focus-shadow-rgb: 130, 138, 145;
   --bs-btn-active-color: $detail;
@@ -142,18 +143,19 @@ DARK MODE STARTS RIGHT HERE
     background: $dark-card-background;
     border: 2px solid $dark-detail;
     box-shadow: 3px 3px $dark-detail;
+
     h2 {
       width: 80%;
       margin: auto;
       color: $dark-detail;
       text-align: center;
     }
-  
+
     .pothole-img {
       border: 2px solid $dark-detail;
     }
   }
-  
+
   .caption-container {
     background-color: $dark-car-background-2;
     border-top: 2px solid $dark-detail;

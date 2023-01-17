@@ -1,33 +1,33 @@
-//FONT VARIABLES 
+//FONT VARIABLES
 @import url('https://fonts.googleapis.com/css2?family=Esteban&family=Montserrat&display=swap');
 $Esteban: 'Esteban', monospace;
 $Montserrat: 'Montserrat', sans-serif;
 
-//MAIN TITLE FONT 
+//MAIN TITLE FONT
 h1 {
   font-size: calc(35px + 0.390625vw);
   font-family: $Esteban;
 }
 
-//SUB-TITLE FONT 
+//SUB-TITLE FONT
 h2 {
   font-size: calc(25px + 0.390625vw);
   font-family: $Esteban;
 }
 
-//TITLE FONT 
+//TITLE FONT
 h3 {
   font-family: $Esteban;
   font-size: calc(20px + 0.390625vw);
 }
 
-//NAVBAR/OPTIONS/PROFILE FONT 
+//NAVBAR/OPTIONS/PROFILE FONT
 h4 {
   font-weight: 400;
   font-size: calc(17px + 0.390625vw);
 }
 
-//TEXT FONT 
+//TEXT FONT
 p {
   font-weight: 400;
   line-height: 1.6rem;
@@ -35,21 +35,59 @@ p {
 }
 
 //SPECIFIC TEXT
-.buttonFont{
+.buttonFont {
   font-size: calc(15px + 0.390625vw);
 }
 
-.xsmall{
+.xsmall {
   font-size: calc(11px + 0.390625vw)
 }
 
-.italic{
+.italic {
   font-style: italic;
 }
 
+.dark-mode {
+  h1 {
+    color: white;
+  }
+
+  //SUB-TITLE FONT
+  h2 {
+    color: white;
+  }
+
+  //TITLE FONT
+  h3 {
+    color: white;
+  }
+
+  //NAVBAR/OPTIONS/PROFILE FONT
+  h4 {
+    color: white;
+  }
+
+  //TEXT FONT
+  p {
+    color: white;
+  }
+
+  //SPECIFIC TEXT
+  .buttonFont {
+    color: white;
+  }
+
+  .xsmall {
+    color: white;
+  }
+
+  .italic {
+    color: white;
+  }
+}
 
 //STORAGE
-//GENERAL HEADERS 
+//GENERAL HEADERS
 // $h1-font-sizes: (
 //   null : 40px,
 //   small : 48px,

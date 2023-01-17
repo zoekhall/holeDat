@@ -309,18 +309,22 @@ a {
   font-size: xx-small;
   padding-top: 5px;
 }
+
 /*
 THIS IS WHERE DARK MODE STARTS
 */
 .dark-mode {
+
   .menu-item,
   .nav-bar-left img {
     border: 1px solid $dark-detail;
     box-shadow: 3px 3px 0 $dark-detail;
   }
-  .nav-bar nav {  
+
+  .nav-bar nav {
     border-bottom: 1px solid $dark-detail;
   }
+
   .menu-item:hover,
   .nav-bar-right button:hover {
     box-shadow: none;
@@ -331,6 +335,7 @@ THIS IS WHERE DARK MODE STARTS
     box-shadow: 0px 0px 3px $dark-detail;
     border-bottom: 2px solid $dark-detail;
   }
+
   .top-nav,
   .top-center {
     * {
@@ -338,13 +343,13 @@ THIS IS WHERE DARK MODE STARTS
       font-size: larger;
       text-decoration: none;
     }
-  
+
     display: flex;
     align-items: center;
     justify-content: space-around;
   }
-  
-  
+
+
   .nav-bar-right button {
     width: 50px;
     height: 50px;
@@ -354,7 +359,7 @@ THIS IS WHERE DARK MODE STARTS
     box-shadow: 2px 2px 0 $dark-detail;
     background-color: transparent;
   }
-  
+
   .chart {
     background-color: $dark-card-background;
     border: 1px solid $dark-detail;
@@ -367,20 +372,23 @@ THIS IS WHERE DARK MODE STARTS
       .slider-content {
         box-shadow: 3px 3px 0 $dark-detail;
         padding: 0px;
+
         .slider-img {
           border: 1px solid $dark-detail;
           background-color: $dark-card-background;
         }
+
         p {
           background-color: $dark-car-background-2;
           border: 1px solid $dark-detail;
         }
+
         .pothole-image {
           border: 1px solid $dark-detail;
         }
       }
     }
-  
+
     .swiper-button-prev,
     .swiper-button-next {
       border: 1px solid $dark-detail;
@@ -388,12 +396,12 @@ THIS IS WHERE DARK MODE STARTS
       color: $dark-car-background-2;
     }
   }
-  
+
   #user-slider {
     background-color: $dark-card-background;
     border: 1px solid $dark-detail;
     box-shadow: 3px 3px $dark-detail;
-  
+
     .swiper {
       border: 1px solid $dark-detail;
       background-color: $dark-car-background-2;
@@ -411,15 +419,15 @@ THIS IS WHERE DARK MODE STARTS
       text-decoration: none;
       color: $dark-detail;
     }
-  
+
     text-decoration: none;
     color: $dark-detail;
   }
-  
+
   .swiper-pagination {
     display: none;
   }
-  
+
   .welcome {
     background-color: $dark-card-background;
     border: 1px solid $dark-detail;
@@ -428,9 +436,13 @@ THIS IS WHERE DARK MODE STARTS
     box-shadow: 3px 3px 0px $dark-detail;
     margin: 10px;
   }
-  
+
   .on-page .menu-item {
-    background-color: #31443b;
+    background-color: $car-background-2;
   }
 
+
+  nav svg :not(#mode svg, #mode circle) {
+    fill: white;
+  }
 }

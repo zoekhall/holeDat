@@ -179,7 +179,7 @@ const Pothole = () => {
                     <Col>
                       <Row>
                         <Col xs={3} className='badgeAvatar'>
-                          {image?.badge_id && (
+                          {image?.badge_id ? (
                             <div id='profBadge'>
                               {badge.map((badges) => {
                                 if (image.badge_id === badges.badge_id) {
@@ -193,7 +193,7 @@ const Pothole = () => {
                                 }
                               })}
                             </div>
-                          )}
+                          ) : ''}
                           <div id='profAvatar'>
                             <Link to={'/User:' + image.userId}>
                               <img className='avatar' alt='avatar2' src={image.userPhoto} />

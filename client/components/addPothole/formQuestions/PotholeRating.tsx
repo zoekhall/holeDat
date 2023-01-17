@@ -1,13 +1,12 @@
 /* eslint-disable react/no-unescaped-entities */
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
-import { StatusContext } from '../AddPothole';
 
-//rating cones 
-const PotholeRating = () => {
-  const { statusContents, setStatusContents } = useContext(StatusContext);
+//rating cones
+const PotholeRating = (prop) => {
+  const { handleClick } = prop;
   const [rating, setRating] = useState<number>(0);
 
   return (
@@ -22,10 +21,9 @@ const PotholeRating = () => {
               <svg
                 key={i}
                 onClick={() => {
-                  const newStatusContents = { ...statusContents };
-                  newStatusContents.rating = num;
-                  setStatusContents(newStatusContents);
+                  handleClick(num);
                   setRating(num);
+                  console.log('numInRating', num);
                 }}
                 xmlns='http://www.w3.org/2000/svg'
                 fill='currentColor'

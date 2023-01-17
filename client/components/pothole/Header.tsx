@@ -23,21 +23,25 @@ const Header = (prop) => {
           </svg>
           {avg}&nbsp;<span id='totalVoteCount'>({voteCount})</span>
         </Col>
+        <Col id='status'>
+          <h4>Fixed</h4>
+        </Col>
       </Row>
 
       <Row id='ratings'>
+        <Col className='group newline' sm>
+          <p>Rate This Pothole:</p>
+          <PotholeRating />
+        </Col>
+
         <Col className='group' sm>
-          <p>Fixed!</p>
+          <p>Confirm Current Pothole Status</p>
           <div className='fixed'>
             <Switch checked={fixed} onChange={() => setFixed(!fixed)} />
             <p className='xsmall'>Not Fixed</p>
           </div>
         </Col>
 
-        <Col className='group newline' sm>
-          <p>Rate This Pothole:</p>
-          <PotholeRating />
-        </Col>
       </Row>
     </Container>
   );

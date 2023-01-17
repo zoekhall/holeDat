@@ -85,7 +85,7 @@ const NavBar = () => {
           </div>
         </div>
         <div className='navbar'>
-          <div id='mode' className='menu-item'>
+          <div id='mode' className='menu-item' onClick={toggleMode}>
             <DarkModeSwitch className='mode' checked={mode} onChange={toggleMode} size={30} />
             <p>Mode</p>
           </div>
@@ -103,8 +103,13 @@ const NavBar = () => {
             </Link>
           ))}
         </div>
+<<<<<<< HEAD
       </nav>
     </div>
+=======
+      </nav >
+    </div >
+>>>>>>> e2dfa8d2a2f597d6f2bdb908007e030b11d1ccce
   );
 };
 

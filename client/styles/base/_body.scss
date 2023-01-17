@@ -9,8 +9,10 @@ $Montserrat: 'Montserrat', sans-serif;
 }
 
 body {
-  background-image: url('https://res.cloudinary.com/di6gxsepn/image/upload/v1672966189/mulpdizourlr92zcj1ti.svg');
-  background-color: rgba(104, 104, 104, 0.0);
-  background-size: cover;
+  background: center / cover no-repeat url('https://res.cloudinary.com/di6gxsepn/image/upload/v1672966189/mulpdizourlr92zcj1ti.svg');
   box-sizing: border-box;
+}
+
+body.dark-mode {
+  background: center / cover no-repeat url('https://res.cloudinary.com/di6gxsepn/image/upload/v1672966189/mulpdizourlr92zcj1ti.svg'), rgba(0, 0, 0, .5);
 }

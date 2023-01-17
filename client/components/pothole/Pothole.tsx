@@ -200,7 +200,6 @@ const Pothole = () => {
                             </Link>
                           </div>
                         </Col>
-
                         <Col id='innerProfCapt'>
                           <h3>{image.userName}</h3>
                           <h4>{image.caption}</h4>

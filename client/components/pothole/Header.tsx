@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import axios from 'axios';
 import Row from 'react-bootstrap/Row';
 import { useLocation } from 'react-router-dom';
@@ -9,15 +9,44 @@ import PotholeRating from '../addPothole/formQuestions/PotholeRating';
 
 const Header = (prop) => {
   const id = Number(useLocation().pathname.split(':')[1]);
-  const { addy, avg, fixed, setFixed, voteCount, user } = prop;
+  const [flickedSwitch, setFlickedSwitch] = useState<boolean>(false);
+  const { addy, avg, fixed, voteCount, user } = prop;
 
+  //handle rating/status 
   const handleAction = (value) => {
     const type = typeof value === 'number' ? 'rating' : 'status';
-    
+    const ratingStatusObj = {type, value}
     axios
-      .post('/api/rating/fromPh', { id, type, value, user })
+      .post('/api/rating/fromPh', { id, ratingStatusObj, fixed, user }) //whatever the current status is
       .catch((data) => console.log(data));
   };
+
+  //show rating if user is signed in 
+  const allowRating = () => {
+    if (user.user_id === undefined) {
+      return null;
+    } else {
+      return (
+        <Row id='ratings'>
+          <Col className='group newline' sm>
+            <p>Rate This Pothole:</p>
+            <PotholeRating handleClick={handleAction} />
+          </Col>
+
+          <Col className='group' sm>
+            <p>Confirm Pothole Status:</p>
+            <div className='fixed'>
+              <Switch checked={fixed} onChange={() => {
+                setFlickedSwitch(!flickedSwitch);
+                handleAction(!fixed);
+              }} />
+              <p className='xsmall'>{flickedSwitch === true ? !fixed : fixed}</p>
+            </div>
+          </Col>
+        </Row>
+      );
+    }
+    }
 
   return (
     <Container id='header'>
@@ -39,21 +68,7 @@ const Header = (prop) => {
           <h4>Fixed</h4>
         </Col>
       </Row>
-
-      <Row id='ratings'>
-        <Col className='group newline' sm>
-          <p>Rate This Pothole:</p>
-          <PotholeRating handleClick={handleAction} />
-        </Col>
-
-        <Col className='group' sm>
-          <p>Confirm Current Pothole Status</p>
-          <div className='fixed'>
-            <Switch checked={fixed} onChange={() => setFixed(!fixed)} />
-            <p className='xsmall'>Not Fixed</p>
-          </div>
-        </Col>
-      </Row>
+      {allowRating()}
     </Container>
   );
 };

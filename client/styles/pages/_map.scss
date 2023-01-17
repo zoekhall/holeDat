@@ -61,10 +61,6 @@
   }
 }
 
-$dark-detail: rgb(189, 188, 188);
-$dark-background: rgba(0, 0, 0, 0.507);
-$dark-card-background: #6b5c42;
-$dark-card-background-2: #764132;
 
 .dark-mode {
 
@@ -103,18 +99,5 @@ $dark-card-background-2: #764132;
 
   .mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip {
     border-top-color: $dark-detail;
-  }
-
-  .mapboxgl-marker {
-    svg {
-      path {
-        fill: $dark-card-background-2;
-      }
-    }
-
-    circle {
-      fill: $dark-card-background;
-      stroke: white;
-    }
   }
 }

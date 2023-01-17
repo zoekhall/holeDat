@@ -6,11 +6,11 @@ import sessions from 'express-session';
 import passport from 'passport';
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
 import User from './db/schema/user.schema';
-import Pothole from './db/schema/pothole.schema';
+//import Pothole from './db/schema/pothole.schema';
 import rootRouter from './routes/index';
 import './db/index';
 import './automation';
-import { Server } from 'socket.io';
+//import { Server } from 'socket.io';
 const app = express();
 // running on port 5555 if no env available
 const PORT = process.env.PORT || 5555;
@@ -96,23 +96,23 @@ app.get(
 app.use('/api', rootRouter);
 
 // ZM
-const io = new Server(8081, {
-  cors: {
-    origin: '*',
-  },
-});
+// const io = new Server(8081, {
+//   cors: {
+//     origin: '*',
+//   },
+// });
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-io.on('connection', async (socket: any) => {
-  // Set up an interval to send a "heartbeat" message every 10 seconds
-  setInterval(() => {
-    User.findAll({}).then((data) => socket.emit('heartbeat', { data: data.length }));
-  }, 500);
+// // eslint-disable-next-line @typescript-eslint/no-explicit-any
+// io.on('connection', async (socket: any) => {
+//   // Set up an interval to send a "heartbeat" message every 10 seconds
+//   setInterval(() => {
+//     User.findAll({}).then((data) => socket.emit('heartbeat', { data: data.length }));
+//   }, 500);
 
-  setInterval(() => {
-    Pothole.count({}).then((data) => socket.emit('pothole', { data }));
-  }, 500);
-});
+//   setInterval(() => {
+//     Pothole.count({}).then((data) => socket.emit('pothole', { data }));
+//   }, 500);
+// });
 
 //ZM
 

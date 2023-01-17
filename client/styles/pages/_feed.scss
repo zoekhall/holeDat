@@ -1,21 +1,8 @@
-$detail: black;
-$background: rgba(0, 0, 0, 0);
-$card-background: #F2CC8F;
-$car-background-2: #E07A5F;
-
-$dark-detail: white;
-$dark-background: rgba(0, 0, 0, 0.507);
-$dark-card-background: #6b5c42;
-$dark-car-background-2: #764132;
-
-
 .infinite-scroll-component {
   display: block;
   margin-left: auto;
   margin-right: auto
 }
-
-
 
 .pothole-container {
   background: $card-background;
@@ -110,27 +97,19 @@ $dark-car-background-2: #764132;
 
 .btn-group>.btn {
   // default button color
-  background: $car-background-2;
+  background: $card-background;
 }
 
 .btn-check+.btn:hover {
   // the color of the button on hover
-  background-color: $card-background;
+  background-color: $car-background-2;
 }
 
 .btn-primary {
-  --bs-btn-color: $detail;
-  --bs-btn-hover-bg: #1472cf;
-  --bs-btn-border-color: #000000;
-  --bs-btn-hover-border-color: #565e64;
-  --bs-btn-focus-shadow-rgb: 130, 138, 145;
-  --bs-btn-active-color: $detail;
-  --bs-btn-active-bg: #81B29A;
-  --bs-btn-active-border-color: #51585e;
-  --bs-btn-active-shadow: inset 0 3px 5px $detail;
-  --bs-btn-disabled-color: #fff;
-  --bs-btn-disabled-bg: #6c757d;
-  --bs-btn-disabled-border-color: #6c757d;
+  --bs-btn-color: black;
+  --bs-btn-border-color: black;
+  --bs-btn-active-color: black;
+  --bs-btn-active-bg: hsl(151, 24%, 60%);
 }
 
 
@@ -145,10 +124,7 @@ DARK MODE STARTS RIGHT HERE
     box-shadow: 3px 3px $dark-detail;
 
     h2 {
-      width: 80%;
-      margin: auto;
       color: $dark-detail;
-      text-align: center;
     }
 
     .pothole-img {
@@ -163,5 +139,31 @@ DARK MODE STARTS RIGHT HERE
     .user-img {
       border: 2px solid $dark-detail;
     }
+  }
+
+  .btn-group {
+    box-shadow: 3px 3px $detail;
+  }
+
+  .btn-group>.btn {
+    // default button color
+    background: $dark-card-background;
+  }
+
+  .btn-check+.btn:hover {
+    // the color of the button on hover
+    background-color: $dark-car-background-2;
+  }
+
+  .btn-primary {
+    --bs-btn-color: #f4f1de;
+    --bs-btn-border-color: #f4f1de;
+    --bs-btn-active-color: #f4f1de;
+    --bs-btn-active-bg: #E07A5F;
+  }
+
+  .btn-group>.btn-check:checked+.btn {
+    background-color: $red;
+    border-color: black
   }
 }

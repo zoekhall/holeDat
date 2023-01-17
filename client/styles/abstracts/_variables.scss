@@ -1,17 +1,29 @@
-//COLOR VARIABLES 
+//COLOR VARIABLES
 $black: #000;
 $yellow: #F2CC8F;
 $red: #E07a5f;
 $green: hsl(151, 24%, 60%);
-$dark-green:#3f5c4e;
+$dark-green: #3f5c4e;
 $blue: #3d405b;
 $grey: rgba(79, 74, 74, 0.901);
 $muted-pearl: #f4f1de;
+
+
+$detail: black;
+$background: rgba(0, 0, 0, 0);
+$card-background: #F2CC8F;
+$car-background-2: #E07A5F;
+
+$dark-detail: $muted-pearl;
+$dark-background: rgba(0, 0, 0, 0.75);
+$dark-card-background: #6a6a6a;
+$dark-car-background-2: #313131;
+$dark-card-background-2: #313131;
+
 
 //BREAKPOINTS
 $breakpoints: (
   x-small: 320px,
   small : 480px,
   medium: 700px,
-  large : 1024px
-)
+  large : 1024px)

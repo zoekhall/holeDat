@@ -103,13 +103,8 @@ const NavBar = () => {
             </Link>
           ))}
         </div>
-<<<<<<< HEAD
-      </nav>
-    </div>
-=======
       </nav >
     </div >
->>>>>>> e2dfa8d2a2f597d6f2bdb908007e030b11d1ccce
   );
 };
 

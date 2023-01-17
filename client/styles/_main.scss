@@ -1,6 +1,12 @@
-//nav styles
-// .mode svg,
+$detail: black;
+$background: rgba(0, 0, 0, 0);
+$card-background: #F2CC8F;
+$car-background-2: #E07A5F;
 
+$dark-detail: white;
+$dark-background: rgba(0, 0, 0, 0.507);
+$dark-card-background: #6b5c42;
+$dark-car-background-2: #764132;
 
 .menu-item svg {
   width: 20px;
@@ -18,9 +24,13 @@
   border-radius: 100px;
   width: 50px;
   height: 50px;
-  border: 1px solid black;
-  box-shadow: 3px 3px 0 black;
+  border: 1px solid $dark-card-background;
+  box-shadow: 3px 3px 0 $detail;
 
+}
+
+.menu-item {
+  cursor: pointer;
 }
 
 .nav-bar nav {
@@ -34,7 +44,7 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-around;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid $detail;
 }
 
 .top-nav,
@@ -47,7 +57,7 @@
 .menu-item:hover,
 .nav-bar-right button:hover {
   box-shadow: none;
-  background-color: #E07A5F;
+  background-color: $car-background-2;
 }
 
 
@@ -57,14 +67,14 @@
   background-image: url('https://res.cloudinary.com/di6gxsepn/image/upload/v1672966189/ruplrcwnmb5trbkuefrj.svg');
   background-repeat: repeat;
   width: 100%;
-  box-shadow: 0px 0px 3px black;
-  border-bottom: 2px solid black;
+  box-shadow: 0px 0px 3px $detail;
+  border-bottom: 2px solid $detail;
 }
 
 .top-nav,
 .top-center {
   * {
-    color: black;
+    color: $detail;
     font-size: larger;
     text-decoration: none;
   }
@@ -81,7 +91,7 @@
   border-radius: 100px;
   font-size: medium;
   margin: 5px;
-  box-shadow: 2px 2px 0 black;
+  box-shadow: 2px 2px 0 $detail;
   background-color: transparent;
 }
 
@@ -102,9 +112,9 @@
 }
 
 .chart {
-  background-color: #F2CC8F;
-  border: 1px solid black;
-  box-shadow: 3px 3px black;
+  background-color: $card-background;
+  border: 1px solid $detail;
+  box-shadow: 3px 3px $detail;
   padding: 20px;
   border-radius: 10px;
   width: 100%;
@@ -165,13 +175,13 @@
       flex-direction: column;
       width: 250px;
       border-radius: 10px;
-      box-shadow: 3px 3px 0 black;
+      box-shadow: 3px 3px 0 $detail;
       padding: 0px;
 
       .slider-img {
         border-radius: 10px 10px 0 0;
-        border: 1px solid black;
-        background-color: #F2CC8F;
+        border: 1px solid $detail;
+        background-color: $card-background;
 
       }
 
@@ -179,11 +189,11 @@
         display: flex;
         justify-content: center;
         border-radius: 0px 0px 10px 10px;
-        background-color: #E07A5F;
+        background-color: $car-background-2;
         width: 100%;
         height: 10%;
         padding: 20px 10px;
-        border: 1px solid black;
+        border: 1px solid $detail;
         border-top: none;
         font-size: medium;
         line-break: anywhere;
@@ -195,16 +205,16 @@
         height: 200px;
         width: 200px;
         border-radius: 5px;
-        border: 1px solid black;
+        border: 1px solid $detail;
       }
     }
   }
 
   .swiper-button-prev,
   .swiper-button-next {
-    border: 1px solid black;
-    background-color: #F2CC8F;
-    color: #E07A5F;
+    border: 1px solid $detail;
+    background-color: $card-background;
+    color: $car-background-2;
     padding: 30px 20px;
     border-radius: 10px;
   }
@@ -212,15 +222,15 @@
 
 #user-slider {
   padding: 5px;
-  background-color: #F2CC8F;
+  background-color: $card-background;
   border-radius: 10px;
-  border: 1px solid black;
-  box-shadow: 3px 3px black;
+  border: 1px solid $detail;
+  box-shadow: 3px 3px $detail;
 
   .swiper {
-    border: 1px solid black;
+    border: 1px solid $detail;
     border-radius: 10px;
-    background-color: #E07A5F;
+    background-color: $car-background-2;
   }
 
   .mySwiper img {
@@ -253,9 +263,9 @@
 
   .swiper-slide img {
     margin: 20px;
-    background-color: black;
-    border: 1px solid black;
-    box-shadow: 3px 3px 0px black;
+    background-color: $detail;
+    border: 1px solid $detail;
+    box-shadow: 3px 3px 0px $detail;
     object-fit: cover;
     width: 100px;
     height: 100px;
@@ -271,11 +281,11 @@
 a {
   :hover {
     text-decoration: none;
-    color: black;
+    color: $detail;
   }
 
   text-decoration: none;
-  color: black;
+  color: $detail;
 }
 
 .swiper-pagination {
@@ -283,11 +293,11 @@ a {
 }
 
 .welcome {
-  background-color: #F2CC8F;
-  border: 1px solid black;
+  background-color: $card-background;
+  border: 1px solid $detail;
   padding: 5px;
   border-radius: 10px;
-  box-shadow: 3px 3px 0px black;
+  box-shadow: 3px 3px 0px $detail;
   margin: 10px;
 }
 
@@ -298,4 +308,129 @@ a {
 .chart-desc {
   font-size: xx-small;
   padding-top: 5px;
+}
+/*
+THIS IS WHERE DARK MODE STARTS
+*/
+.dark-mode {
+  .menu-item,
+  .nav-bar-left img {
+    border: 1px solid $dark-detail;
+    box-shadow: 3px 3px 0 $dark-detail;
+  }
+  .nav-bar nav {  
+    border-bottom: 1px solid $dark-detail;
+  }
+  .menu-item:hover,
+  .nav-bar-right button:hover {
+    box-shadow: none;
+    background-color: #292957;
+  }
+
+  .top-border {
+    box-shadow: 0px 0px 3px $dark-detail;
+    border-bottom: 2px solid $dark-detail;
+  }
+  .top-nav,
+  .top-center {
+    * {
+      color: $dark-detail;
+      font-size: larger;
+      text-decoration: none;
+    }
+  
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+  
+  
+  .nav-bar-right button {
+    width: 50px;
+    height: 50px;
+    border-radius: 100px;
+    font-size: medium;
+    margin: 5px;
+    box-shadow: 2px 2px 0 $dark-detail;
+    background-color: transparent;
+  }
+  
+  .chart {
+    background-color: $dark-card-background;
+    border: 1px solid $dark-detail;
+    box-shadow: 3px 3px $dark-detail;
+  }
+
+  // home page sliders
+  .potholeSlider {
+    .swiper-slide {
+      .slider-content {
+        box-shadow: 3px 3px 0 $dark-detail;
+        padding: 0px;
+        .slider-img {
+          border: 1px solid $dark-detail;
+          background-color: $dark-card-background;
+        }
+        p {
+          background-color: $dark-car-background-2;
+          border: 1px solid $dark-detail;
+        }
+        .pothole-image {
+          border: 1px solid $dark-detail;
+        }
+      }
+    }
+  
+    .swiper-button-prev,
+    .swiper-button-next {
+      border: 1px solid $dark-detail;
+      background-color: $dark-card-background;
+      color: $dark-car-background-2;
+    }
+  }
+  
+  #user-slider {
+    background-color: $dark-card-background;
+    border: 1px solid $dark-detail;
+    box-shadow: 3px 3px $dark-detail;
+  
+    .swiper {
+      border: 1px solid $dark-detail;
+      background-color: $dark-car-background-2;
+    }
+
+    .swiper-slide img {
+      background-color: $dark-detail;
+      border: 1px solid $dark-detail;
+      box-shadow: 3px 3px 0px $dark-detail;
+    }
+  }
+
+  a {
+    :hover {
+      text-decoration: none;
+      color: $dark-detail;
+    }
+  
+    text-decoration: none;
+    color: $dark-detail;
+  }
+  
+  .swiper-pagination {
+    display: none;
+  }
+  
+  .welcome {
+    background-color: $dark-card-background;
+    border: 1px solid $dark-detail;
+    padding: 5px;
+    border-radius: 10px;
+    box-shadow: 3px 3px 0px $dark-detail;
+    margin: 10px;
+  }
+  
+  .on-page .menu-item {
+    background-color: #31443b;
+  }
+
 }

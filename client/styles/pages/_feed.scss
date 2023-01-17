@@ -3,7 +3,6 @@ $background: rgba(0, 0, 0, 0);
 $card-background: #F2CC8F;
 $car-background-2: #E07A5F;
 
-
 $dark-detail: white;
 $dark-background: rgba(0, 0, 0, 0.507);
 $dark-card-background: #6b5c42;
@@ -137,11 +136,30 @@ $dark-car-background-2: #764132;
 /*
 DARK MODE STARTS RIGHT HERE
 */
-.darkmode {
-  background: black;
 
+.dark-mode {
   .pothole-container {
-    background: black;
+    background: $dark-card-background;
     border: 2px solid $dark-detail;
+    box-shadow: 3px 3px $dark-detail;
+    h2 {
+      width: 80%;
+      margin: auto;
+      color: $dark-detail;
+      text-align: center;
+    }
+  
+    .pothole-img {
+      border: 2px solid $dark-detail;
+    }
+  }
+  
+  .caption-container {
+    background-color: $dark-car-background-2;
+    border-top: 2px solid $dark-detail;
+
+    .user-img {
+      border: 2px solid $dark-detail;
+    }
   }
 }

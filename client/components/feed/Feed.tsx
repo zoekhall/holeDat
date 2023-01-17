@@ -117,7 +117,7 @@ const Feed: React.FC = () => {
         dataLength={globalFeed.length} //This is important field to render the next data
         next={getAllImgs}
         hasMore={true}
-        loader={<h4>Loading...</h4>}
+        loader={''}
         refreshFunction={getAllImgs}
         pullDownToRefresh
         pullDownToRefreshThreshold={100}

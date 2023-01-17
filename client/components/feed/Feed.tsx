@@ -109,7 +109,7 @@ const Feed: React.FC = () => {
             id="tbg-radio-4"
             onClick={() => handleClickStatus(true)}
           >
-            Busted
+            Fixed
           </ToggleButton>
         </ToggleButtonGroup>
       </div>

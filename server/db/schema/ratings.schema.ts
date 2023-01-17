@@ -34,7 +34,7 @@ Rating.init(
     },
     overall: {
       type: INTEGER,
-      allowNull: true,
+      allowNull: false,
     },
     fixed: {
       type: BOOLEAN,

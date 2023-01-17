@@ -1,12 +1,3 @@
-$detail: black;
-$background: rgba(0, 0, 0, 0);
-$card-background: #F2CC8F;
-$car-background-2: #E07A5F;
-
-$dark-detail: white;
-$dark-background: rgba(0, 0, 0, 0.507);
-$dark-card-background: #6b5c42;
-$dark-car-background-2: #764132;
 
 .user-profile {
   width: 75%;
@@ -68,6 +59,7 @@ $dark-car-background-2: #764132;
 
 
 }
+
 /*
 DARK MODE STARTS HERE
 */
@@ -77,17 +69,17 @@ DARK MODE STARTS HERE
     border: 1px solid $dark-detail;
     box-shadow: 3px 3px $dark-detail;
   }
-  
+
   .image-grid {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
   }
-  
+
   .slider-content {
     margin: 10px;
   }
-  
+
   .slider-img {
     padding: 5px;
     border-radius: 10px;
@@ -95,7 +87,7 @@ DARK MODE STARTS HERE
     border: 1px solid $dark-detail;
     box-shadow: 3px 3px $dark-detail;
   }
-  
+
   .pothole-image {
     border-radius: 10px;
     object-fit: cover;
@@ -103,21 +95,21 @@ DARK MODE STARTS HERE
     height: 250px;
     border: 1px solid $dark-detail;
   }
-  
+
   .user-badge {
     position: absolute;
     height: 25%;
     margin: -20px;
   }
-  
+
   .avatar-container {
     position: relative;
     padding: 30px 10px 0;
-  
+
     h1 {
       padding: 20px 0;
     }
-  
-  
+
+
   }
 }

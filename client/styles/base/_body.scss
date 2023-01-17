@@ -14,5 +14,5 @@ body {
 }
 
 body.dark-mode {
-  background: center / cover no-repeat url('https://res.cloudinary.com/di6gxsepn/image/upload/v1672966189/mulpdizourlr92zcj1ti.svg'), rgba(0, 0, 0, .5);
+  background: center / cover no-repeat url('https://res.cloudinary.com/di6gxsepn/image/upload/v1672966189/mulpdizourlr92zcj1ti.svg'), $dark-background;
 }

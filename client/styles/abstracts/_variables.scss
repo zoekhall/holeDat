@@ -2,13 +2,15 @@
 $black: #000;
 $yellow: #F2CC8F;
 $red: #E07a5f;
-$green: #81b29a;
+$green: hsl(151, 24%, 60%);
+$dark-green:#3f5c4e;
 $blue: #3d405b;
-$grey: rgba(108, 102, 102, 0.901);
+$grey: rgba(79, 74, 74, 0.901);
 $muted-pearl: #f4f1de;
 
 //BREAKPOINTS
 $breakpoints: (
+  x-small: 320px,
   small : 480px,
   medium: 700px,
   large : 1024px

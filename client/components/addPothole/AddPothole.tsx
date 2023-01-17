@@ -48,21 +48,21 @@ const AddPothole = () => {
   const [imageContents, setImageContents] = useState({ file: null, caption: '', photoURL: '' });
   const [statusContents, setStatusContents] = useState({ fixed: false, rating: 0 });
 
-  //* Set the User Id *//
+  //retrieve the user id
   useEffect(() => {
     axios('/api/user/me')
       .then(({ data }) => setUser_id(data.user_id))
       .catch((err) => console.error('FAILURE TO RETRIEVE USER', err));
   }, []);
 
-  //* Handle Click *//
+  //handle click between sections to see new view and handle progress
   const handleClick = () => {
     const nextSection = sections.indexOf(view) + 1;
     setView(sections[nextSection]);
     setProgress(progress + 34);
   };
 
-  //* Handle Submission *//
+  //handle final submission 
   const handleSubmit = () => {
     if (imageContents.file) {
       const formData = new FormData();
@@ -76,6 +76,7 @@ const AddPothole = () => {
 
           axios
             .post('/api/pothole/addPothole', masterObj)
+            .then(() => {console.log(coordinates, 'coords', imageContents, 'image', statusContents, 'status', masterObj, 'master')})
             .catch((err) => console.error('Failure to Add Pothole to Database', err));
         })
         .catch((err) => console.error('Failure to Submit Image to Cloud', err));
@@ -83,7 +84,7 @@ const AddPothole = () => {
     setView('Submitted');
   };
 
-  //* Handle Which Section of the Form is Rendered *//
+  //handle which section of the form is rendered when in form view
   const handleSectionalView = () => {
     if (view === 'Location') {
       return (
@@ -106,7 +107,7 @@ const AddPothole = () => {
     }
   };
 
-  //* Handle Form Components //*
+  //handle form components/section view 
   const handleFormComps = () => {
     if (view === 'Welcome') {
       return <WelcomeSection handleClick={handleClick} />

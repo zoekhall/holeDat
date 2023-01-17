@@ -3,6 +3,7 @@ import Form from 'react-bootstrap/Form';
 import axios from 'axios';
 import moment from 'moment';
 import User from '../user/User';
+import Button from 'react-bootstrap/esm/Button';
 
 interface Comment {
   name: string;
@@ -111,7 +112,7 @@ const CommentForm = ({ phId }: CommentFormArgs) => {
   }, []);
 
   return (
-    <div>
+    <div >
       {user?.name && (
         <Form className='post_commentBox' onSubmit={handleSubmit}>
           <Form.Control
@@ -124,25 +125,29 @@ const CommentForm = ({ phId }: CommentFormArgs) => {
             value={inputValue}
             onChange={(event) => setInputValue(event.target.value)}
           />
-          <button className='post_button'>
+          <Button className='basicButton' id='postButton' type='submit'>
             Post
-          </button>
+          </Button>
         </Form>
       )}
       {comments.map((renderComment) => {
         return (
-          <div key={renderComment.com_id}>
-            <img src={renderComment.pfp} alt='pfp' width={'30px'} />
-            <b>{renderComment.name}:</b> <h6>{renderComment.text}</h6>
-            <p>{moment(renderComment.time).format('MMMM Do YYYY, h:mm a')}</p>
+          <div className='comment' key={renderComment.com_id}>
+            <img className='avatar-comment' src={renderComment.pfp} alt='pfp' />
+            <div className='comment-info'>
+              <h3>{renderComment.name}</h3> <p>{renderComment.text}</p>
+              <p className='time-comment'>
+                {moment(renderComment.time).format('MMMM Do YYYY, h:mm a')}
+              </p>
+            </div>
             {user.userId_user === renderComment.userId_com && (
-              <button
+              <Button
                 onClick={() => handleDelete(renderComment.com_id)}
-                className='post_button'
+                className='basicButton'
                 type='submit'
               >
-                Delete
-              </button>
+                X
+              </Button>
             )}
           </div>
         );

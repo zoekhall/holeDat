@@ -38,7 +38,7 @@ const About = () => {
         <div className='team-photos'>
           <img
             title='Jorge'
-            src='https://ca.slack-edge.com/T02P3HQD6-U031A9DEYP7-fc4cff5d5a3d-72'
+            src='https://lh3.googleusercontent.com/a/AEdFTp4cZIFWbCtWSOjvGfDHVZyaa6jaoRvMou34nkzefQ=s96-c'
           />
           <img title='Zoe' src='https://ca.slack-edge.com/T02P3HQD6-U021ZA4UMK4-3d5b064fb2ef-72' />
           <img title='Zach' src='https://ca.slack-edge.com/T02P3HQD6-U03D5TUMZ09-73124c88bcff-72' />

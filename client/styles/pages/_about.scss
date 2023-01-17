@@ -9,11 +9,14 @@
   background-color: #F2CC8F;
   border: 2px solid black;
   box-shadow: 3px 3px black;
+
   h1 {
     margin: 10px;
   }
+
   p {
     margin: 5px;
+
     button {
       margin: 10px;
       padding: 3px;
@@ -27,7 +30,11 @@
 .team-photos {
   display: flex;
   justify-content: space-evenly;
+
   img {
+    object-fit: cover;
+    width: 10vw;
+    height: 10vh;
     border-radius: 10px;
     border: 2px solid black;
     margin-bottom: 10px;
@@ -47,6 +54,7 @@
   margin: 3px;
   align-items: center;
   border-radius: 10px;
+
   p {
     display: flex;
     margin: 10px;

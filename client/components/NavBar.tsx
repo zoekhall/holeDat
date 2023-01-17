@@ -47,21 +47,20 @@ const NavBar = () => {
   };
 
   const handlePage = (page) => {
-    setPage(page)
-  }
+    setPage(page);
+  };
 
   return (
     <div className='nav-bar'>
-      <div className='top-border'>
-      </div>
+      <div className='top-border'></div>
       <nav>
         <div className='top-nav'>
           <div className='nav-bar-left'>
-            {user?.id &&
+            {user?.id && (
               <Link onClick={() => setPage('')} to={'/User'}>
                 <img src={user.photo} alt='me' width={40} style={{ borderRadius: '100px' }} />
               </Link>
-            }
+            )}
           </div>
           <Link onClick={() => setPage('')} to='/'>
             <div className='top-center'>
@@ -74,17 +73,15 @@ const NavBar = () => {
             </div>
           </Link>
           <div className='nav-bar-right'>
-            {user?.id ?
+            {user?.id ? (
               <Link to='/AddPothole' onClick={() => setPage('')}>
                 <i className='bi bi-plus-circle'></i>
               </Link>
-              :
+            ) : (
               <a href='/auth/google/callback'>
-                <button>
-                  Sign In
-                </button>
+                <button>Sign In</button>
               </a>
-            }
+            )}
           </div>
         </div>
         <div className='navbar'>
@@ -107,7 +104,7 @@ const NavBar = () => {
           ))}
         </div>
       </nav>
-    </div >
+    </div>
   );
 };
 

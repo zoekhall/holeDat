@@ -1,33 +1,50 @@
+//GENERAL STYLING
 #pothole-profile-slider {
   height: 100%;
 }
 
+//HEADER STYLING
+#header {
+  align-items: center;
+  text-align: center;
+  margin: 2%;
+  padding: 0;
+
+  #address {
+    #totalRating {
+      display: flex;
+      flex-flow: no-wrap;
+      align-items: center;
+      .bi-cone-striped{
+        width: 12%;
+      }
+    }
+  } 
+    // className='justify-content-md-center'
+  #ratings {
+    align-items: center;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-flow: no-wrap;
+    #ratingPot {
+      .bi-cone-striped {
+        width: 10%;
+        height: 10%;
+      }
+    }
+  }
+}
+
 .post {
   padding: 0;
-  width: 60%;
+  width: 80%;
   position: relative;
   margin-top: 2em;
   border-radius: 16px;
   @include border-shadow;
 
-  .post_header {
-    margin: 10px;
-
-    #score {
-      height: 1.75em;
-      width: 1.75em;
-      border: 1px black solid;
-      padding: auto;
-      border-radius: 50%;
-      margin-left: 2em;
-    }
-
-    div {
-      display: flex;
-      flex-flow: no-wrap;
-      align-items: center;
-    }
-  }
 
   button {
     border-radius: 5px;

@@ -1,16 +1,21 @@
-//ADD LINES WITHIN TEXT
-span.line1::after {
+//ADD LINES WITHIN TEXT/ALIGN
+.line1::after {
   content: "\a";
   white-space: pre;
 }
 
-span.line2::before {
+.line2::before {
   content: "\a";
   white-space: pre;
 }
 
-span.newline{
+.newline{
   display: inline-block;
+}
+
+.alignItems {
+  display: flex;
+  flex-wrap: nowrap;
 }
 
 
@@ -19,11 +24,9 @@ span.newline{
   margin: 0;
 }
 .ratingGroupDiv {
-
   .ratingText {
     line-height: 100px;
   }
-
   .ratingElem {
     padding: 0;
     .left{
@@ -36,10 +39,15 @@ span.newline{
 
   #cones {
     display: inline-flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
-    margin-left: 10%;
-    margin-right: 10%;
+    margin-left: 5%;
+    margin-right: 5%;
+
+    .bi-cone-striped{
+      margin-left: 1%;
+      margin-right: 1%;
+    }
   }
 }
 

@@ -112,7 +112,7 @@ const CommentForm = ({ phId }: CommentFormArgs) => {
   }, []);
 
   return (
-    <div>
+    <div >
       {user?.name && (
         <Form className='post_commentBox' onSubmit={handleSubmit}>
           <Form.Control
@@ -134,9 +134,11 @@ const CommentForm = ({ phId }: CommentFormArgs) => {
         return (
           <div className='comment' key={renderComment.com_id}>
             <img className='avatar-comment' src={renderComment.pfp} alt='pfp' />
-            <div className="comment-info">
+            <div className='comment-info'>
               <h3>{renderComment.name}</h3> <p>{renderComment.text}</p>
-              <p className='time-comment'>{moment(renderComment.time).format('MMMM Do YYYY, h:mm a')}</p>
+              <p className='time-comment'>
+                {moment(renderComment.time).format('MMMM Do YYYY, h:mm a')}
+              </p>
             </div>
             {user.userId_user === renderComment.userId_com && (
               <Button

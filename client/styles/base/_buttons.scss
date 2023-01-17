@@ -1,6 +1,6 @@
 
 //BUTTONS
-.basicButton {
+.basicButton{
   @include border-shadow(2px 2px);
   padding: auto;
   background-color: $muted-pearl;
@@ -21,9 +21,9 @@
 
   &:hover,
   &:focus {
-    border: 2px solid $black !important;
     background-color: $red !important;
-    color: white !important;
+    color:white;
+    box-shadow: none;
     .arrow-right{
       border-right: 2px solid $white;
       border-top: 2px solid $white;

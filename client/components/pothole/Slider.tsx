@@ -13,7 +13,6 @@ const Slider = (prop) => {
   const { badge, PImages, user } = prop;
 
   return (
-    <Container>
       <Swiper
         className='mySwiper potholeSlider'
         pagination={true}
@@ -66,7 +65,6 @@ const Slider = (prop) => {
           );
         })}
       </Swiper>
-    </Container>
   );
 }
 

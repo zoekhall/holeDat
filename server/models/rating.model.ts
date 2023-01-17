@@ -20,7 +20,7 @@ export const getPotholesAtIds = (idArray, cb) => {
     .catch((err) => console.log(err));
 };
 
-export const addRating = (pothole_id: number, fixed: boolean, rating: number, user_id: number) => {
+export const addRating = (pothole_id: number, user_id: number, fixed: boolean, rating: number) => {
   Rating.findOne({ where: { pothole_id, user_id } }).then((data) => {
     if (!data) {
       Rating.create({ pothole_id, fixed, overall: rating, user_id }).catch((err) =>

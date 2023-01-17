@@ -1,12 +1,24 @@
-import React from "react";
-import Row from "react-bootstrap/Row";
+import React from 'react';
+import axios from 'axios';
+import Row from 'react-bootstrap/Row';
+import { useLocation } from 'react-router-dom';
 import Col from 'react-bootstrap/Col';
-import Container from "react-bootstrap/Container";
+import Container from 'react-bootstrap/Container';
 import Switch from 'react-bootstrap/Switch';
-import PotholeRating from "../addPothole/formQuestions/PotholeRating";
+import PotholeRating from '../addPothole/formQuestions/PotholeRating';
 
 const Header = (prop) => {
-  const { addy, avg, fixed, setFixed, voteCount } = prop;
+  const id = Number(useLocation().pathname.split(':')[1]);
+  const { addy, avg, fixed, setFixed, voteCount, user } = prop;
+
+  const handleAction = (value) => {
+    const type = typeof value === 'number' ? 'rating' : 'status';
+    
+    axios
+      .post('/api/rating/fromPh', { id, type, value, user })
+      .catch((data) => console.log(data));
+  };
+
   return (
     <Container id='header'>
       <Row id='addyRating' className='alignItems'>
@@ -31,7 +43,7 @@ const Header = (prop) => {
       <Row id='ratings'>
         <Col className='group newline' sm>
           <p>Rate This Pothole:</p>
-          <PotholeRating />
+          <PotholeRating handleClick={handleAction} />
         </Col>
 
         <Col className='group' sm>
@@ -41,10 +53,9 @@ const Header = (prop) => {
             <p className='xsmall'>Not Fixed</p>
           </div>
         </Col>
-
       </Row>
     </Container>
   );
-}
+};
 
-export default Header; 
+export default Header;

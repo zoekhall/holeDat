@@ -1,3 +1,13 @@
+$detail: black;
+$background: rgba(0, 0, 0, 0);
+$card-background: #F2CC8F;
+$card-background-2: #E07A5F;
+
+$dark-detail: rgb(189, 188, 188);
+$dark-background: rgba(0, 0, 0, 0.507);
+$dark-card-background: #6b5c42;
+$dark-card-background-2: #764132;
+
 .about {
   padding: 5% 10% 10%;
 }
@@ -65,4 +75,29 @@
 
 .reported {
   font-weight: bold;
+}
+
+.dark-mode {
+  .about-content {
+    background-color: $dark-card-background;
+    border: 2px solid $dark-detail;
+    box-shadow: 3px 3px $dark-detail;
+
+    p {
+      button {
+        background-color: $dark-card-background-2;
+        box-shadow: 3px 3px $dark-detail;
+      }
+    }
+  }
+
+  .team-photos {
+    img {
+      border: 2px solid $dark-detail;
+    }
+  }
+
+  .badge-images {
+    border: 1.4px solid $dark-detail;
+  }
 }

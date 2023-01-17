@@ -127,10 +127,10 @@
 //CAPTION
 #post_caption {
   display: flex;
-  flex-wrap: nowrap;
-  justify-content: center;
-  align-items: flex-start;
-  padding: 2%;
+  //flex-wrap: nowrap;
+  //justify-content: center;
+  //align-items: flex-start;
+  padding: 10px;
   height: 100%;
   width: 100%;
   background-color: $yellow;
@@ -138,14 +138,14 @@
   border-top: 2px solid $black;
   
   .badgeAvatar {
-    float: left;
-    display: flex;
+    //float: left;
+    //display: flex;
     padding: 0;
     width: 100px;
   }
   
   #profAvatar {
-    padding: 0;
+    padding: 10;
     img.avatar {
       width: 100%;
       padding: 0;

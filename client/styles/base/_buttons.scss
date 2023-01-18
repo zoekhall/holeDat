@@ -21,7 +21,7 @@
 
   &:hover,
   &:focus {
-    border: 2px solid black;
+    @include border-shadow(none);
     background-color: $red !important;
     color:white;
     box-shadow: none;
@@ -40,4 +40,26 @@
   background-color: transparent;
   height: 1em;
   width: 1em;
+}
+
+.dark-mode {
+  .basicButton {
+      @include border-shadow(1px 1px, $muted-pearl);
+      background-color: $dark-card-background-2;
+      color: $muted-pearl;
+
+      .arrow-right {
+        border-right: 2px solid $muted-pearl;
+        border-top: 2px solid $muted-pearl;
+        transform: translateX(-25%) rotate(45deg);
+      }
+
+      ;
+
+      .arrow-left {
+        border-bottom: 2px solid $muted-pearl;
+        border-left: 2px solid $muted-pearl;
+        transform: translateX(-25%) rotate(45deg);
+      }
+}
 }

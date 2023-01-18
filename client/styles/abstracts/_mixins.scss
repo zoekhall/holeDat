@@ -1,7 +1,7 @@
 //BORDER SHADOW MIXIN
-@mixin border-shadow($boxShadow: 6px 6px 0px $black){
-  border: 2px solid $black;
-  box-shadow: $boxShadow;
+@mixin border-shadow($boxShadow: 6px 6px, $color: black){
+  border: 2px solid $color;
+  box-shadow: $boxShadow 0px $color;
 }
 
 //HIDING AND SHOWING MIXINS
@@ -20,11 +20,6 @@
   }
 
 }
-
-//MIXIN FOR FORM 
-
-
-
 
 //FONT MIXINS
 @mixin font-size($fs-map, $fs-breakpoints: $breakpoints) {

@@ -39,7 +39,7 @@ const Header = (prop) => {
           {avg}&nbsp;<span id='totalVoteCount'>({voteCount})</span>
         </Col>
         <Col id='status'>
-          <h4>{fixed === false ? 'Not Fixed' : 'Fixed'}</h4>
+          <h4>{fixed === false ? 'Busted' : 'Fixed'}</h4>
         </Col>
       </Row>
       
@@ -60,7 +60,7 @@ const Header = (prop) => {
                 setStatus(newStatus);
               }}
             />
-            <p>{status === true ? 'Not Fixed' : 'Fixed'}</p>
+            <p>{status === true ? 'Busted' : 'Fixed'}</p>
           </div>
         </Col>
       </Row>

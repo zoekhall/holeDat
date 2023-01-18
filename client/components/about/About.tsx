@@ -1,8 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
+type badgeObj = {
+  imgUrl: string;
+  description: string;
+  name: string;
+  badge_id: number;
+};
+
 const About = () => {
-  const [badges, setBadges] = useState<any>();
+  const [badges, setBadges] = useState<badgeObj[]>([]);
   const getBadges = () => {
     axios
       .get('/api/badges/allBadges')

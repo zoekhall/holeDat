@@ -1,3 +1,4 @@
+
 .user-profile {
   width: 75%;
   margin: auto;
@@ -13,7 +14,7 @@
   min-width: 100px;
   max-width: 200px;
   border: 1px solid black;
-  box-shadow: 3px 3px black;
+  box-shadow: 4px 4px black;
 }
 
 .image-grid {
@@ -57,4 +58,58 @@
   }
 
 
+}
+
+/*
+DARK MODE STARTS HERE
+*/
+
+.dark-mode {
+  .user-avatar {
+    border: 1px solid $dark-detail;
+    box-shadow: 3px 3px $dark-detail;
+  }
+
+  .image-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .slider-content {
+    margin: 10px;
+  }
+
+  .slider-img {
+    padding: 5px;
+    border-radius: 10px;
+    background-color: $dark-card-background;
+    border: 1px solid $dark-detail;
+    box-shadow: 3px 3px $dark-detail;
+  }
+
+  .pothole-image {
+    border-radius: 10px;
+    object-fit: cover;
+    width: 250px;
+    height: 250px;
+    border: 1px solid $dark-detail;
+  }
+
+  .user-badge {
+    position: absolute;
+    height: 25%;
+    margin: -20px;
+  }
+
+  .avatar-container {
+    position: relative;
+    padding: 30px 10px 0;
+
+    h1 {
+      padding: 20px 0;
+    }
+
+
+  }
 }

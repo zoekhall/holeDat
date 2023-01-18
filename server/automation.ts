@@ -34,11 +34,13 @@ export const fixedAutomation = async () => {
   fixedPh.forEach((ph) => {
     if (ph.count >= 3) {
       Pothole.update({ fixed: true }, { where: { pothole_id: ph.pothole_id } }).catch((err) =>
-        console.log(err)
-      );
+      console.log(err))
+    } else {
+      Pothole.update({ fixed: false }, { where: { pothole_id: ph.pothole_id } }).catch((err) =>console.error(err))
     }
   });
 };
+
 setInterval(fixedAutomation, 1000 * 60 * 15);
 
 setInterval(issueBadges, 1000 * 60 * 15);

@@ -33,7 +33,7 @@ const MapBox = ({ userLocation }: any) => {
     }
   }
 
-  document.querySelector('.mode')?.addEventListener('click', () => {
+  document.querySelector('#mode')?.addEventListener('click', () => {
     if (style === 'mapbox://styles/jorcar1986/clc6iejcx000y14t0iaefvyss') {
       setStyle('mapbox://styles/mapbox/dark-v10');
       setMode(!mode)

@@ -22,6 +22,12 @@
 .menu-item {
   cursor: pointer;
   user-select: none;
+  padding: 3px;
+
+  p {
+    margin: 5px;
+    line-height: 5px;
+  }
 }
 
 .nav-bar nav {

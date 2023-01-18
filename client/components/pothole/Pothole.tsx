@@ -124,7 +124,7 @@ const Pothole = () => {
   return (
     <div id='potholeProfile'>
       <Container id='potholeSect' className='post'>
-        <Header addy={addy} avg={avg} fixed={fixed} setFixed={setFixed} voteCount={voteCount} />
+        <Header addy={addy} avg={avg} fixed={fixed} setFixed={setFixed} voteCount={voteCount} user={user} />
         <Slider badge={badge} PImages={PImages} user={user} />
       </Container>
       <Container className='comment-container'>

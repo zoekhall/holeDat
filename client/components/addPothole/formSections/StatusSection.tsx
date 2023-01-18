@@ -1,15 +1,23 @@
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React from 'react';
+import React, { useContext } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-
+import { StatusContext } from '../AddPothole';
 import PotholeRating from '../formQuestions/PotholeRating';
 import PotholeStatus from '../formQuestions/PotholeStatus';
 
 //status section view
 const StatusSection = (prop) => {
-  const { handleSubmit } = prop; 
+  const { handleSubmit } = prop;
+  const { statusContents, setStatusContents } = useContext(StatusContext);
+
+  //handle rating click function
+  const handleClick = (num) => {
+    const newStatusContents = { ...statusContents };
+    newStatusContents.rating = num;
+    setStatusContents(newStatusContents);
+  };
 
   return (
     <Form.Group id='statusSection'>
@@ -26,7 +34,7 @@ const StatusSection = (prop) => {
             poses a potential threat to vehicles.
           </span>
         </p>
-        <PotholeRating />
+        <PotholeRating handleClick={handleClick} />
       </Form.Group>
 
       <Form.Group className='questionGroup'>
@@ -41,6 +49,7 @@ const StatusSection = (prop) => {
         </div>
       </Button>
     </Form.Group>
-  );};
+  );
+};
 
 export default StatusSection;

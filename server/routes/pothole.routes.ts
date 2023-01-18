@@ -20,7 +20,7 @@ pothole.post('/addPothole', (req: Request, res: Response) => {
 
   findAndAddPothole((data) => {
     const pothole_id = data;
-    addRating(pothole_id, fixed, rating, user_id);
+    addRating(pothole_id,  user_id, fixed, rating);
     postImg(pothole_id, caption, photoURL, user_id);
   }, coordinates);
 

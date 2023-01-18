@@ -20,16 +20,18 @@ export const getPotholesAtIds = (idArray, cb) => {
     .catch((err) => console.log(err));
 };
 
-export const addRating = (pothole_id: number, fixed: boolean, rating: number, user_id: number) => {
+export const addRating = (pothole_id: number, user_id: number, fixed: boolean, rating: number) => {
   Rating.findOne({ where: { pothole_id, user_id } }).then((data) => {
     if (!data) {
-      Rating.create({ pothole_id, fixed, overall: rating, user_id }).catch((err) =>
+      Rating.create({ pothole_id, fixed, overall: rating, user_id })
+        .then(data => console.log('created', data))
+        .catch((err) =>
         console.log(err)
       );
     } else {
-      Rating.update({ fixed, overall: rating }, { where: { pothole_id, user_id } }).catch((err) =>
-        console.log(err)
-      );
+      Rating.update({ fixed, overall: rating }, { where: { pothole_id, user_id } })
+        .then((data) => console.log('updated', data))
+        .catch((err) => console.log(err));
     }
   });
 };

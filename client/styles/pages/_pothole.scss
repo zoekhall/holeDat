@@ -63,8 +63,13 @@
   border-radius: 8px;
   background-color: $green;
 
-  .fixed {
-    margin: 6%
+  .fixed{
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 6%;
+    display: flex;
+    flex-wrap: nowrap;
   }
 }
 

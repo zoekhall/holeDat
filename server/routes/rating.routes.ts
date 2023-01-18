@@ -9,9 +9,18 @@ rating.post('/potholeAtIds', (req: Request, res: Response) => {
 });
 
 rating.post('/fromPh', (req: Request, res: Response) => {
-  const { id, fixed, rating, user } = req.body;
-  addRating(id, fixed, rating, user.userId_user);
-  res.send();
+  const { id, fixed } = req.body;
+  const { type, value } = req.body.ratingStatusObj;
+  const { userId_user } = req.body.user;
+  
+  if (type === 'rating') {
+    addRating(id, userId_user, fixed, value);
+    res.sendStatus(202);
+  }else if(type === 'status') {
+    addRating(id, userId_user, value, 0);
+    res.sendStatus(202);
+  }
+  
 });
 
 rating.get('/rating:id', (req: Request, res: Response) => {

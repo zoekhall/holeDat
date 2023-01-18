@@ -4,6 +4,7 @@ import axios from 'axios';
 import moment from 'moment';
 import User from '../user/User';
 import Button from 'react-bootstrap/esm/Button';
+import Container from 'react-bootstrap/Container';
 
 interface Comment {
   name: string;
@@ -112,51 +113,55 @@ const CommentForm = ({ phId }: CommentFormArgs) => {
   }, []);
 
   return (
-    <div >
-      {user?.name && (
-        <Form className='post_commentBox' onSubmit={handleSubmit}>
-          <Form.Control
-            as='textarea'
-            rows={1}
-            className='post_input'
-            maxLength={255}
-            placeholder='Add Comment'
-            type='text'
-            value={inputValue}
-            onChange={(event) => setInputValue(event.target.value)}
-          />
-          <Button className='basicButton' id='postButton' type='submit'>
-            Post
-          </Button>
-        </Form>
-      )}
-      {comments.map((renderComment) => {
-        return (
-          <div className='comment' key={renderComment.com_id}>
-            <img className='avatar-comment' src={renderComment.pfp} alt='pfp' />
-            <div className='comment-info'>
-              <div className='targetSpecific'>
-                {user.userId_user === renderComment.userId_com && (
-                  <Button
-                    onClick={() => handleDelete(renderComment.com_id)}
-                    className='basicButton'
-                    type='submit'
-                  >
-                    X
-                  </Button>
-                )}
-                <h3>{renderComment.name}</h3>
+    (user?.name || comments.length) ?
+      <Container className='comment-container'>
+        <div >
+          {user?.name && (
+            <Form className='post_commentBox' onSubmit={handleSubmit}>
+              <Form.Control
+                as='textarea'
+                rows={1}
+                className='post_input'
+                maxLength={255}
+                placeholder='Add Comment'
+                type='text'
+                value={inputValue}
+                onChange={(event) => setInputValue(event.target.value)}
+              />
+              <Button className='basicButton' id='postButton' type='submit'>
+                Post
+              </Button>
+            </Form>
+          )}
+          {comments.map((renderComment) => {
+            return (
+              <div className='comment' key={renderComment.com_id}>
+                <img className='avatar-comment' src={renderComment.pfp} alt='pfp' />
+                <div className='comment-info'>
+                  <div className='targetSpecific'>
+                    {user.userId_user === renderComment.userId_com && (
+                      <Button
+                        onClick={() => handleDelete(renderComment.com_id)}
+                        className='basicButton'
+                        type='submit'
+                      >
+                        X
+                      </Button>
+                    )}
+                    <h3>{renderComment.name}</h3>
 
+                  </div>
+                  <p>{renderComment.text}</p>
+                  <p className='time-comment'>
+                    {moment(renderComment.time).format('MMMM Do YYYY, h:mm a')}
+                  </p>
+                </div>
               </div>
-              <p>{renderComment.text}</p>
-              <p className='time-comment'>
-                {moment(renderComment.time).format('MMMM Do YYYY, h:mm a')}
-              </p>
-            </div>
-          </div>
-        );
-      })}
-    </div>
+            );
+          })}
+        </div>
+      </Container >
+      : <></>
   );
 };
 

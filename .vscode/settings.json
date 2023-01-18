@@ -7,6 +7,7 @@
     "cloudinary",
     "Doooozy",
     "dosent",
+    "etype",
     "formating",
     "Geolocate",
     "holedat",
@@ -27,7 +28,8 @@
     "Swiper",
     "swipper",
     "thisisasecret",
-    "tortor"
+    "tortor",
+    "Votecount"
   ],
   "editor.formatOnSave": true
 }

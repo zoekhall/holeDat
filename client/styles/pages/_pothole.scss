@@ -253,3 +253,89 @@
   width: 63px;
   height: 40px;
 }
+
+.dark-mode {
+
+  #potholeSect {
+    box-shadow: 3px 3px $dark-detail;
+    border: 1px solid $dark-detail;
+  }
+
+  #addyRating {
+    border: 1px solid $dark-detail;
+    background-color: $dark-card-background-2;
+    color: $dark-detail;
+  }
+
+  .group {
+    border: 2px solid $dark-detail;
+    border-radius: 8px;
+    background-color: $dark-green;
+  }
+
+
+  #totalVoteCount {
+    color: $dark-green;
+  }
+
+
+  //SWIPER SLIDER
+  #pothole-profile-slider {
+
+
+    //IMAGES
+    img.potHole_img {
+      border: 2px solid $dark-detail;
+    }
+
+    //CAPTION
+    #post_caption {
+
+      background-color: $dark-card-background;
+      border-top: 2px solid $dark-detail;
+
+      #profAvatar {
+        img.avatar {
+          border: 1px solid $dark-detail;
+          box-shadow: 3px 3px $dark-detail;
+        }
+      }
+
+      #innerProfCapt {
+        background-color: $dark-car-background-2;
+        border: 1px solid $dark-detail;
+
+        h3 {
+          color: $dark-detail;
+        }
+      }
+
+
+    }
+  }
+
+
+
+  // EVERYTHING UNDER THIS COMMENT IS FOR COMMENT FORM
+  .comment-container {
+    border: 2px solid $dark-detail;
+    box-shadow: 3px 3px $dark-detail;
+    background-color: $dark-card-background-2;
+  }
+
+
+
+  .comment {
+    img.avatar-comment {
+      border: 1px solid $dark-detail;
+      box-shadow: 3px 3px $dark-detail;
+    }
+
+  }
+
+
+
+  .comment-info {
+    background-color: $dark-card-background;
+  }
+}

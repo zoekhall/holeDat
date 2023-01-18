@@ -29,7 +29,7 @@ const Slider = (prop) => {
             <div id='post_caption'>
 
               <div className='badgeAvatar'>
-                {image?.badge_id && (
+                {image?.badge_id ? (
                   <div id='profBadge'>
                     {badge.map((badges) => {
                       if (image.badge_id === badges.badge_id) {
@@ -43,7 +43,7 @@ const Slider = (prop) => {
                       }
                     })}
                   </div>
-                )}
+                ) : ''}
 
                 <div id='profAvatar'>
                   <Link to={'/User:' + image.userId}>

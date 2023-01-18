@@ -72,17 +72,24 @@ const NavBar = () => {
               />
             </div>
           </Link>
-          <div className='nav-bar-right'>
-            {user?.id ? (
-              <Link to='/AddPothole' onClick={() => setPage('')}>
-                <i className='bi bi-plus-circle'></i>
-              </Link>
-            ) : (
+          {user?.id ? (
+            <Link
+              to='/AddPothole'
+              onClick={() => handlePage('AddPothole')}
+              className={`${'AddPothole' === page ? 'on-page' : ''}`}
+            >
+              <div className='menu-item nav-bar-right' id='add'>
+                <i className='bi bi-plus'></i>
+                <p>Add</p>
+              </div>
+            </Link>
+          ) : (
+            <div className='menu-item nav-bar-right'>
               <a href='/auth/google/callback'>
-                <button>Sign In</button>
+                <button>Sign-in</button>
               </a>
-            )}
-          </div>
+            </div>
+          )}
         </div>
         <div className='navbar'>
           <div id='mode' className='menu-item' onClick={toggleMode}>
@@ -103,8 +110,8 @@ const NavBar = () => {
             </Link>
           ))}
         </div>
-      </nav >
-    </div >
+      </nav>
+    </div>
   );
 };
 

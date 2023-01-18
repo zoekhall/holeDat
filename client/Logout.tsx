@@ -1,9 +1,10 @@
 import React from 'react';
+import Button from 'react-bootstrap/Button'
 
 const Logout = () => {
   return (
     <a href='/logout'>
-      <button> Logout</button>
+      <Button className='basicButton'> Logout</Button>
     </a>
   );
 };

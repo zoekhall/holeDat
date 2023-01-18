@@ -1,4 +1,5 @@
 //COLOR VARIABLES
+//light mode
 $black: #000;
 $yellow: #F2CC8F;
 $red: #E07a5f;
@@ -8,12 +9,13 @@ $blue: #3d405b;
 $grey: rgba(79, 74, 74, 0.901);
 $muted-pearl: #f4f1de;
 
-
+//dark mode
 $detail: black;
 $background: rgba(0, 0, 0, 0);
 $card-background: #F2CC8F;
 $car-background-2: #E07A5F;
 
+$sub-text: hsl(150, 14%, 89%);
 $dark-detail: $muted-pearl;
 $dark-background: rgba(0, 0, 0, 0.75);
 $dark-card-background: #6a6a6a;

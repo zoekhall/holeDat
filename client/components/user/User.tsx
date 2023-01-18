@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Logout from '../../Logout';
 import axios from 'axios';
+import Button from 'react-bootstrap/Button'
 import { UserStats } from './UserStats';
 
 function User() {
@@ -63,16 +64,8 @@ function User() {
     <>
       <div className='user-profile'>
         <section className='avatar-container'>
-          <img
-            src={user.photo}
-            alt='Image'
-            className='user-avatar'
-          />
-          {badge?.imgUrl ? <img
-            className='user-badge'
-            src={badge?.imgUrl}
-            alt='Image'
-          /> : <></>}
+          <img src={user.photo} alt='Image' className='user-avatar' />
+          {badge?.imgUrl ? <img className='user-badge' src={badge?.imgUrl} alt='Image' /> : <></>}
         </section>
 
         <h1>
@@ -90,16 +83,19 @@ function User() {
         </h1>
 
         {!editTrigger ? (
-          <button onClick={() => setEditTrigger(!editTrigger)}>Edit Username</button>
+          <Button className='basicButton' onClick={() => setEditTrigger(!editTrigger)}>
+            Edit Username
+          </Button>
         ) : (
-          <button
+          <Button
+            className='basicButton'
             onClick={() => {
               applyEditChanges(text);
               setEditTrigger(!editTrigger);
             }}
           >
             Apply changes
-          </button>
+          </Button>
         )}
         <Logout />
         <UserStats userId={-1} />

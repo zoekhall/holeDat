@@ -1,11 +1,9 @@
 
 //BUTTONS
 .basicButton{
-  @include border-shadow(2px 2px);
-  padding: auto;
+  @include border-shadow(1px 1px, $black);
   background-color: $muted-pearl;
   color: $black;
-  height: auto;
 
   .arrow-right {
     border-right: 2px solid $black;
@@ -21,16 +19,16 @@
 
   &:hover,
   &:focus {
+    @include border-shadow(2px 2px);
     background-color: $red !important;
-    color:white;
-    box-shadow: none;
+    color:$muted-pearl;
     .arrow-right{
-      border-right: 2px solid $white;
-      border-top: 2px solid $white;
+      border-right: 2px solid $muted-pearl;
+      border-top: 2px solid $muted-pearl;
     }
     .arrow-left{
-      border-left: 2px solid $white ;
-      border-bottom: 2px solid $white;
+      border-left: 2px solid $muted-pearl ;
+      border-bottom: 2px solid $muted-pearl;
     }
   };
 }
@@ -39,4 +37,31 @@
   background-color: transparent;
   height: 1em;
   width: 1em;
+}
+
+.dark-mode {
+  .basicButton {
+      @include border-shadow(2px 2px, $muted-pearl);
+      background-color: $dark-card-background;
+      color: $muted-pearl;
+
+      .arrow-right {
+        border-right: 2px solid $muted-pearl;
+        border-top: 2px solid $muted-pearl;
+        transform: translateX(-25%) rotate(45deg);
+      }
+
+      ;
+
+      .arrow-left {
+        border-bottom: 2px solid $muted-pearl;
+        border-left: 2px solid $muted-pearl;
+        transform: translateX(-25%) rotate(45deg);
+      }
+
+      &:hover,
+      &:focus {
+        background-color: $blue !important;
+      }
+}
 }

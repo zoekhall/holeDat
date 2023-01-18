@@ -69,7 +69,8 @@
 
 //WELCOME VIEW
 #welcomeSection,
-#mapFormSection {
+#mapFormSection,
+#formSectionView {
   text-align: center;
   h3,
   h4,
@@ -142,4 +143,69 @@
 #captionBox{
   @extend p;
   margin-bottom: 2em;
+}
+
+
+//SUBMIT
+#submit{
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  .formView{
+    text-align: left;
+    box-shadow: none;
+    margin: .5em 0;
+    
+    h4{
+      margin-bottom: .5em;
+    }
+
+    p{
+      font-style: italic;
+    }
+    
+    .submitList{
+      margin-top: 1em;
+      margin-bottom: 1em;
+      
+      .list{
+        margin-bottom: .5em;
+        span{
+          color: $blue;
+        }
+      }
+    }
+  }
+
+
+
+
+
+
+
+
+
+  // .accordion{
+  //   margin: 2em 0;
+    // background-color: $muted-pearl;
+  // }
+
+  // .accordion-button {
+  //   background-color: $green;
+  //   color: white;
+  //     .accordion-button:not(.collapsed){
+  //       color: white !important; 
+  //     }
+  // }
+
+  // .accordion-button:focus {
+  //   box-shadow: none;
+  // }
+
+  // .accordion-button:not(.collapsed) {
+  //   color: #212529;
+  // }
+
+
 }

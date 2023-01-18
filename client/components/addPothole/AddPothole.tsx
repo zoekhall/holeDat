@@ -41,12 +41,13 @@ export const StatusContext = createContext<StatusContextType>({
 /* --------------------------- Main Form Component -------------------------- */
 const AddPothole = () => {
   const sections: Array<string> = ['Welcome', 'Location', 'Image', 'Status'];
-  const [view, setView] = useState<string>('Welcome');
+  const [view, setView] = useState<string>('Submitted');
   const [progress, setProgress] = useState<number>(0);
   const [user_id, setUser_id] = useState<number>(0);
   const [coordinates, setCoordinates] = useState({ lat: 0, lon: 0 });
   const [imageContents, setImageContents] = useState({ file: null, caption: '', photoURL: '' });
   const [statusContents, setStatusContents] = useState({ fixed: false, rating: 0 });
+  const [potholeId, setPotholeId] = useState<number>(0);
 
   //retrieve the user id
   useEffect(() => {
@@ -76,7 +77,11 @@ const AddPothole = () => {
 
           axios
             .post('/api/pothole/addPothole', masterObj)
-            .then(() => {console.log(coordinates, 'coords', imageContents, 'image', statusContents, 'status', masterObj, 'master')})
+            .then(({ data }) => {
+              const potid = data;
+              setPotholeId(potid);
+              console.log(potid);
+            })
             .catch((err) => console.error('Failure to Add Pothole to Database', err));
         })
         .catch((err) => console.error('Failure to Submit Image to Cloud', err));
@@ -112,7 +117,7 @@ const AddPothole = () => {
     if (view === 'Welcome') {
       return <WelcomeSection handleClick={handleClick} />
     } else if (view === 'Submitted') {
-      return <SubmittedSection />;
+      return <SubmittedSection potholeId={potholeId} />;
     } else {
       return (
         <Form id='potholeForm' className = 'formSectionView'>

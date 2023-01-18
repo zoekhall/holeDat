@@ -9,8 +9,9 @@ import PotholeRating from '../addPothole/formQuestions/PotholeRating';
 
 const Header = (prop) => {
   const id = Number(useLocation().pathname.split(':')[1]);
-  const [flickedSwitch, setFlickedSwitch] = useState<boolean>(false);
+  // const [currentUser, setCurrentUser]
   const { addy, avg, fixed, voteCount, user } = prop;
+  const [status, setStatus] = useState<boolean>(fixed);
 
   //handle rating/status 
   const handleAction = (value) => {
@@ -21,11 +22,13 @@ const Header = (prop) => {
       .catch((data) => console.log(data));
   };
 
+
+
   //show rating if user is signed in 
   const allowRating = () => {
-    if (user.user_id === undefined) {
-      return null;
-    } else {
+    // if (user.user_id === undefined) {
+    //   return null;
+    // } else {
       return (
         <Row id='ratings'>
           <Col className='group newline' sm>
@@ -36,16 +39,20 @@ const Header = (prop) => {
           <Col className='group' sm>
             <p>Confirm Pothole Status:</p>
             <div className='fixed'>
-              <Switch checked={fixed} onChange={() => {
-                setFlickedSwitch(!flickedSwitch);
-                handleAction(!fixed);
-              }} />
-              <p className='xsmall'>{flickedSwitch === true ? !fixed : fixed}</p>
+              <Switch
+                checked={status}
+                onChange={() => {
+                  const newStatus = !status;
+                  handleAction(newStatus);
+                  setStatus(newStatus);
+                }}
+              />
+              <p>{status === true ? 'Not Fixed' : 'Fixed'}</p>
             </div>
           </Col>
         </Row>
       );
-    }
+    // }
     }
 
   return (
@@ -65,7 +72,7 @@ const Header = (prop) => {
           {avg}&nbsp;<span id='totalVoteCount'>({voteCount})</span>
         </Col>
         <Col id='status'>
-          <h4>Fixed</h4>
+          <h4>{ fixed === false ? 'Not Fixed' : 'Fixed'}</h4>
         </Col>
       </Row>
       {allowRating()}

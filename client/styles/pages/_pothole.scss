@@ -1,15 +1,14 @@
 //GENERAL STYLING
 #potholeProfile {
   height: 100%;
-  margin-top: 3%;
-  margin-bottom: 3%;
+  padding: 15px 15px 30px;
 }
 
 #potholeSect {
   display: flow-root;
+  height: 100%;
+  width: 100%;
   padding: 0;
-  height: 100;
-  width: 80%;
   position: relative;
   border-radius: 16px;
   @include border-shadow;
@@ -29,7 +28,7 @@
 
 //ADDRESS
 #addyRating {
-  @extend h2;
+  @extend h3;
   letter-spacing: 0.05em;
   width: 100%;
   margin: 0;
@@ -138,6 +137,7 @@
 
   //CAPTION
   #post_caption {
+    min-height: 150px;
     align-items: center;
     display: flex;
     padding: 10px;
@@ -197,7 +197,7 @@
 
 // EVERYTHING UNDER THIS COMMENT IS FOR COMMENT FORM
 .comment-container {
-  width: 80%;
+  width: 100%;
   height: 20%;
   display: block;
   margin-top: 3%;
@@ -238,7 +238,7 @@
 
 
 .comment-info {
-
+  flex: content;
   background-color: $yellow;
   width: 100%;
   display: flex;

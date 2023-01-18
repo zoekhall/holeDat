@@ -86,7 +86,7 @@ const NavBar = () => {
           ) : (
             <div className='menu-item nav-bar-right'>
               <a href='/auth/google/callback'>
-                <button>Sign In</button>
+                <button>Sign-in</button>
               </a>
             </div>
           )}

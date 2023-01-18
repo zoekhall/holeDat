@@ -5,7 +5,6 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
-// import Accordion from 'react-bootstrap/Accordion';
 
 //submitted section view
 const SubmittedSection = (prop) => {
@@ -15,12 +14,7 @@ const SubmittedSection = (prop) => {
     <Container id='submit' className='formSectionView'>
       <h3> Pothole Submitted! </h3>
       <Container className='formView'>
-        {/* <Accordion>
-        <Accordion.Item eventKey='0'>
-          <Accordion.Header className='header'> */}
         <h4>Report Pothole to NOLA Services</h4>
-        {/* </Accordion.Header>
-          <Accordion.Body> */}
         <p className='xsmall'>
           3 questions are required to be filled out on the service form:
         </p>
@@ -44,9 +38,6 @@ const SubmittedSection = (prop) => {
         >
           Report
         </Button>
-        {/* </Accordion.Body> */}
-        {/* </Accordion.Item> */}
-        {/* </Accordion> */}
       </Container>
       <Row className='inlineButtons'>
         <Col className='submitButton text-center'>
@@ -65,9 +56,3 @@ const SubmittedSection = (prop) => {
 };
 
 export default SubmittedSection;
-
-//check out pothole profile
-
-//submit to city
-
-//resubmit

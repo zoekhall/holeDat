@@ -22,9 +22,10 @@ pothole.post('/addPothole', (req: Request, res: Response) => {
     const pothole_id = data;
     addRating(pothole_id,  user_id, fixed, rating);
     postImg(pothole_id, caption, photoURL, user_id);
+    res.status(202).json(pothole_id);
   }, coordinates);
 
-  res.sendStatus(201);
+  // res.sendStatus(201);
 });
 
 export default pothole;

@@ -12,7 +12,6 @@ import Feed from './feed/Feed';
 import MapView from './map/MapView';
 import NoPage from './NoPage';
 import AddPothole from './addPothole/AddPothole';
-import Rating from './pothole/Rating';
 
 const App = () => {
   return (
@@ -21,7 +20,6 @@ const App = () => {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='Pothole:id' element={<Pothole />} />
-        <Route path='Rating:id' element={<Rating />} />
         <Route path='User' element={<User />} />
         <Route path='User:id' element={<NonUserProfile />} />
         <Route path='Map' element={<MapView />} />

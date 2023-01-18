@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Button from 'react-bootstrap/Button'
 import axios from 'axios';
 
 type badgeObj = {
@@ -36,7 +37,7 @@ const About = () => {
         <p className='reported'>
           Report Pothole to NOLA.gov:
           <a href='https://nola311.org/service-request/'>
-            <button>Report</button>
+            <Button className='basicButton'>Report</Button>
           </a>
         </p>
       </div>

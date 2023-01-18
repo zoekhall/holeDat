@@ -30,6 +30,12 @@
   }
 }
 
+#add{
+  p {
+      margin-top: 0px;
+    }
+}
+
 .nav-bar nav {
 
   .nav-bar-right button,
@@ -447,5 +453,12 @@ THIS IS WHERE DARK MODE STARTS
 
   nav svg :not(#mode svg, #mode circle) {
     fill: $dark-detail;
+  }
+
+  #add {
+    p {
+      margin-top: 0px;
+      font-size: xx-small;
+    }
   }
 }

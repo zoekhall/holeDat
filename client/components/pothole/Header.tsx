@@ -22,39 +22,6 @@ const Header = (prop) => {
       .catch((data) => console.log(data));
   };
 
-
-
-  //show rating if user is signed in 
-  const allowRating = () => {
-    // if (user.user_id === undefined) {
-    //   return null;
-    // } else {
-      return (
-        <Row id='ratings'>
-          <Col className='group newline' sm>
-            <p>Rate This Pothole:</p>
-            <PotholeRating handleClick={handleAction} />
-          </Col>
-
-          <Col className='group' sm>
-            <p>Confirm Pothole Status:</p>
-            <div className='fixed'>
-              <Switch
-                checked={status}
-                onChange={() => {
-                  const newStatus = !status;
-                  handleAction(newStatus);
-                  setStatus(newStatus);
-                }}
-              />
-              <p>{status === true ? 'Not Fixed' : 'Fixed'}</p>
-            </div>
-          </Col>
-        </Row>
-      );
-    // }
-    }
-
   return (
     <Container id='header'>
       <Row id='addyRating' className='alignItems'>
@@ -72,10 +39,32 @@ const Header = (prop) => {
           {avg}&nbsp;<span id='totalVoteCount'>({voteCount})</span>
         </Col>
         <Col id='status'>
-          <h4>{ fixed === false ? 'Not Fixed' : 'Fixed'}</h4>
+          <h4>{fixed === false ? 'Not Fixed' : 'Fixed'}</h4>
         </Col>
       </Row>
-      {allowRating()}
+      
+      {user?.name && (<Row id='ratings'>
+        <Col className='group newline' sm>
+          <p>Rate This Pothole:</p>
+          <PotholeRating handleClick={handleAction} />
+        </Col>
+
+        <Col className='group' sm>
+          <p>Confirm Pothole Status:</p>
+          <div className='fixed'>
+            <Switch
+              checked={status}
+              onChange={() => {
+                const newStatus = !status;
+                handleAction(newStatus);
+                setStatus(newStatus);
+              }}
+            />
+            <p>{status === true ? 'Not Fixed' : 'Fixed'}</p>
+          </div>
+        </Col>
+      </Row>
+      )}
     </Container>
   );
 };

@@ -135,20 +135,24 @@ const CommentForm = ({ phId }: CommentFormArgs) => {
           <div className='comment' key={renderComment.com_id}>
             <img className='avatar-comment' src={renderComment.pfp} alt='pfp' />
             <div className='comment-info'>
-              <h3>{renderComment.name}</h3> <p>{renderComment.text}</p>
+              <div className='targetSpecific'>
+                {user.userId_user === renderComment.userId_com && (
+                  <Button
+                    onClick={() => handleDelete(renderComment.com_id)}
+                    className='basicButton'
+                    type='submit'
+                  >
+                    X
+                  </Button>
+                )}
+                <h3>{renderComment.name}</h3>
+
+              </div>
+              <p>{renderComment.text}</p>
               <p className='time-comment'>
                 {moment(renderComment.time).format('MMMM Do YYYY, h:mm a')}
               </p>
             </div>
-            {user.userId_user === renderComment.userId_com && (
-              <Button
-                onClick={() => handleDelete(renderComment.com_id)}
-                className='basicButton'
-                type='submit'
-              >
-                X
-              </Button>
-            )}
           </div>
         );
       })}

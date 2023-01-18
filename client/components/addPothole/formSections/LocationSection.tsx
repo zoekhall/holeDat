@@ -22,8 +22,8 @@ const LocationSection = (prop) => {
         <Form.Group className='questionGroup'>
           <Form.Label className='formQuestion'>Where is the pothole located?</Form.Label>
           <p className='formText'>
-            Input an approximate address for the pothole. Click on the full address when you see it
-            appear.
+            <span className='line1'>Input an approximate address for the pothole.</span>
+            <span className='line2 italic'>Click on the full address when you see it appear.</span>
           </p>
           <PotholeLocation
             setSectionView={setSectionView}

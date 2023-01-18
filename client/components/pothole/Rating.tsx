@@ -20,7 +20,7 @@ const Rating = () => {
     <div className='profile-rating'>
       <h1>{addy}</h1>
       <div className='fixed'>
-        <p>Not Fixed</p>
+        <p>Busted</p>
         <Switch checked={fixed} onChange={() => setFixed(!fixed)} />
         <p>Fixed</p>
       </div>

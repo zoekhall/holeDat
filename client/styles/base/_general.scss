@@ -22,32 +22,44 @@
 //all cones
 #ratingPot{
   margin: 0;
+  width: 100%;
 }
 .ratingGroupDiv {
-  .ratingText {
-    line-height: 100px;
-  }
-  .ratingElem {
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  flex-wrap: nowrap;
+  
+  #coneText{
+    padding: 2px;
     padding: 0;
-    .left{
-      float: right;
-    };
-    .right{
-      float: left;
-    };
+    margin: 0;
   }
-
+  #coneCol {
+    padding: 0;
+    margin: 0;
+  }
   #cones {
+    width: 80%;
     display: inline-flex;
     justify-content: space-evenly;
     align-items: center;
-    margin-left: 5%;
-    margin-right: 5%;
 
     .bi-cone-striped{
       margin-left: 1%;
       margin-right: 1%;
     }
+  }
+}
+
+#harmless{
+  p{
+    float: left;
+  }
+}
+#severe{
+  p{
+    float: right;
   }
 }
 
@@ -61,6 +73,13 @@ svg.clickCone {
     fill: $red;
   }
 }
+
+.dark-mode{
+  .bi-cone-striped{
+    fill: $muted-pearl;
+  }
+}
+
 
 //CENTER
 .center {

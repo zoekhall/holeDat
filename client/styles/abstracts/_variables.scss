@@ -11,11 +11,11 @@ $muted-pearl: #f4f1de;
 
 //dark mode
 $detail: black;
-$background: rgba(0, 0, 0, 0);
+$background: $muted-pearl;
 $card-background: #F2CC8F;
 $car-background-2: #E07A5F;
 
-$sub-text: hsl(150, 14%, 89%);
+$sub-text: #f4f4f4;
 $dark-detail: $muted-pearl;
 $dark-background: rgba(0, 0, 0, 0.75);
 $dark-card-background: #6a6a6a;

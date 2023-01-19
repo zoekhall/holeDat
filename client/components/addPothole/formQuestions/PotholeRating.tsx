@@ -10,12 +10,14 @@ const PotholeRating = (prop) => {
   const [rating, setRating] = useState<number>(0);
 
   return (
-    <Container id='ratingPot' className='ratingGroupDiv'>
-      <Row>
-        <Col xs='auto' className='ratingElem text-center'>
-          <p className='ratingText xsmall right'>Harmless</p>
-        </Col>
-        <Col className='center ratingElem'>
+    <Container id='ratingPot'>
+      <Row className='ratingGroupDiv'>
+        <Col
+          className='center ratingElem'
+          id='coneCol'
+          xs={{ order: 1 }}
+          md={{ span: 6, order: 2 }}
+        >
           <div id='cones'>
             {[1, 2, 3, 4, 5].map((num, i) => (
               <svg
@@ -36,8 +38,13 @@ const PotholeRating = (prop) => {
             ))}
           </div>
         </Col>
-        <Col xs='auto' className='ratingElem text-center'>
-          <p className='ratingText xsmall left'>Severe</p>
+      </Row>
+      <Row>
+        <Col id='harmless' className='coneText'>
+          <p>Harmless</p>
+        </Col>
+        <Col id='severe' className='coneText'>
+          <p>Severe</p>
         </Col>
       </Row>
     </Container>

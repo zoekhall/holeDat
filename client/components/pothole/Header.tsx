@@ -50,8 +50,8 @@ const Header = (prop) => {
             <PotholeRating handleClick={handleAction} />
           </Col>
 
-          <Col className='group' sm>
-            <p>Confirm Pothole Status:</p>
+          <Col id='fixed' className='group' sm>
+            <p>Pothole Status:</p>
             <div className='fixed'>
               <Switch
                 checked={status}

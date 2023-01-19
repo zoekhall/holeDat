@@ -1,10 +1,9 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import Form from 'react-bootstrap/Form';
-import { StatusContext } from '../AddPothole';
 
 //fixed or busted status
-const PotholeStatus = () => {
-  const { statusContents, setStatusContents } = useContext(StatusContext);
+const PotholeStatus = (prop) => {
+  const { handleChange } = prop;
 
   return (
     <Form.Group id='addPotStatus'>
@@ -16,11 +15,7 @@ const PotholeStatus = () => {
             label={label}
             name='group1'
             type='radio'
-            onChange={() => {
-              const newStatusContents = { ...statusContents };
-              newStatusContents.fixed = label === 'Busted' ? false : true;
-              setStatusContents(newStatusContents);
-            }}
+            onChange={() => handleChange(label)}
           />
         </div>
       ))}

@@ -12,13 +12,20 @@ const Header = (prop) => {
   // const [currentUser, setCurrentUser]
   const { addy, avg, fixed, voteCount, user } = prop;
   const [status, setStatus] = useState<boolean>(fixed);
+  const [rating, setRating] = useState<number>(0);
 
   //handle rating/status
   const handleAction = (value) => {
+    const val = value;
     const type = typeof value === 'number' ? 'rating' : 'status';
     const ratingStatusObj = { type, value }
+
+    if (type === 'rating') {
+      setRating(val);
+    }
+
     axios
-      .post('/api/rating/fromPh', { id, ratingStatusObj, fixed, user }) //whatever the current status is
+      .post('/api/rating/fromPh', { id, ratingStatusObj, fixed, rating, user }) //whatever the current status is
       .catch((data) => console.log(data));
   };
 

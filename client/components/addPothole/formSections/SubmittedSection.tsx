@@ -3,6 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
+import ListGroup from 'react-bootstrap/ListGroup';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 
@@ -15,21 +16,20 @@ const SubmittedSection = (prop) => {
       <h3> Pothole Submitted! </h3>
       <Container className='formView'>
         <h4>Report Pothole to NOLA Services</h4>
-        <p className='xsmall'>
-          3 questions are required to be filled out on the service form:
-        </p>
+        <p className='xsmall'>3 questions are required to be filled out on the service form:</p>
 
-        <ul className='submitList'>
-          <li className='list'>
-            <span>Request Type</span>: Select the 1st option 'Roads/Drainage'
-          </li>
-          <li className='list'>
-            <span>Request Reason</span>: Select the 4th option 'Pothole'
-          </li>
-          <li className='list'>
-            <span>Address/Location</span>: Input the address
-          </li>
-        </ul>
+        <ListGroup>
+          <ListGroup.Item className='list'>
+            <span className='.subText'>Request Type</span>: Select the 1st option 'Roads/Drainage'
+          </ListGroup.Item>
+          <ListGroup.Item className='list'>
+            <span className='.subText'>Request Reason</span>: Select the 4th option 'Pothole'
+          </ListGroup.Item>
+          <ListGroup.Item className='list'>
+            <span className='.subText'>Address/Location</span>: Input the address
+          </ListGroup.Item>
+        </ListGroup>
+
         <Button
           as='a'
           href='https://nola311.org/service-request/'

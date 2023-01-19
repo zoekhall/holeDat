@@ -80,6 +80,7 @@
   h3,
   h4,
   p {
+    color: $muted-pearl;
     margin-bottom: 1em 0;
   }
 }
@@ -231,4 +232,16 @@
         background-color: $red;
       }
     }
+
+    .listGroupItem{
+      background-color: $dark-card-background;
+      color: $muted-pearl;
+    }
+.submitList{
+  color: $muted-pearl;
+  }
+
+  .subText{
+    color: $sub-text;
+  }
 }

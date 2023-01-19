@@ -83,7 +83,6 @@ const PotholeLocation = (prop) => {
         variant='primary'
         onClick={() => {
           updateLatLon();
-          console.log(coordinates);
         }}
       >
         Confirm Address

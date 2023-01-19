@@ -9,8 +9,8 @@ import Button from 'react-bootstrap/Button';
 
 //submitted section view
 const SubmittedSection = (prop) => {
-  const { potholeId } = prop;
-
+  const { potholeId, setView } = prop;
+  console.log(potholeId)
   return (
     <Container id='submit' className='formSectionView'>
       <h2 className='title'> Pothole Submitted! </h2>
@@ -41,14 +41,12 @@ const SubmittedSection = (prop) => {
       </Container>
       <Row className='inlineButtons'>
         <Col className='submitButton text-center'>
-          <Link to={'/Pothole:' + potholeId}>
+          <Link to={`/Pothole:${potholeId}`}>
             <Button className='basicButton'>Check Out the Pothole</Button>
           </Link>
         </Col>
-        <Col className='submitButton text-center'>
-          <Link to='/AddPothole'>
-            <Button className='basicButton'>Submit Another Pothole</Button>
-          </Link>
+        <Col className='submitButton text-center' onClick={() => setView('Welcome')}>
+          <Button className='basicButton'>Submit Another Pothole</Button>
         </Col>
       </Row>
     </Container>

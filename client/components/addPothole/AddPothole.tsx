@@ -20,7 +20,7 @@ interface LocationContextType {
 }
 export const LocationContext = createContext<LocationContextType>({
   coordinates: { lat: 0, lon: 0 },
-  setCoordinates: () => {},
+  setCoordinates: () => { },
 });
 interface ImageContextType {
   imageContents: { file: any; caption: string; photoURL: string };
@@ -28,7 +28,7 @@ interface ImageContextType {
 }
 export const ImageContext = createContext<ImageContextType>({
   imageContents: { file: {}, caption: '', photoURL: '' },
-  setImageContents: () => {},
+  setImageContents: () => { },
 });
 interface StatusContextType {
   statusContents: { fixed: any; rating: number };
@@ -36,13 +36,13 @@ interface StatusContextType {
 }
 export const StatusContext = createContext<StatusContextType>({
   statusContents: { fixed: false, rating: 0 },
-  setStatusContents: () => {},
+  setStatusContents: () => { },
 });
 
 /* --------------------------- Main Form Component -------------------------- */
 const AddPothole = () => {
   const sections: Array<string> = ['Welcome', 'Location', 'Image', 'Status'];
-  const [view, setView] = useState<string>('Submitted');
+  const [view, setView] = useState<string>('Welcome');
   const [progress, setProgress] = useState<number>(0);
   const [user_id, setUser_id] = useState<number>(0);
   const [coordinates, setCoordinates] = useState({ lat: 0, lon: 0 });
@@ -60,24 +60,16 @@ const AddPothole = () => {
 
   //handle click between sections to see new view and handle progress
   const handleClick = () => {
-  //   if (view ==== 'image') {
-  //     if()
-  //   }
-    
+
+
     const nextSection = sections.indexOf(view) + 1;
     setView(sections[nextSection]);
     setProgress(progress + 34);
 
   };
 
-  //handle view error
-  //   const handleSetError = () => {
-  //   if (showError === true) {
-  //     return <Alert variant='danger'>Oops! Not a Valid Address</Alert>;
-  //   }
-  // }
 
-  //handle final submission 
+  //handle final submission
   const handleSubmit = () => {
     if (imageContents.file) {
       const formData = new FormData();
@@ -94,7 +86,6 @@ const AddPothole = () => {
             .then(({ data }) => {
               const potid = data;
               setPotholeId(potid);
-              console.log(potid);
             })
             .catch((err) => console.error('Failure to Add Pothole to Database', err));
         })
@@ -126,12 +117,12 @@ const AddPothole = () => {
     }
   };
 
-  //handle form components/section view 
+  //handle form components/section view
   const handleFormComps = () => {
     if (view === 'Welcome') {
       return <WelcomeSection handleClick={handleClick} />
     } else if (view === 'Submitted') {
-      return <SubmittedSection potholeId={potholeId} />;
+      return <SubmittedSection potholeId={potholeId} setView={setView}/>;
     } else {
       return (
         <Form id='potholeForm' className='formSectionView'>

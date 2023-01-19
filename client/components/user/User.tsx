@@ -63,10 +63,10 @@ function User() {
   return (
     <>
       <div className='user-profile'>
-        <section className='avatar-container'>
+        <div className='avatar-container'>
           <img src={user.photo} alt='Image' className='user-avatar' />
           {badge?.imgUrl ? <img className='user-badge' src={badge?.imgUrl} alt='Image' /> : <></>}
-        </section>
+        </div>
 
         <h1>
           {!editTrigger ? (

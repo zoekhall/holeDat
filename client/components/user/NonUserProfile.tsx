@@ -41,7 +41,7 @@ const NonUserProfile = () => {
   useEffect(getUserData, []);
   return (
     <div className='user-profile'>
-      <section className='avatar-container'>
+      <div className='avatar-container'>
         <img
           src={profile.photo}
           alt='Image'
@@ -53,7 +53,7 @@ const NonUserProfile = () => {
           alt='Image'
         />
         <h1>{profile.name}</h1>
-      </section>
+      </div>
       <UserStats userId={id} />
     </div>
   );

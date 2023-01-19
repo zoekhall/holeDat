@@ -22,8 +22,8 @@ const LocationSection = (prop) => {
         <Form.Group className='questionGroup'>
           <Form.Label className='formQuestion'>Where is the pothole located?</Form.Label>
           <p className='formText'>
-            <span className='line1'>Input an approximate address for the pothole.</span>
-            <span className='line2 italic'>Click on the full address when you see it appear.</span>
+            <span className='newline'>Input an approximate address.</span>
+            <span className='italic xsmall line2'>Click on the full address when it appears.</span>
           </p>
           <PotholeLocation
             setSectionView={setSectionView}
@@ -40,16 +40,16 @@ const LocationSection = (prop) => {
       //the two potential result views
       <Container id='mapFormSection'>
         {sectionView === 'newPothole' ? (
-          <h3 className='header'>
+          <h3 className='title'>
             New Pothole At&nbsp;<span className='newline italic'>{location}</span>
           </h3>
         ) : (
-          <h3 className='header'>
+          <h3 className='title'>
             Pothole Found At&nbsp;<span className='newline italic'>{location}</span>
           </h3>
         )}
         {sectionView === 'newPothole' ? null : (
-          <p className='formText'>
+          <p className='formText xsmall explicit'>
             If you want to check out its profile, select the marker/pothole picture. You will have
             to restart the form.
           </p>

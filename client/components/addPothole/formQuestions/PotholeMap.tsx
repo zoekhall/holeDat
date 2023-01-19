@@ -35,7 +35,7 @@ const PotholeMap = (prop) => {
               zoom: 15,
               pitch: 60,
             }}
-            style={{ minWidth: 100, height: 400 }}
+            style={{ minWidth: 100, height: 250 }}
             mapboxAccessToken={mapboxToken}
             mapStyle={style}
           >

@@ -5,6 +5,7 @@ import axios from 'axios';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/Container';
+// import Alert from 'react-bootstrap/Alert';
 import LocationSection from './formSections/LocationSection';
 import ImageSection from './formSections/ImageSection';
 import StatusSection from './formSections/StatusSection';
@@ -41,13 +42,14 @@ export const StatusContext = createContext<StatusContextType>({
 /* --------------------------- Main Form Component -------------------------- */
 const AddPothole = () => {
   const sections: Array<string> = ['Welcome', 'Location', 'Image', 'Status'];
-  const [view, setView] = useState<string>('Location');
+  const [view, setView] = useState<string>('Submitted');
   const [progress, setProgress] = useState<number>(0);
   const [user_id, setUser_id] = useState<number>(0);
   const [coordinates, setCoordinates] = useState({ lat: 0, lon: 0 });
   const [imageContents, setImageContents] = useState({ file: null, caption: '', photoURL: '' });
   const [statusContents, setStatusContents] = useState({ fixed: false, rating: 0 });
   const [potholeId, setPotholeId] = useState<number>(0);
+  // const [showError, setShowError] = useState<boolean>(false);
 
   //retrieve the user id
   useEffect(() => {
@@ -58,10 +60,22 @@ const AddPothole = () => {
 
   //handle click between sections to see new view and handle progress
   const handleClick = () => {
+  //   if (view ==== 'image') {
+  //     if()
+  //   }
+    
     const nextSection = sections.indexOf(view) + 1;
     setView(sections[nextSection]);
     setProgress(progress + 34);
+
   };
+
+  //handle view error
+  //   const handleSetError = () => {
+  //   if (showError === true) {
+  //     return <Alert variant='danger'>Oops! Not a Valid Address</Alert>;
+  //   }
+  // }
 
   //handle final submission 
   const handleSubmit = () => {
@@ -120,7 +134,8 @@ const AddPothole = () => {
       return <SubmittedSection potholeId={potholeId} />;
     } else {
       return (
-        <Form id='potholeForm' className = 'formSectionView'>
+        <Form id='potholeForm' className='formSectionView'>
+          {/* {handleSetError()} */}
           {handleSectionalView()}
           <ProgressBar now={progress} />
         </Form>

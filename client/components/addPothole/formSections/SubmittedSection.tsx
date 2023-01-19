@@ -13,20 +13,20 @@ const SubmittedSection = (prop) => {
 
   return (
     <Container id='submit' className='formSectionView'>
-      <h3> Pothole Submitted! </h3>
-      <Container className='formView'>
+      <h2 className='title'> Pothole Submitted! </h2>
+      <Container className='formView' id='report'>
         <h4>Report Pothole to NOLA Services</h4>
         <p className='xsmall'>3 questions are required to be filled out on the service form:</p>
 
         <ListGroup>
-          <ListGroup.Item className='list'>
-            <span className='.subText'>Request Type</span>: Select the 1st option 'Roads/Drainage'
+          <ListGroup.Item >
+            <span className='subText'>Request Type</span>: Select 1st option 'Roads/Drainage'
           </ListGroup.Item>
-          <ListGroup.Item className='list'>
-            <span className='.subText'>Request Reason</span>: Select the 4th option 'Pothole'
+          <ListGroup.Item >
+            <span className='subText'>Request Reason</span>: Select 4th option 'Pothole'
           </ListGroup.Item>
-          <ListGroup.Item className='list'>
-            <span className='.subText'>Address/Location</span>: Input the address
+          <ListGroup.Item >
+            <span className='subText'>Address/Location</span>: Input the address
           </ListGroup.Item>
         </ListGroup>
 
@@ -36,13 +36,13 @@ const SubmittedSection = (prop) => {
           target='_blank'
           className='basicButton'
         >
-          Report
+          Report to 311
         </Button>
       </Container>
       <Row className='inlineButtons'>
         <Col className='submitButton text-center'>
           <Link to={'/Pothole:' + potholeId}>
-            <Button className='basicButton'>Check Out Your Pothole</Button>
+            <Button className='basicButton'>Check Out the Pothole</Button>
           </Link>
         </Col>
         <Col className='submitButton text-center'>

@@ -62,11 +62,9 @@
   border-radius: 8px;
   background-color: $green;
 
-  .fixed{
+  .fixed {
     justify-content: center;
-    align-items: center;
     text-align: center;
-    margin: 6%;
     display: flex;
     flex-wrap: nowrap;
   }
@@ -112,6 +110,7 @@
   img.potHole_img {
     border-radius: 10px;
     margin-bottom: 2%;
+    margin-top: 2%;
     border: 2px solid $black;
     object-fit: cover;
     justify-content: center;
@@ -173,6 +172,10 @@
       h3 {
         margin-bottom: 1%;
         color: $blue;
+      }
+
+      p {
+        line-break: anywhere;
       }
     }
 
@@ -252,6 +255,12 @@
     font-size: smaller;
     font-weight: bold;
   }
+
+
+  p {
+    line-break: anywhere;
+  }
+
 }
 
 #postButton {
@@ -313,6 +322,8 @@
         h3 {
           color: $dark-detail;
         }
+
+
       }
 
 

@@ -412,6 +412,10 @@ THIS IS WHERE DARK MODE STARTS
       background-color: $dark-car-background-2;
     }
 
+    .swiper-slide {
+      margin-right: 10px;
+    }
+
     .swiper-slide img {
       background-color: $dark-detail;
       border: 1px solid $dark-detail;

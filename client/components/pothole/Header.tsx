@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import Row from 'react-bootstrap/Row';
 import { useLocation } from 'react-router-dom';
@@ -13,10 +13,10 @@ const Header = (prop) => {
   const { addy, avg, fixed, voteCount, user } = prop;
   const [status, setStatus] = useState<boolean>(fixed);
 
-  //handle rating/status 
+  //handle rating/status
   const handleAction = (value) => {
     const type = typeof value === 'number' ? 'rating' : 'status';
-    const ratingStatusObj = {type, value}
+    const ratingStatusObj = { type, value }
     axios
       .post('/api/rating/fromPh', { id, ratingStatusObj, fixed, user }) //whatever the current status is
       .catch((data) => console.log(data));
@@ -42,29 +42,30 @@ const Header = (prop) => {
           <h4>{fixed === false ? 'Busted' : 'Fixed'}</h4>
         </Col>
       </Row>
-      
-      {user?.name && (<Row id='ratings'>
-        <Col className='group newline' sm>
-          <p>Rate This Pothole:</p>
-          <PotholeRating handleClick={handleAction} />
-        </Col>
 
-        <Col className='group' sm>
-          <p>Confirm Pothole Status:</p>
-          <div className='fixed'>
-            <Switch
-              checked={status}
-              onChange={() => {
-                const newStatus = !status;
-                handleAction(newStatus);
-                setStatus(newStatus);
-              }}
-            />
-            <p>{status === true ? 'Busted' : 'Fixed'}</p>
-          </div>
-        </Col>
-      </Row>
-      )}
+      {user?.name &&
+        <Row id='ratings'>
+          <Col className='group newline' sm>
+            <p>Rate This Pothole:</p>
+            <PotholeRating handleClick={handleAction} />
+          </Col>
+
+          <Col className='group' sm>
+            <p>Confirm Pothole Status:</p>
+            <div className='fixed'>
+              <Switch
+                checked={status}
+                onChange={() => {
+                  const newStatus = !status;
+                  handleAction(newStatus);
+                  setStatus(newStatus);
+                }}
+              />
+              <p>{status === true ? 'Busted' : 'Fixed'}</p>
+            </div>
+          </Col>
+        </Row>
+      }
     </Container>
   );
 };

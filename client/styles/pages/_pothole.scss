@@ -64,9 +64,7 @@
 
   .fixed {
     justify-content: center;
-    align-items: center;
     text-align: center;
-    margin: 6%;
     display: flex;
     flex-wrap: nowrap;
   }
@@ -112,6 +110,7 @@
   img.potHole_img {
     border-radius: 10px;
     margin-bottom: 2%;
+    margin-top: 2%;
     border: 2px solid $black;
     object-fit: cover;
     justify-content: center;

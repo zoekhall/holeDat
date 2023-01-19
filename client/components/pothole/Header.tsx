@@ -43,28 +43,29 @@ const Header = (prop) => {
         </Col>
       </Row>
 
-      {user?.badge_id && (<Row id='ratings'>
-        <Col className='group newline' sm>
-          <p>Rate This Pothole:</p>
-          <PotholeRating handleClick={handleAction} />
-        </Col>
+      {user?.name &&
+        <Row id='ratings'>
+          <Col className='group newline' sm>
+            <p>Rate This Pothole:</p>
+            <PotholeRating handleClick={handleAction} />
+          </Col>
 
-        <Col className='group' sm>
-          <p>Confirm Pothole Status:</p>
-          <div className='fixed'>
-            <Switch
-              checked={status}
-              onChange={() => {
-                const newStatus = !status;
-                handleAction(newStatus);
-                setStatus(newStatus);
-              }}
-            />
-            <p>{status === true ? 'Busted' : 'Fixed'}</p>
-          </div>
-        </Col>
-      </Row>
-      )}
+          <Col className='group' sm>
+            <p>Confirm Pothole Status:</p>
+            <div className='fixed'>
+              <Switch
+                checked={status}
+                onChange={() => {
+                  const newStatus = !status;
+                  handleAction(newStatus);
+                  setStatus(newStatus);
+                }}
+              />
+              <p>{status === true ? 'Busted' : 'Fixed'}</p>
+            </div>
+          </Col>
+        </Row>
+      }
     </Container>
   );
 };

@@ -28,6 +28,7 @@
 
 //ADDRESS
 #addyRating {
+  box-shadow: 0px 1px 5px 0px;
   @extend h3;
   letter-spacing: 0.05em;
   width: 100%;
@@ -48,27 +49,48 @@
 
 //RATINGS
 #ratings {
-  margin: 1%;
+  padding: 0;
+  margin: 2% 2% 0;
   justify-content: center;
-  align-items: center;
+  // align-items: center;
   text-align: center;
 }
 
 .group {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
   width: 100%;
-  margin: 1%;
-  padding: 2%;
+  padding: 15px;
   border: 2px solid $black;
   border-radius: 8px;
   background-color: $green;
+  height: 125px;
+  margin: 1%;
+  
+  .insideGroup{
+    height: 100px;
+  }
 
-  .fixed {
+  .profText{
+    text-align:start;
+  }
+
+  .profComponent {
+    margin-top: 15px;
+  }
+
+  #addPotStatus {
     justify-content: center;
-    text-align: center;
+    align-items: center;
     display: flex;
     flex-wrap: nowrap;
   }
 }
+
+
+
+
 
 #totalRating {
   @extend h3;
@@ -276,6 +298,7 @@
   }
 
   #addyRating {
+    box-shadow: 0px 1px 5px 0px $dark-detail;
     border: 1px solid $dark-detail;
     background-color: $dark-card-background-2;
     color: $dark-detail;

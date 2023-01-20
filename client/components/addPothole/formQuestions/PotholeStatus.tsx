@@ -8,14 +8,18 @@ const PotholeStatus = (prop) => {
   return (
     <Form.Group id='addPotStatus'>
       {['Busted', 'Fixed'].map((label, id) => (
-        <div key={`inline-${id}`}>
+        <div key={`inline-${id}`} id='statusPick'>
           <Form.Check
             inline
             required
             label={label}
             name='group1'
             type='radio'
-            onChange={() => handleChange(label)}
+            className='statusVal'
+            onChange={() => {
+              const status = label === 'Busted' ? false : true;
+              handleChange(status)
+            }}
           />
         </div>
       ))}

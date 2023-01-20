@@ -43,9 +43,9 @@ const StatusSection = (prop) => {
     setStatusContents(newStatusContents);
   };
 
-  const handleChange = (label) => {
+  const handleChange = (status) => {
     const newStatusContents = { ...statusContents };
-    newStatusContents.fixed = label === 'Busted' ? false : true;
+    newStatusContents.fixed = status === 'Busted' ? false : true;
     setStatusContents(newStatusContents);
   }
 

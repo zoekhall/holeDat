@@ -65,7 +65,7 @@
   border: 2px solid $black;
   border-radius: 8px;
   background-color: $green;
-  height: 125px;
+  height: 150px;
   margin: 1%;
   
   .insideGroup{
@@ -78,6 +78,7 @@
 
   .profComponent {
     margin-top: 15px;
+    height: 125px;
   }
 
   #addPotStatus {

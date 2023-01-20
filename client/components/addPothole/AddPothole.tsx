@@ -48,7 +48,6 @@ const AddPothole = () => {
   const [imageContents, setImageContents] = useState({ file: null, caption: '', photoURL: '' });
   const [statusContents, setStatusContents] = useState({ fixed: null, rating: 0 });
   const [potholeId, setPotholeId] = useState<number>(0);
-  // const [showError, setShowError] = useState<boolean>(false);
 
   //retrieve the user id
   useEffect(() => {
@@ -59,12 +58,9 @@ const AddPothole = () => {
 
   //handle click between sections to see new view and handle progress
   const handleClick = () => {
-
-
     const nextSection = sections.indexOf(view) + 1;
     setView(sections[nextSection]);
     setProgress(progress + 34);
-
   };
 
 
@@ -121,7 +117,12 @@ const AddPothole = () => {
     if (view === 'Welcome') {
       return <WelcomeSection handleClick={handleClick} />
     } else if (view === 'Submitted') {
-      return <SubmittedSection potholeId={potholeId} setView={setView}/>;
+      return <SubmittedSection
+        potholeId={potholeId}
+        setView={setView}
+        setCoordinates={setCoordinates}
+        setImageContents={setImageContents}
+        setStatusContents={setStatusContents} />;
     } else {
       return (
         <Form id='potholeForm' className='formSectionView'>

@@ -9,15 +9,15 @@ rating.post('/potholeAtIds', (req: Request, res: Response) => {
 });
 
 rating.post('/fromPh', (req: Request, res: Response) => {
-  const { id, fixed } = req.body;
+  const { id, status, rating } = req.body;
   const { type, value } = req.body.ratingStatusObj;
   const { userId_user } = req.body.user;
-  
+
   if (type === 'rating') {
-    addRating(id, userId_user, fixed, value);
+    addRating(id, userId_user, status, value);
     res.sendStatus(202);
   }else if(type === 'status') {
-    addRating(id, userId_user, value, 0);
+    addRating(id, userId_user, value, rating);
     res.sendStatus(202);
   }
   

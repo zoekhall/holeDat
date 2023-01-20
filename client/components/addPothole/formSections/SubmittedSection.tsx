@@ -9,7 +9,7 @@ import Button from 'react-bootstrap/Button';
 
 //submitted section view
 const SubmittedSection = (prop) => {
-  const { potholeId, setView } = prop;
+  const { potholeId, setView, setCoordinates, setImageContents, setStatusContents } = prop;
   console.log(potholeId)
   return (
     <Container id='submit' className='formSectionView'>
@@ -45,7 +45,12 @@ const SubmittedSection = (prop) => {
             <Button className='basicButton'>Check Out the Pothole</Button>
           </Link>
         </Col>
-        <Col className='submitButton text-center' onClick={() => setView('Welcome')}>
+        <Col className='submitButton text-center' onClick={() => {
+          setView('Welcome');
+          setCoordinates({ lat: 0, lon: 0 });
+          setImageContents({ file: null, caption: '', photoURL: '' });
+          setStatusContents({ fixed: null, rating: 0 });
+        }}>
           <Button className='basicButton'>Submit Another Pothole</Button>
         </Col>
       </Row>

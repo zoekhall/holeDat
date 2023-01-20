@@ -1,24 +1,51 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Row from 'react-bootstrap/Row';
 import { useLocation } from 'react-router-dom';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
-import Switch from 'react-bootstrap/Switch';
+// import Switch from 'react-bootstrap/Switch';
 import PotholeRating from '../addPothole/formQuestions/PotholeRating';
+import PotholeStatus from '../addPothole/formQuestions/PotholeStatus';
 
 const Header = (prop) => {
   const id = Number(useLocation().pathname.split(':')[1]);
-  // const [currentUser, setCurrentUser]
-  const { addy, avg, fixed, voteCount, user } = prop;
+  const [avg, setAvg] = useState<number>(0);
+  const [voteCount, setVotecount] = useState<number>(0);
+  const [rating, setRating] = useState<number>(0);
+  const [newVote, setNewVote] = useState<number>(0);
+  const { addy, fixed, user } = prop;
   const [status, setStatus] = useState<boolean>(fixed);
 
+    const getAllRatingByPhId = () => {
+      axios.get('/api/rating/rating' + id).then((data) => {
+        const Avg =
+          data.data.reduce((acc, curr) => {
+            acc += curr;
+            return acc;
+          }, 0) / data.data.length;
+        setAvg(Math.round(Avg));
+        setVotecount(data.data.length);
+        setNewVote(newVote + 1);
+      });
+    };
+  
+  useEffect(getAllRatingByPhId, [newVote])
+  
   //handle rating/status
   const handleAction = (value) => {
+    const val = value;
     const type = typeof value === 'number' ? 'rating' : 'status';
     const ratingStatusObj = { type, value }
+    console.log({type, val})
+    if (type === 'rating') {
+      setRating(val);
+    } else if (type === 'status') {
+      setStatus(val);
+    }
+
     axios
-      .post('/api/rating/fromPh', { id, ratingStatusObj, fixed, user }) //whatever the current status is
+      .post('/api/rating/fromPh', { id, ratingStatusObj, status, rating, user }) //pass whatever the current fixed val is/rating in order to create/update
       .catch((data) => console.log(data));
   };
 
@@ -29,7 +56,7 @@ const Header = (prop) => {
         <Col id='totalRating' className='newline'>
           <svg
             xmlns='http://www.w3.org/2000/svg'
-            width='8%'
+            width='6%'
             fill='currentColor'
             className={`bi bi-cone-striped`}
             viewBox='0 0 16 16'
@@ -43,29 +70,27 @@ const Header = (prop) => {
         </Col>
       </Row>
 
-      {user?.name &&
+      {user?.name && (
         <Row id='ratings'>
-          <Col className='group newline' sm>
-            <p>Rate This Pothole:</p>
-            <PotholeRating handleClick={handleAction} />
+          <Col className='group' sm>
+            <div className='insideGroup'>
+              <p className='profText'>Rate Pothole Severity:</p>
+              <div className='profComponent'>
+                <PotholeRating handleClick={handleAction} />
+              </div>
+            </div>
           </Col>
 
           <Col id='fixed' className='group' sm>
-            <p>Pothole Status:</p>
-            <div className='fixed'>
-              <Switch
-                checked={status}
-                onChange={() => {
-                  const newStatus = !status;
-                  handleAction(newStatus);
-                  setStatus(newStatus);
-                }}
-              />
-              <p>{status === true ? 'Busted' : 'Fixed'}</p>
+            <div className='insideGroup'>
+              <p className='profText'>Confirm Pothole Status:</p>
+              <div className='profComponent'>
+                <PotholeStatus handleChange={handleAction} />
+              </div>
             </div>
           </Col>
         </Row>
-      }
+      )}
     </Container>
   );
 };

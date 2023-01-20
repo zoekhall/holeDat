@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Row from 'react-bootstrap/Row';
 import { useLocation } from 'react-router-dom';
@@ -10,11 +10,28 @@ import PotholeStatus from '../addPothole/formQuestions/PotholeStatus';
 
 const Header = (prop) => {
   const id = Number(useLocation().pathname.split(':')[1]);
-  // const [currentUser, setCurrentUser]
-  const { addy, avg, fixed, voteCount, user } = prop;
-  const [status, setStatus] = useState<boolean>(fixed);
+  const [avg, setAvg] = useState<number>(0);
+  const [voteCount, setVotecount] = useState<number>(0);
   const [rating, setRating] = useState<number>(0);
+  const [newVote, setNewVote] = useState<number>(0);
+  const { addy, fixed, user } = prop;
+  const [status, setStatus] = useState<boolean>(fixed);
 
+    const getAllRatingByPhId = () => {
+      axios.get('/api/rating/rating' + id).then((data) => {
+        const Avg =
+          data.data.reduce((acc, curr) => {
+            acc += curr;
+            return acc;
+          }, 0) / data.data.length;
+        setAvg(Math.round(Avg));
+        setVotecount(data.data.length);
+        setNewVote(newVote + 1);
+      });
+    };
+  
+  useEffect(getAllRatingByPhId, [newVote])
+  
   //handle rating/status
   const handleAction = (value) => {
     const val = value;

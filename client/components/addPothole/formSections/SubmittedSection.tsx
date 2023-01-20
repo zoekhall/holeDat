@@ -51,7 +51,7 @@ const SubmittedSection = (prop) => {
           setImageContents({ file: null, caption: '', photoURL: '' });
           setStatusContents({ fixed: null, rating: 0 });
         }}>
-          <Button className='basicButton'>Submit Another Pothole</Button>
+          <Button className='basicButton'>Submit a New Pothole</Button>
         </Col>
       </Row>
     </Container>

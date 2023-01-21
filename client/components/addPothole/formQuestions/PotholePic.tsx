@@ -7,11 +7,11 @@ import heic2any from 'heic2any';
 const PotholePic = () => {
   const { imageContents, setImageContents } = useContext(ImageContext);
 
-  const handleChange = (e) => {
+  const handleChange = async (e) => {
     const newImageContents = { ...imageContents };
     newImageContents.file = e.target.files[0];
     if (e.target.files[0].type === 'image/heic') {
-      const jpeg: any = heic2any({
+      const jpeg: any = await heic2any({
         blob: e.target.files[0],
         toType: 'image/jpeg',
       });

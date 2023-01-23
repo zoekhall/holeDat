@@ -45,7 +45,7 @@ const StatusSection = (prop) => {
 
   const handleChange = (status) => {
     const newStatusContents = { ...statusContents };
-    newStatusContents.fixed = status === 'Busted' ? false : true;
+    newStatusContents.fixed = status;
     setStatusContents(newStatusContents);
   }
 

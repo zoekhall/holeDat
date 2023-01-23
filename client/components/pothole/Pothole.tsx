@@ -73,7 +73,8 @@ const Pothole = () => {
         return data[0].Pothole;
       })
       .then((data) => {
-        const { lat, lon } = data;
+        const { lat, lon, fixed } = data;
+        setFixed(fixed);
         axios('/api/location/getAddy', { params: { lat, lon } })
           .then(({data}) =>
           setAddy(data.split(',')[0])

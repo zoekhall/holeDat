@@ -10,7 +10,6 @@ import Button from 'react-bootstrap/Button';
 //submitted section view
 const SubmittedSection = (prop) => {
   const { potholeId, setView, setCoordinates, setImageContents, setStatusContents } = prop;
-  console.log(potholeId)
   return (
     <Container id='submit' className='formSectionView'>
       <h2 className='title'> Pothole Submitted! </h2>

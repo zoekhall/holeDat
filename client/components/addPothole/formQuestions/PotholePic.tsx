@@ -27,10 +27,10 @@ const PotholePic = () => {
     const newImageContents = { ...imageContents };
     newImageContents.file = e.target.files[0];
     const imageFile = e.target.files[0];
-    if (imageFile.size > 3e6) {
+    if (imageFile.size > 2e6) {
       const options = {
         maxSizeMB: 1,
-        maxWidthOrHeight: 900,
+        maxWidthOrHeight: 600,
         useWebWorker: true
       }
       try {

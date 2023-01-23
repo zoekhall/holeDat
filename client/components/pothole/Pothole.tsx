@@ -39,8 +39,6 @@ const Pothole = () => {
   const [PImages, setPImages] = useState<phImg[]>([]);
   const [addy, setAddy] = useState<string[]>([]);
   const [phId] = useState<number>(id);
-  // const [avg, setAvg] = useState<number>(0);
-  // const [voteCount, setVotecount] = useState<number>(0);
   const [fixed, setFixed] = useState<boolean>(false);
   const [user, setUser] = useState<User>({
     name: '',
@@ -49,24 +47,12 @@ const Pothole = () => {
     badge_id: undefined,
   });
 
-  // const getAllRatingByPhId = () => {
-  //   axios.get('/api/rating/rating' + id).then((data) => {
-  //     const Avg =
-  //       data.data.reduce((acc, curr) => {
-  //         acc += curr;
-  //         return acc;
-  //       }, 0) / data.data.length;
-  //     setAvg(Math.round(Avg));
-  //     setVotecount(data.data.length);
-  //   });
-  // };
-
   // get pothole images by potholeID
   const getAllPotholeImgByPhId = () => {
     axios
       .get('/api/imgs/potholeimgs' + id)
-      .then((data) => {
-        const resObj: [] = data.data.map((each) => {
+      .then(({data}) => {
+        const resObj: [] = data.map((each) => {
           const { image_id, caption, photoURL } = each;
           const { user_id, name, photo, badge_id } = each.User;
           const { lat, lon, fixed } = each.Pothole;
@@ -84,25 +70,25 @@ const Pothole = () => {
           };
         });
         setPImages(resObj);
-        //getBadge(data);
-        return data.data[0].Pothole;
+        return data[0].Pothole;
       })
       .then((data) => {
         const { lat, lon } = data;
-        axios('/api/location/getAddy', { params: { lat, lon } }).then((data) =>
-          setAddy(data.data.split(',')[0])
+        axios('/api/location/getAddy', { params: { lat, lon } })
+          .then(({data}) =>
+          setAddy(data.split(',')[0])
         );
       })
       .catch((err) => console.log(err));
   };
 
   const getUser = () => {
-    axios.get('/api/user/me').then((data) => {
+    axios.get('/api/user/me').then(({data}) => {
       setUser({
-        name: data.data.name,
-        photo: data.data.photo,
-        userId_user: data.data.user_id,
-        badge_id: data.data.badge_id,
+        name: data.name,
+        photo: data.photo,
+        userId_user: data.user_id,
+        badge_id: data.badge_id,
       });
     });
   };
@@ -118,7 +104,6 @@ const Pothole = () => {
     getAllBadges();
     getUser();
     getAllPotholeImgByPhId();
-    // getAllRatingByPhId();
   }, []);
 
   return (

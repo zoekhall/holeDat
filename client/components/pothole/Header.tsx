@@ -10,12 +10,12 @@ import PotholeStatus from '../addPothole/formQuestions/PotholeStatus';
 
 const Header = (prop) => {
   const id = Number(useLocation().pathname.split(':')[1]);
+  const { addy, fixed, user } = prop;
   const [avg, setAvg] = useState<number>(0);
   const [voteCount, setVotecount] = useState<number>(0);
   const [rating, setRating] = useState<number>(0);
   const [newVote, setNewVote] = useState<number>(0);
   const [status, setStatus] = useState<boolean>(fixed);
-  const { addy, fixed, user } = prop;
 
     const getAllRatingByPhId = () => {
       axios.get('/api/rating/rating' + id).then(({data}) => {

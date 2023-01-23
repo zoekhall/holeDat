@@ -14,18 +14,18 @@ const Header = (prop) => {
   const [voteCount, setVotecount] = useState<number>(0);
   const [rating, setRating] = useState<number>(0);
   const [newVote, setNewVote] = useState<number>(0);
-  const { addy, fixed, user } = prop;
   const [status, setStatus] = useState<boolean>(fixed);
+  const { addy, fixed, user } = prop;
 
     const getAllRatingByPhId = () => {
-      axios.get('/api/rating/rating' + id).then((data) => {
+      axios.get('/api/rating/rating' + id).then(({data}) => {
         const Avg =
-          data.data.reduce((acc, curr) => {
+          data.reduce((acc, curr) => {
             acc += curr;
             return acc;
-          }, 0) / data.data.length;
+          }, 0) / data.length;
         setAvg(Math.round(Avg));
-        setVotecount(data.data.length);
+        setVotecount(data.length);
         setNewVote(newVote + 1);
       });
     };
@@ -35,9 +35,9 @@ const Header = (prop) => {
   //handle rating/status
   const handleAction = (value) => {
     const val = value;
-    const type = typeof value === 'number' ? 'rating' : 'status';
+    const type = typeof val === 'number' ? 'rating' : 'status';
     const ratingStatusObj = { type, value }
-    console.log({type, val})
+    
     if (type === 'rating') {
       setRating(val);
     } else if (type === 'status') {

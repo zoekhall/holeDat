@@ -44,11 +44,7 @@ const AddPothole = () => {
   const [progress, setProgress] = useState<number>(0);
   const [user_id, setUser_id] = useState<number>(0);
   const [coordinates, setCoordinates] = useState({ lat: 0, lon: 0 });
-  const [imageContents, setImageContents] = useState<any>({
-    file: null,
-    caption: '',
-    photoURL: '',
-  });
+  const [imageContents, setImageContents] = useState<any>({ file: null, caption: '', photoURL: '' });
   const [statusContents, setStatusContents] = useState({ fixed: null, rating: 0 });
   const [potholeId, setPotholeId] = useState<number>(0);
 
@@ -84,11 +80,11 @@ const AddPothole = () => {
               const potid = data;
               setPotholeId(potid);
             })
+            .then(() => setView('Submitted'))
             .catch((err) => console.error('Failure to Add Pothole to Database', err));
         })
         .catch((err) => console.error('Failure to Submit Image to Cloud', err));
     }
-    setView('Submitted');
   };
 
   //handle which section of the form is rendered when in form view

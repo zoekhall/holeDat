@@ -17,28 +17,28 @@ const Header = (prop) => {
   const [newVote, setNewVote] = useState<number>(0);
   const [status, setStatus] = useState<boolean>(fixed);
 
-    const getAllRatingByPhId = () => {
-      axios.get('/api/rating/rating' + id).then(({data}) => {
-        const Avg =
-          data.reduce((acc, curr) => {
-            acc += curr;
-            return acc;
-          }, 0) / data.length;
-        setAvg(Math.round(Avg));
-        setVotecount(data.length);
-        setNewVote(newVote + 1);
-      });
-    };
-  
+  const getAllRatingByPhId = () => {
+    axios.get('/api/rating/rating' + id).then(({ data }) => {
+      const Avg =
+        data.reduce((acc, curr) => {
+          acc += curr;
+          return acc;
+        }, 0) / data.length;
+      setAvg(Math.round(Avg));
+      setVotecount(data.length);
+    });
+  };
+
   useEffect(getAllRatingByPhId, [newVote])
-  
+
   //handle rating/status
   const handleAction = (value) => {
     const val = value;
     const type = typeof val === 'number' ? 'rating' : 'status';
     const ratingStatusObj = { type, value }
-    
+
     if (type === 'rating') {
+      setNewVote(newVote + 1);
       setRating(val);
     } else if (type === 'status') {
       setStatus(val);

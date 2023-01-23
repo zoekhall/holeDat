@@ -62,12 +62,12 @@
   justify-content: space-evenly;
   width: 100%;
   padding: 15px;
-  border: 2px solid $black;
+  border: 1px solid $black;
   border-radius: 8px;
   background-color: $green;
   height: 150px;
   margin: 1%;
-  
+
   .insideGroup{
     height: 100px;
   }
@@ -134,7 +134,7 @@
     border-radius: 10px;
     margin-bottom: 2%;
     margin-top: 2%;
-    border: 2px solid $black;
+    border: 1px solid $black;
     object-fit: cover;
     justify-content: center;
     position: relative;
@@ -227,7 +227,7 @@
   height: 20%;
   display: block;
   margin-top: 3%;
-  border: 2px solid black;
+  border: 1px solid black;
   border-radius: 10px;
   @include border-shadow;
   background-color: $muted-pearl;
@@ -306,7 +306,7 @@
   }
 
   .group {
-    border: 2px solid $dark-detail;
+    border: 1px solid $dark-detail;
     border-radius: 8px;
     background-color: $dark-green;
   }
@@ -323,7 +323,7 @@
 
     //IMAGES
     img.potHole_img {
-      border: 2px solid $dark-detail;
+      border: 1px solid $dark-detail;
     }
 
     //CAPTION

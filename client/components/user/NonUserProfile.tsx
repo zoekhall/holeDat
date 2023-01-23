@@ -47,11 +47,7 @@ const NonUserProfile = () => {
           alt='Image'
           className='user-avatar'
         />
-        <img
-          className='user-badge'
-          src={badge?.imgUrl}
-          alt='Image'
-        />
+        {badge?.imgUrl ? <img className='user-badge' src={badge?.imgUrl} alt='Image' /> : <></>}
         <h1>{profile.name}</h1>
       </div>
       <UserStats userId={id} />

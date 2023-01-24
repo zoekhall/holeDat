@@ -7,7 +7,7 @@
   margin-bottom: 10px;
   border-radius: 10px;
   background-color: #F2CC8F;
-  border: 2px solid black;
+  border: 1px solid black;
   box-shadow: 3px 3px black;
 
   h1 {
@@ -36,7 +36,7 @@
     width: 15vw;
     height: 15vh;
     border-radius: 10px;
-    border: 2px solid black;
+    border: 1px solid black;
     margin-bottom: 10px;
   }
 }
@@ -49,7 +49,7 @@
 .badge-images {
   display: flex;
   justify-content: center;
-  border: 1.4px solid black;
+  border: 1px solid black;
   padding: 9px;
   margin: 3px;
   align-items: center;
@@ -70,7 +70,7 @@
 .dark-mode {
   .about-content {
     background-color: $dark-card-background;
-    border: 2px solid $dark-detail;
+    border: 1px solid $dark-detail;
     box-shadow: 3px 3px $dark-detail;
 
     p {
@@ -87,11 +87,11 @@
 
   .team-photos {
     img {
-      border: 2px solid $dark-detail;
+      border: 1px solid $dark-detail;
     }
   }
 
   .badge-images {
-    border: 1.4px solid $dark-detail;
+    border: 1px solid $dark-detail;
   }
 }

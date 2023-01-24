@@ -19,7 +19,7 @@
 
 .formSectionView {
   background-color: $muted-pearl;
-  border: 2px solid $black;
+  border: 1px solid $black;
   border-radius: 8px;
   padding: 20px;
 
@@ -247,10 +247,8 @@
 
     #statusSection {
 
-      // #ratingPot {
       .bi-cone-striped {
         fill: $muted-pearl;
-        // }
       }
     }
   }
@@ -286,10 +284,6 @@
   .progress {
     margin-top: 2em;
     @include border-shadow(2px 2px, $muted-pearl);
-
-    // .progress-bar {
-    //   background-color: $red;
-    // }
   }
 
 

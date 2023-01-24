@@ -8,7 +8,7 @@
 .mapPopup {
   border-radius: 20px;
   box-shadow: -3px 3px 0px rgb(0, 0, 0);
-  border: 2px solid black;
+  border: 1px solid black;
   background-color: black;
 
   img {
@@ -33,7 +33,7 @@
   box-shadow: -1px 1px black;
   border-radius: 100%;
   background-color: #f2cc8f;
-  border: 2px solid black;
+  border: 1px solid black;
   margin: -10px;
   height: 25px;
   width: 25px;
@@ -74,7 +74,7 @@
 
   .mapPopup {
     box-shadow: -3px 3px 0px $dark-detail;
-    border: 2px solid $dark-detail;
+    border: 1px solid $dark-detail;
     background-color: $dark-detail;
 
     img {
@@ -90,7 +90,7 @@
   .mapboxgl-popup-close-button>button>[type='button']:not(:disabled):focus {
     box-shadow: -1px 1px $dark-detail;
     background-color: $dark-card-background;
-    border: 2px solid $dark-detail;
+    border: 1px solid $dark-detail;
   }
 
   .mapboxgl-popup-close-button:hover {

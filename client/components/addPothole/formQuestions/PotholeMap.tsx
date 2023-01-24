@@ -32,16 +32,17 @@ const PotholeMap = (prop) => {
             initialViewState={{
               latitude: coordinates.lat,
               longitude: coordinates.lon,
-              zoom: 15,
+              zoom: 17,
               pitch: 60,
             }}
-            style={{ minWidth: 100, height: 250 }}
+            style={{ minWidth: 100, height: 300 }}
             mapboxAccessToken={mapboxToken}
             mapStyle={style}
           >
             <Point
               marker={{ ...coordinates, ...{ pothole_id } }}
               userLocation={[29.935260993668, -90.08128396541]}
+              initial = {false}
             />
             <NavigationControl />
           </Map>

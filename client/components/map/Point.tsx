@@ -10,9 +10,9 @@ const Point = (prop) => {
     exists: boolean;
   };
   const { lon, lat, pothole_id } = prop.marker;
-  const { userLocation } = prop;
+  const { userLocation, initial = true } = prop;
 
-  const [showPopup, setShowPopup] = useState(true);
+  const [showPopup, setShowPopup] = useState(initial);
   const [plothole, setPlothole] = useState<phObj>();
 
   const getInfo = () => {

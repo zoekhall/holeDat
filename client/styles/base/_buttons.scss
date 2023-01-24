@@ -18,7 +18,8 @@
   };
 
   &:hover,
-  &:focus {
+  &:focus,
+  &:disabled {
     @include border-shadow(2px 2px);
     background-color: $red !important;
     color:$muted-pearl;
@@ -39,10 +40,13 @@
   width: 1em;
 }
 
+
+
+
 .dark-mode {
   .basicButton {
       @include border-shadow(2px 2px, $muted-pearl);
-      background-color: $dark-card-background;
+      background-color: transparent;
       color: $muted-pearl;
 
       .arrow-right {
@@ -59,9 +63,22 @@
         transform: translateX(-25%) rotate(45deg);
       }
 
-      &:hover,
-      &:focus {
-        background-color: $blue !important;
-      }
-}
+    &:hover,
+    &:focus,
+    &:disabled {
+      @include border-shadow(2px 2px);
+      background-color: $muted-pearl !important;
+      color: $black;
+  
+    //   .arrow-right {
+    //     border-right: 2px solid $red;
+    //     border-top: 2px solid $red;
+    //   }
+  
+    //   .arrow-left {
+    //     border-left: 2px solid $red ;
+    //     border-bottom: 2px solid $red;
+    //   }
+    };
+  }
 }

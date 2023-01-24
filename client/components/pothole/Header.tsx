@@ -4,7 +4,6 @@ import Row from 'react-bootstrap/Row';
 import { useLocation } from 'react-router-dom';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
-// import Switch from 'react-bootstrap/Switch';
 import PotholeRating from '../addPothole/formQuestions/PotholeRating';
 import PotholeStatus from '../addPothole/formQuestions/PotholeStatus';
 
@@ -14,41 +13,40 @@ const Header = (prop) => {
   const [avg, setAvg] = useState<number>(0);
   const [voteCount, setVotecount] = useState<number>(0);
   const [rating, setRating] = useState<number>(0);
-  const [newVote, setNewVote] = useState<number>(0);
   const [status, setStatus] = useState<boolean>(fixed);
 
-  const getAllRatingByPhId = () => {
-    axios.get('/api/rating/rating' + id).then(({ data }) => {
-      const Avg =
-        data.reduce((acc, curr) => {
-          acc += curr;
-          return acc;
-        }, 0) / data.length;
-      setAvg(Math.round(Avg));
-      setVotecount(data.length);
-    });
-  };
-
-  useEffect(getAllRatingByPhId, [newVote])
-
+    const getAllRatingByPhId = () => {
+      axios.get('/api/rating/rating' + id).then(({ data }) => {
+        const Avg =
+          data.reduce((acc, curr) => {
+            acc += curr;
+            return acc;
+          }, 0) / data.length;
+        setAvg(Math.round(Avg));
+        setVotecount(data.length);
+      });
+    };
+  
+  useEffect(() => getAllRatingByPhId(), [])
+  
   //handle rating/status
   const handleAction = (value) => {
     const val = value;
     const type = typeof val === 'number' ? 'rating' : 'status';
     const ratingStatusObj = { type, value }
 
-    if (type === 'rating') {
-      setNewVote(newVote + 1);
-      setRating(val);
-    } else if (type === 'status') {
-      setStatus(val);
-    }
-
-    axios
-      .post('/api/rating/fromPh', { id, ratingStatusObj, status, rating, user }) //pass whatever the current fixed val is/rating in order to create/update
-      .catch((data) => console.log(data));
+    axios.post('/api/rating/fromPh', { id, ratingStatusObj, status, rating, user }) //pass whatever the current fixed val is/rating in order to create/update
+      .then(() => {
+        if (type === 'rating') {
+          setRating(val);
+        } else if (type === 'status') {
+          setStatus(val);
+        }
+    })
+      .then(() => getAllRatingByPhId())
+      .catch((err) => console.error(err));
   };
-
+  
   return (
     <Container id='header'>
       <Row id='addyRating' className='alignItems'>

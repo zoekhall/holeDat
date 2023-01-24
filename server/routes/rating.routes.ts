@@ -1,5 +1,5 @@
 import express, { Request, Response } from 'express';
-import { getAllRatingsById } from '../models/rating.model';
+import { addRatingAndFind, getAllRatingsById } from '../models/rating.model';
 const rating = express.Router();
 
 import { getPotholesAtIds, addRating } from '../models/rating.model';
@@ -12,13 +12,15 @@ rating.post('/fromPh', (req: Request, res: Response) => {
   const { id, status, rating } = req.body;
   const { type, value } = req.body.ratingStatusObj;
   const { userId_user } = req.body.user;
+  const cb = (data) => {
+    res.status(201).send(data);
+  }
 
   if (type === 'rating') {
-    addRating(id, userId_user, status, value);
-    res.sendStatus(202);
+    addRatingAndFind(id, userId_user, status, value, cb);
   }else if(type === 'status') {
     addRating(id, userId_user, value, rating);
-    res.sendStatus(202);
+    res.sendStatus(201);
   }
   
 });

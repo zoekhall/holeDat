@@ -287,9 +287,9 @@
     margin-top: 2em;
     @include border-shadow(2px 2px, $muted-pearl);
 
-    .progress-bar {
-      background-color: $red;
-    }
+    // .progress-bar {
+    //   background-color: $red;
+    // }
   }
 
 

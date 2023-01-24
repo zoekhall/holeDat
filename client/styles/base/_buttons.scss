@@ -68,7 +68,7 @@
     &:disabled {
       @include border-shadow(2px 2px);
       background-color: $muted-pearl !important;
-      color: $red;
+      color: $black;
   
     //   .arrow-right {
     //     border-right: 2px solid $red;

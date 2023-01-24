@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button'
 
 const Logout = () => {
   return (
-    <a href='/logout'>
+    <a href='/logout' className='user-logout'>
       <Button className='basicButton'> Logout</Button>
     </a>
   );

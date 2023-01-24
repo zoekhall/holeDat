@@ -18,7 +18,8 @@
   };
 
   &:hover,
-  &:focus {
+  &:focus,
+  &:disabled {
     @include border-shadow(2px 2px);
     background-color: $red !important;
     color:$muted-pearl;

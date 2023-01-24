@@ -15,6 +15,7 @@ const StatusSection = (prop) => {
   const [showError, setShowError] = useState<boolean>(false);
   const [errorText, setErrorText] = useState<string>('');  
   const { fixed, rating } = statusContents;
+  const [disable, setDisable] = useState<boolean>(false); 
 
   //handle validation
   const handleValidation = () => {
@@ -26,6 +27,7 @@ const StatusSection = (prop) => {
       setErrorText('Select current pothole status')
     } else {
       handleSubmit();
+      setDisable(true);
     }
   };
 
@@ -74,10 +76,9 @@ const StatusSection = (prop) => {
 
       {handleShowError()}
 
-      <Button id='nextFormButton' className='basicButton' type='button' onClick={handleValidation}>
-        <div className='center' id='wtf'>
-          Submit
-          <div className='arrow-button arrow-right'></div>
+      <Button id='nextFormButton' className='basicButton' type='button' onClick={handleValidation} disabled={disable}>
+        <div className='center'>
+          Submit{disable === true ? 'ting...' : null}
         </div>
       </Button>
     </Form.Group>

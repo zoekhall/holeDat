@@ -43,7 +43,7 @@
 .dark-mode {
   .basicButton {
       @include border-shadow(2px 2px, $muted-pearl);
-      background-color: $dark-card-background;
+      background-color: transparent;
       color: $muted-pearl;
 
       .arrow-right {
@@ -58,11 +58,6 @@
         border-bottom: 2px solid $muted-pearl;
         border-left: 2px solid $muted-pearl;
         transform: translateX(-25%) rotate(45deg);
-      }
-
-      &:hover,
-      &:focus {
-        background-color: $blue !important;
       }
 }
 }

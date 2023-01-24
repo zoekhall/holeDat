@@ -13,7 +13,7 @@
 .formView {
   background-color: $yellow;
   border-radius: 16px;
-  padding: 10px;
+  padding: 15px;
   @include border-shadow;
 }
 
@@ -21,7 +21,7 @@
   background-color: $muted-pearl;
   border: 2px solid $black;
   border-radius: 8px;
-  padding: 10px;
+  padding: 20px;
 
   #statusSection {
     #ratingPot {
@@ -233,16 +233,16 @@
 
   .addAddressInput,
   #addPotCaption {
-    color: black
+    color: $black
   }
 
   .formView {
-    background-color: $dark-card-background-2;
+    background-color: $dark-card-background;
     @include border-shadow($muted-pearl);
   }
 
   .formSectionView {
-    background-color: $dark-card-background;
+    background-color: $dark-card-background-2;
     border: 2px solid $muted-pearl;
 
     #statusSection {

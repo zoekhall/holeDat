@@ -10,7 +10,7 @@ const WelcomeSection = (prop) => {
       <div className='text'>
       <h3 className='title'>Time to Report a Pothole!</h3>
       <h4>
-        <span className='line1'>Fill out this short form in order to submit a pothole image.</span>
+        <span className='line1'>Fill out this short form in order to submit an image and assess the pothole.</span>
         <span className='line2 explicit'>All questions are required in order to submit.</span>
       </h4>
       </div>

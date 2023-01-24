@@ -4,7 +4,6 @@ import Row from 'react-bootstrap/Row';
 import { useLocation } from 'react-router-dom';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
-// import Switch from 'react-bootstrap/Switch';
 import PotholeRating from '../addPothole/formQuestions/PotholeRating';
 import PotholeStatus from '../addPothole/formQuestions/PotholeStatus';
 
@@ -14,12 +13,10 @@ const Header = (prop) => {
   const [avg, setAvg] = useState<number>(0);
   const [voteCount, setVotecount] = useState<number>(0);
   const [rating, setRating] = useState<number>(0);
-  // const [newVote, setNewVote] = useState<number>(0);
   const [status, setStatus] = useState<boolean>(fixed);
 
     const getAllRatingByPhId = () => {
       axios.get('/api/rating/rating' + id).then(({ data }) => {
-        console.log(data)
         const Avg =
           data.reduce((acc, curr) => {
             acc += curr;
@@ -37,12 +34,9 @@ const Header = (prop) => {
     const val = value;
     const type = typeof val === 'number' ? 'rating' : 'status';
     const ratingStatusObj = { type, value }
-    console.log(value);
 
-    axios
-    .post('/api/rating/fromPh', { id, ratingStatusObj, status, rating, user }) //pass whatever the current fixed val is/rating in order to create/update
+    axios.post('/api/rating/fromPh', { id, ratingStatusObj, status, rating, user }) //pass whatever the current fixed val is/rating in order to create/update
       .then(() => {
-      console.log(val, 'val')
         if (type === 'rating') {
           setRating(val);
         } else if (type === 'status') {
@@ -52,7 +46,7 @@ const Header = (prop) => {
       .then(() => getAllRatingByPhId())
       .catch((err) => console.error(err));
   };
-
+  
   return (
     <Container id='header'>
       <Row id='addyRating' className='alignItems'>

@@ -40,7 +40,7 @@ export const StatusContext = createContext<StatusContextType>({
 /* --------------------------- Main Form Component -------------------------- */
 const AddPothole = () => {
   const sections: Array<string> = ['Welcome', 'Location', 'Image', 'Status'];
-  const [view, setView] = useState<string>('Status');
+  const [view, setView] = useState<string>('Welcome');
   const [progress, setProgress] = useState<number>(0);
   const [user_id, setUser_id] = useState<number>(0);
   const [coordinates, setCoordinates] = useState({ lat: 0, lon: 0 });

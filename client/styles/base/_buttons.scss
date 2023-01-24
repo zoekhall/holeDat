@@ -40,6 +40,9 @@
   width: 1em;
 }
 
+
+
+
 .dark-mode {
   .basicButton {
       @include border-shadow(2px 2px, $muted-pearl);
@@ -59,5 +62,23 @@
         border-left: 2px solid $muted-pearl;
         transform: translateX(-25%) rotate(45deg);
       }
-}
+
+    &:hover,
+    &:focus,
+    &:disabled {
+      @include border-shadow(2px 2px);
+      background-color: $muted-pearl !important;
+      color: $red;
+  
+    //   .arrow-right {
+    //     border-right: 2px solid $red;
+    //     border-top: 2px solid $red;
+    //   }
+  
+    //   .arrow-left {
+    //     border-left: 2px solid $red ;
+    //     border-bottom: 2px solid $red;
+    //   }
+    };
+  }
 }

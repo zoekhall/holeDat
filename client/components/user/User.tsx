@@ -66,39 +66,39 @@ function User() {
         <div className='avatar-container'>
           <img src={user.photo} alt='Image' className='user-avatar' />
           {badge?.imgUrl ? <img className='user-badge' src={badge?.imgUrl} alt='Image' /> : <></>}
+          <div className='user-buttons'>
+            <h1>
+              {!editTrigger ? (
+                user.name
+              ) : (
+                <input
+                  onChange={handleInputChange}
+                  value={text}
+                  type='text'
+                  name='text'
+                  placeholder={user.name}
+                ></input>
+              )}
+            </h1>
+            {!editTrigger ? (
+              <Button className='basicButton' onClick={() => setEditTrigger(!editTrigger)}>
+                Edit
+              </Button>
+            ) : (
+              <Button
+                className='basicButton'
+                onClick={() => {
+                  applyEditChanges(text);
+                  setEditTrigger(!editTrigger);
+                }}
+              >
+                Apply changes
+              </Button>
+            )}
+          </div>
         </div>
-
-        <h1>
-          {!editTrigger ? (
-            user.name
-          ) : (
-            <input
-              onChange={handleInputChange}
-              value={text}
-              type='text'
-              name='text'
-              placeholder={user.name}
-            ></input>
-          )}
-        </h1>
-
-        {!editTrigger ? (
-          <Button className='basicButton' onClick={() => setEditTrigger(!editTrigger)}>
-            Edit Username
-          </Button>
-        ) : (
-          <Button
-            className='basicButton'
-            onClick={() => {
-              applyEditChanges(text);
-              setEditTrigger(!editTrigger);
-            }}
-          >
-            Apply changes
-          </Button>
-        )}
-        <Logout />
         <UserStats userId={-1} />
+        <Logout />
       </div>
     </>
   );

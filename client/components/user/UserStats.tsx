@@ -49,7 +49,7 @@ export const UserStats = ({ userId }: { userId: number }) => {
 
     return (
         <div id='pothole-slider-content'>
-            <h2>Images Uploaded:</h2>
+            <h4>Images Uploaded:</h4>
             <div className='image-grid'>
                 {uploadedPotholes.map((image) => {
                     return (

@@ -50,7 +50,7 @@ const LocationSection = (prop) => {
         )}
         {sectionView === 'newPothole' ? null : (
           <p className='formText xsmall explicit'>
-            If you want to check out its profile, click the pothole picture. You will have
+            If you want to check out the profile, click the picture. You will have
             to restart the form.
           </p>
         )}

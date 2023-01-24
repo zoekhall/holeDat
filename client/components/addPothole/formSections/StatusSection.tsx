@@ -63,7 +63,7 @@ const StatusSection = (prop) => {
           </span>
           <span className='newline xsmall line2'>
             <span className='moreDef'>5 cones ('Severe')</span>: the pothole is severe, deep and
-            poses a potential threat to vehicles.
+            poses a substantial threat to vehicles.
           </span>
         </p>
         <PotholeRating handleClick={handleClick} />

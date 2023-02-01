@@ -7,7 +7,7 @@
 
 .pothole-container {
   background: $card-background;
-  width: 100%;
+  width: 60%;
   height: 20%;
   display: block;
   margin: 10px auto;
@@ -34,6 +34,12 @@
     display: flex;
     border-radius: 10px;
     border: 1px solid $detail;
+  }
+}
+
+@media (max-width:768px) {
+  .pothole-container {
+    width: 100%;
   }
 }
 

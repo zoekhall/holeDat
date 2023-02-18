@@ -4,13 +4,13 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 
-//rating cones
+//rating cones 
 const PotholeRating = (prop) => {
-  const { handleClick } = prop;
-  const [rating, setRating] = useState<number>(0);
+  const { handleClick } = prop; //handleClick function passed as prop
+  const [rating, setRating] = useState<number>(0); //state to hole selected rating 
 
   return (
-    <Container id='ratingPot'>
+    <Container id='ratingPot'> 
       <Row className='ratingGroupDiv'>
         <Col
           className='center ratingElem'
@@ -25,7 +25,6 @@ const PotholeRating = (prop) => {
                 onClick={() => {
                   handleClick(num);
                   setRating(num);
-                  //console.log('numInRating', num);
                 }}
                 xmlns='http://www.w3.org/2000/svg'
                 fill='currentColor'

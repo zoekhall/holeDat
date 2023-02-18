@@ -1,10 +1,9 @@
-/* eslint-disable react/no-unescaped-entities */
 import React, { useState } from 'react';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 
-//rating cones 
+//cone rating functionality - allows user to select number of cones to rate pothole
 const PotholeRating = (prop) => {
   const { handleClick } = prop; //handleClick function passed as prop
   const [rating, setRating] = useState<number>(0); //state to hole selected rating 

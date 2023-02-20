@@ -6,7 +6,7 @@ import Container from 'react-bootstrap/Container';
 //cone rating functionality - allows user to select number of cones to rate pothole
 const PotholeRating = (prop) => {
   const { handleClick } = prop; //handleClick function passed as prop
-  const [rating, setRating] = useState<number>(0); //state to hole selected rating 
+  const [rating, setRating] = useState<number>(0); //selected rating 
 
   return (
     <Container id='ratingPot'> 

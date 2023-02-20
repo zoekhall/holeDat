@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-empty-function */
 import React, { useState, useEffect, createContext, Dispatch, SetStateAction } from 'react';
 import axios from 'axios';
 import ProgressBar from 'react-bootstrap/ProgressBar';

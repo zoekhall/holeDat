@@ -9,14 +9,14 @@ import { LocationContext } from '../AddPothole';
 const mapToken =
   'pk.eyJ1IjoiemFjaG1hcnVsbG8iLCJhIjoiY2xhazZ5aGxyMDQ3bzNwbzZ2Z3N0b3lpMyJ9.65G-mwqhbWFy77O_I0LkOg';
 
-//location search form. Determines and assigns lat/lon to location context
+//location search form - determines and assigns lat/lon to location context and renders map so user can double check location 
 const PotholeLocation = (prop) => {
   const { coordinates, setCoordinates } = useContext(LocationContext); 
   const [showError, setShowError] = useState<boolean>(false);
   const isMounted = useRef(false);
   const { setSectionView, setPothole_id, setLocation, location, setZip, zip } = prop;
 
-  //turns address into lat and lon coordinates
+  //handles turning address into lat and lon coordinates
   const updateLatLon = () => {
     const formattedLocation = location.split(' ').join('%20').concat(`%2C%20${zip}`); //format location to be read by mapbox
     axios(
@@ -26,24 +26,25 @@ const PotholeLocation = (prop) => {
         const newCoordinates = { ...coordinates };
         newCoordinates.lat = data.features[0].center[1];
         newCoordinates.lon = data.features[0].center[0];
-        setCoordinates(newCoordinates);
+        setCoordinates(newCoordinates); 
       })
       .catch((err) => {
-        setShowError(true);
+        setShowError(true); //display error to user 
         console.error('FAILURE TO TURN ADDRESS INTO COORDINATES', err);
       });
   };
 
-  //when coordinates change - find the id and set up render of map
+  //when/if coordinates change - determine whether pothole exists and render appropriate map view 
   useEffect(() => {
     axios
-      .post('/api/pothole/findPothole', { lat: coordinates.lat, lon: coordinates.lon })
-      .then(({ data }) => {
-        const potholeId = data.length > 0 ? data[0].pothole_id : 0;
+      .post('/api/pothole/findPothole', { lat: coordinates.lat, lon: coordinates.lon }) 
+      .then(({ data }) => { 
+      //then potholeId determined by whether or not the pothole exists. If it does given existing id, else 0
+        const potholeId = data.length > 0 ? data[0].pothole_id : 0; 
         setPothole_id(potholeId);
         return potholeId;
       })
-      //after finding the pothole id - use it to set the status and render the map
+      //then use the pothole id to render appropriate map view
       .then((potholeId) => {
         if (isMounted.current) {
           potholeId === 0 ? setSectionView('newPothole') : setSectionView('existingPothole');
@@ -54,7 +55,7 @@ const PotholeLocation = (prop) => {
       .catch((err) => console.error('FAILURE TO FIND POTHOLEID', err));
   }, [coordinates]);
 
-  //handles if an error is caught to propmt user to add a valid address
+  //handles rendering error message to user if valid address is not inputted
   const handleShowError = () => {
     if (showError === true) {
       return <Alert variant='danger'>Oops! Not a Valid Address</Alert>;

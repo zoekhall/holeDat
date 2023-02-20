@@ -11,7 +11,7 @@ import StatusSection from './formSections/StatusSection';
 import SubmittedSection from './formSections/SubmittedSection';
 import WelcomeSection from './formSections/WelcomeSection';
 
-/* -------------------------------- Contexts -------------------------------- */
+/* -------------------------------- Context -------------------------------- */
 interface LocationContextType {
   coordinates: { lat: number; lon: number };
   setCoordinates: Dispatch<SetStateAction<{ lat: number; lon: number }>>;
@@ -127,7 +127,6 @@ const AddPothole = () => {
     } else {
       return (
         <Form id='potholeForm' className='formSectionView'>
-          {/* {handleSetError()} */}
           {handleSectionalView()}
           <ProgressBar now={progress} />
         </Form>
